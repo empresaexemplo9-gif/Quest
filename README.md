@@ -84,6 +84,8 @@ A adaptação usa classes RO equivalentes, corrige a proteção no nível 15, fa
 
 O pacote Docker para VPS, o banco nativo persistente e a configuração HTTPS/WSS estão documentados em [Hospedagem do Ragnarok](docs/ragnarok-hosting.md). A implantação pública ainda depende de criar a VPS e configurar o acesso seguro ao provedor.
 
+Para usar o Windows como servidor, execute `scripts\IniciarServidorWindows.cmd` **na pasta existente deste repositório**, com Docker Desktop/WSL2 aberto. O pacote é instalado dentro de `.local\ragnarok\windows-server`; [instruções de acesso local, iPad e internet](docs/ragnarok-local-windows.md). Não é necessário contratar VPS se a conexão do computador permitir entrada pública.
+
 ## Instaladores Windows e macOS
 
 ```bash

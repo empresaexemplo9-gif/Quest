@@ -20,3 +20,5 @@ legacy/build/
 !public/downloads/Eridan-Setup.exe
 !public/downloads/Eridan-macOS.zip
 !public/downloads/SHA256SUMS.json
+!public/downloads/Quest-Servidor-Windows.zip
+!public/downloads/Quest-Servidor-Windows.sha256

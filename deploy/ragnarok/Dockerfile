@@ -1,6 +1,7 @@
 FROM node:24-trixie-slim@sha256:c83040f7e24bacea68e58a0b96a484ba430bf24abb2973eab7ba4701144b7b63
 WORKDIR /app
 COPY --chown=node:node . /app
+RUN chmod 755 /app/engine/rathena/login-server /app/engine/rathena/char-server /app/engine/rathena/map-server /app/engine/rathena/web-server
 ENV NODE_ENV=production LD_LIBRARY_PATH=/app/runtime-libs QUEST_RO_BIND=0.0.0.0
 USER node
 EXPOSE 3005
