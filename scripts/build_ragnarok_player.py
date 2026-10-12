@@ -153,7 +153,7 @@ def build(platform, go):
             put.external_attr = 0o100755 << 16
             put.compress_type = zipfile.ZIP_DEFLATED
             bundle.writestr(put, binary.read_bytes())
-            bundle.writestr(name + 'Info.plist', '<?xml version="1.0"?><!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version="1.0"><dict><key>CFBundleExecutable</key><string>Quest-Ragnarok</string><key>CFBundleIdentifier</key><string>app.quest.ragnarok</string><key>CFBundleName</key><string>Quest Ragnarok</string><key>CFBundleVersion</key><string>2.0.0</string><key>CFBundlePackageType</key><string>APPL</string><key>LSMinimumSystemVersion</key><string>12.0</string></dict></plist>')
+            bundle.writestr(name + 'Info.plist', '<?xml version="1.0"?><!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version="1.0"><dict><key>CFBundleExecutable</key><string>Quest-Ragnarok</string><key>CFBundleIdentifier</key><string>app.quest.ragnarok</string><key>CFBundleName</key><string>Quest Ragnarok</string><key>CFBundleVersion</key><string>2.0.1</string><key>CFBundlePackageType</key><string>APPL</string><key>LSMinimumSystemVersion</key><string>12.0</string></dict></plist>')
             bundle.writestr('LEIA-ME.txt', 'Extraia o ZIP e mova Quest Ragnarok.app para Aplicativos. A primeira execução baixa cerca de 4 GB de dados kRO, verificados por SHA-256. Selecione o endereço HTTPS do servidor. O jogo usa o cliente roBrowserLegacy/WebGL no navegador padrão. Aplicativo sem assinatura/notarização; macOS físico ainda não testado.\n')
     else:
         output = binary
@@ -163,7 +163,7 @@ def build(platform, go):
     if platform != 'linux':
         checksum = destination / 'Quest-Ragnarok-SHA256SUMS.json'
         existing = json.loads(checksum.read_text()) if checksum.exists() else {}
-        existing[output.name] = {'bytes': output.stat().st_size, 'sha256': digest(output), 'version': '2.0.0'}
+        existing[output.name] = {'bytes': output.stat().st_size, 'sha256': digest(output), 'version': '2.0.1'}
         checksum.write_text(json.dumps(existing, indent=2) + '\n')
 
 

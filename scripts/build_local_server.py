@@ -17,7 +17,7 @@ with zipfile.ZipFile(output,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=6
     for path in sorted(context.rglob('*')):
         if not path.is_file():continue
         relative = path.relative_to(context)
-        if relative == Path('deploy/ragnarok/Dockerfile'):continue
+        if relative in [Path('deploy/ragnarok/Dockerfile'),Path('client/ragnarok/check-public.mjs')]:continue
         if relative.parts[:3] == ('.local','ragnarok','client'):continue
         if relative.parts[:3] == ('engine','rathena','conf') and 'import' in relative.parts:continue
         if any(part in ['.git','__pycache__'] or part.startswith('.env') for part in relative.parts):continue
@@ -26,6 +26,7 @@ with zipfile.ZipFile(output,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=6
     for name,target in [('configure_local.py','configure_server.py'),('IniciarServidor.ps1','IniciarServidor.ps1'),('IniciarServidor.cmd','IniciarServidor.cmd'),('database-init.sh','database-init.sh'),('Caddyfile','Caddyfile')]:
         add(root/'deploy/ragnarok'/name,target)
     add(root/'scripts/download_kro.py','context/scripts/download_kro.py')
+    add(root/'client/ragnarok/check-public.mjs','context/client/ragnarok/check-public.mjs')
     add(root/'deploy/ragnarok/Dockerfile','context/deploy/ragnarok/Dockerfile')
     add(root/'docs/ragnarok-local-windows.md','LEIA-ME.md')
     compose=(root/'deploy/ragnarok/compose.yaml').read_text().replace('name: quest-ragnarok\n','name: quest-ragnarok-pc\n')

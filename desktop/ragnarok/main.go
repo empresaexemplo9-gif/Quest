@@ -34,7 +34,7 @@ import (
 //go:embed assets/runtime.zip assets/runtime.sha256
 var bundle embed.FS
 
-const version = "2.0.0"
+const version = "2.0.1"
 const portal = "https://quest-game-plum.vercel.app"
 
 var installComplete = errors.New("installed and launched")
@@ -43,6 +43,7 @@ type app struct {
 	mu                                     sync.RWMutex
 	phase, problem, server                 string
 	ready                                  bool
+	assetsFailed                           bool
 	runtimeDir, clientDir, dataDir, origin string
 	transport                              *http.Transport
 	remote                                 *httputil.ReverseProxy
@@ -121,10 +122,14 @@ func run() error {
 		if e == nil {
 			defer response.Body.Close()
 			var existing struct {
-				Client string `json:"client"`
+				Client  string `json:"client"`
+				Version string `json:"version"`
 			}
 			json.NewDecoder(io.LimitReader(response.Body, 4096)).Decode(&existing)
 			if response.StatusCode == 200 && existing.Client == "quest-ragnarok" {
+				if existing.Version != version {
+					return errors.New("feche o cliente anterior e abra o novo atalho Quest Ragnarok")
+				}
 				if !*noBrowser {
 					return openGame("http://" + address)
 				}
@@ -280,7 +285,9 @@ func (a *app) selectServer(value string) error {
 	a.mu.Lock()
 	a.server = target.String()
 	a.remote = proxy
-	a.problem = ""
+	if !a.assetsFailed {
+		a.problem = ""
+	}
 	a.mu.Unlock()
 	return nil
 }
@@ -302,6 +309,7 @@ func (a *app) prepare() {
 		return
 	}
 	defer logFile.Close()
+	fmt.Fprintf(logFile, "\nQuest Ragnarok %s — %s\n", version, time.Now().UTC().Format(time.RFC3339))
 	child := exec.Command(node, filepath.Join(a.runtimeDir, "start-assets.mjs"), a.clientDir, a.origin)
 	hideConsole(child)
 	child.Dir = a.runtimeDir
@@ -326,42 +334,34 @@ func (a *app) prepare() {
 		a.fail(err)
 		return
 	}
-	go child.Wait()
-	for attempt := 0; attempt < 120; attempt++ {
-		data, e := os.ReadFile(portFile)
-		if e == nil {
-			var info struct {
-				Port int `json:"port"`
-			}
-			json.Unmarshal(data, &info)
-			if info.Port > 0 {
-				endpoint := fmt.Sprintf("http://127.0.0.1:%d", info.Port)
-				response, e := (&http.Client{Timeout: 2 * time.Second}).Get(endpoint + "/data/prontera.gat")
-				if e == nil {
-					magic := make([]byte, 4)
-					io.ReadFull(response.Body, magic)
-					response.Body.Close()
-					if response.StatusCode == 200 && string(magic) == "GRAT" {
-						target, _ := url.Parse(endpoint)
-						a.mu.Lock()
-						a.assetProxy = httputil.NewSingleHostReverseProxy(target)
-						a.ready = true
-						a.phase = "Cliente Ragnarok instalado."
-						a.mu.Unlock()
-						return
-					}
-				}
-			}
+	exited := make(chan error, 1)
+	go func() { exited <- child.Wait() }()
+	endpoint, err := waitForAssetService(exited, portFile, 120*time.Second)
+	if err != nil {
+		if child.Process != nil {
+			child.Process.Kill()
 		}
-		a.mu.RLock()
-		stopped := a.stopped
-		a.mu.RUnlock()
-		if stopped {
-			return
-		}
-		time.Sleep(500 * time.Millisecond)
+		a.fail(err)
+		return
 	}
-	a.fail(errors.New("o serviço de mapas não iniciou; consulte assets.log na pasta do cliente"))
+	a.mu.Lock()
+	a.assetsFailed = false
+	a.assetProxy = httputil.NewSingleHostReverseProxy(endpoint)
+	a.ready = true
+	a.phase = "Cliente Ragnarok instalado."
+	a.mu.Unlock()
+	go func() {
+		<-exited
+		a.mu.Lock()
+		defer a.mu.Unlock()
+		if !a.stopped {
+			a.assetsFailed = true
+			a.ready = false
+			a.problem = "O serviço de mapas encerrou. Abra o diagnóstico do cliente."
+			a.phase = "Não foi possível manter os mapas disponíveis."
+		}
+	}()
+
 }
 
 func (a *app) stopAssets() {
@@ -375,12 +375,14 @@ func (a *app) stopAssets() {
 
 func (a *app) fail(err error) {
 	a.mu.Lock()
+	a.assetsFailed = true
+	a.ready = false
 	a.problem = err.Error()
 	a.phase = "Não foi possível concluir a preparação."
 	a.mu.Unlock()
 }
 
-var launcher = template.Must(template.New("launcher").Parse(`<!doctype html><html lang="pt-BR"><meta charset="utf-8"><title>Quest — Ragnarok</title><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{background:#111820;color:#f0e5d3;font:18px system-ui;margin:8vh auto;padding:24px;max-width:700px}h1{color:#e8b84b}input,button{font:inherit;padding:12px;box-sizing:border-box}input{width:100%;margin:12px 0}button{background:#e8b84b;border:0;cursor:pointer}#error{color:#f8b7a4}small{display:block;margin-top:24px}</style><h1>Quest — Cinzas de Éridan</h1><p>Ragnarok · Mundo compartilhado</p><p id="status">Preparando o cliente…</p><p id="error"></p><form id="connection"><label>Endereço do servidor Quest<input id="server" type="url" placeholder="https://servidor-do-jogo" required></label><button>Conectar ao mundo</button></form><small>Na primeira instalação, os mapas, personagens e músicas são baixados. Seu personagem e os outros jogadores vivem no mesmo servidor.</small><script src="/launcher.js"></script></html>`))
+var launcher = template.Must(template.New("launcher").Parse(`<!doctype html><html lang="pt-BR"><meta charset="utf-8"><title>Quest — Ragnarok</title><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{background:#111820;color:#f0e5d3;font:18px system-ui;margin:8vh auto;padding:24px;max-width:700px}h1{color:#e8b84b}input,button{font:inherit;padding:12px;box-sizing:border-box}input{width:100%;margin:12px 0}button{background:#e8b84b;border:0;cursor:pointer}#error{color:#f8b7a4}small{display:block;margin-top:24px}</style><h1>Quest — Cinzas de Éridan</h1><p>Ragnarok · Mundo compartilhado</p><p id="status">Preparando o cliente…</p><p id="error"></p><details id="diagnostic" hidden><summary>Ver diagnóstico do cliente</summary><pre id="asset-log" style="white-space:pre-wrap;overflow-wrap:anywhere"></pre></details><form id="connection"><label>Endereço do servidor Quest<input id="server" type="url" placeholder="https://servidor-do-jogo" required></label><button>Conectar ao mundo</button></form><small>Na primeira instalação, os mapas, personagens e músicas são baixados. Seu personagem e os outros jogadores vivem no mesmo servidor.</small><script src="/launcher.js"></script></html>`))
 
 func (a *app) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if r.Host != strings.TrimPrefix(a.origin, "http://") || (r.Header.Get("Origin") != "" && r.Header.Get("Origin") != a.origin) {
@@ -393,6 +395,19 @@ func (a *app) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	ready, server, problem, phase, remote, assetProxy := a.ready, a.server, a.problem, a.phase, a.remote, a.assetProxy
 	a.mu.RUnlock()
 	switch r.URL.Path {
+	case "/api/client-log":
+		if r.Method != "GET" {
+			http.Error(w, "Método inválido", 405)
+			return
+		}
+		data, err := assetLogTail(filepath.Join(a.dataDir, "assets.log"), 32<<10)
+		if err != nil {
+			http.Error(w, "O log ainda não foi criado.", 404)
+			return
+		}
+		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
+		w.Write(data)
+		return
 	case "/api/client-status":
 		json.NewEncoder(w).Encode(map[string]any{"client": "quest-ragnarok", "version": version, "assetsReady": ready, "server": server, "problem": problem, "phase": phase, "sharedWorld": true})
 		return
@@ -416,7 +431,7 @@ func (a *app) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		return
 	case "/launcher.js":
 		w.Header().Set("Content-Type", "text/javascript")
-		io.WriteString(w, `async function status(){const s=await(await fetch('/api/client-status')).json();document.querySelector('#status').textContent=s.phase;document.querySelector('#error').textContent=s.problem;const input=document.querySelector('#server');if(!input.value)input.value=s.server;if(s.assetsReady&&s.server&&!s.problem)location.href='/play/';}document.querySelector('#connection').onsubmit=async e=>{e.preventDefault();const r=await fetch('/api/server',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({server:document.querySelector('#server').value})});if(!r.ok)document.querySelector('#error').textContent=await r.text();else status();};status();setInterval(status,1500);`)
+		io.WriteString(w, `async function status(){const s=await(await fetch('/api/client-status')).json();document.querySelector('#status').textContent=s.phase;document.querySelector('#error').textContent=s.problem;document.querySelector('#diagnostic').hidden=!(s.problem&&!s.assetsReady);const input=document.querySelector('#server');if(!input.value)input.value=s.server;if(s.assetsReady&&s.server&&!s.problem)location.href='/play/';}document.querySelector('#connection').onsubmit=async e=>{e.preventDefault();const r=await fetch('/api/server',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({server:document.querySelector('#server').value})});if(!r.ok)document.querySelector('#error').textContent=await r.text();else status();};document.querySelector('#diagnostic').ontoggle=async e=>{if(e.target.open){const r=await fetch('/api/client-log');document.querySelector('#asset-log').textContent=await r.text();}};status();setInterval(status,1500);`)
 		return
 	case "/", "/index.html":
 		launcher.Execute(w, nil)

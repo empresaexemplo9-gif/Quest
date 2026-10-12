@@ -12,6 +12,7 @@ from urllib.parse import urlparse
 
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--directory', type=Path, default=Path(__file__).resolve().parent)
+parser.add_argument('--tunnel-origin', help='Public HTTPS origin while preserving the existing private gateway')
 parser.add_argument('--origin', help='Local/LAN HTTP origin or public HTTPS origin')
 parser.add_argument('--verify-client', action='store_true')
 args = parser.parse_args()
@@ -31,7 +32,9 @@ if env_file.exists():
             parser.error('Existing credentials are incomplete; configuration and database were preserved')
 else:
     values.update(MARIADB_ROOT_PASSWORD=secrets.token_hex(32),MARIADB_PASSWORD=secrets.token_hex(32),QUEST_INTER_PASSWORD=secrets.token_hex(11))
-origin = args.origin or values.get('QUEST_RO_PUBLIC_URL','http://localhost:8080')
+if args.tunnel_origin and (args.origin or not env_file.exists()):
+    parser.error('Start the existing server before applying a tunnel origin; do not combine --origin')
+origin = args.tunnel_origin or args.origin or values.get('QUEST_RO_PUBLIC_URL','http://localhost:8080')
 url = urlparse(origin)
 if url.scheme not in ['http','https'] or not url.hostname or url.username or url.password or url.path not in ['', '/'] or url.query or url.fragment or any(c.isspace() for c in origin):
     parser.error('Use a complete HTTP/HTTPS origin without credentials, path, query or fragment')
@@ -48,6 +51,8 @@ try:
     port = url.port or (443 if url.scheme == 'https' else 80)
 except ValueError:
     parser.error('Invalid port')
+if args.tunnel_origin and (url.scheme != 'https' or private):
+    parser.error('The tunnel origin must be a public HTTPS hostname')
 if url.scheme == 'http' and not private:
     parser.error('Public access requires HTTPS; HTTP is allowed only on localhost/private IPv4 LAN')
 if url.scheme == 'https' and port != 443:
@@ -55,12 +60,16 @@ if url.scheme == 'https' and port != 443:
 if url.scheme == 'https' and url.hostname.endswith('.vercel.app'):
     parser.error('Keep the Vercel domain as the entry; use a hostname pointing to this PC for the backend')
 origin = origin.rstrip('/')
-values.update(QUEST_RO_PUBLIC_URL=origin,CLIENT_PUBLIC_URL=origin,
-    QUEST_RO_ALLOWED_ORIGINS=origin+',https://quest-game-plum.vercel.app',
-    QUEST_NATIVE_HOST=('http://' if url.scheme == 'http' else '')+url.hostname,
-    QUEST_BIND_ADDRESS='127.0.0.1' if local else '0.0.0.0',
-    QUEST_HTTP_PORT=str(port if url.scheme == 'http' else 80),QUEST_HTTPS_PORT='18443' if url.scheme == 'http' else '443',
-    QUEST_PRIVATE_PORT=values.get('QUEST_PRIVATE_PORT','13905'))
+if args.tunnel_origin:
+    allowed=list(dict.fromkeys(values.get('QUEST_RO_ALLOWED_ORIGINS',values['QUEST_RO_PUBLIC_URL']).split(',')+[origin]))
+    values.update(QUEST_RO_PUBLIC_URL=origin,CLIENT_PUBLIC_URL=origin,QUEST_RO_ALLOWED_ORIGINS=','.join(allowed))
+else:
+    values.update(QUEST_RO_PUBLIC_URL=origin,CLIENT_PUBLIC_URL=origin,
+        QUEST_RO_ALLOWED_ORIGINS=origin+',https://quest-game-plum.vercel.app',
+        QUEST_NATIVE_HOST=('http://' if url.scheme == 'http' else '')+url.hostname,
+        QUEST_BIND_ADDRESS='127.0.0.1' if local else '0.0.0.0',
+        QUEST_HTTP_PORT=str(port if url.scheme == 'http' else 80),QUEST_HTTPS_PORT='18443' if url.scheme == 'http' else '443',
+        QUEST_PRIVATE_PORT=values.get('QUEST_PRIVATE_PORT','13905'))
 temporary = root/'.env.next'
 descriptor = os.open(temporary,os.O_CREAT|os.O_EXCL|os.O_WRONLY,0o600)
 try:

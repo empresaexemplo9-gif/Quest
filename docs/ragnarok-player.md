@@ -6,7 +6,7 @@ O projeto real continua sendo **empresaexemplo9-gif/Quest**, branch **main**. O 
 
 Página: https://quest-game-plum.vercel.app/downloads.html
 
-- Windows 10/11 x64: `Quest-Ragnarok-Setup.exe`. Instala em `%LOCALAPPDATA%\Programs\QuestRagnarok\2.0.0`, cria atalhos na área de trabalho e no menu Iniciar. O jogo abre em janela do Edge ou no navegador padrão.
+- Windows 10/11 x64: `Quest-Ragnarok-Setup.exe`. Instala em `%LOCALAPPDATA%\Programs\QuestRagnarok\2.0.1`, cria atalhos na área de trabalho e no menu Iniciar. O jogo abre em janela do Edge ou no navegador padrão.
 - macOS 12+ Intel ou Apple Silicon: extraia o ZIP correspondente e mova `Quest Ragnarok.app` para Aplicativos. O jogo abre no navegador padrão.
 - Os dados ficam no cache de usuário `QuestRagnarok`; no Windows, `%LOCALAPPDATA%\QuestRagnarok`. A primeira execução baixa cerca de 4 GB de kRO e extrai músicas/arquivos auxiliares. Reserve 6 GB. A tradução inglesa, o renderer e o leitor de GRFs estão incluídos. Os arquivos kRO são obtidos diretamente dos espelhos fixados em `client/ragnarok/kro.lock.json`, sem redistribuí-los no instalador.
 - O aplicativo solicita o endereço do servidor e só o aceita depois de verificar rAthena, protocolo compatível, mapas e login/char/map ativos. Internet exige HTTPS/WSS. HTTP só é permitido em localhost ou endereço IP de rede privada.
@@ -47,3 +47,9 @@ DOCKER_CONFIG=/workspace/.quest-env/docker python3 scripts/test_ragnarok_shared_
 O teste usa duas contas descartáveis no MariaDB do servidor, entra em Prontera com dois clientes isolados, verifica chat recebido pelo outro jogador, movimento, sentar/levantar recebidos pela outra conexão e posição persistida. Limpa apenas os registros criados pelo teste. Os screenshots e o resultado ficam em `/workspace/.quest-env/run`.
 
 Os checksums públicos estão em `public/downloads/Quest-Ragnarok-SHA256SUMS.json`. Nunca inclua credenciais/arquivos privados do servidor nos pacotes de jogadores. Não regenere artefatos versionados durante o onboarding de rotina.
+
+## Correção do erro de mapas na versão 2.0.1
+
+O bootstrap 2.0.0 passava caminhos de arquivos do Windows diretamente a `import()`, provocando `ERR_UNSUPPORTED_ESM_URL_SCHEME`. A versão 2.0.1 usa URLs de arquivo relativas ao módulo, inclusive em pastas com espaços, acentos ou `#`. Instala seu runtime em outra pasta, preserva o cache de GRFs já baixado e atualiza o atalho. No Windows, encerra apenas o executável 2.0.0 instalado na pasta do próprio usuário antes de abrir a nova versão.
+
+Baixe e execute novamente o instalador na página de downloads. Não apague a pasta `QuestRagnarok`. Se o serviço encerrar, o cliente mostra o erro imediatamente e oferece **Ver diagnóstico do cliente**, com o trecho recente de `assets.log`. Esse log permanece em `%LOCALAPPDATA%\QuestRagnarok\assets.log` no Windows. Os detalhes são servidos somente no loopback e protegidos contra outra origem.

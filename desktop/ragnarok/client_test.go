@@ -186,3 +186,68 @@ func TestCorruptArchiveDoesNotLeaveInstalledPartialFile(t *testing.T) {
 		t.Fatal("left temporary extraction files")
 	}
 }
+
+func TestAssetServiceReportsExitWithoutWaitingForTimeout(t *testing.T) {
+	exited := make(chan error, 1)
+	exited <- fmt.Errorf("Node rejected Windows module path")
+	start := time.Now()
+	_, err := waitForAssetService(exited, filepath.Join(t.TempDir(), "asset-port.json"), time.Minute)
+	if err == nil || !strings.Contains(err.Error(), "encerrou") {
+		t.Fatal("missing immediate startup failure", err)
+	}
+	if time.Since(start) > time.Second {
+		t.Fatal("waited for timeout after child already exited")
+	}
+}
+
+func TestAssetReadinessRequiresRealMapSignature(t *testing.T) {
+	content := "not-map"
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) { fmt.Fprint(w, content) }))
+	defer server.Close()
+	port := strings.Split(server.URL, ":")[2]
+	file := filepath.Join(t.TempDir(), "asset-port.json")
+	os.WriteFile(file, []byte(`{"port":`+port+`}`), 0600)
+	exited := make(chan error)
+	if _, err := waitForAssetService(exited, file, 650*time.Millisecond); err == nil {
+		t.Fatal("accepted a service without native map data")
+	}
+	content = "GRATmap"
+	endpoint, err := waitForAssetService(exited, file, time.Second)
+	if err != nil || endpoint.String() != server.URL {
+		t.Fatal("rejected ready native map service", endpoint, err)
+	}
+}
+
+func TestDiagnosticLogIsBoundedAndOriginProtected(t *testing.T) {
+	a := &app{origin: "http://127.0.0.1:38777", dataDir: t.TempDir()}
+	file := filepath.Join(a.dataDir, "assets.log")
+	data := strings.Repeat("x", 100000) + "\nERR_UNSUPPORTED_ESM_URL_SCHEME"
+	os.WriteFile(file, []byte(data), 0600)
+	request := httptest.NewRequest("GET", a.origin+"/api/client-log", nil)
+	response := httptest.NewRecorder()
+	a.ServeHTTP(response, request)
+	if response.Code != 200 || response.Body.Len() != 32<<10 || !strings.Contains(response.Body.String(), "ERR_UNSUPPORTED_ESM_URL_SCHEME") {
+		t.Fatal("missing bounded actionable log")
+	}
+	request.Header.Set("Origin", "https://untrusted.example")
+	response = httptest.NewRecorder()
+	a.ServeHTTP(response, request)
+	if response.Code != 403 {
+		t.Fatal("exposed local diagnostic cross-origin")
+	}
+}
+
+func TestChangingServerKeepsAnAssetStartupFailureVisible(t *testing.T) {
+	backend := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprint(w, `{"engine":"rAthena","packetver":20211103,"nativeReady":true,"assetsReady":true}`)
+	}))
+	defer backend.Close()
+	a := &app{dataDir: t.TempDir(), transport: backend.Client().Transport.(*http.Transport)}
+	a.fail(fmt.Errorf("maps failed to start"))
+	if err := a.selectServer(backend.URL); err != nil {
+		t.Fatal(err)
+	}
+	if a.problem != "maps failed to start" || a.ready {
+		t.Fatal("connecting a server hid the local map failure")
+	}
+}

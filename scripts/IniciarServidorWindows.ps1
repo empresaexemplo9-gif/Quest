@@ -1,9 +1,10 @@
-param([string]$Origin = '', [switch]$SkipDownload)
+param([string]$Origin = '', [switch]$SkipDownload, [switch]$PrepareTunnel, [switch]$Public, [switch]$PublishMain)
 $ErrorActionPreference = 'Stop'
 $repository = Split-Path -Parent $PSScriptRoot
 if (-not (Test-Path (Join-Path $repository 'engine\rathena\LICENSE'))) {
     throw 'Execute este arquivo dentro do repositorio Quest que ja esta no seu computador.'
 }
+& (Join-Path $PSScriptRoot 'PrepararWindows.ps1') -IncludeTunnel:($PrepareTunnel -or $Public)
 $destination = Join-Path $repository '.local\ragnarok\windows-server'
 $server = Join-Path $destination 'Quest-Servidor'
 if (-not (Test-Path (Join-Path $server 'IniciarServidor.ps1'))) {
@@ -23,7 +24,28 @@ if (-not (Test-Path (Join-Path $server 'IniciarServidor.ps1'))) {
     }
     Expand-Archive -LiteralPath $package -DestinationPath $destination
 }
+# Upgrade only the known original launcher. Preserve manually edited scripts and all game/database files.
+$installedLauncher = Join-Path $server 'IniciarServidor.ps1'
+$reviewedLauncher = Join-Path $repository 'deploy\ragnarok\IniciarServidor.ps1'
+if ((Get-FileHash -Algorithm SHA256 $installedLauncher).Hash.ToLowerInvariant() -eq '81f112afeb1008e43e2161f80c30960fd944d45a43bcbe578893a35321d7f36b') {
+    Copy-Item -LiteralPath $reviewedLauncher -Destination $installedLauncher
+}
+$installedConfig = Join-Path $server 'configure_server.py'
+if ((Get-FileHash -Algorithm SHA256 $installedConfig).Hash.ToLowerInvariant() -eq 'bb60016d739a3f99c70826b8ec46759afee95f23f5adc7b795c3fd028eb3dfb3') {
+    Copy-Item -LiteralPath (Join-Path $repository 'deploy\ragnarok\configure_local.py') -Destination $installedConfig
+}
+# This new checker is separate from existing custom runtime files.
+$checker = Join-Path $server 'context\client\ragnarok\check-public.mjs'
+$reviewedChecker = Join-Path $repository 'client\ragnarok\check-public.mjs'
+if (Test-Path $checker) {
+    if ((Get-FileHash -Algorithm SHA256 $checker).Hash -ne (Get-FileHash -Algorithm SHA256 $reviewedChecker).Hash) {
+        throw 'O verificador instalado foi personalizado e foi preservado. Revise o arquivo check-public.mjs antes de publicar.'
+    }
+} else { Copy-Item -LiteralPath $reviewedChecker -Destination $checker }
 $parameters = @{}
 if ($Origin) { $parameters.Origin = $Origin }
 if ($SkipDownload) { $parameters.SkipDownload = $true }
+if ($Public) { $parameters.NoBrowser = $true }
 & (Join-Path $server 'IniciarServidor.ps1') @parameters
+
+if ($Public) { & (Join-Path $PSScriptRoot 'PublicarServidorWindows.ps1') -ServerDirectory $server -PublishMain:$PublishMain }

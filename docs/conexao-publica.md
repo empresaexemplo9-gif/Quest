@@ -49,3 +49,7 @@ python3 tests/test_connect_ragnarok.py
 ```
 
 Os oito testes verificam rejeição de endereços locais/inseguros, serviços errados, protocolo incorreto, ausência de mapas/handshakes, falha de conexão e rollback preservando configuração/manifesto. A página foi exercitada no Chromium com toque: endpoint pendente retorna 503, botão de jogo permanece oculto e a consulta pode ser repetida. Isso não equivale a login público verificado.
+
+## Executar a conexão no Windows
+
+No repositório Quest do próprio PC, atualizado para main, execute `scripts\IniciarServidorWindows.cmd -Public -PublishMain`. Ele prepara WSL2/Docker/Cloudflare, inicia o servidor persistente e só atualiza o manifesto após verificar login nativo HTTPS/WSS. As solicitações de elevação, reinício e configuração inicial do Docker exigem ação no Windows. Consulte [servidor Windows](ragnarok-local-windows.md). Essa execução local não está sujeita à rede desta sessão da nuvem. A disponibilidade ainda depende da rede do PC e do funcionamento do túnel.

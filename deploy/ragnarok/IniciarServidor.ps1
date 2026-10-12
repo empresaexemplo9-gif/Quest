@@ -1,4 +1,4 @@
-param([string]$Origin = '', [switch]$SkipDownload)
+param([string]$Origin = '', [switch]$SkipDownload, [switch]$NoBrowser)
 $ErrorActionPreference = 'Stop'
 Set-Location $PSScriptRoot
 if (-not (Get-Command docker -ErrorAction SilentlyContinue)) {
@@ -31,8 +31,18 @@ Protect-Environment
 & docker compose up --build -d
 if ($LASTEXITCODE -ne 0) { throw 'O servidor nao iniciou corretamente. Consulte: docker compose logs --tail 40' }
 $serverOrigin = ((Get-Content '.env' | Where-Object { $_.StartsWith('QUEST_RO_PUBLIC_URL=') }) -split '=',2)[1]
-$health = Invoke-RestMethod -Uri ($serverOrigin + '/api/readiness') -TimeoutSec 20
-if (-not $health.nativeReady -or -not $health.assetsReady) { throw 'O servidor iniciou, mas o jogo ainda nao esta pronto.' }
+$privatePort = ((Get-Content '.env' | Where-Object { $_.StartsWith('QUEST_PRIVATE_PORT=') }) -split '=',2)[1]
+$healthOrigin = 'http://127.0.0.1:' + $privatePort
+$deadline = (Get-Date).AddMinutes(2)
+$ready = $false
+while ((Get-Date) -lt $deadline) {
+    try {
+        $health = Invoke-RestMethod -Uri ($healthOrigin + '/api/readiness') -TimeoutSec 10
+        if ($health.engine -eq 'rAthena' -and $health.packetver -eq 20211103 -and $health.nativeReady -and $health.assetsReady) { $ready = $true; break }
+    } catch { }
+    Start-Sleep -Seconds 2
+}
+if (-not $ready) { throw 'O servidor ainda nao esta pronto. Consulte docker compose logs --tail 40; seus dados foram preservados.' }
 Write-Host "Servidor Ragnarok pronto: $serverOrigin"
 Write-Host 'O computador e o Docker precisam permanecer ligados. Para parar sem apagar dados: docker compose stop'
-Start-Process $serverOrigin
+if (-not $NoBrowser) { Start-Process $serverOrigin }
