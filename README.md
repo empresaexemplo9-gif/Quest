@@ -86,6 +86,8 @@ O pacote Docker para VPS, o banco nativo persistente e a configuração HTTPS/WS
 
 Para usar o Windows como servidor, execute `scripts\IniciarServidorWindows.cmd` **na pasta existente deste repositório**, com Docker Desktop/WSL2 aberto. O pacote é instalado dentro de `.local\ragnarok\windows-server`; [instruções de acesso local, iPad e internet](docs/ragnarok-local-windows.md). Não é necessário contratar VPS se a conexão do computador permitir entrada pública.
 
+O servidor também está ativo na máquina desta sessão da nuvem. [Estado e inicialização nesta máquina](docs/servidor-nesta-maquina.md): login nativo e banco foram verificados internamente; a publicação externa está bloqueada pela rede do ambiente.
+
 ## Instaladores Windows e macOS
 
 ```bash
