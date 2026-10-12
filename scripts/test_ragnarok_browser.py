@@ -4,14 +4,34 @@ import importlib.util
 import argparse
 from pathlib import Path
 import secrets
+import subprocess
 import time
 from playwright.sync_api import sync_playwright
 
-helper = Path('/workspace/.quest-env/manage.py')
-spec = importlib.util.spec_from_file_location('quest_native', helper)
-native = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(native)
 artifacts = Path('/workspace/.quest-env/run')
+
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--device', choices=['both', 'desktop', 'ipad'], default='both')
+parser.add_argument('--site', default='http://127.0.0.1:3005')
+parser.add_argument('--deployment', type=Path, help='Use the isolated production Compose database')
+args = parser.parse_args()
+if args.deployment:
+    class ComposeDatabase:
+        @staticmethod
+        def sql(query, database=None):
+            command = ['docker','compose','exec','-T','database','bash','-c',
+                       'MYSQL_PWD="$MARIADB_ROOT_PASSWORD" mariadb -uroot --batch --skip-column-names "$@"',
+                       'quest-smoke']
+            if database:
+                command.append(database)
+            return subprocess.run(command, input=query, text=True, cwd=args.deployment,
+                                  capture_output=True, check=True).stdout.strip()
+    native = ComposeDatabase()
+else:
+    helper = Path('/workspace/.quest-env/manage.py')
+    spec = importlib.util.spec_from_file_location('quest_native', helper)
+    native = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(native)
 
 
 def cleanup(account, character):
@@ -37,7 +57,7 @@ def check(browser, label, touch):
         page = context.new_page()
         errors = []
         page.on('pageerror', lambda error: errors.append(str(error)))
-        page.goto('http://127.0.0.1:3005/', wait_until='networkidle')
+        page.goto(args.site + '/', wait_until='networkidle')
         page.get_by_text('START NOW', exact=True).click()
         page.locator('#user').fill(username)
         page.locator('#pass').fill(password)
@@ -81,9 +101,6 @@ def check(browser, label, touch):
             native.sql(f'DELETE FROM login WHERE account_id={account};', 'ragnarok')
 
 
-parser = argparse.ArgumentParser(description=__doc__)
-parser.add_argument('--device', choices=['both', 'desktop', 'ipad'], default='both')
-args = parser.parse_args()
 with sync_playwright() as playwright:
     browser = playwright.chromium.launch(executable_path='/usr/bin/chromium', headless=True, args=['--no-sandbox', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'])
     try:

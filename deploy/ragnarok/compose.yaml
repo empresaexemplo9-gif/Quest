@@ -1,0 +1,54 @@
+name: quest-ragnarok
+services:
+  database:
+    image: mariadb:11.8@sha256:93fc3fe333b6cdfb061425869c2c3a5bb2851c0c74dbebc2c940f024e7482d76
+    env_file: .env
+    environment:
+      MARIADB_DATABASE: ragnarok
+      MARIADB_USER: quest
+    volumes:
+      - database:/var/lib/mysql
+      - ./database-init.sh:/docker-entrypoint-initdb.d/01-quest.sh:ro
+      - ./context/engine/rathena/sql-files:/schema:ro
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+    restart: unless-stopped
+  game:
+    platform: linux/amd64
+    build:
+      context: ./context
+      dockerfile: deploy/ragnarok/Dockerfile
+    env_file: .env
+    depends_on:
+      database:
+        condition: service_healthy
+    volumes:
+      - ./context/.local/ragnarok/client:/app/.local/ragnarok/client:ro
+      - native-config:/app/engine/rathena/conf/import
+      - native-logs:/app/engine/rathena/log
+    ports:
+      - "127.0.0.1:${QUEST_PRIVATE_PORT:-13005}:3005"
+    restart: unless-stopped
+  https:
+    image: caddy:2@sha256:173b26306d711395accaeba8b67afcaad2a085ccb1e6bf26010bfe8c095a5229
+    env_file: .env
+    depends_on:
+      game:
+        condition: service_healthy
+    ports:
+      - "${QUEST_BIND_ADDRESS:-0.0.0.0}:${QUEST_HTTP_PORT:-80}:80"
+      - "${QUEST_BIND_ADDRESS:-0.0.0.0}:${QUEST_HTTPS_PORT:-443}:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - certificates:/data
+      - caddy-config:/config
+    restart: unless-stopped
+volumes:
+  database:
+  native-config:
+  native-logs:
+  certificates:
+  caddy-config:

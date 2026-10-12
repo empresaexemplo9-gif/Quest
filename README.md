@@ -82,6 +82,8 @@ python3 scripts/install_rathena.py --repository engine/rathena
 
 A adaptação usa classes RO equivalentes, corrige a proteção no nível 15, faixas de PvP, consentimento e entrega cooperativa de Rhea com recompensa uma vez por personagem. É uma integração nativa separada do protocolo do cliente web anterior. O protocolo usa PACKETVER 20211103. Os GRFs kRO foram baixados e verificados nesta nuvem, fora do Git; executáveis Windows precisam de versão e modificações compatíveis com esse protocolo.
 
+O pacote Docker para VPS, o banco nativo persistente e a configuração HTTPS/WSS estão documentados em [Hospedagem do Ragnarok](docs/ragnarok-hosting.md). A implantação pública ainda depende de criar a VPS e configurar o acesso seguro ao provedor.
+
 ## Instaladores Windows e macOS
 
 ```bash

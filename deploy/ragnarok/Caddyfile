@@ -1,0 +1,6 @@
+{$QUEST_NATIVE_HOST} {
+    encode zstd gzip
+    header X-Content-Type-Options nosniff
+    header Referrer-Policy strict-origin-when-cross-origin
+    reverse_proxy game:3005
+}
