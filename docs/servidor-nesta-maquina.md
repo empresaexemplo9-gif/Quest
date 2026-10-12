@@ -35,7 +35,7 @@ Esses endereços são apenas para verificações internas. A disponibilidade dep
 
 Não foi criado um endereço público do servidor. A tentativa de Cloudflare Tunnel falhou ao resolver o endpoint externo; a requisição pelo proxy retornou **403 Forbidden**, com a mensagem `Your request was blocked`. A alternativa consultada também foi bloqueada pelo proxy. Não há uma ferramenta de publicação de portas disponível nesta sessão.
 
-O rascunho foi limpo para preservar os destinos usados pelas dependências e pelos arquivos do cliente. Os destinos das tentativas de túnel que falharam foram removidos. Salvar o rascunho não aplica nem publica mudanças, nem cria entrada pública para esta máquina. Não há motivo para fornecer HCLOUD_TOKEN ou VERCEL_TOKEN para executar este servidor local.
+O rascunho preserva os destinos das dependências/clientes e inclui os domínios do túnel necessários para a conexão solicitada. A nova tentativa confirmou falha de DNS e 403 no proxy; consulte [conexão pública](conexao-publica.md). Salvar o rascunho não aplica nem publica mudanças, nem cria entrada pública para esta máquina. Não há motivo para fornecer HCLOUD_TOKEN ou VERCEL_TOKEN para executar este servidor local.
 
 O endereço de entrada desejado continua sendo **https://quest-game-plum.vercel.app**. Ele ainda não está conectado ao servidor nativo desta máquina. Só deve ser atualizado quando existir um backend público com HTTPS/WSS e login real verificados. Nenhum endereço de loopback ou túnel sem funcionamento deve ser apresentado como jogo hospedado na internet.
 

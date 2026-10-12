@@ -53,5 +53,11 @@
         }
       ]
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/ragnarok.html"
+    }
   ]
 }
