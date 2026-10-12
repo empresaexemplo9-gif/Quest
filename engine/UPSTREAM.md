@@ -6,7 +6,8 @@ repositório oficial https://github.com/rathena/rathena no commit
 
 A licença GPLv3 e os avisos originais foram preservados em
 `engine/rathena/LICENSE`. O import inclui somente arquivos versionados do upstream,
-sem credenciais, bancos de dados, logs, executáveis ou alterações do ambiente.
+sem credenciais, bancos de dados, logs ou executáveis versionados. A inscrição
+dos dois NPCs de Éridan foi acrescentada de forma relativa ao projeto.
 
 Os scripts de Éridan ficam em `rathena/`; para registrar na engine incluída:
 

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Register the supplied Eridan adaptation without replacing existing scripts."""
 import argparse
+import os
 from pathlib import Path
 
 parser = argparse.ArgumentParser()
@@ -12,7 +13,7 @@ if not target.is_file():
     parser.error('rAthena npc/scripts_custom.conf not found')
 text = target.read_text()
 for filename in ('eridan.txt', 'arena-and-contract.txt'):
-    line = 'npc: ' + str(project / 'rathena' / filename)
+    line = 'npc: ' + os.path.relpath(project / 'rathena' / filename, args.repository.resolve())
     if line not in text.splitlines():
         text += '\n' + line + '\n'
 target.write_text(text)
