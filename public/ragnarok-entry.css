@@ -1,2 +1,6 @@
 [hidden] { display: none !important; }
 #check-connection:disabled { opacity: .5; }
+.signup-steps { padding-left: 1.5rem; line-height: 1.8; }
+.signup-steps li { margin: 1rem 0; }
+.downloads-page code { overflow-wrap: anywhere; }
+.downloads-page .panel-box + .panel-box { margin-top: 24px; }
