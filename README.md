@@ -16,7 +16,7 @@ Esse comando verifica as dependências pelo lockfile, gera credenciais locais al
 
 O banco usa volume persistente `quest_quest-postgres`; `npm run stack:stop` preserva os dados. **Não use `docker compose down -v` para parar o jogo**, pois isso apagaria o volume do banco. Credenciais e backups ficam em `.local/`, fora do Git.
 
-Para publicar o contêiner em um servidor seu, configure `QUEST_BIND_ADDRESS`/`QUEST_PORT` e um proxy HTTPS. Na Vercel, use este mesmo repositório e forneça a conexão PostgreSQL de produção em `DATABASE_URL`. A Vercel não hospeda o contêiner PostgreSQL nem as portas nativas de rAthena. O domínio escolhido exige acesso ao projeto Vercel que será vinculado a ele; autenticação não foi fornecida a este ambiente.
+Para publicar o contêiner em um servidor seu, configure `QUEST_BIND_ADDRESS`/`QUEST_PORT` e um proxy HTTPS. Na Vercel, use este mesmo repositório e forneça a conexão PostgreSQL de produção em `DATABASE_URL`. A Vercel não hospeda o contêiner PostgreSQL nem as portas nativas de rAthena. O domínio principal já foi atualizado pela integração Git existente da Vercel: pushes em `main` publicam este mesmo projeto. A API pública ainda informa `DATABASE_NOT_CONFIGURED`; configure `DATABASE_URL` ou uma integração que forneça `POSTGRES_URL` nas variáveis seguras do projeto Vercel para liberar multiplayer. A autenticação da CLI não é necessária para o fluxo de publicação por Git.
 
 ## Backend e banco reais
 
