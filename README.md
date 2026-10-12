@@ -47,7 +47,7 @@ node --env-file=.local/backend-local.env scripts/migrate_sqlite.js --source CAMI
 npm run db:backup
 ```
 
-A migração preserva contas, personagens e sessões existentes, mantém o SQLite original e recusa sobrescrever um PostgreSQL que já contém jogadores. O backup usa `pg_dump`, fica protegido em `.local/backups/` e deve ser copiado para seu armazenamento seguro. Volume Docker persiste no host; transferir o projeto para outro host exige restaurar o backup.
+A migração preserva contas, personagens e sessões existentes, mantém o SQLite original e recusa sobrescrever um PostgreSQL que já contém jogadores. O backup usa `pg_dump`, fica protegido em `.local/backups/` e deve ser copiado para seu armazenamento seguro. Volume Docker persiste no host; transferir o projeto para outro host exige restaurar o backup. Em um banco vazio, use `npm run db:restore -- --file .local/backups/SEU_BACKUP.dump` antes de iniciar o jogo. A restauração é transacional e recusa sobrescrever um banco existente.
 
 ## Jogar
 

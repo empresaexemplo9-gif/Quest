@@ -16,7 +16,8 @@
     "stack:stop": "docker compose stop",
     "test:postgres": "node --test tests/postgres.integration.js",
     "db:backup": "node scripts/backup_database.js",
-    "db:migrate": "node scripts/migrate_sqlite.js"
+    "db:migrate": "node scripts/migrate_sqlite.js",
+    "db:restore": "node scripts/restore_database.js"
   },
   "dependencies": {
     "pg": "8.16.3"
