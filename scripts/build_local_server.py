@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """Bundle the tested native runtime for Windows Docker Desktop; no credentials or GRFs."""
 import hashlib
+import argparse
 import json
+import re
 from pathlib import Path
 import subprocess
 import zipfile
@@ -9,15 +11,27 @@ import zipfile
 root = Path(__file__).resolve().parents[1]
 deployment = root/'.local/ragnarok/deployment'
 context = deployment/'context'
+if not context.is_dir():
+    context = root/'.local/ragnarok/windows-server/Quest-Servidor/context'
+if not context.is_dir():
+    raise SystemExit('Prepare the tested native runtime before building its Windows package.')
+reviewed = ['deploy/ragnarok/Dockerfile', 'client/ragnarok/check-public.mjs',
+            'client/ragnarok/serve.mjs', 'client/ragnarok/accounts.mjs', 'client/ragnarok/portal-login.js',
+            'scripts/download_kro.py']
 output = root/'public/downloads/Quest-Servidor-Windows.zip'
 output.parent.mkdir(parents=True,exist_ok=True)
-revision = subprocess.check_output(['git','rev-parse','HEAD'],cwd=root,text=True).strip()
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--revision',help='Verified Git revision when building inside the pinned Python container')
+args = parser.parse_args()
+revision = args.revision or subprocess.check_output(['git','rev-parse','HEAD'],cwd=root,text=True).strip()
+if not re.fullmatch('[a-f0-9]{40}',revision):
+    raise SystemExit('A complete verified Git revision is required.')
 with zipfile.ZipFile(output,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=6) as archive:
     def add(path,target):archive.write(path,'Quest-Servidor/'+target)
     for path in sorted(context.rglob('*')):
         if not path.is_file():continue
         relative = path.relative_to(context)
-        if relative in [Path('deploy/ragnarok/Dockerfile'),Path('client/ragnarok/check-public.mjs')]:continue
+        if relative in [Path(name) for name in reviewed]:continue
         if relative.parts[:3] == ('.local','ragnarok','client'):continue
         if relative.parts[:3] == ('engine','rathena','conf') and 'import' in relative.parts:continue
         if any(part in ['.git','__pycache__'] or part.startswith('.env') for part in relative.parts):continue
@@ -25,9 +39,8 @@ with zipfile.ZipFile(output,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=6
     # Always use the reviewed source files, even when the prepared context predates a source update.
     for name,target in [('configure_local.py','configure_server.py'),('IniciarServidor.ps1','IniciarServidor.ps1'),('IniciarServidor.cmd','IniciarServidor.cmd'),('database-init.sh','database-init.sh'),('Caddyfile','Caddyfile')]:
         add(root/'deploy/ragnarok'/name,target)
-    add(root/'scripts/download_kro.py','context/scripts/download_kro.py')
-    add(root/'client/ragnarok/check-public.mjs','context/client/ragnarok/check-public.mjs')
-    add(root/'deploy/ragnarok/Dockerfile','context/deploy/ragnarok/Dockerfile')
+    for name in reviewed:
+        add(root/name,'context/'+name)
     add(root/'docs/ragnarok-local-windows.md','LEIA-ME.md')
     compose=(root/'deploy/ragnarok/compose.yaml').read_text().replace('name: quest-ragnarok\n','name: quest-ragnarok-pc\n')
     archive.writestr('Quest-Servidor/compose.yaml',compose)

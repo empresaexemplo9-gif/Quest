@@ -14,7 +14,7 @@ async function refresh() {
       const server = new URL(world.server);
       if (server.protocol !== 'https:' || server.username || server.password) throw new Error('Invalid game address');
       status.textContent = 'Mundo compartilhado disponível. Entre para jogar.';
-      enter.href = server.origin + '/';
+      enter.href = '/entrar.html';
       enter.hidden = false;
       address.textContent = 'Endereço para o instalador: ' + server.origin;
       address.hidden = false;

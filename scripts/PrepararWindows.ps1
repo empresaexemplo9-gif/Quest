@@ -1,5 +1,6 @@
 param([switch]$IncludeTunnel)
 $ErrorActionPreference = 'Stop'
+$env:PATH = [Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [Environment]::GetEnvironmentVariable('Path','User') + ';' + $env:PATH
 
 function Install-WindowsPackage([string]$Id) {
     if (-not (Get-Command winget -ErrorAction SilentlyContinue)) {

@@ -1,41 +1,12 @@
 <!doctype html>
-<html lang="pt-BR">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#10181e">
-  <title>Criar conta — Quest Ragnarok</title>
-  <link rel="icon" href="/mark.svg">
-  <link rel="stylesheet" href="/game/style.css">
-  <link rel="stylesheet" href="/game/downloads.css">
-  <link rel="stylesheet" href="/ragnarok-entry.css">
-  <script src="/ragnarok-entry.js" defer></script>
-</head>
-<body>
-<main class="downloads-page">
-  <a class="wordmark" href="/">QUEST<span>CINZAS DE ÉRIDAN</span></a>
-  <p class="eyebrow">SUA PRIMEIRA AVENTURA</p>
-  <h1>Crie sua conta.<br><em>Entre no mundo.</em></h1>
-  <p>A conta do Ragnarok é criada no primeiro acesso ao jogo. Siga os passos abaixo e abra a tela de login para concluir.</p>
-  <section class="panel-box" aria-labelledby="signup-title">
-    <h2 id="signup-title">Como criar sua conta</h2>
-    <ol class="signup-steps">
-      <li><strong>Escolha um nome de usuário.</strong> Use pelo menos 4 caracteres. No primeiro login, acrescente <code>_M</code> para uma conta masculina ou <code>_F</code> para uma conta feminina. Exemplo: <code>Aventureiro_M</code>.</li>
-      <li><strong>Escolha sua senha.</strong> Digite uma senha de pelo menos 8 caracteres na tela de login do jogo e confirme a entrada. Se o nome estiver disponível e os dados forem válidos, o servidor criará a conta.</li>
-      <li><strong>Comece sua jornada.</strong> Siga as instruções do jogo para definir seu PIN e criar seu personagem.</li>
-    </ol>
-    <p><strong>Nos próximos acessos, retire o sufixo:</strong> entre como <code>Aventureiro</code>, com a mesma senha. Se o nome já estiver em uso, escolha outro.</p>
-    <p>Já tem uma conta Ragnarok? Use seu usuário e sua senha habituais, sem <code>_M</code> ou <code>_F</code>.</p>
-  </section>
-  <section class="panel-box" aria-live="polite" aria-labelledby="connection-title">
-    <h2 id="connection-title">Concluir no jogo</h2>
-    <p id="connection-status">Verificando a conexão com o mundo…</p>
-    <p><a class="gold-button" id="enter-world" hidden>Abrir jogo para criar conta</a></p>
-    <p id="server-address" hidden></p>
-    <button class="text-button" id="check-connection">Verificar novamente</button>
-  </section>
-  <p>O botão abre o servidor disponível no momento. Se ele estiver offline, aguarde e use “Verificar novamente”. Sua senha deve ser digitada somente na tela de login do jogo.</p>
-  <p><a href="/">Voltar ao portal</a> · <a href="/downloads.html">Instalar no computador</a></p>
-</main>
-</body>
-</html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#10181e"><title>Criar conta — Quest</title><link rel="icon" href="/mark.svg"><link rel="stylesheet" href="/game/style.css"><link rel="stylesheet" href="/game/downloads.css"><link rel="stylesheet" href="/ragnarok-entry.css"><script src="/ragnarok-account.js" defer></script></head>
+<body><main class="downloads-page"><a class="wordmark" href="/">QUEST<span>CINZAS DE ÉRIDAN</span></a><div class="account-intro"><p class="eyebrow">SUA PRIMEIRA AVENTURA</p><h1>Crie sua conta.<br><em>Entre no mundo.</em></h1><p>Um usuário e uma senha para sua jornada no Ragnarok.</p></div>
+<section class="panel-box account-panel"><h2>Criar conta</h2><p id="connection-status" role="status">Verificando a conexão com o mundo…</p>
+<form id="quest-account" data-action="register" method="post" action="/api/ragnarok-account">
+<label for="account-user">Nome de usuário</label><input id="account-user" name="username" autocomplete="username" minlength="4" maxlength="21" pattern="[A-Za-z0-9_]{4,21}" required aria-describedby="user-help"><small id="user-help">4 a 21 letras, números ou sublinhados.</small>
+<label for="account-gender">Personagens</label><select id="account-gender" name="gender"><option value="M">Masculinos</option><option value="F">Femininos</option></select>
+<label for="account-password">Senha</label><input id="account-password" name="password" type="password" autocomplete="new-password" minlength="8" maxlength="23" required aria-describedby="password-help"><small id="password-help">8 a 23 caracteres, sem espaços ou acentos.</small>
+<label for="account-confirm">Confirme a senha</label><input id="account-confirm" name="confirmation" type="password" autocomplete="new-password" minlength="8" maxlength="23" required>
+<p id="account-message" role="alert"></p><button class="gold-button" id="account-submit" type="submit" disabled>Criar minha conta</button></form>
+<p><a id="account-next" href="/entrar.html">Já tem uma conta? Entrar no jogo</a></p><button class="text-button" id="check-connection" type="button">Verificar conexão</button></section>
+<p><a href="/">Voltar ao portal</a> · <a href="/downloads.html">Instalar no computador</a></p></main></body></html>

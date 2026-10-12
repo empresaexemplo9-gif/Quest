@@ -38,7 +38,7 @@ if ((Get-FileHash -Algorithm SHA256 $installedConfig).Hash.ToLowerInvariant() -e
 $checker = Join-Path $server 'context\client\ragnarok\check-public.mjs'
 $reviewedChecker = Join-Path $repository 'client\ragnarok\check-public.mjs'
 if (Test-Path $checker) {
-    if ((Get-FileHash -Algorithm SHA256 $checker).Hash -ne (Get-FileHash -Algorithm SHA256 $reviewedChecker).Hash) {
+    if ([IO.File]::ReadAllText($checker).Replace("`r`n","`n") -cne [IO.File]::ReadAllText($reviewedChecker).Replace("`r`n","`n")) {
         throw 'O verificador instalado foi personalizado e foi preservado. Revise o arquivo check-public.mjs antes de publicar.'
     }
 } else { Copy-Item -LiteralPath $reviewedChecker -Destination $checker }

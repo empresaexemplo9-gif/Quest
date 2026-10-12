@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#10181e"><title>Entrar no jogo — Quest</title><link rel="icon" href="/mark.svg"><link rel="stylesheet" href="/game/style.css"><link rel="stylesheet" href="/game/downloads.css"><link rel="stylesheet" href="/ragnarok-entry.css"><script src="/ragnarok-account.js" defer></script></head>
+<body><main class="downloads-page"><a class="wordmark" href="/">QUEST<span>CINZAS DE ÉRIDAN</span></a><div class="account-intro"><p class="eyebrow">RAGNAROK · MUNDO COMPARTILHADO</p><h1>Sua jornada<br><em>continua aqui.</em></h1><p>Entre com a conta do Quest para escolher ou criar seu personagem.</p></div>
+<section class="panel-box account-panel"><h2>Entrar no jogo</h2><p id="connection-status" role="status">Verificando a conexão com o mundo…</p>
+<form id="quest-account" data-action="login" method="post" action="/api/ragnarok-account">
+<label for="account-user">Nome de usuário</label><input id="account-user" name="username" autocomplete="username" minlength="4" maxlength="21" pattern="[A-Za-z0-9_]{4,21}" required>
+<label for="account-password">Senha</label><input id="account-password" name="password" type="password" autocomplete="current-password" minlength="8" maxlength="23" required>
+<p id="account-message" role="alert"></p><button class="gold-button" id="account-submit" type="submit" disabled>Entrar e jogar</button></form>
+<p><a href="/criar-conta.html">Primeira vez? Criar minha conta</a></p><button class="text-button" id="check-connection" type="button">Verificar conexão</button></section>
+<section class="game-shell" id="game-shell" hidden><div class="game-toolbar"><p id="game-status" role="status">Carregando o jogo…</p><button class="text-button" id="leave-game" type="button">Voltar ao login</button></div><iframe id="quest-game" title="Quest — mundo Ragnarok" allow="autoplay; fullscreen" sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock" referrerpolicy="strict-origin"></iframe></section>
+<p class="account-intro"><a href="/">Voltar ao portal</a> · <a href="/downloads.html">Instalar no computador</a></p></main></body></html>

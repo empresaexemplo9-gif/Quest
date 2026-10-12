@@ -4,6 +4,7 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {readFile, realpath} from 'node:fs/promises';
 import {WebSocketServer, WebSocket} from 'ws';
+import {createNativeAccountHandler} from './accounts.mjs';
 
 const project = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const root = path.join(project, '.local/ragnarok/vendor/roBrowserLegacy/dist/Web');
@@ -19,17 +20,24 @@ setInterval(() => {
 },30000).unref();
 const targets = new Set(['127.0.0.1:6900', '127.0.0.1:6121', '127.0.0.1:5121']);
 const types = {'.html':'text/html; charset=utf-8', '.js':'text/javascript; charset=utf-8', '.png':'image/png', '.css':'text/css', '.wasm':'application/wasm'};
+const accountHandler = createNativeAccountHandler({origins:allowedOrigins,clientIP:request => process.env.QUEST_RO_TRUST_PROXY === '1' ? (request.headers['cf-connecting-ip'] || request.socket.remoteAddress) : request.socket.remoteAddress});
 
 const server = http.createServer(async (request, response) => {
+  if (new URL(request.url,origin).pathname === '/api/account') {await accountHandler(request,response); return;}
   if (!['GET', 'HEAD'].includes(request.method)) {
     response.writeHead(405); response.end(); return;
   }
   try {
     const url = new URL(request.url, origin);
     if (url.pathname === '/Config.js') {
-      const config = {development:false, remoteClient:publicURL.origin + '/remote-client/', skipIntro:false, skipServerList:true, clientVersionMode:'PacketVer', packetDump:false, BGMFileExtension:['mp3'], servers:[{display:'Quest - Cinzas de Eridan', address:'127.0.0.1', port:6900, version:55, langtype:1, packetver:20211103, renewal:true, packetKeys:false, forceUseAddress:true, remoteClient:publicURL.origin+'/remote-client/', socketProxy:publicURL.origin.replace(/^http/, 'ws')}]};
+      const config = {development:false, remoteClient:publicURL.origin + '/remote-client/', skipIntro:true, skipServerList:true, clientVersionMode:'PacketVer', calculateHash:false, packetDump:false, BGMFileExtension:['mp3'], servers:[{display:'Quest - Cinzas de Eridan', address:'127.0.0.1', port:6900, version:55, langtype:1, packetver:20211103, renewal:true, packetKeys:false, forceUseAddress:true, remoteClient:publicURL.origin+'/remote-client/', socketProxy:publicURL.origin.replace(/^http/, 'ws')}]};
       response.writeHead(200, {'Content-Type':'text/javascript; charset=utf-8', 'Cache-Control':'no-store'});
       response.end('window.ROConfigBase = ' + JSON.stringify(config) + ';'); return;
+    }
+    if (url.pathname === '/quest-login.js') {
+      const bridge = await readFile(new URL('./portal-login.js',import.meta.url),'utf8');
+      response.writeHead(200,{'Content-Type':'text/javascript; charset=utf-8','Cache-Control':'no-store'});
+      response.end('window.QUEST_PORTAL_ORIGINS = ' + JSON.stringify([...allowedOrigins]) + ';\n' + bridge); return;
     }
     if (url.pathname.startsWith('/remote-client/')) {
       const upstream = await fetch('http://127.0.0.1:3338' + url.pathname.slice('/remote-client'.length) + url.search);
@@ -63,7 +71,8 @@ const server = http.createServer(async (request, response) => {
     }
     const filename = await realpath(path.join(root, decodeURIComponent(url.pathname === '/' ? '/index.html' : url.pathname)));
     if (!filename.startsWith(root + path.sep)) throw new Error('Outside web root');
-    const content = await readFile(filename);
+    let content = await readFile(filename);
+    if (filename === path.join(root,'index.html')) content = content.toString('utf8').replace('</head>','<script src="/quest-login.js" defer></script></head>');
     response.writeHead(200, {'Content-Type':types[path.extname(filename)] || 'application/octet-stream', 'Cache-Control':'no-store', 'X-Content-Type-Options':'nosniff'});
     response.end(request.method === 'HEAD' ? undefined : content);
   } catch {

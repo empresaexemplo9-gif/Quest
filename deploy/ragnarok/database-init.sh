@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 # Sourced by the official entrypoint, whose SQL helper accepts missing positional arguments.
 set -eo pipefail
+# Windows bind mounts can make this file executable; load the official helpers
+# when the entrypoint executes it instead of sourcing it.
+if ! declare -F docker_process_sql >/dev/null; then
+  source /usr/local/bin/docker-entrypoint.sh
+  docker_setup_env mariadbd
+fi
 [[ "${MARIADB_PASSWORD:-}" =~ ^[a-f0-9]{64}$ && "${QUEST_INTER_PASSWORD:-}" =~ ^[a-f0-9]{22}$ ]] || { echo 'Generated service credentials are required.' >&2; exit 1; }
 docker_process_sql <<SQL
 CREATE DATABASE IF NOT EXISTS ragnarok_log CHARACTER SET utf8mb4;
