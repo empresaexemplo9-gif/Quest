@@ -1,0 +1,2 @@
+# Preserve the upstream GPL document's CRLF endings without false whitespace errors.
+desktop/ragnarok/LICENSE -text whitespace=cr-at-eol

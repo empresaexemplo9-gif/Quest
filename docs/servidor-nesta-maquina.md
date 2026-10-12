@@ -9,7 +9,7 @@ O servidor nativo está em execução nesta máquina Linux x86-64, dentro do **m
 - Rejeição de origem indevida e de tentativa de proxy para porta de banco.
 - O teste usa contas descartáveis e limpa apenas esses registros.
 
-Os testes anteriores também verificaram Prontera real, movimento por clique/toque e persistência depois de reiniciar banco e jogo. Esses resultados internos não comprovam acesso público.
+O cliente de jogadores está instalado em `.local/ragnarok/installed-player`, com binário Linux em `desktop/ragnarok/build/Quest-Ragnarok-linux`. Os instaladores Windows/macOS ficam em `public/downloads/Quest-Ragnarok-*`; consulte [instruções dos jogadores](ragnarok-player.md). Os testes de dois clientes entram em Prontera real e verificam chat/movimento compartilhados e persistência SQL. Esses resultados internos não comprovam acesso público.
 
 ## Iniciar e verificar nesta máquina
 
@@ -35,7 +35,7 @@ Esses endereços são apenas para verificações internas. A disponibilidade dep
 
 Não foi criado um endereço público do servidor. A tentativa de Cloudflare Tunnel falhou ao resolver o endpoint externo; a requisição pelo proxy retornou **403 Forbidden**, com a mensagem `Your request was blocked`. A alternativa consultada também foi bloqueada pelo proxy. Não há uma ferramenta de publicação de portas disponível nesta sessão.
 
-Os destinos necessários ao diagnóstico foram adicionados ao **rascunho** da configuração de rede. Salvar esse rascunho não aplica nem publica a rede. Revise e salve as alterações nas configurações do ambiente e publique a configuração para aplicá-las; depois é necessário testar de novo a conectividade e verificar se o transporte do túnel é suportado. A liberação dos nomes, sozinha, não comprova que um túnel funcionará.
+O rascunho foi limpo para preservar os destinos usados pelas dependências e pelos arquivos do cliente. Os destinos das tentativas de túnel que falharam foram removidos. Salvar o rascunho não aplica nem publica mudanças, nem cria entrada pública para esta máquina. Não há motivo para fornecer HCLOUD_TOKEN ou VERCEL_TOKEN para executar este servidor local.
 
 O endereço de entrada desejado continua sendo **https://quest-game-plum.vercel.app**. Ele ainda não está conectado ao servidor nativo desta máquina. Só deve ser atualizado quando existir um backend público com HTTPS/WSS e login real verificados. Nenhum endereço de loopback ou túnel sem funcionamento deve ser apresentado como jogo hospedado na internet.
 

@@ -22,3 +22,9 @@ legacy/build/
 !public/downloads/SHA256SUMS.json
 !public/downloads/Quest-Servidor-Windows.zip
 !public/downloads/Quest-Servidor-Windows.sha256
+desktop/ragnarok/assets/
+desktop/ragnarok/build/
+!public/downloads/Quest-Ragnarok-Setup.exe
+!public/downloads/Quest-Ragnarok-macOS-Intel.zip
+!public/downloads/Quest-Ragnarok-macOS-AppleSilicon.zip
+!public/downloads/Quest-Ragnarok-SHA256SUMS.json

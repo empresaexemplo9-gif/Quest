@@ -1,0 +1,28 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import http from 'node:http';
+
+const runtime = import.meta.dirname;
+const client = path.resolve(process.argv[2]);
+const origin = process.argv[3];
+const remote = path.join(runtime, 'remote');
+fs.mkdirSync(path.join(remote, 'resources'), {recursive:true});
+fs.writeFileSync(path.join(remote,'resources/DATA.INI'), '[Data]\n0='+path.join(client,'rdata.grf')+'\n1='+path.join(client,'data.grf')+'\n');
+process.env.DATA_OVERRIDE_PATH = path.join(runtime,'english');
+process.env.BGM_PATH = path.join(client,'BGM');
+process.env.SYSTEM_PATH = path.join(client,'System');
+process.env.AI_PATH = path.join(client,'AI');
+process.env.CLIENT_PUBLIC_URL = origin;
+process.env.CLIENT_AUTOEXTRACT = 'false';
+process.env.CACHE_MAX_MEMORY_MB = '256';
+process.env.NODE_ENV = 'production';
+const {default: Client} = await import(path.join(remote,'src/controllers/clientController.js'));
+const {createApp} = await import(path.join(remote,'src/app.js'));
+const {default: Validator} = await import(path.join(remote,'src/validators/startupValidator.js'));
+await Client.init();
+const validator = new Validator();
+const validation = await validator.validateAll();
+if (!validation.success) throw new Error('Local client resources failed validation');
+const server = http.createServer(createApp({isProd:true,corsOrigins:[origin],validationStatus:validator.getStatusJSON(),requestLogging:false}));
+server.listen(0,'127.0.0.1',()=>fs.writeFileSync(path.join(runtime,'asset-port.json'),JSON.stringify({port:server.address().port})));
+for (const signal of ['SIGTERM','SIGINT']) process.on(signal,()=>server.close(()=>process.exit(0)));

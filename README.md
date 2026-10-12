@@ -4,7 +4,13 @@
 
 Cliente, artes, roteiro, backend, PostgreSQL, engine rAthena, instaladores e versão iPad estão reunidos neste repositório. O endereço solicitado é **https://quest-game-plum.vercel.app/**. Publicações `temporary-*.vercel.app` são testes com expiração, não o projeto principal.
 
-## Iniciar o jogo completo
+## Ragnarok com mundo compartilhado
+
+O jogo solicitado usa **rAthena + MariaDB + roBrowserLegacy**, com mapas/SPR/ACT do kRO e movimento nativo por clique. Servidor: `deploy/ragnarok`. Instalador de jogadores: `desktop/ragnarok`. Consulte [instalação dos jogadores](docs/ragnarok-player.md) e [servidor desta máquina](docs/servidor-nesta-maquina.md). Downloads Windows/macOS: **https://quest-game-plum.vercel.app/downloads.html**.
+
+O servidor está instalado nesta máquina da nuvem. Ainda não há um endpoint público do servidor conectado à Vercel. A página e os downloads na Vercel não comprovam que o mundo nativo esteja acessível pela internet. As instruções PostgreSQL abaixo descrevem a aplicação anterior, que permanece preservada neste mesmo repositório.
+
+## Iniciar a aplicação anterior
 
 Requisitos para hospedar/desenvolver: Node.js 24 e Docker Compose. Jogadores usam o navegador, PWA do iPad ou os instaladores; não precisam instalar um banco.
 
