@@ -27,14 +27,14 @@ export function createService(store){
  };
 }
 
-export async function handleGameRequest(req,res,service){
+export async function handleGameRequest(req,res,service,diagnostics={}){
  res.setHeader('Content-Type','application/json; charset=utf-8');res.setHeader('Cache-Control','no-store');res.setHeader('X-Content-Type-Options','nosniff');
  const url=new URL(req.url,'http://'+(req.headers.host||'localhost'));const cookie=String(req.headers.cookie||'').split(';').map(v=>v.trim()).find(v=>v.startsWith('eridan_session='))?.slice('eridan_session='.length);
  const secure=req.headers['x-forwarded-proto']==='https'||!!req.socket?.encrypted;
  const setSession=value=>res.setHeader('Set-Cookie',`eridan_session=${value}; Path=/; HttpOnly; SameSite=Lax; Max-Age=${value?'604800':'0'}${secure?'; Secure':''}`);
  try{
   const origin=req.headers.origin;if(origin&&new URL(origin).host!==req.headers.host)throw new ServiceError('Origem da solicitação não permitida.',403);
-  if(url.pathname==='/api/health'){const health=service?await service.health():{online:false,version:'1.3.0',database:null};res.statusCode=health.online?200:503;res.end(JSON.stringify(health));return;}
+  if(url.pathname==='/api/health'){const health=service?await service.health():{online:false,version:'1.3.0',database:null,...diagnostics};res.statusCode=health.online?200:503;res.end(JSON.stringify(health));return;}
   if(!service)throw new ServiceError('O mundo compartilhado está temporariamente indisponível. Sua jornada solo continua disponível.',503);
   let input={};if(req.method==='POST'){
    if(!String(req.headers['content-type']||'').startsWith('application/json'))throw new ServiceError('Use conteúdo JSON para essa operação.',415);

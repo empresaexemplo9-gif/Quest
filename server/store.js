@@ -3,7 +3,7 @@ import {dirname} from 'node:path';
 import {PostgresStore} from './postgres.js';
 import {createWorld} from '../public/game/core.js';
 
-export async function createStore({filename,databaseUrl=process.env.DATABASE_URL}={}){
+export async function createStore({filename,databaseUrl=process.env.DATABASE_URL||process.env.POSTGRES_URL||process.env.POSTGRES_PRISMA_URL||process.env.POSTGRES_URL_NON_POOLING}={}){
  if(databaseUrl&&!filename)return PostgresStore.open(databaseUrl);
  if(process.env.VERCEL&&!filename)throw new Error('ONLINE_STORAGE_UNAVAILABLE');
  const {DatabaseSync}=await import('node:sqlite');
