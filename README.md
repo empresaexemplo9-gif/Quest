@@ -69,13 +69,18 @@ Operações solo usam apoio identificado como NPC. Online, os grupos precisam cu
 
 ## rAthena dentro do mesmo projeto
 
+O cliente kRO completo, tradução e ferramentas estão preparados nesta nuvem
+em `.local/ragnarok`. O kit e o cliente web que lê mapas/sprites reais estão
+documentados em [docs/ragnarok-client.md](docs/ragnarok-client.md). Essa integração
+nativa ainda precisa de hospedagem própria para substituir o cliente publicado.
+
 O código oficial está em `engine/rathena`, no commit `d4b8e7b8f16061cc2496d377ac8f777ce72a4f39`, com licença original preservada. O roteiro do usuário e suas correções estão em `docs/rathena-original-enviado.txt` e `rathena/`.
 
 ```bash
 python3 scripts/install_rathena.py --repository engine/rathena
 ```
 
-A adaptação usa classes RO equivalentes, corrige a proteção no nível 15, faixas de PvP, consentimento e entrega cooperativa de Rhea com recompensa uma vez por personagem. É uma integração nativa separada do protocolo do cliente web. Seu cliente Ragnarok precisa de PACKETVER 20211103 e de arquivos de jogo compatíveis, que não vieram nos anexos. Nenhum pacote kRO/GRF proprietário foi inventado ou incluído.
+A adaptação usa classes RO equivalentes, corrige a proteção no nível 15, faixas de PvP, consentimento e entrega cooperativa de Rhea com recompensa uma vez por personagem. É uma integração nativa separada do protocolo do cliente web anterior. O protocolo usa PACKETVER 20211103. Os GRFs kRO foram baixados e verificados nesta nuvem, fora do Git; executáveis Windows precisam de versão e modificações compatíveis com esse protocolo.
 
 ## Instaladores Windows e macOS
 

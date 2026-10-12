@@ -1,0 +1,124 @@
+{
+  "packetver": 20211103,
+  "renewal": true,
+  "components": [
+    {
+      "name": "ROenglishRE",
+      "repository": "https://github.com/llchrisll/ROenglishRE",
+      "commit": "f7d270ec706622a8e0700e5e564d5fdbc3bcf3f5",
+      "sha256": "576ab8b264a0f5702ec446b933cf0487967991b16c26f29b66d01a07d236ebf9",
+      "bytes": 72547303,
+      "kind": "source",
+      "url": "https://codeload.github.com/llchrisll/ROenglishRE/tar.gz/f7d270ec706622a8e0700e5e564d5fdbc3bcf3f5",
+      "destination": "vendor/ROenglishRE",
+      "archive": "ROenglishRE-f7d270ec706622a8e0700e5e564d5fdbc3bcf3f5.tar.gz"
+    },
+    {
+      "name": "WARP",
+      "repository": "https://github.com/Neo-Mind/WARP",
+      "commit": "9b1173e9e4e135c68e150704f01186ab5e763acd",
+      "sha256": "4d82bc78a019ed9016a71d777404f78edd42d102b800a5034fbd5717a896be52",
+      "bytes": 13590182,
+      "kind": "source",
+      "url": "https://codeload.github.com/Neo-Mind/WARP/tar.gz/9b1173e9e4e135c68e150704f01186ab5e763acd",
+      "destination": "vendor/WARP",
+      "archive": "WARP-9b1173e9e4e135c68e150704f01186ab5e763acd.tar.gz"
+    },
+    {
+      "name": "NEMO",
+      "repository": "https://github.com/Neo-Mind/Nemo",
+      "commit": "8397342aa780f969ffa67aed7b7eeda36dd1d4ce",
+      "sha256": "5c14caaa2b06178decf0db654aa74cc06840eb650c273a9e1687e41afeb106d7",
+      "bytes": 7129117,
+      "kind": "source",
+      "url": "https://codeload.github.com/Neo-Mind/Nemo/tar.gz/8397342aa780f969ffa67aed7b7eeda36dd1d4ce",
+      "destination": "vendor/NEMO",
+      "archive": "NEMO-8397342aa780f969ffa67aed7b7eeda36dd1d4ce.tar.gz"
+    },
+    {
+      "name": "GRFEditor",
+      "repository": "https://github.com/Tokeiburu/GRFEditor",
+      "commit": "e6508407c1e193dac5252eef788dc0a0c1d9d07f",
+      "sha256": "5af20bf51f6b84434063e6c561381f5893ec5773bf9774791bfbe03ce31d9056",
+      "bytes": 16002441,
+      "kind": "source",
+      "url": "https://codeload.github.com/Tokeiburu/GRFEditor/tar.gz/e6508407c1e193dac5252eef788dc0a0c1d9d07f",
+      "destination": "vendor/GRFEditor",
+      "archive": "GRFEditor-e6508407c1e193dac5252eef788dc0a0c1d9d07f.tar.gz"
+    },
+    {
+      "name": "BrowEdit",
+      "repository": "https://github.com/Borf/browedit",
+      "commit": "4b9444e54bcb17de8304d9d4ded0b560d43db4f5",
+      "sha256": "0f561f1c82b04915621f81272b004ca1781db2654bacbc0489d1b6f3e2e4cbcd",
+      "bytes": 9848019,
+      "kind": "source",
+      "url": "https://codeload.github.com/Borf/browedit/tar.gz/4b9444e54bcb17de8304d9d4ded0b560d43db4f5",
+      "destination": "vendor/BrowEdit",
+      "archive": "BrowEdit-4b9444e54bcb17de8304d9d4ded0b560d43db4f5.tar.gz"
+    },
+    {
+      "name": "roBrowserLegacy",
+      "kind": "source",
+      "repository": "https://github.com/MrAntares/roBrowserLegacy",
+      "commit": "a9d31a10880740f4a351fcfca402ea6567022926",
+      "url": "https://codeload.github.com/MrAntares/roBrowserLegacy/tar.gz/a9d31a10880740f4a351fcfca402ea6567022926",
+      "sha256": "40ce15efca288e41b252a8031582fa1b15cb5e77c124418a14f7aa875525c01e",
+      "bytes": 5090110,
+      "destination": "vendor/roBrowserLegacy",
+      "archive": "roBrowserLegacy-a9d31a10880740f4a351fcfca402ea6567022926.tar.gz"
+    },
+    {
+      "name": "wsProxy",
+      "kind": "source",
+      "repository": "https://github.com/MrAntares/roBrowserLegacy-wsProxy",
+      "commit": "b7c5d2b10a85b8c8c29990c4c3d2b419743bdab6",
+      "url": "https://codeload.github.com/MrAntares/roBrowserLegacy-wsProxy/tar.gz/b7c5d2b10a85b8c8c29990c4c3d2b419743bdab6",
+      "sha256": "a5e791f640082f4c2cc4821d46ee8b662c11cc8b9dda5fc99fce270d5e49c02a",
+      "bytes": 14580,
+      "destination": "vendor/wsProxy",
+      "archive": "wsProxy-b7c5d2b10a85b8c8c29990c4c3d2b419743bdab6.tar.gz"
+    },
+    {
+      "name": "GRFEditor-Windows",
+      "kind": "windows-package",
+      "version": "1.9.1.1",
+      "url": "https://github.com/Tokeiburu/GRFEditor/releases/download/v1.9.1.1/GRF.Editor.v1.9.1.1.zip",
+      "sha256": "66945f7727fe85576afe838ab8bc572ab2a3fc1c027c0f6eb83320c39d849d12",
+      "bytes": 5993516,
+      "destination": "tools/GRFEditor",
+      "archive": "GRFEditor-1.9.1.1-windows.zip"
+    },
+    {
+      "name": "ActEditor-Windows",
+      "kind": "windows-package",
+      "version": "1.3.4",
+      "url": "https://github.com/Tokeiburu/ActEditor/releases/download/1.3.4/ActEditor.v1.3.4.zip",
+      "sha256": "797464d1b4fc1496eeb312bc9a139528370b9470c3a723d8005ed134dfa90d4f",
+      "bytes": 8336117,
+      "destination": "tools/ActEditor",
+      "archive": "ActEditor-windows.zip"
+    },
+    {
+      "name": "BrowEdit3-Windows",
+      "kind": "windows-package",
+      "version": "v3.660",
+      "url": "https://github.com/Borf/BrowEdit3/releases/download/v3.660/BrowEdit3_660.zip",
+      "sha256": "7b52d8c2b5ac66db38085bc869c17b9ac187505eeada461e69f095cc4845ebb5",
+      "bytes": 7544874,
+      "destination": "tools/BrowEdit3",
+      "archive": "BrowEdit3-windows.zip"
+    },
+    {
+      "name": "RemoteClient",
+      "kind": "source",
+      "repository": "https://github.com/FranciscoWallison/roBrowserLegacy-RemoteClient-JS",
+      "commit": "0dd3a3fa71733c0c88ac1beb117039174eb2a7b0",
+      "url": "https://codeload.github.com/FranciscoWallison/roBrowserLegacy-RemoteClient-JS/tar.gz/0dd3a3fa71733c0c88ac1beb117039174eb2a7b0",
+      "sha256": "75519be0421e9c98c57fe47f3e08f9634b6b1dd07d9c60b797fe23c334a9f6c2",
+      "bytes": 134544,
+      "destination": "vendor/RemoteClient",
+      "archive": "RemoteClient-0dd3a3fa71733c0c88ac1beb117039174eb2a7b0.tar.gz"
+    }
+  ]
+}

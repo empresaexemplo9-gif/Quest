@@ -1,0 +1,31 @@
+{
+  "release": "kRO 2020-06-03",
+  "source": "https://ratemyserver.net/index.php?page=download_kROLinks",
+  "integritySource": "HTTPS MediaFire file/get_info metadata",
+  "files": [
+    {
+      "name": "data.grf",
+      "page": "https://www.mediafire.com/file/ueuw0lop78zdtf4/data.grf/file",
+      "bytes": 2616036528,
+      "sha256": "bdfee871cf69693b70e109492eee099ba5aa711f0defe0b0b077ecd1e092a601"
+    },
+    {
+      "name": "rdata.grf",
+      "page": "https://www.mediafire.com/file/ojnps02taufyeq3/rdata.grf/file",
+      "bytes": 976092259,
+      "sha256": "f3109d463b9966a76e849a0d6dd6fd5d9e124501c4b1682b5fc8f5c8761ced66"
+    },
+    {
+      "name": "BGM.zip",
+      "page": "https://www.mediafire.com/file/m7688if5kgecrsy/BGM.zip/file",
+      "bytes": 321114392,
+      "sha256": "eb26962c00e63c96aaba233ca07b8eb242e9f557524a3ee69fd32a84cef06845"
+    },
+    {
+      "name": "dll_exe.zip",
+      "page": "https://www.mediafire.com/file/w1ysgg9pmfpvjas/dll_exe.zip/file",
+      "bytes": 63610414,
+      "sha256": "639052f2e226e47475e510231b48f213f32e26906280a279397f3f8cad1d062b"
+    }
+  ]
+}
