@@ -9,7 +9,8 @@ $server = Join-Path $destination 'Quest-Servidor'
 if (-not (Test-Path (Join-Path $server 'IniciarServidor.ps1'))) {
     New-Item -ItemType Directory -Force -Path $destination | Out-Null
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-    $baseURL = 'https://quest-game-plum.vercel.app/downloads/'
+    # Download from the same canonical repository, independently of the portal deployment.
+    $baseURL = 'https://raw.githubusercontent.com/empresaexemplo9-gif/Quest/main/public/downloads/'
     $checksumFile = Join-Path $destination 'Quest-Servidor-Windows.sha256'
     Invoke-WebRequest -UseBasicParsing -Uri ($baseURL + 'Quest-Servidor-Windows.sha256') -OutFile $checksumFile
     $checksum = Get-Content -Raw $checksumFile
