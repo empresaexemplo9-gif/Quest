@@ -1,0 +1,17 @@
+.git
+.vercel
+.local
+desktop
+legacy
+docs
+rathena
+tests
+dist
+README.md
+
+.github
+.env*
+engine
+PROJECT.md
+Dockerfile
+compose.yaml

@@ -1,0 +1,47 @@
+/* Safari on iPad Air: visible touch controls in both orientations. */
+@media (pointer: coarse) {
+ .touch-controls{display:flex;position:absolute;bottom:calc(104px + env(safe-area-inset-bottom));left:calc(22px + env(safe-area-inset-left));right:calc(22px + env(safe-area-inset-right));justify-content:space-between;align-items:end;pointer-events:none;user-select:none;-webkit-user-select:none}
+ .touch-pad{display:grid;grid-template-columns:repeat(3,52px);grid-template-rows:repeat(2,52px);gap:5px}
+ .touch-pad button{background:rgba(18,34,39,.9);border:1px solid #b8bd9a77;border-radius:10px;pointer-events:auto;touch-action:none;font-size:22px;-webkit-touch-callout:none}
+ .touch-pad button[data-direction=up]{grid-column:2}
+ .touch-pad button[data-direction=left]{grid-row:2;grid-column:1}
+ .touch-pad button[data-direction=down]{grid-row:2;grid-column:2}
+ .touch-pad button[data-direction=right]{grid-row:2;grid-column:3}
+ .touch-attack{width:90px;height:90px;border-radius:50%;background:rgba(133,110,69,.55);border:1px solid var(--gold);font-size:15px;pointer-events:auto;touch-action:none;-webkit-touch-callout:none}
+ .bottom-hud{bottom:calc(14px + env(safe-area-inset-bottom));width:510px}
+ .skill-button{width:55px;height:58px}
+ .game-nav{bottom:calc(225px + env(safe-area-inset-bottom))}
+ .game-nav>button{min-width:44px;min-height:44px}
+ .events{bottom:calc(238px + env(safe-area-inset-bottom));max-width:220px}
+ .events form{display:none}
+ .list-row button,.text-button,.icon-button{min-height:44px}
+ .interaction button{min-height:48px}
+ .welcome{padding-top:calc(28px + env(safe-area-inset-top));padding-bottom:calc(24px + env(safe-area-inset-bottom));overflow:auto;overscroll-behavior:contain}
+ .welcome input,.modal input,.modal select{font-size:16px}
+ .welcome-content{flex-shrink:0}
+ .modal{padding-top:calc(16px + env(safe-area-inset-top));padding-bottom:calc(16px + env(safe-area-inset-bottom))}
+ .modal-card{max-height:calc(100dvh - 32px - env(safe-area-inset-top) - env(safe-area-inset-bottom))}
+ .modal-body{-webkit-overflow-scrolling:touch}
+}
+@media (pointer: coarse) and (max-width:1000px) {
+ .welcome-content{width:min(570px,80%)}
+ .welcome-quote{display:none}
+ .zone-hud{left:auto;right:25px;transform:none;text-align:right;max-width:330px}
+ .top-actions{top:104px}
+ .map-hud{top:158px}
+ .target-hud{top:325px}
+ .quest-tracker{width:235px}
+}
+@media (pointer: coarse) and (max-width:600px) {
+ .bottom-hud{width:calc(100% - 16px)}
+ .skill-button{width:calc((100vw - 52px)/8);height:50px;padding:5px}
+ .touch-controls{bottom:calc(86px + env(safe-area-inset-bottom));left:12px;right:12px}
+ .touch-pad{grid-template-columns:repeat(3,44px);grid-template-rows:repeat(2,44px);gap:3px}
+ .touch-attack{width:74px;height:74px;font-size:12px}
+ .welcome-content{width:100%}
+ .events{bottom:195px}
+ .zone-hud{right:12px;max-width:180px}
+ .quest-tracker{width:170px}
+ .top-actions{top:90px}
+ .game-nav{bottom:198px}
+}

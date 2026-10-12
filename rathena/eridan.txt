@@ -1,0 +1,127 @@
+//===== rAthena Script =======================================
+//= Cinzas de Eridan - Mod de historia, classes, PvP e quest
+//===== Como instalar ========================================
+//= Adaptacao nativa: classes RO equivalentes e contrato de coleta cooperativo.
+//= O cliente original de Eridan possui a campanha e operacoes completas.
+//= 1. Copie este arquivo para npc/custom/eridan.txt
+//= 2. Em npc/scripts_custom.conf adicione: npc: npc/custom/eridan.txt
+//= 3. Reinicie o mapserver ou use @reloadscript
+//============================================================
+
+// ---------------------------------------------------------
+// 1. MARA VOSS - Prologo e escolha da classe inicial
+//    Variavel eridan_arch: 1 Guerreiro, 2 Arqueiro, 3 Tank,
+//    4 Mago de Luz, 5 Feiticeiro de Trevas
+// ---------------------------------------------------------
+prontera,155,185,5	script	Mara Voss#eridan	4_F_KAFRA1,{
+	mes "[Mara Voss]";
+	if (eridan_arch) {
+		mes "Voce ja escolheu seu caminho, Desperto.";
+		mes "Volte quando for hora da Prova de Ascensao.";
+		close;
+	}
+	if (Class != Job_Novice) {
+		mes "Seu Marcador de Eter nao reage mais a escolha inicial.";
+		close;
+	}
+	mes "Voce acordou no Abrigo 77, Desperto.";
+	mes "A Ruptura destruiu Helios e o Eter se partiu em Lumen e Umbra.";
+	mes "Minha guilda, a Chama Viva, precisa de agua e energia.";
+	mes "Ajude-nos e eu ensino voce a sobreviver.";
+	next;
+	if (JobLevel < 10) {
+		mes "[Mara Voss]";
+		mes "Antes, treine ate o nivel de classe 10.";
+		mes "Seu Marcador de Eter ainda esta instavel.";
+		close;
+	}
+	mes "[Mara Voss]";
+	mes "Escolha seu caminho:";
+	switch(select("Guerreiro:Arqueiro:Tank:Mago de Luz (Lumen):Feiticeiro de Trevas (Umbra)")) {
+	case 1:
+		set eridan_arch, 1;
+		jobchange Job_Swordman;
+		break;
+	case 2:
+		set eridan_arch, 2;
+		jobchange Job_Archer;
+		break;
+	case 3:
+		set eridan_arch, 3;
+		jobchange Job_Swordman;
+		break;
+	case 4:
+		set eridan_arch, 4;
+		jobchange Job_Acolyte;
+		break;
+	case 5:
+		set eridan_arch, 5;
+		jobchange Job_Mage;
+		break;
+	}
+	next;
+	mes "[Mara Voss]";
+	mes "Bem-vindo a Chama Viva.";
+	mes "Procure o Mestre de Ascensao no nivel 30.";
+	close;
+}
+
+// ---------------------------------------------------------
+// 2. PROVA DE ASCENSAO - Promocao de classe (2 opcoes por classe)
+//    Requer BaseLevel 30 e JobLevel 40
+// ---------------------------------------------------------
+prontera,158,185,5	script	Mestre de Ascensao#eridan	4_M_SAGE_C,{
+	mes "[Mestre de Ascensao]";
+	if (!eridan_arch) {
+		mes "Fale primeiro com Mara Voss.";
+		close;
+	}
+	if (BaseLevel < 30 || JobLevel < 40) {
+		mes "A Prova exige nivel base 30 e nivel de classe 40.";
+		close;
+	}
+	if (eridan_ascended || Class == Job_Knight || Class == Job_Assassin || Class == Job_Hunter ||
+	    Class == Job_Rogue || Class == Job_Crusader || Class == Job_Blacksmith ||
+	    Class == Job_Priest || Class == Job_Monk || Class == Job_Wizard || Class == Job_Sage) {
+		mes "Voce ja concluiu sua Ascensao.";
+		close;
+	}
+	mes "Escolha sua promocao:";
+	switch(eridan_arch) {
+	case 1:
+		switch(select("Gladiador de Guerra (Cavaleiro):Lamina-Fantasma (Assassino)")) {
+		case 1: jobchange Job_Knight; break;
+		case 2: jobchange Job_Assassin; break;
+		}
+		break;
+	case 2:
+		switch(select("Atirador de Elite (Cacador):Cacador de Rastros (Gatuno)")) {
+		case 1: jobchange Job_Hunter; break;
+		case 2: jobchange Job_Rogue; break;
+		}
+		break;
+	case 3:
+		switch(select("Guardiao de Muralha (Templario):Colosso Reativo (Ferreiro)")) {
+		case 1: jobchange Job_Crusader; break;
+		case 2: jobchange Job_Blacksmith; break;
+		}
+		break;
+	case 4:
+		switch(select("Sacerdote Solar (Sacerdote):Arcanista Prismatico (Monge)")) {
+		case 1: jobchange Job_Priest; break;
+		case 2: jobchange Job_Monk; break;
+		}
+		break;
+	case 5:
+		switch(select("Ceifador do Vazio (Mago):Invocador do Abismo (Sabio)")) {
+		case 1: jobchange Job_Wizard; break;
+		case 2: jobchange Job_Sage; break;
+		}
+		break;
+	}
+	next;
+	mes "[Mestre de Ascensao]";
+	eridan_ascended = 1;
+	mes "Ascensao concluida. Que Lumen ou Umbra guiem voce.";
+	close;
+}

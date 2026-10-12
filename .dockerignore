@@ -1,0 +1,10 @@
+.git
+.vercel
+.local
+.env*
+desktop
+legacy
+engine
+docs
+tests
+scripts

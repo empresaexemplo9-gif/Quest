@@ -1,0 +1,182 @@
+// Cinzas de Eridan: addon para o script original fornecido pelo usuario.
+// Carregar depois de eridan.txt. Mapas RO existentes; sem arquivos proprietarios.
+prontera,162,185,5	script	Arena de Honra#eridan	4_M_BARD,{
+	mes "[Arena de Honra]";
+	mes "Despertos ate o nivel 15 estao protegidos.";
+	mes "Faixas de dez niveis. Nenhum item e perdido.";
+	if (BaseLevel <= 15 || BaseLevel > 80) close;
+	if (select("Participar voluntariamente:Cancelar") == 2) close;
+	// Revalidar apos o menu, pois ele suspende a execucao do script.
+	if (BaseLevel <= 15 || BaseLevel > 80) close;
+	eridan_arena_consent = 1;
+	.@band = BaseLevel / 10 - 1;
+	warp getd("$eridan_arena$[" + .@band + "]"),0,0;
+	end;
+}
+
+-	script	EridanArenaGuard	-1,{
+OnInit:
+	setarray $eridan_arena$[0],"pvp_n_1-1","pvp_n_1-2","pvp_n_1-3","pvp_n_1-4","pvp_n_1-5","pvp_n_2-1","pvp_n_2-2","pvp_n_2-3";
+	end;
+OnPCBaseLvUpEvent:
+OnPCLoadMapEvent:
+	getmapxy(.@map$, .@x, .@y, 0);
+	for (.@i = 0; .@i < 8; .@i++) {
+		if (.@map$ != $eridan_arena$[.@i]) continue;
+		if (!eridan_arena_consent || BaseLevel <= 15 || BaseLevel > 80 || BaseLevel / 10 - 1 != .@i) {
+			eridan_arena_consent = 0;
+			warp "prontera",155,180;
+			dispbottom "Arena: consentimento e faixa de nivel obrigatorios.";
+		}
+		end;
+	}
+	eridan_arena_consent = 0;
+	end;
+}
+
+prontera,165,185,5	script	Cap. Rhea#eridan	4_M_ALCHE_A,{
+	mes "[Capita Rhea]";
+	mes "Contrato de suprimentos: Coracao de Vidro.";
+	mes "Cada participante deve reunir cinco Fragmentos de Cristal.";
+	mes "Reuna de quatro a seis Despertos, niveis 25 a 80, aqui em Prontera.";
+	if (eridan_glass_state == 2) {
+		mes "Sua recompensa individual ja foi entregue.";
+		close;
+	}
+	.@option = select("Aceitar contrato:Entregar com meu grupo:Cancelar");
+	if (.@option == 3) close;
+	if (BaseLevel < 25 || BaseLevel > 80) close;
+	if (.@option == 1) {
+		eridan_glass_state = 1;
+		mes "Contrato registrado. Volte com seu grupo e seus fragmentos.";
+		close;
+	}
+	.@party = getcharid(1);
+	.@leader_aid = getcharid(3);
+	.@leader_cid = getcharid(0);
+	if (!.@party || getpartyleader(.@party,2) != .@leader_cid) {
+		mes "Somente o lider de um grupo pode entregar.";
+		close;
+	}
+	// Arrays locais: nenhum array temporario global sobrevive a uma pausa.
+	getpartymember .@party,1,.@cid;
+	.@count = $@partymembercount;
+	getpartymember .@party,2,.@aid;
+	if (.@count < 4 || .@count > 6) {
+		mes "O grupo deve ter de quatro a seis personagens.";
+		close;
+	}
+	// Nenhuma pausa/menu/sleep entre validar e entregar. Nao interromper
+	// outros scripts: attachrid(...,false), exceto o lider deste proprio NPC.
+	for (.@i = 0; .@i < .@count; .@i++) {
+		if (!isloggedin(.@aid[.@i],.@cid[.@i])) { .@invalid = 1; break; }
+		if (getattachedrid() != .@aid[.@i] && !attachrid(.@aid[.@i],false)) { .@invalid = 1; break; }
+		getmapxy(.@map$, .@x, .@y, 0);
+		if (getcharid(0) != .@cid[.@i] || getcharid(1) != .@party ||
+		    .@map$ != "prontera" || .@x < 150 || .@x > 180 || .@y < 170 || .@y > 200 ||
+		    BaseLevel < 25 || BaseLevel > 80 || eridan_glass_state != 1 ||
+		    countitem(Crystal_Fragment) < 5 || Zeny > MAX_ZENY - 50000 ||
+		    !checkweight(Old_Blue_Box,1,Yggdrasilberry,3)) { .@invalid = 1; break; }
+		detachrid;
+	}
+	attachrid(.@leader_aid);
+	if (.@invalid) {
+		mes "Todos precisam aceitar o contrato, estar aqui, possuir cinco fragmentos e espaco para os premios.";
+		mes "Nenhum fragmento foi consumido.";
+		close;
+	}
+	for (.@i = 0; .@i < .@count; .@i++) {
+		attachrid(.@aid[.@i]);
+		// Flag persistente por personagem impede entrega e consumo repetidos.
+		eridan_glass_state = 2;
+		delitem Crystal_Fragment,5;
+		getitem Old_Blue_Box,1;
+		getitem Yggdrasilberry,3;
+		Zeny += 50000;
+		dispbottom "Contrato concluido. Sua recompensa individual foi entregue.";
+		detachrid;
+	}
+	attachrid(.@leader_aid);
+	mes "Todos os participantes elegiveis receberam sua recompensa.";
+	close;
+}
+
+pvp_n_1-1	mapflag	pvp
+
+pvp_n_1-1	mapflag	nodrop
+
+pvp_n_1-1	mapflag	noloot
+
+pvp_n_1-1	mapflag	nopenalty
+
+pvp_n_1-1	mapflag	loadevent
+
+pvp_n_1-2	mapflag	pvp
+
+pvp_n_1-2	mapflag	nodrop
+
+pvp_n_1-2	mapflag	noloot
+
+pvp_n_1-2	mapflag	nopenalty
+
+pvp_n_1-2	mapflag	loadevent
+
+pvp_n_1-3	mapflag	pvp
+
+pvp_n_1-3	mapflag	nodrop
+
+pvp_n_1-3	mapflag	noloot
+
+pvp_n_1-3	mapflag	nopenalty
+
+pvp_n_1-3	mapflag	loadevent
+
+pvp_n_1-4	mapflag	pvp
+
+pvp_n_1-4	mapflag	nodrop
+
+pvp_n_1-4	mapflag	noloot
+
+pvp_n_1-4	mapflag	nopenalty
+
+pvp_n_1-4	mapflag	loadevent
+
+pvp_n_1-5	mapflag	pvp
+
+pvp_n_1-5	mapflag	nodrop
+
+pvp_n_1-5	mapflag	noloot
+
+pvp_n_1-5	mapflag	nopenalty
+
+pvp_n_1-5	mapflag	loadevent
+
+pvp_n_2-1	mapflag	pvp
+
+pvp_n_2-1	mapflag	nodrop
+
+pvp_n_2-1	mapflag	noloot
+
+pvp_n_2-1	mapflag	nopenalty
+
+pvp_n_2-1	mapflag	loadevent
+
+pvp_n_2-2	mapflag	pvp
+
+pvp_n_2-2	mapflag	nodrop
+
+pvp_n_2-2	mapflag	noloot
+
+pvp_n_2-2	mapflag	nopenalty
+
+pvp_n_2-2	mapflag	loadevent
+
+pvp_n_2-3	mapflag	pvp
+
+pvp_n_2-3	mapflag	nodrop
+
+pvp_n_2-3	mapflag	noloot
+
+pvp_n_2-3	mapflag	nopenalty
+
+pvp_n_2-3	mapflag	loadevent
