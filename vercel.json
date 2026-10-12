@@ -54,10 +54,11 @@
       ]
     }
   ],
-  "rewrites": [
+  "redirects": [
     {
       "source": "/",
-      "destination": "/ragnarok.html"
+      "destination": "/ragnarok.html",
+      "permanent": false
     }
   ]
 }
