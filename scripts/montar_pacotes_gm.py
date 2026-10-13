@@ -11,6 +11,7 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[1]
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--destination', required=True)
+parser.add_argument('--client-directory', help='Pasta do cliente preparado; padrao: runtime Windows local')
 args = parser.parse_args()
 destination = Path(args.destination).resolve()
 if destination.exists():
@@ -35,6 +36,12 @@ editor = next(row for row in components['components'] if row['name'] == 'BrowEdi
 editor_archive = ROOT / '.local/ragnarok/archives' / editor['archive']
 if digest(editor_archive) != editor['sha256']:
     raise SystemExit('O pacote do editor falhou na verificacao.')
+client_directory = Path(args.client_directory).resolve() if args.client_directory else ROOT / '.local/ragnarok/windows-server/Quest-Servidor/context/.local/ragnarok/client'
+client_lock = json.loads((ROOT / 'client/ragnarok/kro.lock.json').read_text())
+for record in client_lock['files']:
+    original = client_directory / record['name']
+    if not original.is_file() or original.stat().st_size != record['bytes'] or digest(original) != record['sha256']:
+        raise SystemExit('Dados do cliente ausentes ou divergentes: ' + record['name'])
 
 player = destination / 'JOGADOR'
 developer = destination / 'DESENVOLVEDOR'
@@ -86,6 +93,12 @@ for name in sorted(filter(None, tracked)):
 editor_target = source / '.local/ragnarok/archives' / editor['archive']
 editor_target.parent.mkdir(parents=True, exist_ok=True)
 shutil.copy2(editor_archive, editor_target)
+client_target = developer / 'Dados-do-cliente'
+client_target.mkdir()
+for record in client_lock['files']:
+    shutil.copy2(client_directory / record['name'], client_target / record['name'])
+    if digest(client_target / record['name']) != record['sha256']:
+        raise SystemExit('A copia dos dados do cliente falhou: ' + record['name'])
 write(developer / 'PREPARAR SERVIDOR.ps1', '''$ErrorActionPreference = 'Stop'
 $root = Join-Path $PSScriptRoot 'Codigo-fonte'
 $env:PATH = (Join-Path $env:ProgramFiles 'Docker\\Docker\\resources\\bin') + ';' + $env:PATH
@@ -98,6 +111,17 @@ if (-not (Test-Path -LiteralPath $launcher)) {
     New-Item -ItemType Directory -Force -Path $destination | Out-Null
     Expand-Archive -LiteralPath $archive -DestinationPath $destination
 }
+$client = Join-Path $destination 'Quest-Servidor\\context\\.local\\ragnarok\\client'
+New-Item -ItemType Directory -Force -Path $client | Out-Null
+$records = (Get-Content -LiteralPath (Join-Path $root 'client\\ragnarok\\kro.lock.json') -Raw | ConvertFrom-Json).files
+foreach ($record in $records) {
+    $sourceFile = Join-Path $PSScriptRoot ('Dados-do-cliente\\' + $record.name)
+    if ((Get-FileHash -LiteralPath $sourceFile -Algorithm SHA256).Hash.ToLowerInvariant() -ne $record.sha256) { throw ('Dados divergentes: ' + $record.name) }
+    $destinationFile = Join-Path $client $record.name
+    if (Test-Path -LiteralPath $destinationFile) {
+        if ((Get-FileHash -LiteralPath $destinationFile -Algorithm SHA256).Hash.ToLowerInvariant() -ne $record.sha256) { throw ('O arquivo existente foi preservado: ' + $record.name) }
+    } else { Copy-Item -LiteralPath $sourceFile -Destination $destinationFile }
+}
 & (Join-Path $root 'scripts\\IniciarServidorWindows.ps1') -Public
 ''')
 write(developer / 'PREPARAR SERVIDOR.cmd', '@echo off\nsetlocal\nset "PSModulePath=%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\Modules;%ProgramFiles%\\WindowsPowerShell\\Modules"\npowershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0PREPARAR SERVIDOR.ps1"\nif errorlevel 1 pause\n')
@@ -108,7 +132,8 @@ write(developer / 'LEIA-ME.txt', '''CINZAS DE ERIDAN — DESENVOLVEDOR / GM
 
 PREPARAR SERVIDOR.cmd: prepara um servidor independente neste PC.
 Instale e abra Docker Desktop com WSL2/containers Linux antes de executar.
-O primeiro uso baixa aproximadamente 4 GB de dados verificados pela internet.
+Os dados graficos e de audio ja acompanham Dados-do-cliente (aproximadamente 4 GB).
+Internet ainda e necessaria para imagens Docker, preparacao de dependencias e tunel.
 O script mostra um endereco publico temporario para este novo servidor.
 Ele NAO troca o servidor principal do portal. Contas e personagens sao separados.
 
@@ -127,7 +152,8 @@ Todos os fontes versionados foram copiados, com suas licencas, exceto
 instaladores antigos e duplicados da pasta public/downloads.
 Os fontes de componentes externos adicionais sao obtidos nas revisoes/SHA
 registrados nos arquivos lock. O runtime preparado e o BrowEdit acompanham
-fisicamente este pacote. Nao acompanham senhas, contas, bancos privados ou GRFs.
+fisicamente este pacote, junto dos GRFs, musica e arquivos base verificados.
+Nao acompanham senhas, tokens, contas ou bancos privados.
 Para desenvolvimento web, instale Node.js e siga README.md/package.json.
 Para retomar o fluxo Git, clone https://github.com/empresaexemplo9-gif/Quest
 e transfira suas alteracoes. Esta copia nao contem o historico .git.
@@ -140,10 +166,12 @@ for folder in (player, developer):
     manifest = {p.relative_to(folder).as_posix(): {'bytes': p.stat().st_size, 'sha256': digest(p)} for p in files}
     write(folder / 'ARQUIVOS-SHA256.json', json.dumps(manifest, ensure_ascii=False, indent=2))
     zip_path = destination / (folder.name + '.zip')
-    with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED, compresslevel=6) as archive:
+    with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED, compresslevel=6, allowZip64=True) as archive:
         for path in sorted(folder.rglob('*')):
             if path.is_file():
-                archive.write(path, path.relative_to(destination).as_posix())
+                # GRFs and original ZIPs already contain compressed resources.
+                method = zipfile.ZIP_STORED if path.parent == client_target else zipfile.ZIP_DEFLATED
+                archive.write(path, path.relative_to(destination).as_posix(), compress_type=method)
     with zipfile.ZipFile(zip_path) as archive:
         if archive.testzip() is not None:
             raise SystemExit('ZIP corrompido: ' + str(zip_path))
