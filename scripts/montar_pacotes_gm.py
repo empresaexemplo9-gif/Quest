@@ -24,8 +24,6 @@ def digest(path):
 
 downloads = ROOT / 'public/downloads'
 player_name = 'Quest-Ragnarok-Setup.exe'
-player_checks = json.loads((downloads / 'Quest-Ragnarok-SHA256SUMS.json').read_text())
-# The published file records may be a mapping or a list, depending on the release.
 expected_player = '22905eda3e9e4211909cb17e2e623fe9eaaa5fbf21c6d06835a41494804ac08e'
 if digest(downloads / player_name) != expected_player:
     raise SystemExit('O instalador Windows difere da versao verificada.')
@@ -46,7 +44,8 @@ source.mkdir(parents=True)
 
 def write(path, value):
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(value, encoding='utf-8-sig', newline='\r\n')
+    encoding = 'ascii' if path.suffix.lower() in ('.cmd', '.url') else 'utf-8-sig'
+    path.write_text(value, encoding=encoding, newline='\r\n')
 
 shutil.copy2(downloads / player_name, player / player_name)
 write(player / 'JOGAR QUEST.url', '[InternetShortcut]\nURL=https://quest-game-plum.vercel.app/entrar.html\n')
