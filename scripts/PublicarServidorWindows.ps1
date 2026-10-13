@@ -1,4 +1,4 @@
-param([string]$ServerDirectory, [switch]$PublishMain)
+param([string]$ServerDirectory, [switch]$PublishMain, [switch]$NoBrowser)
 $ErrorActionPreference = 'Stop'
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 $repository = Split-Path -Parent $PSScriptRoot
@@ -102,4 +102,4 @@ if ($PublishMain) {
     if ($LASTEXITCODE -ne 0) { throw 'O servidor esta disponivel, mas a publicacao na main falhou. Verifique a autenticacao Git local.' }
     Write-Host 'A integracao Git da Vercel publicara o mesmo endereco no portal e nos instaladores.'
 } else { Write-Host 'Para conectar o portal, publique apenas public/releases/ragnarok-server.json na mesma main.' }
-Start-Process $publicURL
+if (-not $NoBrowser) { Start-Process $publicURL }
