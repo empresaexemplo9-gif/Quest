@@ -8,6 +8,8 @@ import (
 	"fmt"
 	"net/http"
 	"net/http/httptest"
+	"net/http/httputil"
+	"net/url"
 	"os"
 	"path/filepath"
 	"strconv"
@@ -15,6 +17,28 @@ import (
 	"testing"
 	"time"
 )
+
+func TestQuestAssetsUseCurrentWorldWhileOrdinaryGRFsRemainLocal(t *testing.T) {
+	world := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) { fmt.Fprint(w, "world:"+r.URL.Path) }))
+	defer world.Close()
+	local := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) { fmt.Fprint(w, "local:"+r.URL.Path) }))
+	defer local.Close()
+	worldURL, _ := url.Parse(world.URL)
+	localURL, _ := url.Parse(local.URL)
+	a := &app{ready: true, origin: "http://127.0.0.1:38777", remote: httputil.NewSingleHostReverseProxy(worldURL), assetProxy: httputil.NewSingleHostReverseProxy(localURL)}
+	for resource, expected := range map[string]string{
+		"/remote-client/data/er_chama0.rsw": "world:/remote-client/data/er_chama0.rsw",
+		"/remote-client/data/model/eridan/tree.rsm": "world:/remote-client/data/model/eridan/tree.rsm",
+		"/remote-client/data/texture/eridan/cobble.bmp": "world:/remote-client/data/texture/eridan/cobble.bmp",
+		"/remote-client/data/msgstringtable.txt": "world:/remote-client/data/msgstringtable.txt",
+		"/remote-client/data/prontera.gat": "local:/data/prontera.gat",
+	} {
+		request := httptest.NewRequest("GET", a.origin+resource, nil)
+		response := httptest.NewRecorder()
+		a.ServeHTTP(response, request)
+		if response.Code != 200 || response.Body.String() != expected { t.Fatalf("%s: %d %q", resource, response.Code, response.Body.String()) }
+	}
+}
 
 func TestServerRejectsUnavailableAndAcceptsNativeWorld(t *testing.T) {
 	state := `{"engine":"rAthena","packetver":20211103,"nativeReady":true,"assetsReady":true}`

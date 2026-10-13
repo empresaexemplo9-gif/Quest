@@ -67,12 +67,12 @@ func install() error {
 	if err = command.Run(); err != nil {
 		return errors.New("não foi possível criar o atalho do cliente Quest")
 	}
-	// Upgrade only this user's installed 2.0.0 client; never kill generic Node/game processes.
-	previous := exec.Command("powershell.exe", "-NoProfile", "-NonInteractive", "-Command", `$ErrorActionPreference='Stop';$legacy=[IO.Path]::Combine($env:QUEST_PLAYER_INSTALL_ROOT,'2.0.0','Quest-Ragnarok.exe');Get-CimInstance Win32_Process -Filter "Name = 'Quest-Ragnarok.exe'" | Where-Object { $_.ExecutablePath -and [String]::Equals($_.ExecutablePath,$legacy,[StringComparison]::OrdinalIgnoreCase) } | ForEach-Object { Stop-Process -Id $_.ProcessId -Force -ErrorAction Stop }`)
+	// Upgrade only this user's known previous clients; preserve their game files.
+	previous := exec.Command("powershell.exe", "-NoProfile", "-NonInteractive", "-Command", `$ErrorActionPreference='Stop';foreach($oldVersion in @('2.0.0','2.0.1')){$legacy=[IO.Path]::Combine($env:QUEST_PLAYER_INSTALL_ROOT,$oldVersion,'Quest-Ragnarok.exe');Get-CimInstance Win32_Process -Filter "Name = 'Quest-Ragnarok.exe'" | Where-Object { $_.ExecutablePath -and [String]::Equals($_.ExecutablePath,$legacy,[StringComparison]::OrdinalIgnoreCase) } | ForEach-Object { Stop-Process -Id $_.ProcessId -Force -ErrorAction Stop }}`)
 	hideConsole(previous)
 	previous.Env = append(os.Environ(), "QUEST_PLAYER_INSTALL_ROOT="+filepath.Join(base, "Programs", "QuestRagnarok"))
 	if err := previous.Run(); err != nil {
-		return errors.New("não foi possível encerrar o cliente antigo; feche Quest Ragnarok 2.0.0 e abra o novo atalho")
+		return errors.New("não foi possível encerrar o cliente antigo; feche Quest Ragnarok e abra o novo atalho")
 	}
 	child := exec.Command(target, os.Args[1:]...)
 	if err = child.Start(); err != nil {

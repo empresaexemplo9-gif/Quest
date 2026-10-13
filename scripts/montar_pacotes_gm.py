@@ -25,8 +25,8 @@ def digest(path):
 
 downloads = ROOT / 'public/downloads'
 player_name = 'Quest-Ragnarok-Setup.exe'
-expected_player = '22905eda3e9e4211909cb17e2e623fe9eaaa5fbf21c6d06835a41494804ac08e'
-if digest(downloads / player_name) != expected_player:
+player_release = json.loads((downloads / 'Quest-Ragnarok-SHA256SUMS.json').read_text())[player_name]
+if digest(downloads / player_name) != player_release['sha256'] or (downloads / player_name).stat().st_size != player_release['bytes']:
     raise SystemExit('O instalador Windows difere da versao verificada.')
 server_name = 'Quest-Servidor-Windows.zip'
 if digest(downloads / server_name) != (downloads / 'Quest-Servidor-Windows.sha256').read_text().split()[0]:
@@ -67,6 +67,7 @@ O jogo precisa de internet e do servidor principal ligado. Este pacote
 nao e um jogo offline. O portal encontra o endereco atual do servidor.
 Mapas e recursos adicionais sao carregados do servidor ao jogar.
 Feche e reabra o jogo para receber os mapas atualizados.
+No cenario, abra Graficos para escolher Ultra 8K, Alta 4K ou o modo leve.
 ''')
 
 tracked = subprocess.check_output(['git', 'ls-files', '-z'], cwd=ROOT).decode('utf-8').split('\0')

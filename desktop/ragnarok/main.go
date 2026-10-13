@@ -34,7 +34,7 @@ import (
 //go:embed assets/runtime.zip assets/runtime.sha256
 var bundle embed.FS
 
-const version = "2.0.1"
+const version = "2.0.2"
 const portal = "https://quest-game-plum.vercel.app"
 
 var installComplete = errors.New("installed and launched")
@@ -384,6 +384,34 @@ func (a *app) fail(err error) {
 
 var launcher = template.Must(template.New("launcher").Parse(`<!doctype html><html lang="pt-BR"><meta charset="utf-8"><title>Quest — Ragnarok</title><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{background:#111820;color:#f0e5d3;font:18px system-ui;margin:8vh auto;padding:24px;max-width:700px}h1{color:#e8b84b}input,button{font:inherit;padding:12px;box-sizing:border-box}input{width:100%;margin:12px 0}button{background:#e8b84b;border:0;cursor:pointer}#error{color:#f8b7a4}small{display:block;margin-top:24px}</style><h1>Quest — Cinzas de Éridan</h1><p>Ragnarok · Mundo compartilhado</p><p id="status">Preparando o cliente…</p><p id="error"></p><details id="diagnostic" hidden><summary>Ver diagnóstico do cliente</summary><pre id="asset-log" style="white-space:pre-wrap;overflow-wrap:anywhere"></pre></details><form id="connection"><label>Endereço do servidor Quest<input id="server" type="url" placeholder="https://servidor-do-jogo" required></label><button>Conectar ao mundo</button></form><small>Na primeira instalação, os mapas, personagens e músicas são baixados. Seu personagem e os outros jogadores vivem no mesmo servidor.</small><script src="/launcher.js"></script></html>`))
 
+func questServerAsset(resource string) bool {
+	resource = strings.ToLower(strings.ReplaceAll(resource, "\\", "/"))
+	if !strings.HasPrefix(resource, "/remote-client/data/") {
+		return false
+	}
+	name := strings.TrimPrefix(resource, "/remote-client/data/")
+	for _, prefix := range []string{"model/eridan/", "texture/eridan/", "luafiles514/lua files/skillinfoz/"} {
+		if strings.HasPrefix(name, prefix) {
+			return true
+		}
+	}
+	if strings.HasPrefix(name, "texture/") && strings.Contains(name, "/quest/") {
+		return true
+	}
+	for stage := 0; stage < 4; stage++ {
+		for _, suffix := range []string{"rsw", "gnd", "gat"} {
+			if name == fmt.Sprintf("er_chama%d.%s", stage, suffix) {
+				return true
+			}
+		}
+	}
+	switch name {
+	case "bookitemnametable.txt", "idnum2itemdesctable.txt", "idnum2itemdisplaynametable.txt", "mapnametable.txt", "msgstringtable.txt", "num2itemdesctable.txt", "num2itemdisplaynametable.txt", "questid2display.txt", "tipoftheday.txt":
+		return true
+	}
+	return false
+}
+
 func (a *app) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if r.Host != strings.TrimPrefix(a.origin, "http://") || (r.Header.Get("Origin") != "" && r.Header.Get("Origin") != a.origin) {
 		http.Error(w, "Origem inválida", 403)
@@ -444,6 +472,16 @@ func (a *app) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if strings.HasPrefix(r.URL.Path, "/remote-client/") {
+		// Quest maps and Portuguese overlays follow the current world's revisions;
+		// ordinary GRF resources continue to use the verified local client cache.
+		if questServerAsset(r.URL.Path) {
+			if remote == nil {
+				http.Error(w, "Servidor não configurado", 503)
+				return
+			}
+			remote.ServeHTTP(w, r)
+			return
+		}
 		if !ready || assetProxy == nil {
 			http.Error(w, "Mapas em preparação", 503)
 			return

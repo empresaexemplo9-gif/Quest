@@ -25,6 +25,7 @@ reviewed = ['deploy/ragnarok/Dockerfile', 'client/ragnarok/check-public.mjs',
             'client/ragnarok/prepare-city.mjs', 'deploy/ragnarok/supervisor.mjs',
             'scripts/download_kro.py', 'client/ragnarok/apply-browser-mods.mjs',
             'client/ragnarok/mods/CharCreateQuest.js','client/ragnarok/mods/LocalePt.js',
+            'client/ragnarok/mods/GraphicsQuest.js',
             'client/ragnarok/browser-build.lock.json','client/ragnarok/release.lock.json']
 output = root/'public/downloads/Quest-Servidor-Windows.zip'
 output.parent.mkdir(parents=True,exist_ok=True)
