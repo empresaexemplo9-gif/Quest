@@ -1,9 +1,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {spawn} from 'node:child_process';
+import {prepareCity} from '../../client/ragnarok/prepare-city.mjs';
 
 const root = '/app';
 const engine = path.join(root, 'engine/rathena');
+prepareCity(root);
 const imports = path.join(engine, 'conf/import');
 const dbPassword = process.env.MARIADB_PASSWORD;
 const interPassword = process.env.QUEST_INTER_PASSWORD;
@@ -15,13 +17,18 @@ for (const prefix of ['login_server','ipban_db','char_server','map_server','web_
 }
 settings.inter = database;
 settings.login = 'bind_ip: 127.0.0.1\nnew_account: yes\nnew_account_name_length: 4\nnew_account_pass_length: 8\nipban_dynamic_pass_failure_ban: no\n';
-settings.char = `bind_ip: 127.0.0.1\nlogin_ip: 127.0.0.1\nchar_ip: 127.0.0.1\nserver_name: Quest\nuserid: quest_inter\npasswd: ${interPassword}\nstart_point: prontera,150,150\n`;
+settings.char = `bind_ip: 127.0.0.1\nlogin_ip: 127.0.0.1\nchar_ip: 127.0.0.1\nserver_name: Quest\nuserid: quest_inter\npasswd: ${interPassword}\nstart_point: er_chama0,48,28\n`;
 settings.map = `bind_ip: 127.0.0.1\nchar_ip: 127.0.0.1\nmap_ip: 127.0.0.1\nuserid: quest_inter\npasswd: ${interPassword}\n`;
 settings.web = 'bind_ip: 127.0.0.1\n';
 settings.log = '// Database configuration is in inter_conf.txt.\n';
 settings.battle = 'feature.mesitemicon: off\n';
-settings.packet = 'allow: 127.0.0.1\n';
+// The native listeners are private. Public attempts are bounded by the HTTPS/WSS gateway;
+// health checks and multiple players otherwise trigger the engine's five-connection localhost limit.
+settings.packet = 'allow: 127.0.0.1\nddos_count: 100\n';
 fs.mkdirSync(imports, {recursive:true});
+const messageImport = path.join(engine,'conf/msg_conf/import/map_msg_eng_conf.txt');
+fs.mkdirSync(path.dirname(messageImport),{recursive:true});
+if(!fs.existsSync(messageImport))fs.writeFileSync(messageImport,'// Quest optional message overrides.\n');
 for (const filename of fs.readdirSync(path.join(engine, 'conf/import-tmpl'))) {
   const destination = path.join(imports, filename);
   if (!fs.existsSync(destination)) fs.copyFileSync(path.join(engine, 'conf/import-tmpl', filename), destination);

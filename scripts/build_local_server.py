@@ -17,6 +17,7 @@ if not context.is_dir():
     raise SystemExit('Prepare the tested native runtime before building its Windows package.')
 reviewed = ['deploy/ragnarok/Dockerfile', 'client/ragnarok/check-public.mjs',
             'client/ragnarok/serve.mjs', 'client/ragnarok/accounts.mjs', 'client/ragnarok/portal-login.js',
+            'client/ragnarok/prepare-city.mjs', 'deploy/ragnarok/supervisor.mjs',
             'scripts/download_kro.py']
 output = root/'public/downloads/Quest-Servidor-Windows.zip'
 output.parent.mkdir(parents=True,exist_ok=True)
@@ -32,6 +33,7 @@ with zipfile.ZipFile(output,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=6
         if not path.is_file():continue
         relative = path.relative_to(context)
         if relative in [Path(name) for name in reviewed]:continue
+        if relative.parts[:2] == ('content','eridan') or relative.parts[:1] == ('rathena',):continue
         if relative.parts[:3] == ('.local','ragnarok','client'):continue
         if relative.parts[:3] == ('engine','rathena','conf') and 'import' in relative.parts:continue
         if any(part in ['.git','__pycache__'] or part.startswith('.env') for part in relative.parts):continue
@@ -41,7 +43,11 @@ with zipfile.ZipFile(output,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=6
         add(root/'deploy/ragnarok'/name,target)
     for name in reviewed:
         add(root/name,'context/'+name)
+    for folder in ['content/eridan','rathena']:
+        for path in sorted((root/folder).rglob('*')):
+            if path.is_file():add(path,'context/'+path.relative_to(root).as_posix())
     add(root/'docs/ragnarok-local-windows.md','LEIA-ME.md')
+    add(root/'docs/editar-chama-viva.md','EDITAR-VILA.md')
     compose=(root/'deploy/ragnarok/compose.yaml').read_text().replace('name: quest-ragnarok\n','name: quest-ragnarok-pc\n')
     archive.writestr('Quest-Servidor/compose.yaml',compose)
     archive.writestr('Quest-Servidor/ORIGEM.json',json.dumps({'repository':'https://github.com/empresaexemplo9-gif/Quest','revision':revision,'engine':'rAthena Renewal','packetver':20211103,'architecture':'linux/amd64','source_code':'https://github.com/empresaexemplo9-gif/Quest/tree/'+revision+'/engine/rathena','client_assets':'Downloaded and verified on the server computer; credentials generated locally'},indent=2))

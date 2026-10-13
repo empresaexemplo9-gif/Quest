@@ -1,0 +1,164 @@
+// Chama Viva / Abrigo 77. Four original maps, shared reconstruction and per-character rewards.
+// Persistent $ variables belong to the world. er_city_done belongs to each character.
+function	script	F_ChamaMap	{
+	return "er_chama" + $er_city_stage;
+}
+
+prontera,148,174,5	script	Rota da Chama Viva	4_M_SAGE_C,{
+	mes "[Rota da Chama Viva]";
+	mes "A vila fica entre ruinas de Helios que a floresta voltou a ocupar.";
+	if (select("Viajar ao Abrigo 77:Ficar em Prontera") == 2) close;
+	close2;
+	warp callfunc("F_ChamaMap"),48,28;
+	end;
+}
+
+-	script	ChamaVivaGuard	-1,{
+OnInit:
+	if ($er_city_stage < 0 || $er_city_stage > 3) $er_city_stage = 0;
+	end;
+OnPCLoadMapEvent:
+	.@map$ = strcharinfo(3);
+	if (.@map$ != "er_chama0" && .@map$ != "er_chama1" && .@map$ != "er_chama2" && .@map$ != "er_chama3") end;
+	if (.@map$ != callfunc("F_ChamaMap")) {
+		warp callfunc("F_ChamaMap"),48,28;
+		end;
+	}
+	if (!er_city_intro) {
+		er_city_intro = 1;
+		dispbottom "Chama Viva: procure Mara Voss na praca. A oficina, a estufa e a torre precisam de ajuda.";
+	}
+	end;
+}
+
+er_chama0,48,34,5	duplicate(Mara Voss#eridan)	Mara Voss#cv0	4_F_KAFRA1
+er_chama1,48,34,5	duplicate(Mara Voss#eridan)	Mara Voss#cv1	4_F_KAFRA1
+er_chama2,48,34,5	duplicate(Mara Voss#eridan)	Mara Voss#cv2	4_F_KAFRA1
+er_chama3,48,34,5	duplicate(Mara Voss#eridan)	Mara Voss#cv3	4_F_KAFRA1
+
+er_chama0,22,39,5	script	Oficina#cv0	4_M_ALCHE_A,{
+	mes "[Ivo - Oficina de sucata]";
+	mes "Os galhos cobriram nossos modulos de Helios. Precisamos de dez pecas de sucata (Jellopy) para recuperar a oficina.";
+	if (er_city_done & 1) {mes "Sua contribuicao ja foi registrada. Obrigado, Desperto.";close;}
+	mes "Recupere material nos tres depositos da vila ou cace Porings nos campos de Prontera.";
+	if (select("Entregar 10 Jellopy:Depois") == 2) close;
+	// Menus suspend the script; revalidate all conditions after the selection.
+	if (er_city_done & 1) close;
+	if (countitem(Jellopy) < 10 || !checkweight(Red_Potion,5)) {mes "Traga dez Jellopy e reserve espaco para cinco pocoes.";close;}
+	er_city_done |= 1;
+	delitem Jellopy,10;
+	getitem Red_Potion,5;
+	$er_city_scrap += 10;
+	if ($er_city_stage == 0) {
+		$er_city_stage = 1;
+		announce "Chama Viva: a oficina foi recuperada. A floresta e a tecnologia podem coexistir!",bc_all;
+		close2;
+		mapwarp "er_chama0","er_chama1",48,28;
+		end;
+	}
+	mes "Contribuicao registrada. Sua recompensa foi entregue.";
+	close;
+}
+er_chama1,22,39,5	duplicate(Oficina#cv0)	Oficina#cv1	4_M_ALCHE_A
+er_chama2,22,39,5	duplicate(Oficina#cv0)	Oficina#cv2	4_M_ALCHE_A
+er_chama3,22,39,5	duplicate(Oficina#cv0)	Oficina#cv3	4_M_ALCHE_A
+
+er_chama0,72,39,5	script	Estufa#cv0	4_F_SISTER,{
+	mes "[Lia - Estufa comunitaria]";
+	mes "As sementes resistiram a Ruptura. Vamos cultivar alimento entre os antigos paineis de vidro.";
+	if (er_city_done & 2) {mes "Seu trabalho ja foi registrado. Nossa estufa continua crescendo.";close;}
+	if ($er_city_stage < 1 || !(er_city_done & 1)) {mes "Ajude a oficina primeiro. Depois traga cinco Ervas Verdes.";close;}
+	if (select("Entregar 5 Ervas Verdes:Depois") == 2) close;
+	if (er_city_done & 2 || $er_city_stage < 1 || !(er_city_done & 1)) close;
+	if (countitem(Green_Herb) < 5 || !checkweight(Red_Potion,5)) {mes "Precisamos de cinco Ervas Verdes e espaco para sua recompensa.";close;}
+	er_city_done |= 2;
+	delitem Green_Herb,5;
+	getitem Red_Potion,5;
+	$er_city_seeds += 5;
+	if ($er_city_stage == 1) {
+		$er_city_stage = 2;
+		announce "Chama Viva: a estufa foi restaurada. A natureza alimenta nossa reconstrução.",bc_all;
+		close2;
+		mapwarp "er_chama1","er_chama2",48,28;
+		end;
+	}
+	mes "Sua contribuicao ficou registrada.";
+	close;
+}
+er_chama1,72,39,5	duplicate(Estufa#cv0)	Estufa#cv1	4_F_SISTER
+er_chama2,72,39,5	duplicate(Estufa#cv0)	Estufa#cv2	4_F_SISTER
+er_chama3,72,39,5	duplicate(Estufa#cv0)	Estufa#cv3	4_F_SISTER
+
+er_chama0,48,65,5	script	Torre Helios#cv0	4_M_SAGE_C,{
+	mes "[Noam - Torre Helios]";
+	mes "Raizes protegem o nucleo antigo. Precisamos reativar o sinal sem destruir a floresta.";
+	if (er_city_done & 4) {mes "Voce ajudou a devolver luz a Chama Viva. Seu trabalho esta salvo.";close;}
+	if ($er_city_stage < 2 || !(er_city_done & 2)) {mes "Ajude a estufa primeiro. Depois traga tres pecas de Ferro.";close;}
+	if (select("Entregar 3 Ferro:Depois") == 2) close;
+	if (er_city_done & 4 || $er_city_stage < 2 || !(er_city_done & 2)) close;
+	if (countitem(Iron) < 3 || !checkweight(Blue_Potion,3)) {mes "Traga tres Ferro e reserve espaco para tres Pocoes Azuis.";close;}
+	er_city_done |= 4;
+	delitem Iron,3;
+	getitem Blue_Potion,3;
+	$er_city_iron += 3;
+	if ($er_city_stage == 2) {
+		$er_city_stage = 3;
+		announce "Chama Viva: a torre de Helios voltou a emitir seu sinal entre as copas das arvores!",bc_all;
+		close2;
+		mapwarp "er_chama2","er_chama3",48,28;
+		end;
+	}
+	mes "Reconstrucao concluida. Sua recompensa foi entregue.";
+	close;
+}
+er_chama1,48,65,5	duplicate(Torre Helios#cv0)	Torre Helios#cv1	4_M_SAGE_C
+er_chama2,48,65,5	duplicate(Torre Helios#cv0)	Torre Helios#cv2	4_M_SAGE_C
+er_chama3,48,65,5	duplicate(Torre Helios#cv0)	Torre Helios#cv3	4_M_SAGE_C
+
+// Three one-time caches give a new character enough supplies for the opening chapter.
+er_chama0,34,60,5	script	Deposito 77#cv0	4_M_ALCHE_A,{
+	mes "[Deposito do Abrigo 77]";
+	if (er_city_cache & 1) {mes "Voce ja recuperou os materiais deste deposito.";close;}
+	if (!checkweight(Jellopy,10)) {mes "Reserve espaco para dez pecas de sucata.";close;}
+	er_city_cache |= 1;
+	getitem Jellopy,10;
+	mes "Dez pecas recuperadas. Leve a sucata a oficina.";close;
+}
+er_chama0,62,58,5	script	Horta selvagem#cv0	4_F_SISTER,{
+	mes "[Horta selvagem]";
+	if (er_city_cache & 2) {mes "Preserve as plantas restantes. Sua coleta ja esta registrada.";close;}
+	if (!checkweight(Green_Herb,5)) {mes "Reserve espaco para cinco Ervas Verdes.";close;}
+	er_city_cache |= 2;
+	getitem Green_Herb,5;
+	mes "Cinco mudas recuperadas. Leve-as a estufa.";close;
+}
+er_chama0,60,72,5	script	Nucleo caido#cv0	4_M_ALCHE_A,{
+	mes "[Nucleo caido de Helios]";
+	if (er_city_cache & 4) {mes "Voce ja recuperou o metal deste nucleo.";close;}
+	if (!checkweight(Iron,3)) {mes "Reserve espaco para tres pecas de Ferro.";close;}
+	er_city_cache |= 4;
+	getitem Iron,3;
+	mes "Tres pecas de Ferro recuperadas. Procure a torre.";close;
+}
+er_chama1,34,60,5	duplicate(Deposito 77#cv0)	Deposito 77#cv1	4_M_ALCHE_A
+er_chama2,34,60,5	duplicate(Deposito 77#cv0)	Deposito 77#cv2	4_M_ALCHE_A
+er_chama3,34,60,5	duplicate(Deposito 77#cv0)	Deposito 77#cv3	4_M_ALCHE_A
+er_chama1,62,58,5	duplicate(Horta selvagem#cv0)	Horta selvagem#cv1	4_F_SISTER
+er_chama2,62,58,5	duplicate(Horta selvagem#cv0)	Horta selvagem#cv2	4_F_SISTER
+er_chama3,62,58,5	duplicate(Horta selvagem#cv0)	Horta selvagem#cv3	4_F_SISTER
+er_chama1,60,72,5	duplicate(Nucleo caido#cv0)	Nucleo caido#cv1	4_M_ALCHE_A
+er_chama2,60,72,5	duplicate(Nucleo caido#cv0)	Nucleo caido#cv2	4_M_ALCHE_A
+er_chama3,60,72,5	duplicate(Nucleo caido#cv0)	Nucleo caido#cv3	4_M_ALCHE_A
+
+er_chama0,48,20,0	warp	Saida#cv0	1,1,prontera,150,170
+er_chama1,48,20,0	warp	Saida#cv1	1,1,prontera,150,170
+er_chama2,48,20,0	warp	Saida#cv2	1,1,prontera,150,170
+er_chama3,48,20,0	warp	Saida#cv3	1,1,prontera,150,170
+er_chama0	mapflag	town
+er_chama1	mapflag	town
+er_chama2	mapflag	town
+er_chama3	mapflag	town
+er_chama0	mapflag	loadevent
+er_chama1	mapflag	loadevent
+er_chama2	mapflag	loadevent
+er_chama3	mapflag	loadevent

@@ -8,6 +8,7 @@ import {createNativeAccountHandler} from './accounts.mjs';
 
 const project = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const root = path.join(project, '.local/ragnarok/vendor/roBrowserLegacy/dist/Web');
+const cityData = path.join(project,'content/eridan/data');
 const port = Number(process.env.QUEST_RO_PORT || 3005);
 const origin = `http://127.0.0.1:${port}`;
 const publicURL = new URL(process.env.QUEST_RO_PUBLIC_URL || origin);
@@ -40,6 +41,12 @@ const server = http.createServer(async (request, response) => {
       response.end('window.QUEST_PORTAL_ORIGINS = ' + JSON.stringify([...allowedOrigins]) + ';\n' + bridge); return;
     }
     if (url.pathname.startsWith('/remote-client/')) {
+      const cityPath = decodeURIComponent(url.pathname.slice('/remote-client/data/'.length)).replace(/\\/g,'/');
+      if (url.pathname.startsWith('/remote-client/data/')) {
+        let custom = null;
+        try {const resolved = await realpath(path.join(cityData,cityPath)); if(resolved.startsWith(cityData+path.sep))custom=await readFile(resolved);} catch {}
+        if(custom){response.writeHead(200,{'Content-Type':'application/octet-stream','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});response.end(request.method==='HEAD'?undefined:custom);return;}
+      }
       const upstream = await fetch('http://127.0.0.1:3338' + url.pathname.slice('/remote-client'.length) + url.search);
       response.writeHead(upstream.status, {'Content-Type':upstream.headers.get('content-type') || 'application/octet-stream', 'X-Content-Type-Options':'nosniff'});
       response.end(request.method === 'HEAD' ? undefined : Buffer.from(await upstream.arrayBuffer()));

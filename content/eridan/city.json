@@ -1,0 +1,86 @@
+{
+  "name": "Chama Viva",
+  "style": "Futuro tomado pela natureza",
+  "width": 96,
+  "height": 96,
+  "maps": [
+    "er_chama0",
+    "er_chama1",
+    "er_chama2",
+    "er_chama3"
+  ],
+  "spawn": [
+    48,
+    28
+  ],
+  "structures": [
+    {
+      "name": "Abrigo 77",
+      "x": 24,
+      "y": 70,
+      "w": 12,
+      "d": 10,
+      "model": "ruin"
+    },
+    {
+      "name": "Oficina de sucata",
+      "x": 24,
+      "y": 48,
+      "w": 12,
+      "d": 10,
+      "model": "workshop"
+    },
+    {
+      "name": "Estufa comunitaria",
+      "x": 72,
+      "y": 48,
+      "w": 13,
+      "d": 10,
+      "model": "greenhouse"
+    },
+    {
+      "name": "Torre Helios",
+      "x": 48,
+      "y": 74,
+      "w": 9,
+      "d": 9,
+      "model": "tower"
+    }
+  ],
+  "npcs": [
+    [
+      48,
+      34
+    ],
+    [
+      22,
+      39
+    ],
+    [
+      72,
+      39
+    ],
+    [
+      48,
+      65
+    ]
+  ],
+  "collection": [
+    [
+      34,
+      60
+    ],
+    [
+      62,
+      58
+    ],
+    [
+      60,
+      72
+    ]
+  ],
+  "exit": [
+    48,
+    20
+  ]
+}

@@ -12,7 +12,7 @@ target = args.repository.resolve() / 'npc/scripts_custom.conf'
 if not target.is_file():
     parser.error('rAthena npc/scripts_custom.conf not found')
 text = target.read_text()
-for filename in ('eridan.txt', 'arena-and-contract.txt'):
+for filename in ('eridan.txt', 'arena-and-contract.txt', 'chama-viva.txt'):
     line = 'npc: ' + os.path.relpath(project / 'rathena' / filename, args.repository.resolve())
     if line not in text.splitlines():
         text += '\n' + line + '\n'
