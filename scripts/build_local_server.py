@@ -15,6 +15,11 @@ if not context.is_dir():
     context = root/'.local/ragnarok/windows-server/Quest-Servidor/context'
 if not context.is_dir():
     raise SystemExit('Prepare the tested native runtime before building its Windows package.')
+release = json.loads((root/'client/ragnarok/release.lock.json').read_text())
+for name, key in [('engine/rathena/char-server','charBinary'),('.local/ragnarok/vendor/roBrowserLegacy/dist/Web/Online.js','browserBundle')]:
+    with (context/name).open('rb') as stream:
+        if hashlib.file_digest(stream,'sha256').hexdigest() != release[key]:
+            raise SystemExit('Prepared runtime differs from the tested release: '+name)
 reviewed = ['deploy/ragnarok/Dockerfile', 'client/ragnarok/check-public.mjs',
             'client/ragnarok/serve.mjs', 'client/ragnarok/accounts.mjs', 'client/ragnarok/portal-login.js',
             'client/ragnarok/prepare-city.mjs', 'deploy/ragnarok/supervisor.mjs',
@@ -50,6 +55,7 @@ with zipfile.ZipFile(output,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=6
             if path.is_file():add(path,'context/'+path.relative_to(root).as_posix())
     add(root/'docs/ragnarok-local-windows.md','LEIA-ME.md')
     add(root/'docs/editar-chama-viva.md','EDITAR-VILA.md')
+    add(root/'docs/atualizacao-classes-e-artes.md','CLASSES-E-ARTES.md')
     compose=(root/'deploy/ragnarok/compose.yaml').read_text().replace('name: quest-ragnarok\n','name: quest-ragnarok-pc\n')
     archive.writestr('Quest-Servidor/compose.yaml',compose)
     archive.writestr('Quest-Servidor/ORIGEM.json',json.dumps({'repository':'https://github.com/empresaexemplo9-gif/Quest','revision':revision,'engine':'rAthena Renewal','packetver':20211103,'architecture':'linux/amd64','source_code':'https://github.com/empresaexemplo9-gif/Quest/tree/'+revision+'/engine/rathena','client_assets':'Downloaded and verified on the server computer; credentials generated locally'},indent=2))
