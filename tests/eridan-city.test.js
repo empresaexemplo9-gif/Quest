@@ -10,7 +10,7 @@ const source=new URL('../content/eridan/',import.meta.url);
 test('all reconstruction maps connect spawn, NPCs, collection and exit',()=>{
  const {city,maps}=validateCity(fileURLToPath(source));
  assert.equal(maps.size,4);assert.deepEqual(city.spawn,[48,28]);
- for(const gat of maps.values())assert.equal(gat.cells[48*96+24],1,'workshop footprint is blocked');
+ for(const gat of maps.values())assert.equal(gat.cells[48*gat.width+24],1,'workshop footprint is blocked');
 });
 test('map cache uses exactly the edited GAT cells, retains other maps and is idempotent',()=>{
  const {maps}=validateCity(fileURLToPath(source));
@@ -23,7 +23,7 @@ test('map cache uses exactly the edited GAT cells, retains other maps and is ide
 });
 test('applying edited maps refuses a blocked player spawn',()=>{
  const temporary=fs.mkdtempSync(path.join(os.tmpdir(),'quest-city-'));
- try {fs.cpSync(source,temporary,{recursive:true});const filename=path.join(temporary,'data/er_chama0.gat'),gat=fs.readFileSync(filename);gat.writeUInt32LE(1,14+(28*96+48)*20+16);fs.writeFileSync(filename,gat);assert.throws(()=>validateCity(temporary),/Blocked/);}finally{assert.ok(path.resolve(temporary).startsWith(path.resolve(os.tmpdir())+path.sep+'quest-city-'));fs.rmSync(temporary,{recursive:true,force:true});}
+ try {fs.cpSync(source,temporary,{recursive:true});const filename=path.join(temporary,'data/er_chama0.gat'),gat=fs.readFileSync(filename);gat.writeUInt32LE(1,14+(28*gat.readUInt32LE(6)+48)*20+16);fs.writeFileSync(filename,gat);assert.throws(()=>validateCity(temporary),/Blocked/);}finally{assert.ok(path.resolve(temporary).startsWith(path.resolve(os.tmpdir())+path.sep+'quest-city-'));fs.rmSync(temporary,{recursive:true,force:true});}
 });
 test('native GAT reader rejects truncated and unsupported cells',()=>{
  const gat=fs.readFileSync(new URL('../content/eridan/data/er_chama0.gat',import.meta.url));

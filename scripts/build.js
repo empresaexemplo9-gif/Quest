@@ -7,3 +7,4 @@ for(const path of ['public/index.html','public/game/content.js','public/game/cor
 if(Object.keys(CLASSES).length!==5||REGIONS.length!==8||OPERATIONS.length!==4)throw new Error('Game content is incomplete.');
 await writeFile(resolve(root,'public/game/version.json'),JSON.stringify({version:'1.3.0',classes:5,regions:8,operations:4}));
 console.log('Build complete: original game client, five classes, eight regions and four operations.');
+await import('./build_file_central.mjs');
