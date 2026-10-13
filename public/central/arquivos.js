@@ -11,6 +11,17 @@ function syncURL(){
 function openFolder(name){folder=name;$('search').value='';$('category').value='';limit=100;render();$('explorador').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});}
 function makeElement(type,text,className){const e=document.createElement(type);if(text!==undefined)e.textContent=text;if(className)e.className=className;return e;}
 function link(text,url){const a=makeElement('a',text);a.href=url;return a;}
+async function downloadFile(file,button){
+ const original=button.textContent;button.textContent='Baixando…';button.setAttribute('aria-disabled','true');
+ try{
+  const response=await fetch(file.download);if(!response.ok)throw Error('Download unavailable');const bytes=await response.arrayBuffer();
+  const hash=[...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(v=>v.toString(16).padStart(2,'0')).join('');
+  if(bytes.byteLength!==file.bytes||hash!==file.sha256)throw Error('Integrity mismatch');
+  const url=URL.createObjectURL(new Blob([bytes],{type:'application/octet-stream'}));const save=document.createElement('a');save.href=url;save.download=file.path.split('/').at(-1);document.body.append(save);save.click();save.remove();setTimeout(()=>URL.revokeObjectURL(url),30000);
+  button.textContent='Conferido';setTimeout(()=>button.textContent=original,2500);
+ }catch{$('files-error').hidden=false;$('files-error').textContent='Não foi possível conferir este download. Tente novamente ou abra o arquivo pelo botão Ver.';button.textContent=original;}
+ finally{button.removeAttribute('aria-disabled');}
+}
 function crumbs(){
  $('breadcrumbs').replaceChildren();const home=makeElement('button','Todos os arquivos');home.addEventListener('click',()=>openFolder(''));$('breadcrumbs').append(home);
  let prefix='';for(const part of folder.split('/').filter(Boolean)){prefix+=part+'/';const target=prefix;$('breadcrumbs').append(makeElement('span','/'));const button=makeElement('button',part);button.addEventListener('click',()=>openFolder(target));$('breadcrumbs').append(button);}
@@ -32,7 +43,7 @@ function render(){
   if(row.folder){const button=makeElement('button',row.name,'file-name');button.addEventListener('click',()=>openFolder(row.path));nameCell.append(button,makeElement('span',row.count+' arquivos','file-path'));}
   else{const a=link(row.name,row.file.view);a.className='file-name';nameCell.append(a);if(query||category)nameCell.append(makeElement('span',row.file.path,'file-path'));}
   tr.append(nameCell);const type=makeElement('td');type.append(makeElement('span',row.folder?'Pasta':row.file.category,'category-tag'));tr.append(type,makeElement('td',formatBytes(row.folder?row.bytes:row.file.bytes)));
-  const actions=makeElement('td');if(!row.folder){actions.append(link('Baixar',row.file.download),link('Ver',row.file.view));const copy=makeElement('button','Copiar link','secondary');copy.style.display='inline';copy.style.margin='0';copy.addEventListener('click',()=>copyText(row.file.download,copy,'Copiar link'));actions.append(copy);}tr.append(actions);$('file-list').append(tr);
+  const actions=makeElement('td');if(!row.folder){const download=link('Baixar',row.file.download);if(row.file.bytes<=8*1024*1024)download.addEventListener('click',event=>{if(!event.ctrlKey&&!event.metaKey&&!event.shiftKey){event.preventDefault();downloadFile(row.file,download);}});actions.append(download,link('Ver',row.file.view));const copy=makeElement('button','Copiar link','secondary');copy.style.display='inline';copy.style.margin='0';copy.addEventListener('click',()=>copyText(row.file.download,copy,'Copiar link'));actions.append(copy);}tr.append(actions);$('file-list').append(tr);
  }
  $('empty').hidden=entries.length!==0;$('load-more').hidden=entries.length<=limit;
  $('file-count').textContent=`${new Intl.NumberFormat('pt-BR').format(filtered.length)} arquivos${folder?' nesta pasta':''}${entries.length>limit?' · mostrando '+limit+' resultados':''}`;

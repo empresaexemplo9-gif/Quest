@@ -4,6 +4,7 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -Command "$text=[IO.File]::Rea
 if errorlevel 1 pause
 exit /b
 # QUEST POWERSHELL
+$env:PSModulePath=[IO.Path]::Combine($env:SystemRoot,'System32','WindowsPowerShell','v1.0','Modules')+';'+[IO.Path]::Combine($env:ProgramFiles,'WindowsPowerShell','Modules')
 $ErrorActionPreference='Stop'
 [Net.ServicePointManager]::SecurityProtocol=[Net.SecurityProtocolType]::Tls12
 $base='https://github.com/empresaexemplo9-gif/Quest/releases/download/quest-arquivos-2.0.4/'

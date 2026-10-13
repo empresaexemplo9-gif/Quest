@@ -50,6 +50,12 @@
       "bytes": 56079815,
       "sha256": "8b910ab3a2f975af192c49de52373932e209b79aa6761cfd245f4968a940ee8b",
       "url": "https://github.com/empresaexemplo9-gif/Quest/releases/download/quest-arquivos-2.0.4/Quest-Jogador-2.0.4.zip"
+    },
+    {
+      "name": "Baixar-Quest-GM-v2.cmd",
+      "bytes": 3083,
+      "sha256": "e669bb7b87894999091cf6121071ad939324aee43f9d84b195b6182b8948671d",
+      "url": "https://github.com/empresaexemplo9-gif/Quest/releases/download/quest-arquivos-2.0.4/Baixar-Quest-GM-v2.cmd"
     }
   ],
   "fullDeveloper": {
