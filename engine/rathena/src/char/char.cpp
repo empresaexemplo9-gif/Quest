@@ -1485,11 +1485,11 @@ int32 char_make_new_char( struct char_session_data* sd, char* name_, int32 str, 
 			Sql_ShowDebug(sql_handle);
 	}
 
-#if PACKETVER >= 20151001
-	if(!(start_job == JOB_NOVICE && (charserv_config.allowed_job_flag&1)) && 
-		!(start_job == JOB_SUMMONER && (charserv_config.allowed_job_flag&2)))
+	// Quest: exactly the seven human starting classes; advanced jobs remain forbidden.
+	if(start_job < JOB_NOVICE || start_job > JOB_THIEF)
 		return -2; // Invalid job
 
+#if PACKETVER >= 20151001
 	// Check for Doram based information.
 	if (start_job == JOB_SUMMONER) { // Check for just this job for now.
 		memset( tmp_start_point, 0, sizeof( tmp_start_point ) );
@@ -1502,9 +1502,9 @@ int32 char_make_new_char( struct char_session_data* sd, char* name_, int32 str, 
 
 	//Insert the new char entry to the database
 	if( SQL_ERROR == Sql_Query(sql_handle, "INSERT INTO `%s` (`account_id`, `char_num`, `name`, `class`, `zeny`, `status_point`, `str`, `agi`, `vit`, `int`, `dex`, `luk`, `max_hp`, `hp`,"
-		"`max_sp`, `sp`, `hair`, `hair_color`, `last_map`, `last_x`, `last_y`, `save_map`, `save_x`, `save_y`, `sex`, `last_instanceid`, `body`) VALUES ("
-		"'%d', '%d', '%s', '%d', '%d',  '%d', '%d', '%d', '%d', '%d', '%d', '%d', '%u', '%u', '%u', '%u', '%d', '%d', '%s', '%d', '%d', '%s', '%d', '%d', '%c', '0', '%d')",
-		schema_config.char_db, sd->account_id , slot, esc_name, start_job, charserv_config.start_zeny, status_points, str, agi, vit, int_, dex, luk,
+		"`max_sp`, `sp`, `hair`, `hair_color`, `last_map`, `last_x`, `last_y`, `save_map`, `save_x`, `save_y`, `sex`, `last_instanceid`, `body`, `base_level`, `job_level`) VALUES ("
+		"'%d', '%d', '%s', '%d', '%d',  '%d', '%d', '%d', '%d', '%d', '%d', '%d', '%u', '%u', '%u', '%u', '%d', '%d', '%s', '%d', '%d', '%s', '%d', '%d', '%c', '0', '%d', '10', '10')",
+		schema_config.char_db, sd->account_id , slot, esc_name, start_job, charserv_config.start_zeny, 80, str, agi, vit, int_, dex, luk,
 		(40 * (100 + vit)/100) , (40 * (100 + vit)/100 ),  (11 * (100 + int_)/100), (11 * (100 + int_)/100), hair_style, hair_color,
 		tmp_start_point[start_point_idx].map, tmp_start_point[start_point_idx].x, tmp_start_point[start_point_idx].y, tmp_start_point[start_point_idx].map, tmp_start_point[start_point_idx].x, tmp_start_point[start_point_idx].y, sex, start_job ) )
 	{
@@ -1514,6 +1514,34 @@ int32 char_make_new_char( struct char_session_data* sd, char* name_, int32 str, 
 
 	//Retrieve the newly auto-generated char id
 	char_id = (int32)Sql_LastInsertId(sql_handle);
+	// rAthena's character tables may use MyISAM. Explicit compensation also
+	// removes partial creation on those installations where rollback is unavailable.
+	const auto quest_creation_failed = [&]() {
+		Sql_ShowDebug(sql_handle);
+		Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `char_id`='%u'", schema_config.skill_db, char_id);
+		Sql_Query(sql_handle, "DELETE FROM `char_reg_num` WHERE `char_id`='%u'", char_id);
+		Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `char_id`='%u'", schema_config.inventory_db, char_id);
+		Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `char_id`='%u' AND `account_id`='%u'", schema_config.char_db, char_id, sd->account_id);
+		return -2;
+	};
+	// Basic Skills 9 are inherited; first classes receive nine allocated job points.
+	// IDs follow the pinned skill database. No future/advanced skills are granted.
+	const uint16 quest_skills[7][8] = {
+		{1,9,0,0,0,0,0,0},
+		{1,9,5,5,6,4,0,0},
+		{1,9,14,3,19,3,20,3},
+		{1,9,43,3,44,3,46,3},
+		{1,9,22,5,28,3,34,1},
+		{1,9,36,5,37,4,0,0},
+		{1,9,48,5,49,4,0,0}
+	};
+	for (int32 quest_skill = 0; quest_skill < 8 && quest_skills[start_job][quest_skill]; quest_skill += 2) {
+		if (SQL_ERROR == Sql_Query(sql_handle, "INSERT INTO `%s` (`char_id`,`id`,`lv`,`flag`) VALUES ('%u','%u','%u','0')", schema_config.skill_db, char_id, quest_skills[start_job][quest_skill], quest_skills[start_job][quest_skill+1]))
+			return quest_creation_failed();
+	}
+	// The first map login heals only this new character; existing characters are untouched.
+	if (SQL_ERROR == Sql_Query(sql_handle, "INSERT INTO `char_reg_num` (`char_id`,`key`,`index`,`value`) VALUES ('%u','quest_created','0','1')", char_id))
+		return quest_creation_failed();
 	//Give the char the default items
 	for (k = 0; k <= MAX_STARTITEM && tmp_start_items[k].nameid != 0; k++) {
 		if( SQL_ERROR == Sql_Query(sql_handle, "INSERT INTO `%s` (`char_id`,`nameid`, `amount`, `equip`, `identify`) VALUES ('%d', '%u', '%hu', '%u', '%d')", schema_config.inventory_db, char_id, tmp_start_items[k].nameid, tmp_start_items[k].amount, tmp_start_items[k].pos, 1) )

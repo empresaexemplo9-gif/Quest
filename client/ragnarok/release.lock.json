@@ -1,0 +1,22 @@
+{
+  "packetver": 20211103,
+  "renewal": true,
+  "startingClasses": [
+    0,
+    1,
+    2,
+    3,
+    6,
+    4,
+    5
+  ],
+  "baseLevel": 10,
+  "jobLevel": 10,
+  "charSource": "e71c3807de5058b6626564bc8d71279a7c111162d9fb480e7484ed24d99e4f48",
+  "charBinary": "732b08b3ddaecfd6fa53eb8f448183b7a81636af9c234610c9f5dcad067def0f",
+  "roBrowserUpstream": "a9d31a10880740f4a351fcfca402ea6567022926",
+  "browserBundle": "8329f51002ea27b903230ad8b6e175c23cc699eca9903177bb01e67b5843240a",
+  "browserLock": "f640ae9c731094d45254c310a1a9f4d6bdccbac2266ae69cadec44bcce2babd3",
+  "loginArtwork": "6c17751b3e8eee94d9076cf3d80adbf23314ffe7e58aa7d0a916c7598df003d3",
+  "loadingArtwork": "c6f8402722dd72f0b5cfbde66ebc608ebe4a5ae64d39a33a8156b3a6396302ce"
+}

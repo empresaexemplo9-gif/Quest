@@ -1,0 +1,24 @@
+// Only characters created by Quest's seven-class creation receive this initial kit.
+-	script	QuestInicio	-1,{
+OnPCLoginEvent:
+	if (quest_created != 1) end;
+	// Persistent marker prevents rewards/healing from repeating on reconnect.
+	quest_created = 2;
+	.@weapon = 1201; // Faca
+	switch (Class) {
+	case Job_Swordman: eridan_arch = 1; .@weapon = 1101; break; // Espada
+	case Job_Mage: eridan_arch = 5; .@weapon = 1601; break; // Bastao
+	case Job_Archer: eridan_arch = 2; .@weapon = 1701; getitem 1750,100; break; // Arco e flechas
+	case Job_Acolyte: eridan_arch = 4; .@weapon = 1501; break; // Maca
+	case Job_Merchant: eridan_arch = 6; .@weapon = 1301; break; // Machado
+	case Job_Thief: eridan_arch = 7; break;
+	}
+	if (!countitem(.@weapon)) getitem .@weapon,1;
+	if (!countitem(2301)) getitem 2301,1; // Camisa de algodao
+	equip .@weapon;
+	if (Class == Job_Archer) equip 1750;
+	equip 2301;
+	percentheal 100,100;
+	dispbottom "Bem-vindo a Eridan! Voce inicia no nivel base e de classe 10. Suas habilidades iniciais ja estao aprendidas.";
+	end;
+}

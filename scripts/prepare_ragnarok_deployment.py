@@ -42,7 +42,7 @@ shutil.rmtree(context / 'engine/rathena/conf/import', ignore_errors=True)
 (context / 'engine/rathena/conf/import').mkdir()
 for name in ['login','char','map','web']:
     copy(engine / (name+'-server'), context / 'engine/rathena' / (name+'-server'))
-for name in ['rathena','client/ragnarok','deploy/ragnarok']:
+for name in ['rathena','client/ragnarok','deploy/ragnarok','content/eridan','content/ragnarok','public/art/ragnarok']:
     copy(ROOT / name, context / name)
 shutil.copytree(ROOT / 'client/ragnarok/node_modules', context / 'client/ragnarok/node_modules')
 base = ROOT / '.local/ragnarok'

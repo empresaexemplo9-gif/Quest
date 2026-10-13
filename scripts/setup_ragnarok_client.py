@@ -94,7 +94,12 @@ def build_web():
         raise ValueError('Existing roBrowser lock differs; refusing to overwrite it')
     shutil.copyfile(pinned, existing)
     subprocess.run(npm + ['ci', '--ignore-scripts', '--no-audit', '--no-fund'], cwd=source, check=True)
-    subprocess.run(npm + ['run', 'build', '--', '-O', '-T', '-H'], cwd=source, check=True)
+    subprocess.run(['node', str(ROOT / 'client/ragnarok/apply-browser-mods.mjs'), str(source)], cwd=ROOT, check=True)
+    quest_build = BASE / 'browser-build'
+    shutil.copyfile(ROOT / 'client/ragnarok/browser-build.lock.json', quest_build / 'package-lock.json')
+    subprocess.run(npm + ['ci', '--ignore-scripts', '--no-audit', '--no-fund'], cwd=quest_build, check=True)
+    subprocess.run(npm + ['run', 'build', '--', '-O', '-T', '-H', '--m'], cwd=quest_build, check=True)
+    shutil.copytree(quest_build / 'dist/Web', source / 'dist/Web', dirs_exist_ok=True)
     config = {
         'development': False, 'remoteClient': '/remote-client/', 'skipIntro': False,
         'skipServerList': True, 'packetDump': False, 'BGMFileExtension': ['mp3'],

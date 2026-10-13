@@ -15,6 +15,14 @@
 // ---------------------------------------------------------
 prontera,155,185,5	script	Mara Voss#eridan	4_F_KAFRA1,{
 	mes "[Mara Voss]";
+	if (!eridan_welcome) {
+		eridan_welcome = 1;
+		mes "Voce acordou no Abrigo 77, Desperto.";
+		mes "A Ruptura destruiu Helios e o Eter se partiu em Lumen e Umbra.";
+		mes "A floresta retomou as cidades. A Chama Viva precisa reconstruir sem destruir a natureza.";
+		next;
+		mes "[Mara Voss]";
+	}
 	if (eridan_arch) {
 		mes "Voce ja escolheu seu caminho, Desperto.";
 		mes "Volte quando for hora da Prova de Ascensao.";
@@ -37,7 +45,7 @@ prontera,155,185,5	script	Mara Voss#eridan	4_F_KAFRA1,{
 	}
 	mes "[Mara Voss]";
 	mes "Escolha seu caminho:";
-	switch(select("Guerreiro:Arqueiro:Tank:Mago de Luz (Lumen):Feiticeiro de Trevas (Umbra)")) {
+	switch(select("Espadachim:Arqueiro:Guardiao:Mago de Luz (Lumen):Mago (Umbra):Mercador:Gatuno")) {
 	case 1:
 		set eridan_arch, 1;
 		jobchange Job_Swordman;
@@ -57,6 +65,14 @@ prontera,155,185,5	script	Mara Voss#eridan	4_F_KAFRA1,{
 	case 5:
 		set eridan_arch, 5;
 		jobchange Job_Mage;
+		break;
+	case 6:
+		eridan_arch = 6;
+		jobchange Job_Merchant;
+		break;
+	case 7:
+		eridan_arch = 7;
+		jobchange Job_Thief;
 		break;
 	}
 	next;
@@ -116,6 +132,18 @@ prontera,158,185,5	script	Mestre de Ascensao#eridan	4_M_SAGE_C,{
 		switch(select("Ceifador do Vazio (Mago):Invocador do Abismo (Sabio)")) {
 		case 1: jobchange Job_Wizard; break;
 		case 2: jobchange Job_Sage; break;
+		}
+		break;
+	case 6:
+		switch(select("Ferreiro da Reconstrucao (Ferreiro):Alquimista das Ruinas (Alquimista)")) {
+		case 1: jobchange Job_Blacksmith; break;
+		case 2: jobchange Job_Alchemist; break;
+		}
+		break;
+	case 7:
+		switch(select("Lamina-Fantasma (Assassino):Explorador das Sombras (Arruaceiro)")) {
+		case 1: jobchange Job_Assassin; break;
+		case 2: jobchange Job_Rogue; break;
 		}
 		break;
 	}

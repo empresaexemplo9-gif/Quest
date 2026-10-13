@@ -50,7 +50,7 @@ export function prepareCity(root) {
   for(const name of city.maps)if(!text.split(/\r?\n/).some(line=>line.trim().split(/\s+/)[0]===name))text+='\n'+name;
   fs.writeFileSync(index,text+'\n');
   const conf=path.join(engine,'conf/maps_athena.conf');text=fs.readFileSync(conf,'utf8');for(const name of city.maps)if(!text.includes('map: '+name))text+='\nmap: '+name;fs.writeFileSync(conf,text+'\n');
-  const custom=path.join(engine,'npc/scripts_custom.conf');text=fs.readFileSync(custom,'utf8');const registration='npc: ../../rathena/chama-viva.txt';if(!text.split(/\r?\n/).includes(registration))fs.writeFileSync(custom,text+'\n'+registration+'\n');
+  const custom=path.join(engine,'npc/scripts_custom.conf');text=fs.readFileSync(custom,'utf8');for(const script of ['chama-viva.txt','quest-start.txt']){const registration='npc: ../../rathena/'+script;if(!text.split(/\r?\n/).includes(registration))text+='\n'+registration;}fs.writeFileSync(custom,text+'\n');
   console.log('Chama Viva: four maps and matching server collisions prepared.');return city;
 }
 if(process.argv[1] && path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){

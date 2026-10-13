@@ -1,0 +1,58 @@
+{
+  "repository": "https://github.com/hvg249/TranslationRO-BR",
+  "revision": "0ef37a5df6fa2b6599cd20cced8976b7d56def44",
+  "locale": "pt-BR",
+  "translatedSkillNames": 1060,
+  "localModifications": [
+    "messages-pt.json",
+    "Chama Viva map names",
+    "Current skill costs and prerequisites preserved"
+  ],
+  "coverage": "Client translation with original fallback for entries absent in the community source. Legacy NPC scripts are maintained separately.",
+  "inputs": [
+    {
+      "source": "https://raw.githubusercontent.com/hvg249/TranslationRO-BR/0ef37a5df6fa2b6599cd20cced8976b7d56def44/data/msgstringtable.txt",
+      "sha256": "15624358501077cc3a300a73f088adede9942e68670f91a2817e1ff4e4f76f67"
+    },
+    {
+      "source": "https://raw.githubusercontent.com/hvg249/TranslationRO-BR/0ef37a5df6fa2b6599cd20cced8976b7d56def44/data/idnum2itemdisplaynametable.txt",
+      "sha256": "890936ddb3cda707da05a064a46f93f8d61cec846fb67dd7d97b1ca24860039b"
+    },
+    {
+      "source": "https://raw.githubusercontent.com/hvg249/TranslationRO-BR/0ef37a5df6fa2b6599cd20cced8976b7d56def44/data/idnum2itemdesctable.txt",
+      "sha256": "b7bed075bb3380ad9967423d2d70531f31f61a92597921e9fcdb6771500fab8c"
+    },
+    {
+      "source": "https://raw.githubusercontent.com/hvg249/TranslationRO-BR/0ef37a5df6fa2b6599cd20cced8976b7d56def44/data/num2itemdisplaynametable.txt",
+      "sha256": "566e6e09422991bafe02a46590692ba5fb7a0269cc31ab796fc14492cb030976"
+    },
+    {
+      "source": "https://raw.githubusercontent.com/hvg249/TranslationRO-BR/0ef37a5df6fa2b6599cd20cced8976b7d56def44/data/num2itemdesctable.txt",
+      "sha256": "32285f1bef1275490fd3a320e818ff7bb85f64a2a36bc99fe3580d1f0a230b3c"
+    },
+    {
+      "source": "https://raw.githubusercontent.com/hvg249/TranslationRO-BR/0ef37a5df6fa2b6599cd20cced8976b7d56def44/data/mapnametable.txt",
+      "sha256": "603aa4a318602cfa49d8620ab849f641b8c2c511760c194cca500c2ef2a7f145"
+    },
+    {
+      "source": "https://raw.githubusercontent.com/hvg249/TranslationRO-BR/0ef37a5df6fa2b6599cd20cced8976b7d56def44/data/questid2display.txt",
+      "sha256": "b8f2dc1fe9162ccdba69cf9483bcf8f83315b0a144e61060f2db7cd6b57ca1b9"
+    },
+    {
+      "source": "https://raw.githubusercontent.com/hvg249/TranslationRO-BR/0ef37a5df6fa2b6599cd20cced8976b7d56def44/data/tipoftheday.txt",
+      "sha256": "6f5950b2e914e9e6aec1d5b4e47f20c9172750aeb4631f8a05e443ed2c2650cf"
+    },
+    {
+      "source": "https://raw.githubusercontent.com/hvg249/TranslationRO-BR/0ef37a5df6fa2b6599cd20cced8976b7d56def44/data/bookitemnametable.txt",
+      "sha256": "ab6ca5927c751cf3c911e62bf00d796b77e8ede02620a8b36bf43cc8c2cd599d"
+    },
+    {
+      "source": "https://raw.githubusercontent.com/hvg249/TranslationRO-BR/0ef37a5df6fa2b6599cd20cced8976b7d56def44/data/luafiles514/lua%20files/skillinfoz/skillinfolist.lua",
+      "sha256": "82584f623050b91e6bc4e076f94f4a23a6309b83f7dee69eaf9e001dfefaa826"
+    },
+    {
+      "source": "https://raw.githubusercontent.com/hvg249/TranslationRO-BR/0ef37a5df6fa2b6599cd20cced8976b7d56def44/data/luafiles514/lua%20files/skillinfoz/skilldescript.lua",
+      "sha256": "2ace64c8beb1aae60d067a17bfafa9c5d6648c4b147cde817e91afd6f2b35348"
+    }
+  ]
+}

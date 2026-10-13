@@ -28,6 +28,8 @@ services:
     volumes:
       - ./context/.local/ragnarok/client:/app/.local/ragnarok/client:ro
       - ./context/content/eridan:/app/content/eridan:ro
+      - ./context/content/ragnarok:/app/content/ragnarok:ro
+      - ./context/public/art/ragnarok:/app/public/art/ragnarok:ro
       - ./context/rathena:/app/rathena:ro
       - native-config:/app/engine/rathena/conf/import
       - native-logs:/app/engine/rathena/log

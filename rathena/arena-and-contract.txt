@@ -20,7 +20,7 @@ OnInit:
 	end;
 OnPCBaseLvUpEvent:
 OnPCLoadMapEvent:
-	getmapxy(.@map$, .@x, .@y, 0);
+	getmapxy(.@map$, .@x, .@y, BL_PC);
 	for (.@i = 0; .@i < 8; .@i++) {
 		if (.@map$ != $eridan_arena$[.@i]) continue;
 		if (!eridan_arena_consent || BaseLevel <= 15 || BaseLevel > 80 || BaseLevel / 10 - 1 != .@i) {
@@ -71,12 +71,12 @@ prontera,165,185,5	script	Cap. Rhea#eridan	4_M_ALCHE_A,{
 	for (.@i = 0; .@i < .@count; .@i++) {
 		if (!isloggedin(.@aid[.@i],.@cid[.@i])) { .@invalid = 1; break; }
 		if (getattachedrid() != .@aid[.@i] && !attachrid(.@aid[.@i],false)) { .@invalid = 1; break; }
-		getmapxy(.@map$, .@x, .@y, 0);
+		getmapxy(.@map$, .@x, .@y, BL_PC);
 		if (getcharid(0) != .@cid[.@i] || getcharid(1) != .@party ||
 		    .@map$ != "prontera" || .@x < 150 || .@x > 180 || .@y < 170 || .@y > 200 ||
 		    BaseLevel < 25 || BaseLevel > 80 || eridan_glass_state != 1 ||
-		    countitem(Crystal_Fragment) < 5 || Zeny > MAX_ZENY - 50000 ||
-		    !checkweight(Old_Blue_Box,1,Yggdrasilberry,3)) { .@invalid = 1; break; }
+		    countitem("Crystal_Fragment") < 5 || Zeny > MAX_ZENY - 50000 ||
+		    !checkweight("Old_Blue_Box",1,"Yggdrasilberry",3)) { .@invalid = 1; break; }
 		detachrid;
 	}
 	attachrid(.@leader_aid);
@@ -89,9 +89,9 @@ prontera,165,185,5	script	Cap. Rhea#eridan	4_M_ALCHE_A,{
 		attachrid(.@aid[.@i]);
 		// Flag persistente por personagem impede entrega e consumo repetidos.
 		eridan_glass_state = 2;
-		delitem Crystal_Fragment,5;
-		getitem Old_Blue_Box,1;
-		getitem Yggdrasilberry,3;
+		delitem "Crystal_Fragment",5;
+		getitem "Old_Blue_Box",1;
+		getitem "Yggdrasilberry",3;
 		Zeny += 50000;
 		dispbottom "Contrato concluido. Sua recompensa individual foi entregue.";
 		detachrid;

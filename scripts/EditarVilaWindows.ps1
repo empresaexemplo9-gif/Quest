@@ -13,7 +13,7 @@ if ($Aplicar) {
     New-Item -ItemType Directory -Force -Path $questBackup | Out-Null
     $questLiveCity=Join-Path $questRuntime 'context\content\eridan'
     if (Test-Path -LiteralPath $questLiveCity) {Copy-Item -LiteralPath $questLiveCity -Destination $questBackup -Recurse}
-    foreach ($questFolder in @('content\eridan','rathena')) {
+    foreach ($questFolder in @('content\eridan','content\ragnarok','public\art\ragnarok','rathena')) {
         $questSource=Join-Path $questRepo $questFolder
         foreach ($questFile in Get-ChildItem -LiteralPath $questSource -Recurse -File) {
             $questRelative=$questFile.FullName.Substring($questRepo.Length+1)

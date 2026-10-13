@@ -1,4 +1,11 @@
 [hidden] { display: none !important; }
+.quest-login-page { background: #10151f; }
+.quest-login-art { width:100%; margin:0; border-bottom:1px solid #b49b62; }
+.quest-login-art img { display:block; width:100%; height:auto; }
+.quest-login-page .downloads-page { padding-top:28px; }
+.quest-login-page:not(.playing) .account-intro h1 { font-size:clamp(28px,4vw,48px); }
+.quest-login-page:not(.playing) .account-panel { margin:24px auto; }
+body.playing .quest-login-art { display:none; }
 #check-connection:disabled { opacity: .5; }
 .account-panel { max-width: 560px; }
 .account-panel form { display: grid; gap: 10px; }

@@ -44,10 +44,10 @@ er_chama0,22,39,5	script	Oficina#cv0	4_M_ALCHE_A,{
 	if (select("Entregar 10 Jellopy:Depois") == 2) close;
 	// Menus suspend the script; revalidate all conditions after the selection.
 	if (er_city_done & 1) close;
-	if (countitem(Jellopy) < 10 || !checkweight(Red_Potion,5)) {mes "Traga dez Jellopy e reserve espaco para cinco pocoes.";close;}
+	if (countitem("Jellopy") < 10 || !checkweight("Red_Potion",5)) {mes "Traga dez Jellopy e reserve espaco para cinco pocoes.";close;}
 	er_city_done |= 1;
-	delitem Jellopy,10;
-	getitem Red_Potion,5;
+	delitem "Jellopy",10;
+	getitem "Red_Potion",5;
 	$er_city_scrap += 10;
 	if ($er_city_stage == 0) {
 		$er_city_stage = 1;
@@ -70,10 +70,10 @@ er_chama0,72,39,5	script	Estufa#cv0	4_F_SISTER,{
 	if ($er_city_stage < 1 || !(er_city_done & 1)) {mes "Ajude a oficina primeiro. Depois traga cinco Ervas Verdes.";close;}
 	if (select("Entregar 5 Ervas Verdes:Depois") == 2) close;
 	if (er_city_done & 2 || $er_city_stage < 1 || !(er_city_done & 1)) close;
-	if (countitem(Green_Herb) < 5 || !checkweight(Red_Potion,5)) {mes "Precisamos de cinco Ervas Verdes e espaco para sua recompensa.";close;}
+	if (countitem("Green_Herb") < 5 || !checkweight("Red_Potion",5)) {mes "Precisamos de cinco Ervas Verdes e espaco para sua recompensa.";close;}
 	er_city_done |= 2;
-	delitem Green_Herb,5;
-	getitem Red_Potion,5;
+	delitem "Green_Herb",5;
+	getitem "Red_Potion",5;
 	$er_city_seeds += 5;
 	if ($er_city_stage == 1) {
 		$er_city_stage = 2;
@@ -96,10 +96,10 @@ er_chama0,48,65,5	script	Torre Helios#cv0	4_M_SAGE_C,{
 	if ($er_city_stage < 2 || !(er_city_done & 2)) {mes "Ajude a estufa primeiro. Depois traga tres pecas de Ferro.";close;}
 	if (select("Entregar 3 Ferro:Depois") == 2) close;
 	if (er_city_done & 4 || $er_city_stage < 2 || !(er_city_done & 2)) close;
-	if (countitem(Iron) < 3 || !checkweight(Blue_Potion,3)) {mes "Traga tres Ferro e reserve espaco para tres Pocoes Azuis.";close;}
+	if (countitem("Iron") < 3 || !checkweight("Blue_Potion",3)) {mes "Traga tres Ferro e reserve espaco para tres Pocoes Azuis.";close;}
 	er_city_done |= 4;
-	delitem Iron,3;
-	getitem Blue_Potion,3;
+	delitem "Iron",3;
+	getitem "Blue_Potion",3;
 	$er_city_iron += 3;
 	if ($er_city_stage == 2) {
 		$er_city_stage = 3;
@@ -119,25 +119,25 @@ er_chama3,48,65,5	duplicate(Torre Helios#cv0)	Torre Helios#cv3	4_M_SAGE_C
 er_chama0,34,60,5	script	Deposito 77#cv0	4_M_ALCHE_A,{
 	mes "[Deposito do Abrigo 77]";
 	if (er_city_cache & 1) {mes "Voce ja recuperou os materiais deste deposito.";close;}
-	if (!checkweight(Jellopy,10)) {mes "Reserve espaco para dez pecas de sucata.";close;}
+	if (!checkweight("Jellopy",10)) {mes "Reserve espaco para dez pecas de sucata.";close;}
 	er_city_cache |= 1;
-	getitem Jellopy,10;
+	getitem "Jellopy",10;
 	mes "Dez pecas recuperadas. Leve a sucata a oficina.";close;
 }
 er_chama0,62,58,5	script	Horta selvagem#cv0	4_F_SISTER,{
 	mes "[Horta selvagem]";
 	if (er_city_cache & 2) {mes "Preserve as plantas restantes. Sua coleta ja esta registrada.";close;}
-	if (!checkweight(Green_Herb,5)) {mes "Reserve espaco para cinco Ervas Verdes.";close;}
+	if (!checkweight("Green_Herb",5)) {mes "Reserve espaco para cinco Ervas Verdes.";close;}
 	er_city_cache |= 2;
-	getitem Green_Herb,5;
+	getitem "Green_Herb",5;
 	mes "Cinco mudas recuperadas. Leve-as a estufa.";close;
 }
 er_chama0,60,72,5	script	Nucleo caido#cv0	4_M_ALCHE_A,{
 	mes "[Nucleo caido de Helios]";
 	if (er_city_cache & 4) {mes "Voce ja recuperou o metal deste nucleo.";close;}
-	if (!checkweight(Iron,3)) {mes "Reserve espaco para tres pecas de Ferro.";close;}
+	if (!checkweight("Iron",3)) {mes "Reserve espaco para tres pecas de Ferro.";close;}
 	er_city_cache |= 4;
-	getitem Iron,3;
+	getitem "Iron",3;
 	mes "Tres pecas de Ferro recuperadas. Procure a torre.";close;
 }
 er_chama1,34,60,5	duplicate(Deposito 77#cv0)	Deposito 77#cv1	4_M_ALCHE_A

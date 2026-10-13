@@ -9,6 +9,7 @@ import {createNativeAccountHandler} from './accounts.mjs';
 const project = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const root = path.join(project, '.local/ragnarok/vendor/roBrowserLegacy/dist/Web');
 const cityData = path.join(project,'content/eridan/data');
+const localeRoot = path.join(project,'content/ragnarok');
 const port = Number(process.env.QUEST_RO_PORT || 3005);
 const origin = `http://127.0.0.1:${port}`;
 const publicURL = new URL(process.env.QUEST_RO_PUBLIC_URL || origin);
@@ -31,7 +32,7 @@ const server = http.createServer(async (request, response) => {
   try {
     const url = new URL(request.url, origin);
     if (url.pathname === '/Config.js') {
-      const config = {development:false, remoteClient:publicURL.origin + '/remote-client/', skipIntro:true, skipServerList:true, clientVersionMode:'PacketVer', calculateHash:false, packetDump:false, BGMFileExtension:['mp3'], servers:[{display:'Quest - Cinzas de Eridan', address:'127.0.0.1', port:6900, version:55, langtype:1, packetver:20211103, renewal:true, packetKeys:false, forceUseAddress:true, remoteClient:publicURL.origin+'/remote-client/', socketProxy:publicURL.origin.replace(/^http/, 'ws')}]};
+      const config = {development:false, quality:150, remoteClient:publicURL.origin + '/remote-client/', skipIntro:true, skipServerList:true, clientVersionMode:'PacketVer', calculateHash:false, packetDump:false, BGMFileExtension:['mp3'], servers:[{display:'Quest - Cinzas de Eridan', address:'127.0.0.1', port:6900, version:55, langtype:1, packetver:20211103, renewal:true, packetKeys:false, forceUseAddress:true, remoteClient:publicURL.origin+'/remote-client/', socketProxy:publicURL.origin.replace(/^http/, 'ws')}]};
       response.writeHead(200, {'Content-Type':'text/javascript; charset=utf-8', 'Cache-Control':'no-store'});
       response.end('window.ROConfigBase = ' + JSON.stringify(config) + ';'); return;
     }
@@ -41,6 +42,12 @@ const server = http.createServer(async (request, response) => {
       response.end('window.QUEST_PORTAL_ORIGINS = ' + JSON.stringify([...allowedOrigins]) + ';\n' + bridge); return;
     }
     if (url.pathname.startsWith('/remote-client/')) {
+      const localPath=decodeURIComponent(url.pathname.slice('/remote-client/'.length)).replace(/\\/g,'/');
+      if (/^(data|System)\//i.test(localPath)) {
+        let localized=null;
+        try {const resolved=await realpath(path.join(localeRoot,localPath));if(resolved.startsWith(localeRoot+path.sep))localized=await readFile(resolved);}catch {}
+        if(localized){response.writeHead(200,{'Content-Type':'application/octet-stream','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});response.end(request.method==='HEAD'?undefined:localized);return;}
+      }
       const cityPath = decodeURIComponent(url.pathname.slice('/remote-client/data/'.length)).replace(/\\/g,'/');
       if (url.pathname.startsWith('/remote-client/data/')) {
         let custom = null;
@@ -51,6 +58,12 @@ const server = http.createServer(async (request, response) => {
       response.writeHead(upstream.status, {'Content-Type':upstream.headers.get('content-type') || 'application/octet-stream', 'X-Content-Type-Options':'nosniff'});
       response.end(request.method === 'HEAD' ? undefined : Buffer.from(await upstream.arrayBuffer()));
       return;
+    }
+    if(url.pathname.startsWith('/quest-art/')){
+      const artRoot=path.join(project,'public/art/ragnarok');
+      const filename=await realpath(path.join(artRoot,decodeURIComponent(url.pathname.slice('/quest-art/'.length))));
+      if(!filename.startsWith(artRoot+path.sep))throw Error('Outside Quest artwork');
+      const content=await readFile(filename);response.writeHead(200,{'Content-Type':'image/png','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});response.end(request.method==='HEAD'?undefined:content);return;
     }
     if (url.pathname === '/api/readiness') {
       let assetsReady = false;
