@@ -1,5 +1,6 @@
 {
   "name": "Chama Viva",
+  "revision": 2,
   "style": "Futuro tomado pela natureza",
   "width": 96,
   "height": 96,
@@ -82,5 +83,805 @@
   "exit": [
     48,
     20
-  ]
+  ],
+  "props": [
+    {
+      "model": "tree",
+      "x": 12,
+      "y": 12,
+      "w": 3.9755047947919104,
+      "d": 3.9755047947919104,
+      "rotation": 65.44048325750988,
+      "scale": 0.85089815364473,
+      "label": "Arvore da mata retomada"
+    },
+    {
+      "model": "tree1",
+      "x": 24,
+      "y": 11,
+      "w": 3.97388221207461,
+      "d": 3.97388221207461,
+      "rotation": 65.50313597207497,
+      "scale": 0.8509468835338362,
+      "label": "Arvore da mata retomada"
+    },
+    {
+      "model": "tree2",
+      "x": 34,
+      "y": 13,
+      "w": 3.972834891682165,
+      "d": 3.972834891682165,
+      "rotation": 65.54347899405833,
+      "scale": 0.8509782614398231,
+      "label": "Arvore da mata retomada"
+    },
+    {
+      "model": "tree",
+      "x": 64,
+      "y": 12,
+      "w": 3.9814392129764986,
+      "d": 3.9814392129764986,
+      "rotation": 65.20975460885319,
+      "scale": 0.850718698029108,
+      "label": "Arvore da mata retomada"
+    },
+    {
+      "model": "tree1",
+      "x": 76,
+      "y": 13,
+      "w": 3.981029455427175,
+      "d": 3.981029455427175,
+      "rotation": 65.22576689376164,
+      "scale": 0.8507311520284814,
+      "label": "Arvore da mata retomada"
+    },
+    {
+      "model": "tree2",
+      "x": 85,
+      "y": 12,
+      "w": 3.9806939713001306,
+      "d": 3.9806939713001306,
+      "rotation": 65.23886772460278,
+      "scale": 0.85074134156358,
+      "label": "Arvore da mata retomada"
+    },
+    {
+      "model": "tree",
+      "x": 11,
+      "y": 26,
+      "w": 3.9759302438892177,
+      "d": 3.9759302438892177,
+      "rotation": 65.42402497153357,
+      "scale": 0.8508853527556373,
+      "label": "Arvore da mata retomada"
+    },
+    {
+      "model": "tree1",
+      "x": 84,
+      "y": 25,
+      "w": 3.9812343387504288,
+      "d": 3.9812343387504288,
+      "rotation": 65.21776209241193,
+      "scale": 0.850724926071876,
+      "label": "Arvore da mata retomada"
+    },
+    {
+      "model": "tree2",
+      "x": 11,
+      "y": 39,
+      "w": 3.976839635756325,
+      "d": 3.976839635756325,
+      "rotation": 65.38880295711309,
+      "scale": 0.8508579578555324,
+      "label": "Arvore da mata retomada"
+    },
+    {
+      "model": "tree",
+      "x": 85,
+      "y": 39,
+      "w": 3.9821671428430534,
+      "d": 3.9821671428430534,
+      "rotation": 65.18127893683996,
+      "scale": 0.8506965502842089,
+      "label": "Arvore da mata retomada"
+    },
+    {
+      "model": "tree1",
+      "x": 10,
+      "y": 57,
+      "w": 3.976852611702404,
+      "d": 3.976852611702404,
+      "rotation": 65.38829995910365,
+      "scale": 0.8508575666348585,
+      "label": "Arvore da mata retomada"
+    },
+    {
+      "model": "tree2",
+      "x": 86,
+      "y": 58,
+      "w": 3.982294593427455,
+      "d": 3.982294593427455,
+      "rotation": 65.17628927369982,
+      "scale": 0.8506926694350999,
+      "label": "Arvore da mata retomada"
+    },
+    {
+      "model": "tree",
+      "x": 11,
+      "y": 72,
+      "w": 3.972518226565598,
+      "d": 3.972518226565598,
+      "rotation": 65.555662090321,
+      "scale": 0.8509877371813608,
+      "label": "Arvore da mata retomada"
+    },
+    {
+      "model": "tree1",
+      "x": 86,
+      "y": 72,
+      "w": 3.97742352420632,
+      "d": 3.97742352420632,
+      "rotation": 65.3661574016712,
+      "scale": 0.8508403446457443,
+      "label": "Arvore da mata retomada"
+    },
+    {
+      "model": "tree2",
+      "x": 12,
+      "y": 85,
+      "w": 3.9741403625371357,
+      "d": 3.9741403625371357,
+      "rotation": 65.49318028276161,
+      "scale": 0.8509391402199258,
+      "label": "Arvore da mata retomada"
+    },
+    {
+      "model": "tree",
+      "x": 25,
+      "y": 85,
+      "w": 3.972405251206422,
+      "d": 3.972405251206422,
+      "rotation": 65.56000693365,
+      "scale": 0.8509911165039501,
+      "label": "Arvore da mata retomada"
+    },
+    {
+      "model": "tree1",
+      "x": 35,
+      "y": 84,
+      "w": 3.971178820683591,
+      "d": 3.971178820683591,
+      "rotation": 65.60711700134145,
+      "scale": 0.8510277576677101,
+      "label": "Arvore da mata retomada"
+    },
+    {
+      "model": "tree2",
+      "x": 64,
+      "y": 85,
+      "w": 3.9800785338233164,
+      "d": 3.9800785338233164,
+      "rotation": 65.26287978171904,
+      "scale": 0.8507600176080038,
+      "label": "Arvore da mata retomada"
+    },
+    {
+      "model": "tree",
+      "x": 76,
+      "y": 85,
+      "w": 3.9794500685176057,
+      "d": 3.9794500685176057,
+      "rotation": 65.2873720380681,
+      "scale": 0.8507790671407197,
+      "label": "Arvore da mata retomada"
+    },
+    {
+      "model": "tree1",
+      "x": 85,
+      "y": 85,
+      "w": 3.9787821796956795,
+      "d": 3.9787821796956795,
+      "rotation": 65.31336968422713,
+      "scale": 0.8507992875321767,
+      "label": "Arvore da mata retomada"
+    },
+    {
+      "model": "tree2",
+      "x": 34,
+      "y": 70,
+      "w": 3.970566766864501,
+      "d": 3.970566766864501,
+      "rotation": 65.63058892861721,
+      "scale": 0.8510460136111467,
+      "label": "Arvore da mata retomada"
+    },
+    {
+      "model": "tree",
+      "x": 68,
+      "y": 70,
+      "w": 3.9797903685234157,
+      "d": 3.9797903685234157,
+      "rotation": 65.27411354362827,
+      "scale": 0.8507687549783776,
+      "label": "Arvore da mata retomada"
+    },
+    {
+      "model": "tree1",
+      "x": 35,
+      "y": 23,
+      "w": 3.9740820057661352,
+      "d": 3.9740820057661352,
+      "rotation": 65.49543124285886,
+      "scale": 0.850940890966668,
+      "label": "Arvore da mata retomada"
+    },
+    {
+      "model": "tree2",
+      "x": 64,
+      "y": 25,
+      "w": 3.981887274675254,
+      "d": 3.981887274675254,
+      "rotation": 65.19223156971675,
+      "scale": 0.8507050689986686,
+      "label": "Arvore da mata retomada"
+    },
+    {
+      "model": "tree",
+      "x": 18,
+      "y": 30,
+      "w": 3.975272172107424,
+      "d": 3.975272172107424,
+      "rotation": 65.44947678815794,
+      "scale": 0.8509051486130118,
+      "label": "Arvore da mata retomada"
+    },
+    {
+      "model": "tree1",
+      "x": 78,
+      "y": 31,
+      "w": 3.98159807832411,
+      "d": 3.98159807832411,
+      "rotation": 65.20354328332552,
+      "scale": 0.8507138669981421,
+      "label": "Arvore da mata retomada"
+    },
+    {
+      "model": "tree2",
+      "x": 17,
+      "y": 61,
+      "w": 3.976546052302046,
+      "d": 3.976546052302046,
+      "rotation": 65.40018021720466,
+      "scale": 0.8508668068356037,
+      "label": "Arvore da mata retomada"
+    },
+    {
+      "model": "tree",
+      "x": 78,
+      "y": 62,
+      "w": 3.9832556633034755,
+      "d": 3.9832556633034755,
+      "rotation": 65.13862544324682,
+      "scale": 0.8506633753447476,
+      "label": "Arvore da mata retomada"
+    },
+    {
+      "model": "tree1",
+      "x": 34,
+      "y": 83,
+      "w": 3.971316508707239,
+      "d": 3.971316508707239,
+      "rotation": 65.60183321721895,
+      "scale": 0.851023648057837,
+      "label": "Arvore da mata retomada"
+    },
+    {
+      "model": "tree2",
+      "x": 62,
+      "y": 80,
+      "w": 3.969195328903071,
+      "d": 3.969195328903071,
+      "rotation": 65.68309032024888,
+      "scale": 0.8510868480268603,
+      "label": "Arvore da mata retomada"
+    },
+    {
+      "model": "planter",
+      "x": 40,
+      "y": 30,
+      "w": 3,
+      "d": 2.6,
+      "rotation": 0,
+      "scale": 1,
+      "label": "Jardineira comunitaria"
+    },
+    {
+      "model": "planter",
+      "x": 56,
+      "y": 30,
+      "w": 3,
+      "d": 2.6,
+      "rotation": 0,
+      "scale": 1,
+      "label": "Jardineira comunitaria"
+    },
+    {
+      "model": "planter",
+      "x": 37,
+      "y": 53,
+      "w": 3,
+      "d": 2.6,
+      "rotation": 0,
+      "scale": 1,
+      "label": "Jardineira comunitaria"
+    },
+    {
+      "model": "planter",
+      "x": 60,
+      "y": 53,
+      "w": 3,
+      "d": 2.6,
+      "rotation": 0,
+      "scale": 1,
+      "label": "Jardineira comunitaria"
+    },
+    {
+      "model": "planter",
+      "x": 39,
+      "y": 62,
+      "w": 3,
+      "d": 2.6,
+      "rotation": 0,
+      "scale": 1,
+      "label": "Jardineira comunitaria"
+    },
+    {
+      "model": "planter",
+      "x": 57,
+      "y": 62,
+      "w": 3,
+      "d": 2.6,
+      "rotation": 0,
+      "scale": 1,
+      "label": "Jardineira comunitaria"
+    },
+    {
+      "model": "bench",
+      "x": 39,
+      "y": 35,
+      "w": 2.0000000000000004,
+      "d": 4,
+      "rotation": 90,
+      "scale": 1,
+      "label": "Banco de madeira reaproveitada"
+    },
+    {
+      "model": "bench",
+      "x": 57,
+      "y": 35,
+      "w": 2.0000000000000004,
+      "d": 4,
+      "rotation": -90,
+      "scale": 1,
+      "label": "Banco de madeira reaproveitada"
+    },
+    {
+      "model": "bench",
+      "x": 39,
+      "y": 47,
+      "w": 2.0000000000000004,
+      "d": 4,
+      "rotation": 90,
+      "scale": 1,
+      "label": "Banco de madeira reaproveitada"
+    },
+    {
+      "model": "bench",
+      "x": 57,
+      "y": 47,
+      "w": 2.0000000000000004,
+      "d": 4,
+      "rotation": -90,
+      "scale": 1,
+      "label": "Banco de madeira reaproveitada"
+    },
+    {
+      "model": "bench",
+      "x": 31,
+      "y": 55,
+      "w": 4,
+      "d": 2,
+      "rotation": 0,
+      "scale": 1,
+      "label": "Banco de madeira reaproveitada"
+    },
+    {
+      "model": "bench",
+      "x": 66,
+      "y": 55,
+      "w": 4,
+      "d": 2,
+      "rotation": 0,
+      "scale": 1,
+      "label": "Banco de madeira reaproveitada"
+    },
+    {
+      "model": "cistern",
+      "x": 48,
+      "y": 50,
+      "w": 5.2,
+      "d": 5.2,
+      "rotation": 0,
+      "scale": 1,
+      "label": "Cisterna da praca"
+    },
+    {
+      "model": "lamp",
+      "x": 41,
+      "y": 25,
+      "w": 1.2,
+      "d": 1.2,
+      "rotation": 0,
+      "scale": 1,
+      "label": "Luminaria de Helios"
+    },
+    {
+      "model": "lamp",
+      "x": 55,
+      "y": 25,
+      "w": 1.2,
+      "d": 1.2,
+      "rotation": 0,
+      "scale": 1,
+      "label": "Luminaria de Helios"
+    },
+    {
+      "model": "lamp",
+      "x": 36,
+      "y": 41,
+      "w": 1.2,
+      "d": 1.2,
+      "rotation": 0,
+      "scale": 1,
+      "label": "Luminaria de Helios"
+    },
+    {
+      "model": "lamp",
+      "x": 61,
+      "y": 41,
+      "w": 1.2,
+      "d": 1.2,
+      "rotation": 0,
+      "scale": 1,
+      "label": "Luminaria de Helios"
+    },
+    {
+      "model": "lamp",
+      "x": 42,
+      "y": 61,
+      "w": 1.2,
+      "d": 1.2,
+      "rotation": 0,
+      "scale": 1,
+      "label": "Luminaria de Helios"
+    },
+    {
+      "model": "lamp",
+      "x": 54,
+      "y": 61,
+      "w": 1.2,
+      "d": 1.2,
+      "rotation": 0,
+      "scale": 1,
+      "label": "Luminaria de Helios"
+    },
+    {
+      "model": "lamp",
+      "x": 19,
+      "y": 39,
+      "w": 1.2,
+      "d": 1.2,
+      "rotation": 0,
+      "scale": 1,
+      "label": "Luminaria de Helios"
+    },
+    {
+      "model": "lamp",
+      "x": 77,
+      "y": 39,
+      "w": 1.2,
+      "d": 1.2,
+      "rotation": 0,
+      "scale": 1,
+      "label": "Luminaria de Helios"
+    },
+    {
+      "model": "salvage",
+      "x": 17,
+      "y": 41,
+      "w": 3.7234932536885648,
+      "d": 3.7234932536885648,
+      "rotation": 16.3584705224164,
+      "scale": 0.8,
+      "label": "Sucata organizada"
+    },
+    {
+      "model": "salvage",
+      "x": 30,
+      "y": 43,
+      "w": 3.7236493194484597,
+      "d": 3.7236493194484597,
+      "rotation": 16.362867878368792,
+      "scale": 0.8,
+      "label": "Sucata organizada"
+    },
+    {
+      "model": "salvage",
+      "x": 18,
+      "y": 56,
+      "w": 3.723372970293275,
+      "d": 3.723372970293275,
+      "rotation": 16.35508180278239,
+      "scale": 0.8,
+      "label": "Sucata organizada"
+    },
+    {
+      "model": "salvage",
+      "x": 30,
+      "y": 57,
+      "w": 3.7234621903784486,
+      "d": 3.7234621903784486,
+      "rotation": 16.357595346951296,
+      "scale": 0.8,
+      "label": "Sucata organizada"
+    },
+    {
+      "model": "salvage",
+      "x": 66,
+      "y": 42,
+      "w": 3.7211396112903494,
+      "d": 3.7211396112903494,
+      "rotation": 16.292228341636303,
+      "scale": 0.8,
+      "label": "Sucata organizada"
+    },
+    {
+      "model": "salvage",
+      "x": 78,
+      "y": 56,
+      "w": 3.720979621944635,
+      "d": 3.720979621944635,
+      "rotation": 16.28773059143865,
+      "scale": 0.8,
+      "label": "Sucata organizada"
+    },
+    {
+      "model": "salvage",
+      "x": 32,
+      "y": 61,
+      "w": 3.723606675551129,
+      "d": 3.723606675551129,
+      "rotation": 16.361666269684598,
+      "scale": 0.8,
+      "label": "Sucata organizada"
+    },
+    {
+      "model": "salvage",
+      "x": 62,
+      "y": 61,
+      "w": 3.724359640746135,
+      "d": 3.724359640746135,
+      "rotation": 16.38288991907213,
+      "scale": 0.8,
+      "label": "Sucata organizada"
+    },
+    {
+      "model": "crate",
+      "x": 19,
+      "y": 58,
+      "w": 1.9628459527076794,
+      "d": 1.9628459527076794,
+      "rotation": 5.45085540866732,
+      "scale": 1,
+      "label": "Caixa de suprimentos"
+    },
+    {
+      "model": "crate",
+      "x": 29,
+      "y": 61,
+      "w": 1.9628282540966646,
+      "d": 1.9628282540966646,
+      "rotation": 5.45022979039937,
+      "scale": 1,
+      "label": "Caixa de suprimentos"
+    },
+    {
+      "model": "crate",
+      "x": 66,
+      "y": 58,
+      "w": 1.962220997115645,
+      "d": 1.962220997115645,
+      "rotation": 5.4287692125488,
+      "scale": 1,
+      "label": "Caixa de suprimentos"
+    },
+    {
+      "model": "crate",
+      "x": 79,
+      "y": 40,
+      "w": 1.962284014179942,
+      "d": 1.962284014179942,
+      "rotation": 5.430995795277644,
+      "scale": 1,
+      "label": "Caixa de suprimentos"
+    },
+    {
+      "model": "crate",
+      "x": 20,
+      "y": 76,
+      "w": 1.9632314430414366,
+      "d": 1.9632314430414366,
+      "rotation": 5.464483943177499,
+      "scale": 1,
+      "label": "Caixa de suprimentos"
+    },
+    {
+      "model": "rubble",
+      "x": 30,
+      "y": 67,
+      "w": 3.722758189481336,
+      "d": 4.220224649137974,
+      "rotation": 65.59511914513891,
+      "scale": 1,
+      "label": "Ruina desmoronada"
+    },
+    {
+      "model": "rubble",
+      "x": 18,
+      "y": 68,
+      "w": 3.7236316698596177,
+      "d": 4.220561145055242,
+      "rotation": 65.57188006713332,
+      "scale": 1,
+      "label": "Ruina desmoronada"
+    },
+    {
+      "model": "rubble",
+      "x": 66,
+      "y": 76,
+      "w": 3.733052341099254,
+      "d": 4.224160963134119,
+      "rotation": 65.32019682818097,
+      "scale": 1,
+      "label": "Ruina desmoronada"
+    },
+    {
+      "model": "rubble",
+      "x": 74,
+      "y": 73,
+      "w": 3.7318076795547,
+      "d": 4.223688457961226,
+      "rotation": 65.3535598202966,
+      "scale": 1,
+      "label": "Ruina desmoronada"
+    },
+    {
+      "model": "rubble",
+      "x": 29,
+      "y": 76,
+      "w": 3.722606254879233,
+      "d": 4.22016607171542,
+      "rotation": 65.59915972538272,
+      "scale": 1,
+      "label": "Ruina desmoronada"
+    },
+    {
+      "model": "wall",
+      "x": 16,
+      "y": 16,
+      "w": 6,
+      "d": 1.8,
+      "rotation": 0,
+      "scale": 1,
+      "label": "Muralha recuperada"
+    },
+    {
+      "model": "wall",
+      "x": 22,
+      "y": 16,
+      "w": 6,
+      "d": 1.8,
+      "rotation": 0,
+      "scale": 1,
+      "label": "Muralha recuperada"
+    },
+    {
+      "model": "wall",
+      "x": 28,
+      "y": 16,
+      "w": 6,
+      "d": 1.8,
+      "rotation": 0,
+      "scale": 1,
+      "label": "Muralha recuperada"
+    },
+    {
+      "model": "wall",
+      "x": 34,
+      "y": 16,
+      "w": 6,
+      "d": 1.8,
+      "rotation": 0,
+      "scale": 1,
+      "label": "Muralha recuperada"
+    },
+    {
+      "model": "wall",
+      "x": 58,
+      "y": 16,
+      "w": 6,
+      "d": 1.8,
+      "rotation": 0,
+      "scale": 1,
+      "label": "Muralha recuperada"
+    },
+    {
+      "model": "wall",
+      "x": 64,
+      "y": 16,
+      "w": 6,
+      "d": 1.8,
+      "rotation": 0,
+      "scale": 1,
+      "label": "Muralha recuperada"
+    },
+    {
+      "model": "wall",
+      "x": 70,
+      "y": 16,
+      "w": 6,
+      "d": 1.8,
+      "rotation": 0,
+      "scale": 1,
+      "label": "Muralha recuperada"
+    },
+    {
+      "model": "wall",
+      "x": 76,
+      "y": 16,
+      "w": 6,
+      "d": 1.8,
+      "rotation": 0,
+      "scale": 1,
+      "label": "Muralha recuperada"
+    }
+  ],
+  "materials": [
+    "grass",
+    "cobble",
+    "concrete",
+    "dirt",
+    "trail",
+    "meadow",
+    "overgrown",
+    "road_01",
+    "road_02",
+    "road_03",
+    "road_04",
+    "road_05",
+    "road_06",
+    "road_07",
+    "road_08",
+    "road_09",
+    "road_10",
+    "road_11",
+    "road_12",
+    "road_13",
+    "road_14"
+  ],
+  "details": {
+    "models": 21,
+    "objects": 156,
+    "terrainLightmaps": 2304
+  }
 }

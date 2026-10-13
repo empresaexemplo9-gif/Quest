@@ -1,6 +1,6 @@
 # Editar a vila da Chama Viva
 
-A vila é um mapa nativo original de Éridan: módulos de Helios cobertos de musgo, árvores, estufa, oficina, muralha reaproveitada e torre de sinal. Os modelos são modulares e servem como base para você detalhar a arquitetura no BrowEdit.
+A vila é um mapa nativo original de Éridan: ruínas de Helios cobertas de musgo, árvores com troncos e copas orgânicas, estufa, oficina, muralha reaproveitada e torre de sinal. O acabamento v2 inclui 156 objetos, 21 modelos, pavimentação com transições para a vegetação, materiais pintados, portas, janelas, telhados, andaimes da torre, cisterna, bancos, jardineiras, luminárias, caixotes e sucata. Os quatro estados recebem os mesmos detalhes e mantêm a evolução da oficina, estufa e torre.
 
 Na pasta do Quest, abra **`scripts\EditarVilaWindows.cmd`**. O comando prepara o BrowEdit 3.660 verificado, aponta para os recursos do seu servidor e abre o editor. Em **File > Open**, abra **`content\eridan\data\er_chama0.rsw`**. Os outros estados ficam na mesma pasta:
 
@@ -17,7 +17,7 @@ Modelos próprios: `content\eridan\data\model\eridan`. Texturas próprias: `cont
 
 Para aplicar, execute **`scripts\EditarVilaWindows.cmd -Aplicar`**. O comando verifica se entrada, saída e NPCs continuam acessíveis, guarda a versão anterior em `.local\ragnarok\map-backups`, atualiza os arquivos do servidor e reinicia o serviço do jogo. Jogadores conectados precisarão entrar novamente. As contas e os personagens ficam no banco existente. O túnel continua usando a mesma porta.
 
-O cache de colisões é reconstruído a partir do GAT salvo, preservando os demais mapas. O script **`scripts\build_eridan_city.mjs`** gera a base inicial: **não o execute depois de editar**, pois ele substitui os quatro mapas por essa base.
+O cache de colisões é reconstruído a partir do GAT salvo, preservando os demais mapas. O script **`scripts\build_eridan_city.mjs`** reproduz a versão detalhada: **não o execute depois de editar**, pois ele substitui os quatro mapas. A fonte dos materiais está em `content\eridan\sources\materiais-vila-v2.png`; `scripts\prepare_eridan_materials.py` separa o atlas em BMPs nativos e prepara as transições da pavimentação. Os caminhos dos NPCs, da entrada, da saída e dos suprimentos são validados nas quatro etapas.
 
 No jogo, personagens novos começam na vila. Personagens antigos podem falar com **Rota da Chama Viva**, em Prontera `(148,174)`. A praça fica em `(48,34)`. Recupere suprimentos nos depósitos e entregue na oficina, na estufa e na torre. O mundo muda para o estado seguinte; cada personagem recebe a recompensa de cada entrega uma única vez.
 
