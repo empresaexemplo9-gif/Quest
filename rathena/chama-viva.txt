@@ -7,9 +7,9 @@ function	script	F_ChamaMap	{
 prontera,148,174,5	script	Rota da Chama Viva	4_M_SAGE_C,{
 	mes "[Rota da Chama Viva]";
 	mes "A vila fica entre ruinas de Helios que a floresta voltou a ocupar.";
-	if (select("Viajar ao Abrigo 77:Ficar em Prontera") == 2) close;
+	if (select("Entrar na Estrada dos Despertos:Ficar em Prontera") == 2) close;
 	close2;
-	warp callfunc("F_ChamaMap"),48,28;
+	warp "er_estrada",80,32;
 	end;
 }
 
@@ -24,6 +24,8 @@ OnPCLoadMapEvent:
 		warp callfunc("F_ChamaMap"),48,28;
 		end;
 	}
+	getmapxy .@current$, .@x, .@y;
+	if (!checkcell(.@map$, .@x, .@y, cell_chkpass)) { warp callfunc("F_ChamaMap"),48,28; end; }
 	if (!er_city_intro) {
 		er_city_intro = 1;
 		dispbottom "Chama Viva: procure Mara Voss na praca. A oficina, a estufa e a torre precisam de ajuda.";
@@ -150,10 +152,6 @@ er_chama1,60,72,5	duplicate(Nucleo caido#cv0)	Nucleo caido#cv1	4_M_ALCHE_A
 er_chama2,60,72,5	duplicate(Nucleo caido#cv0)	Nucleo caido#cv2	4_M_ALCHE_A
 er_chama3,60,72,5	duplicate(Nucleo caido#cv0)	Nucleo caido#cv3	4_M_ALCHE_A
 
-er_chama0,48,20,0	warp	Saida#cv0	1,1,prontera,150,170
-er_chama1,48,20,0	warp	Saida#cv1	1,1,prontera,150,170
-er_chama2,48,20,0	warp	Saida#cv2	1,1,prontera,150,170
-er_chama3,48,20,0	warp	Saida#cv3	1,1,prontera,150,170
 er_chama0	mapflag	town
 er_chama1	mapflag	town
 er_chama2	mapflag	town
@@ -162,3 +160,17 @@ er_chama0	mapflag	loadevent
 er_chama1	mapflag	loadevent
 er_chama2	mapflag	loadevent
 er_chama3	mapflag	loadevent
+
+er_chama0,48,38,4	script	Cartógrafa de Éridan#cv0	4_F_KAFRA1,{
+	mes "[Rotas de Éridan]";
+	mes "Sul: Estrada dos Despertos e Prontera.";
+	mes "Norte: Floresta das Antenas, caça e Ruínas de Helios.";
+	mes "Leste: costa e Vila das Raízes. Da vila, atravesse o Deserto de Vidro até Aurea.";
+	next;
+	mes "As galerias subterrâneas ficam nas Ruínas da Rede Helios.";
+	mes "Abra a janela Grupo para reunir seus amigos. Todos viajam pelo mesmo mundo, com caminhos de ida e volta.";
+	close;
+}
+er_chama1,48,38,4	duplicate(Cartógrafa de Éridan#cv0)	Cartógrafa de Éridan#cv1	4_F_KAFRA1
+er_chama2,48,38,4	duplicate(Cartógrafa de Éridan#cv0)	Cartógrafa de Éridan#cv2	4_F_KAFRA1
+er_chama3,48,38,4	duplicate(Cartógrafa de Éridan#cv0)	Cartógrafa de Éridan#cv3	4_F_KAFRA1

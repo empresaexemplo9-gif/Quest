@@ -27,16 +27,21 @@ func TestQuestAssetsUseCurrentWorldWhileOrdinaryGRFsRemainLocal(t *testing.T) {
 	localURL, _ := url.Parse(local.URL)
 	a := &app{ready: true, origin: "http://127.0.0.1:38777", remote: httputil.NewSingleHostReverseProxy(worldURL), assetProxy: httputil.NewSingleHostReverseProxy(localURL)}
 	for resource, expected := range map[string]string{
-		"/remote-client/data/er_chama0.rsw": "world:/remote-client/data/er_chama0.rsw",
-		"/remote-client/data/model/eridan/tree.rsm": "world:/remote-client/data/model/eridan/tree.rsm",
-		"/remote-client/data/texture/eridan/cobble.bmp": "world:/remote-client/data/texture/eridan/cobble.bmp",
-		"/remote-client/data/msgstringtable.txt": "world:/remote-client/data/msgstringtable.txt",
-		"/remote-client/data/prontera.gat": "local:/data/prontera.gat",
+		"/remote-client/data/texture/interface/map/er_mata.bmp": "world:/remote-client/data/texture/interface/map/er_mata.bmp",
+		"/remote-client/data/er_mata.gnd":                       "world:/remote-client/data/er_mata.gnd",
+		"/remote-client/data/er_mina2.rsw":                      "world:/remote-client/data/er_mina2.rsw",
+		"/remote-client/data/er_chama0.rsw":                     "world:/remote-client/data/er_chama0.rsw",
+		"/remote-client/data/model/eridan/tree.rsm":             "world:/remote-client/data/model/eridan/tree.rsm",
+		"/remote-client/data/texture/eridan/cobble.bmp":         "world:/remote-client/data/texture/eridan/cobble.bmp",
+		"/remote-client/data/msgstringtable.txt":                "world:/remote-client/data/msgstringtable.txt",
+		"/remote-client/data/prontera.gat":                      "local:/data/prontera.gat",
 	} {
 		request := httptest.NewRequest("GET", a.origin+resource, nil)
 		response := httptest.NewRecorder()
 		a.ServeHTTP(response, request)
-		if response.Code != 200 || response.Body.String() != expected { t.Fatalf("%s: %d %q", resource, response.Code, response.Body.String()) }
+		if response.Code != 200 || response.Body.String() != expected {
+			t.Fatalf("%s: %d %q", resource, response.Code, response.Body.String())
+		}
 	}
 }
 

@@ -930,7 +930,6 @@ c_tower2_.rsw#Torre Distorcida (2) #
 c_tower3_.rsw#Torre Distorcida (3) #
 brz_n.rsw#Brasilis (Noite) #
 
-
 //EP16.1
 1@mir.rsw#Salão de Ymir #
 2@mir.rsw#Salão de Ymir #
@@ -1009,3 +1008,14 @@ er_chama0.rsw#Chama Viva - Ruínas#
 er_chama1.rsw#Chama Viva - Oficina#
 er_chama2.rsw#Chama Viva - Estufa#
 er_chama3.rsw#Chama Viva - Torre da Chama#
+
+er_estrada.rsw#Estrada dos Despertos#
+er_mata.rsw#Floresta das Antenas#
+er_cacada.rsw#Campos de Caça do Vale#
+er_vilav.rsw#Vila das Raízes#
+er_costas.rsw#Costa do Sinal Perdido#
+er_deserto.rsw#Deserto de Vidro#
+er_aurea.rsw#Aurea — Distrito Recuperado#
+er_ruinas.rsw#Ruínas da Rede Helios#
+er_mina1.rsw#Galerias do Núcleo — Piso 1#
+er_mina2.rsw#Galerias do Núcleo — Piso 2#

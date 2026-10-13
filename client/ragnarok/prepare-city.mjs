@@ -37,23 +37,63 @@ export function validateCity(directory) {
     if(gnd.subarray(0,4).toString()!=='GRGN'||gnd.readUInt32LE(6)*2!==gat.width||gnd.readUInt32LE(10)*2!==gat.height||rsw.subarray(0,4).toString()!=='GRSW'||!rsw.includes(Buffer.from(name+'.gnd'))||!rsw.includes(Buffer.from(name+'.gat')))throw Error('City world/terrain mismatch: '+name);
     const seen=new Set(),queue=[city.spawn];
     for(let k=0;k<queue.length;k++){const [x,y]=queue[k],id=y*gat.width+x;if(x<0||y<0||x>=gat.width||y>=gat.height||seen.has(id)||![0,2,3,4,6].includes(gat.cells[id]))continue;seen.add(id);queue.push([x+1,y],[x-1,y],[x,y+1],[x,y-1]);}
-    for(const [x,y] of [city.spawn,city.exit,...city.npcs,...city.collection])if(!seen.has(y*gat.width+x))throw Error('Blocked city NPC, exit or spawn: '+name+' '+x+','+y);
+    for(const [x,y] of [city.spawn,city.exit,...city.npcs,...city.collection,...(city.routeGates||[])])if(!seen.has(y*gat.width+x))throw Error('Blocked city NPC, exit or spawn: '+name+' '+x+','+y);
     maps.set(name,gat);
   }
   return {city,maps};
 }
+export function validateWorld(directory) {
+  const {city,maps}=validateCity(directory);
+  const manifest=path.join(directory,'world.json');
+  if(!fs.existsSync(manifest))return {city,maps,world:null};
+  const world=JSON.parse(fs.readFileSync(manifest));
+  if(!world.shared||!Array.isArray(world.regions)||!world.regions.length||!Array.isArray(world.routes))throw Error('Invalid shared world');
+  const regions=new Map();
+  function connected(gat,spawn){
+    const seen=new Set(),queue=[spawn];
+    for(let k=0;k<queue.length;k++){
+      const [x,y]=queue[k],id=y*gat.width+x;
+      if(x<0||y<0||x>=gat.width||y>=gat.height||seen.has(id)||![0,2,3,4,6].includes(gat.cells[id]))continue;
+      seen.add(id);queue.push([x+1,y],[x-1,y],[x,y+1],[x,y-1]);
+    }
+    return seen;
+  }
+  for(const r of world.regions){
+    if(!/^er_[a-z0-9]{1,8}$/.test(r.id)||maps.has(r.id)||regions.has(r.id))throw Error('Invalid/duplicate native world map: '+r.id);
+    const gat=readGat(fs.readFileSync(path.join(directory,'data',r.id+'.gat')));
+    const gnd=fs.readFileSync(path.join(directory,'data',r.id+'.gnd')),rsw=fs.readFileSync(path.join(directory,'data',r.id+'.rsw'));
+    if(gnd.subarray(0,4).toString()!=='GRGN'||gnd.readUInt32LE(6)*2!==gat.width||gnd.readUInt32LE(10)*2!==gat.height||rsw.subarray(0,4).toString()!=='GRSW'||!rsw.includes(Buffer.from(r.id+'.gnd'))||!rsw.includes(Buffer.from(r.id+'.gat')))throw Error('World terrain mismatch: '+r.id);
+    const seen=connected(gat,r.spawn);
+    for(const [x,y] of [r.spawn,...r.pois.map(p=>p.at),...r.portals,...r.arrivals])if(!seen.has(y*gat.width+x))throw Error('Unreachable world point: '+r.id+' '+x+','+y);
+    for(const [x,y] of r.arrivals)if(r.portals.some(([px,py])=>Math.abs(x-px)<=3&&Math.abs(y-py)<=3))throw Error('Warp arrival immediately returns: '+r.id);
+    regions.set(r.id,r);maps.set(r.id,gat);
+  }
+  const graph=new Map([['chama',new Set()],['prontera',new Set()],...world.regions.map(r=>[r.id,new Set()])]);
+  const townSeen=connected(maps.get(city.maps[0]),city.spawn);
+  for(const route of world.routes){
+    const {from,to}=route;
+    if(!graph.has(from.id)||!graph.has(to.id))throw Error('Unknown world destination');
+    if(!world.routes.some(r=>r.from.id===to.id&&r.to.id===from.id&&r.from.at.toString()===to.at.toString()&&r.to.at.toString()===from.at.toString()))throw Error('One-way world route: '+from.id);
+    graph.get(from.id).add(to.id);
+    for(const endpoint of [from,to])if(endpoint.id==='chama')for(const [x,y] of [endpoint.at,endpoint.arrival])if(!townSeen.has(y*city.width+x))throw Error('Unreachable village route: '+x+','+y);
+  }
+  const seen=new Set(),queue=['chama'];
+  for(let k=0;k<queue.length;k++){const id=queue[k];if(seen.has(id))continue;seen.add(id);queue.push(...graph.get(id));}
+  if(seen.size!==graph.size)throw Error('Disconnected region in shared world');
+  return {city,maps,world};
+}
 export function prepareCity(root) {
-  const {city,maps}=validateCity(path.join(root,'content/eridan')),engine=path.join(root,'engine/rathena');
+  const {city,maps,world}=validateWorld(path.join(root,'content/eridan')),engine=path.join(root,'engine/rathena');
   const cache=path.join(engine,'db/re/map_cache.dat');fs.writeFileSync(cache,cacheWithMaps(fs.readFileSync(cache),maps));
   const index=path.join(engine,'db/map_index.txt');let text=fs.readFileSync(index,'utf8');
   // Append names without explicit IDs; rAthena allocates unused IDs without replacing other maps.
-  for(const name of city.maps)if(!text.split(/\r?\n/).some(line=>line.trim().split(/\s+/)[0]===name))text+='\n'+name;
+  for(const name of maps.keys())if(!text.split(/\r?\n/).some(line=>line.trim().split(/\s+/)[0]===name))text+='\n'+name;
   fs.writeFileSync(index,text+'\n');
-  const conf=path.join(engine,'conf/maps_athena.conf');text=fs.readFileSync(conf,'utf8');for(const name of city.maps)if(!text.includes('map: '+name))text+='\nmap: '+name;fs.writeFileSync(conf,text+'\n');
-  const custom=path.join(engine,'npc/scripts_custom.conf');text=fs.readFileSync(custom,'utf8');for(const script of ['chama-viva.txt','quest-start.txt']){const registration='npc: ../../rathena/'+script;if(!text.split(/\r?\n/).includes(registration))text+='\n'+registration;}fs.writeFileSync(custom,text+'\n');
-  console.log('Chama Viva: four maps and matching server collisions prepared.');return city;
+  const conf=path.join(engine,'conf/maps_athena.conf');text=fs.readFileSync(conf,'utf8');for(const name of maps.keys())if(!text.includes('map: '+name))text+='\nmap: '+name;fs.writeFileSync(conf,text+'\n');
+  const custom=path.join(engine,'npc/scripts_custom.conf');text=fs.readFileSync(custom,'utf8');for(const script of ['chama-viva.txt','quest-start.txt',...(world?['eridan-world.txt']:[])]){const registration='npc: ../../rathena/'+script;if(!text.split(/\r?\n/).includes(registration))text+='\n'+registration;}fs.writeFileSync(custom,text+'\n');
+  console.log('Eridan: '+maps.size+' shared native maps and matching collisions prepared.');return city;
 }
 if(process.argv[1] && path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){
   const root=path.resolve(process.argv[2]||'.');
-  if(process.argv.includes('--validate')){const {city}=validateCity(path.join(root,'content/eridan'));console.log(JSON.stringify({valid:true,maps:city.maps,spawn:city.spawn}));}else prepareCity(root);
+  if(process.argv.includes('--validate')){const {city,maps,world}=validateWorld(path.join(root,'content/eridan'));console.log(JSON.stringify({valid:true,maps:[...maps.keys()],routes:world?.routes.length||0,spawn:city.spawn}));}else prepareCity(root);
 }

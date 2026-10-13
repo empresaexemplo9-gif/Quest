@@ -34,7 +34,7 @@ import (
 //go:embed assets/runtime.zip assets/runtime.sha256
 var bundle embed.FS
 
-const version = "2.0.2"
+const version = "2.0.4"
 const portal = "https://quest-game-plum.vercel.app"
 
 var installComplete = errors.New("installed and launched")
@@ -398,9 +398,12 @@ func questServerAsset(resource string) bool {
 	if strings.HasPrefix(name, "texture/") && strings.Contains(name, "/quest/") {
 		return true
 	}
-	for stage := 0; stage < 4; stage++ {
+	for _, worldMap := range []string{"er_chama0", "er_chama1", "er_chama2", "er_chama3", "er_estrada", "er_mata", "er_cacada", "er_vilav", "er_costas", "er_deserto", "er_aurea", "er_ruinas", "er_mina1", "er_mina2"} {
+		if strings.HasPrefix(name, "texture/") && strings.HasSuffix(name, "/map/"+worldMap+".bmp") {
+			return true
+		}
 		for _, suffix := range []string{"rsw", "gnd", "gat"} {
-			if name == fmt.Sprintf("er_chama%d.%s", stage, suffix) {
+			if name == worldMap+"."+suffix {
 				return true
 			}
 		}

@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-13",
+  "engine": "rAthena",
+  "renderer": "roBrowserLegacy",
+  "playerVersion": "2.0.4",
+  "newRegions": 10,
+  "nativeMapsIncludingCityStages": 14,
+  "bidirectionalConnections": 15,
+  "nativeLoaderChecksPassed": 45,
+  "graphAndCacheTestsPassed": 3,
+  "twoPlayersSameParty": true,
+  "twoPlayersVisibleBeforeAndAfterTraversal": true,
+  "actualTraversal": "Floresta das Antenas -> Chama Viva",
+  "actualReturnTraversal": "Chama Viva -> Floresta das Antenas",
+  "customMinimapsLoaded": true,
+  "ipadPhysicalDeviceTested": false,
+  "proof": "images/viagem-em-grupo.png"
+}

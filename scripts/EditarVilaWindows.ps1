@@ -62,6 +62,7 @@ $questConfig=@{};if (Test-Path -LiteralPath $questConfigFile) {Copy-Item -Litera
 $questConfig['ropath']=(Join-Path $questRepo 'content\eridan')+'\'
 $questConfig['grfs']=$questGrfs
 $questConfig['recentFiles']=@('data\er_chama0.rsw','data\er_chama1.rsw','data\er_chama2.rsw','data\er_chama3.rsw')
+if (Test-Path -LiteralPath (Join-Path $questRepo 'content\eridan\world.json')) { $questWorld=Get-Content -LiteralPath (Join-Path $questRepo 'content\eridan\world.json') -Raw | ConvertFrom-Json; $questConfig['recentFiles']+=@($questWorld.regions | ForEach-Object {'data\'+$_.id+'.rsw'}) }
 $questConfig['backup']=$true;$questConfig['recalculateQuadtreeOnSave']=$true
 [IO.File]::WriteAllText($questConfigFile,($questConfig | ConvertTo-Json -Depth 10),[Text.UTF8Encoding]::new($false))
 Write-Host "Editor: $questEditor"

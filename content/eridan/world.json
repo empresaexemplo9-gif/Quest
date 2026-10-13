@@ -1,0 +1,3042 @@
+{
+  "name": "Rotas compartilhadas de Éridan",
+  "revision": 1,
+  "regions": [
+    {
+      "id": "er_estrada",
+      "name": "Estrada dos Despertos",
+      "biome": "road",
+      "levels": "10–15",
+      "gates": [
+        "north",
+        "south",
+        "east"
+      ],
+      "safe": false,
+      "description": "A antiga estrada de Helios une Prontera à Chama Viva. Siga os postes de sinal.",
+      "width": 160,
+      "height": 160,
+      "spawn": [
+        80,
+        80
+      ],
+      "pois": [
+        {
+          "type": "sign",
+          "at": [
+            87,
+            136
+          ],
+          "title": "Rota para Chama Viva",
+          "text": "Siga a passagem para Chama Viva. A viagem ocorre no mesmo mundo para todos os jogadores."
+        },
+        {
+          "type": "sign",
+          "at": [
+            136,
+            87
+          ],
+          "title": "Rota para Chama Viva",
+          "text": "Siga a passagem para Chama Viva. A viagem ocorre no mesmo mundo para todos os jogadores."
+        },
+        {
+          "type": "sign",
+          "at": [
+            112,
+            51
+          ],
+          "title": "Rota para Costa do Sinal Perdido",
+          "text": "Siga a passagem para Costa do Sinal Perdido. A viagem ocorre no mesmo mundo para todos os jogadores."
+        },
+        {
+          "type": "sign",
+          "at": [
+            87,
+            24
+          ],
+          "title": "Rota para Prontera",
+          "text": "Siga a passagem para Prontera. A viagem ocorre no mesmo mundo para todos os jogadores."
+        },
+        {
+          "type": "guide",
+          "at": [
+            80,
+            76
+          ],
+          "title": "Marco de Estrada dos Despertos",
+          "text": "A antiga estrada de Helios une Prontera à Chama Viva. Siga os postes de sinal. Faixa recomendada: 10–15."
+        }
+      ],
+      "portals": [
+        [
+          80,
+          136
+        ],
+        [
+          136,
+          80
+        ],
+        [
+          112,
+          44
+        ],
+        [
+          80,
+          24
+        ]
+      ],
+      "arrivals": [
+        [
+          80,
+          128
+        ],
+        [
+          128,
+          80
+        ],
+        [
+          106,
+          44
+        ],
+        [
+          80,
+          32
+        ]
+      ],
+      "mobZones": [
+        [
+          52,
+          82,
+          12,
+          24
+        ],
+        [
+          110,
+          80,
+          12,
+          25
+        ]
+      ],
+      "colliders": [
+        {
+          "model": "salvage",
+          "x": 56,
+          "y": 58,
+          "w": 3,
+          "d": 3,
+          "scale": 1,
+          "rotation": 0,
+          "label": "salvage"
+        },
+        {
+          "model": "tree1",
+          "x": 72.9951606506023,
+          "y": 115.71455227966315,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42748569171584,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 92.28544772033685,
+          "y": 120.9951606506023,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42748569171584,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 74.28441826685105,
+          "y": 96.9951606506023,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42546347375621,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 93.5747053365856,
+          "y": 91.71455227966315,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42546347375621,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 121.0976721455604,
+          "y": 92.34333302596293,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42748569171584,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 115.65666697403707,
+          "y": 73.0976721455604,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42748569171584,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 97.0976721455604,
+          "y": 74.44178726312681,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42546347375621,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 108.25188674555523,
+          "y": 57.9616978224424,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42748569171584,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 92.0383021775576,
+          "y": 46.251886745555225,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42748569171584,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 79.0383021775576,
+          "y": 64.25188674555523,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42546347375621,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 92.28544772033685,
+          "y": 39.0048393493977,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42748569171584,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 72.9951606506023,
+          "y": 44.28544772033683,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42748569171584,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 93.5747053365856,
+          "y": 68.28544772033685,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42546347375621,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree",
+          "x": 33.5279454413168,
+          "y": 33.66543858048167,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7135931221683494,
+          "rotation": 65.42199520986108,
+          "label": "Vegetação e relevo"
+        }
+      ],
+      "objects": 107
+    },
+    {
+      "id": "er_mata",
+      "name": "Floresta das Antenas",
+      "biome": "forest",
+      "levels": "10–20",
+      "gates": [
+        "south",
+        "north",
+        "east"
+      ],
+      "description": "Raízes envolvem antenas antigas. A trilha principal leva às ruínas; a vereda leste, aos campos de caça.",
+      "width": 160,
+      "height": 160,
+      "spawn": [
+        80,
+        80
+      ],
+      "pois": [
+        {
+          "type": "sign",
+          "at": [
+            87,
+            24
+          ],
+          "title": "Rota para Chama Viva",
+          "text": "Siga a passagem para Chama Viva. A viagem ocorre no mesmo mundo para todos os jogadores."
+        },
+        {
+          "type": "sign",
+          "at": [
+            136,
+            87
+          ],
+          "title": "Rota para Campos de Caça do Vale",
+          "text": "Siga a passagem para Campos de Caça do Vale. A viagem ocorre no mesmo mundo para todos os jogadores."
+        },
+        {
+          "type": "sign",
+          "at": [
+            87,
+            136
+          ],
+          "title": "Rota para Ruínas da Rede Helios",
+          "text": "Siga a passagem para Ruínas da Rede Helios. A viagem ocorre no mesmo mundo para todos os jogadores."
+        },
+        {
+          "type": "guide",
+          "at": [
+            80,
+            76
+          ],
+          "title": "Marco de Floresta das Antenas",
+          "text": "Raízes envolvem antenas antigas. A trilha principal leva às ruínas; a vereda leste, aos campos de caça. Faixa recomendada: 10–20."
+        }
+      ],
+      "portals": [
+        [
+          80,
+          24
+        ],
+        [
+          136,
+          80
+        ],
+        [
+          80,
+          136
+        ]
+      ],
+      "arrivals": [
+        [
+          80,
+          32
+        ],
+        [
+          128,
+          80
+        ],
+        [
+          80,
+          128
+        ]
+      ],
+      "mobZones": [
+        [
+          52,
+          82,
+          12,
+          24
+        ],
+        [
+          110,
+          80,
+          12,
+          25
+        ]
+      ],
+      "colliders": [
+        {
+          "model": "salvage",
+          "x": 56,
+          "y": 58,
+          "w": 3,
+          "d": 3,
+          "scale": 1,
+          "rotation": 0,
+          "label": "salvage"
+        },
+        {
+          "model": "ruin",
+          "x": 112,
+          "y": 54,
+          "w": 11,
+          "d": 9,
+          "scale": 0.7,
+          "rotation": 0,
+          "label": "Ruína na trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 93.05645370475199,
+          "y": 37.434060788735074,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42748569171584,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 74.56593921126492,
+          "y": 45.056453704751995,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42748569171584,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 95.3276432549689,
+          "y": 69.05645370475199,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42546347375621,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 76.83712876148184,
+          "y": 61.434060788735074,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42546347375621,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 117.47003743095264,
+          "y": 89.44033306056845,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42748569171584,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 118.55966693943155,
+          "y": 69.47003743095264,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42748569171584,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 94.55966693943155,
+          "y": 89.22046226476984,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42546347375621,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 74.56593921126492,
+          "y": 114.94354629524801,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42748569171584,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 93.05645370475199,
+          "y": 122.56593921126492,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42748569171584,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 76.83712876148184,
+          "y": 98.56593921126492,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42546347375621,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 66.38890615118436,
+          "y": 76.16097352982123,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.41575421239617,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 64.81839532247487,
+          "y": 99.9629376449296,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.36906902337658,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 55.04632794383801,
+          "y": 82.51281732593519,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.36906902337658,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 62.53511752202492,
+          "y": 105.96753959380429,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42748569171584,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 43.032460406195725,
+          "y": 101.53511752202492,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42748569171584,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree",
+          "x": 33.533870536958304,
+          "y": 33.659403618578665,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7135931221683494,
+          "rotation": 65.42199520986108,
+          "label": "Vegetação e relevo"
+        }
+      ],
+      "objects": 110
+    },
+    {
+      "id": "er_cacada",
+      "name": "Campos de Caça do Vale",
+      "biome": "hunting",
+      "levels": "15–30",
+      "gates": [
+        "west",
+        "east"
+      ],
+      "description": "Clareiras e lagoas abrigam criaturas de Éridan. Ao leste fica a vila dos sobreviventes.",
+      "width": 160,
+      "height": 160,
+      "spawn": [
+        80,
+        80
+      ],
+      "pois": [
+        {
+          "type": "sign",
+          "at": [
+            24,
+            87
+          ],
+          "title": "Rota para Floresta das Antenas",
+          "text": "Siga a passagem para Floresta das Antenas. A viagem ocorre no mesmo mundo para todos os jogadores."
+        },
+        {
+          "type": "sign",
+          "at": [
+            136,
+            87
+          ],
+          "title": "Rota para Vila das Raízes",
+          "text": "Siga a passagem para Vila das Raízes. A viagem ocorre no mesmo mundo para todos os jogadores."
+        },
+        {
+          "type": "guide",
+          "at": [
+            80,
+            76
+          ],
+          "title": "Marco de Campos de Caça do Vale",
+          "text": "Clareiras e lagoas abrigam criaturas de Éridan. Ao leste fica a vila dos sobreviventes. Faixa recomendada: 15–30."
+        }
+      ],
+      "portals": [
+        [
+          24,
+          80
+        ],
+        [
+          136,
+          80
+        ]
+      ],
+      "arrivals": [
+        [
+          32,
+          80
+        ],
+        [
+          128,
+          80
+        ]
+      ],
+      "mobZones": [
+        [
+          52,
+          82,
+          12,
+          24
+        ],
+        [
+          110,
+          80,
+          12,
+          25
+        ]
+      ],
+      "colliders": [
+        {
+          "model": "salvage",
+          "x": 56,
+          "y": 58,
+          "w": 3,
+          "d": 3,
+          "scale": 1,
+          "rotation": 0,
+          "label": "salvage"
+        },
+        {
+          "model": "ruin",
+          "x": 112,
+          "y": 54,
+          "w": 11,
+          "d": 9,
+          "scale": 0.7,
+          "rotation": 0,
+          "label": "Ruína na trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 38.229667587208986,
+          "y": 67.30388871532398,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42748569171584,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 44.696111284676014,
+          "y": 86.22966758720898,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42748569171584,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 68.69611128467602,
+          "y": 65.57016005582892,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42546347375621,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 115.30388871532398,
+          "y": 86.22966758720898,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42748569171584,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 121.77033241279102,
+          "y": 67.30388871532398,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42748569171584,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 97.77033241279102,
+          "y": 84.49593892771392,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42546347375621,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 91.30388871532398,
+          "y": 65.57016005582892,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42546347375621,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 68.36314513396677,
+          "y": 91.40428881904559,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.41575421239617,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 68.64911064067353,
+          "y": 99.67544467966324,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42748569171584,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 62.32455532033676,
+          "y": 118.64911064067353,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42748569171584,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 80.9819935153302,
+          "y": 103.78640563788213,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.38120719263824,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 74.65743819499343,
+          "y": 122.76007159889241,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.38120719263824,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 88.57086014531156,
+          "y": 102.00132632760638,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42546347375621,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 95.99867367239362,
+          "y": 120.57086014531156,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42546347375621,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 100.64105712681993,
+          "y": 97.17324753500303,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.39026459338848,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 108.068870653902,
+          "y": 115.7427813527082,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.39026459338848,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree",
+          "x": 33.53655726335397,
+          "y": 33.657694606729244,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7135931221683494,
+          "rotation": 65.42199520986108,
+          "label": "Vegetação e relevo"
+        }
+      ],
+      "objects": 113
+    },
+    {
+      "id": "er_vilav",
+      "name": "Vila das Raízes",
+      "biome": "village",
+      "levels": "Área segura",
+      "gates": [
+        "west",
+        "north",
+        "south"
+      ],
+      "safe": true,
+      "description": "Uma comunidade reconstruída entre módulos antigos. Descanse e combine a próxima viagem com seu grupo.",
+      "width": 160,
+      "height": 160,
+      "spawn": [
+        80,
+        80
+      ],
+      "pois": [
+        {
+          "type": "sign",
+          "at": [
+            24,
+            87
+          ],
+          "title": "Rota para Campos de Caça do Vale",
+          "text": "Siga a passagem para Campos de Caça do Vale. A viagem ocorre no mesmo mundo para todos os jogadores."
+        },
+        {
+          "type": "sign",
+          "at": [
+            87,
+            24
+          ],
+          "title": "Rota para Costa do Sinal Perdido",
+          "text": "Siga a passagem para Costa do Sinal Perdido. A viagem ocorre no mesmo mundo para todos os jogadores."
+        },
+        {
+          "type": "sign",
+          "at": [
+            87,
+            136
+          ],
+          "title": "Rota para Deserto de Vidro",
+          "text": "Siga a passagem para Deserto de Vidro. A viagem ocorre no mesmo mundo para todos os jogadores."
+        },
+        {
+          "type": "guide",
+          "at": [
+            80,
+            76
+          ],
+          "title": "Marco de Vila das Raízes",
+          "text": "Uma comunidade reconstruída entre módulos antigos. Descanse e combine a próxima viagem com seu grupo. Faixa recomendada: Área segura."
+        },
+        {
+          "type": "rest",
+          "at": [
+            74,
+            78
+          ],
+          "title": "Ponto de descanso",
+          "text": "Aqui você pode recuperar HP/SP e salvar seu retorno nesta comunidade."
+        }
+      ],
+      "portals": [
+        [
+          24,
+          80
+        ],
+        [
+          80,
+          24
+        ],
+        [
+          80,
+          136
+        ]
+      ],
+      "arrivals": [
+        [
+          32,
+          80
+        ],
+        [
+          80,
+          32
+        ],
+        [
+          80,
+          128
+        ]
+      ],
+      "mobZones": [],
+      "colliders": [
+        {
+          "model": "workshop",
+          "x": 55,
+          "y": 104,
+          "w": 12,
+          "d": 10,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Construção recuperada"
+        },
+        {
+          "model": "greenhouse",
+          "x": 107,
+          "y": 105,
+          "w": 12,
+          "d": 10,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Construção recuperada"
+        },
+        {
+          "model": "ruin",
+          "x": 109,
+          "y": 53,
+          "w": 12,
+          "d": 10,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Construção recuperada"
+        },
+        {
+          "model": "workshop",
+          "x": 53,
+          "y": 51,
+          "w": 12,
+          "d": 10,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Construção recuperada"
+        },
+        {
+          "model": "cistern",
+          "x": 80,
+          "y": 88,
+          "w": 5,
+          "d": 5,
+          "scale": 1,
+          "rotation": 0,
+          "label": "cistern"
+        },
+        {
+          "model": "tower",
+          "x": 80,
+          "y": 110,
+          "w": 8,
+          "d": 8,
+          "scale": 0.7,
+          "rotation": 0,
+          "label": "tower"
+        },
+        {
+          "model": "bench",
+          "x": 69,
+          "y": 91,
+          "w": 4,
+          "d": 2,
+          "scale": 1,
+          "rotation": 0,
+          "label": "bench"
+        },
+        {
+          "model": "bench",
+          "x": 91,
+          "y": 91,
+          "w": 4,
+          "d": 2,
+          "scale": 1,
+          "rotation": 0,
+          "label": "bench"
+        },
+        {
+          "model": "bench",
+          "x": 64,
+          "y": 67,
+          "w": 4,
+          "d": 2,
+          "scale": 1,
+          "rotation": 0,
+          "label": "bench"
+        },
+        {
+          "model": "bench",
+          "x": 97,
+          "y": 67,
+          "w": 4,
+          "d": 2,
+          "scale": 1,
+          "rotation": 0,
+          "label": "bench"
+        },
+        {
+          "model": "lamp",
+          "x": 66,
+          "y": 86,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "lamp"
+        },
+        {
+          "model": "lamp",
+          "x": 94,
+          "y": 86,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "lamp"
+        },
+        {
+          "model": "lamp",
+          "x": 66,
+          "y": 57,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "lamp"
+        },
+        {
+          "model": "lamp",
+          "x": 93,
+          "y": 57,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "lamp"
+        },
+        {
+          "model": "tree",
+          "x": 33.53722533316753,
+          "y": 33.6583527505068,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7135931221683494,
+          "rotation": 65.42199520986108,
+          "label": "Vegetação e relevo"
+        }
+      ],
+      "objects": 92
+    },
+    {
+      "id": "er_costas",
+      "name": "Costa do Sinal Perdido",
+      "biome": "coast",
+      "levels": "15–30",
+      "gates": [
+        "west",
+        "north",
+        "east"
+      ],
+      "description": "O oceano engoliu parte da ferrovia. Viaje pelas trilhas sobre as falésias, longe da água.",
+      "width": 160,
+      "height": 160,
+      "spawn": [
+        80,
+        80
+      ],
+      "pois": [
+        {
+          "type": "sign",
+          "at": [
+            24,
+            87
+          ],
+          "title": "Rota para Chama Viva",
+          "text": "Siga a passagem para Chama Viva. A viagem ocorre no mesmo mundo para todos os jogadores."
+        },
+        {
+          "type": "sign",
+          "at": [
+            87,
+            136
+          ],
+          "title": "Rota para Vila das Raízes",
+          "text": "Siga a passagem para Vila das Raízes. A viagem ocorre no mesmo mundo para todos os jogadores."
+        },
+        {
+          "type": "sign",
+          "at": [
+            136,
+            87
+          ],
+          "title": "Rota para Estrada dos Despertos",
+          "text": "Siga a passagem para Estrada dos Despertos. A viagem ocorre no mesmo mundo para todos os jogadores."
+        },
+        {
+          "type": "guide",
+          "at": [
+            80,
+            76
+          ],
+          "title": "Marco de Costa do Sinal Perdido",
+          "text": "O oceano engoliu parte da ferrovia. Viaje pelas trilhas sobre as falésias, longe da água. Faixa recomendada: 15–30."
+        }
+      ],
+      "portals": [
+        [
+          24,
+          80
+        ],
+        [
+          80,
+          136
+        ],
+        [
+          136,
+          80
+        ]
+      ],
+      "arrivals": [
+        [
+          32,
+          80
+        ],
+        [
+          80,
+          128
+        ],
+        [
+          128,
+          80
+        ]
+      ],
+      "mobZones": [
+        [
+          52,
+          82,
+          12,
+          24
+        ],
+        [
+          110,
+          80,
+          12,
+          25
+        ]
+      ],
+      "colliders": [
+        {
+          "model": "ruin",
+          "x": 50,
+          "y": 110,
+          "w": 11,
+          "d": 9,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Estação costeira desativada"
+        },
+        {
+          "model": "tower_off",
+          "x": 115,
+          "y": 60,
+          "w": 6,
+          "d": 6,
+          "scale": 0.6,
+          "rotation": 0,
+          "label": "tower_off"
+        },
+        {
+          "model": "tree1",
+          "x": 42.01658257265659,
+          "y": 70.01661011654095,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42748569171584,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 41.98338988345904,
+          "y": 90.01658257265659,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42748569171584,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 65.98338988345905,
+          "y": 70.02324870923587,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42546347375621,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 66.01658257265659,
+          "y": 90.02322116535152,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42546347375621,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 66.92309564529826,
+          "y": 122.61533914735729,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42748569171584,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 85.38466085264271,
+          "y": 114.92309564529826,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42748569171584,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 83.07700228919471,
+          "y": 98.61533914735729,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42546347375621,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 118.01661011654095,
+          "y": 90.01658257265659,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42748569171584,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 117.98341742734341,
+          "y": 70.01661011654095,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42748569171584,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 93.98341742734341,
+          "y": 90.02322116535152,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42546347375621,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 79.25670585375283,
+          "y": 65.87741122130384,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.41575421239617,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 102.79021665871115,
+          "y": 46.69384261469126,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42748569171584,
+          "label": "Margem da trilha"
+        }
+      ],
+      "objects": 249
+    },
+    {
+      "id": "er_deserto",
+      "name": "Deserto de Vidro",
+      "biome": "desert",
+      "levels": "20–40",
+      "gates": [
+        "south",
+        "north"
+      ],
+      "description": "Dunas cobriram coletores solares. Os marcos de metal indicam o caminho até Aurea.",
+      "width": 160,
+      "height": 160,
+      "spawn": [
+        80,
+        80
+      ],
+      "pois": [
+        {
+          "type": "sign",
+          "at": [
+            87,
+            24
+          ],
+          "title": "Rota para Vila das Raízes",
+          "text": "Siga a passagem para Vila das Raízes. A viagem ocorre no mesmo mundo para todos os jogadores."
+        },
+        {
+          "type": "sign",
+          "at": [
+            87,
+            136
+          ],
+          "title": "Rota para Aurea — Distrito Recuperado",
+          "text": "Siga a passagem para Aurea — Distrito Recuperado. A viagem ocorre no mesmo mundo para todos os jogadores."
+        },
+        {
+          "type": "guide",
+          "at": [
+            80,
+            76
+          ],
+          "title": "Marco de Deserto de Vidro",
+          "text": "Dunas cobriram coletores solares. Os marcos de metal indicam o caminho até Aurea. Faixa recomendada: 20–40."
+        }
+      ],
+      "portals": [
+        [
+          80,
+          24
+        ],
+        [
+          80,
+          136
+        ]
+      ],
+      "arrivals": [
+        [
+          80,
+          32
+        ],
+        [
+          80,
+          128
+        ]
+      ],
+      "mobZones": [
+        [
+          52,
+          82,
+          12,
+          24
+        ],
+        [
+          110,
+          80,
+          12,
+          25
+        ]
+      ],
+      "colliders": [
+        {
+          "model": "ruin",
+          "x": 46,
+          "y": 62,
+          "w": 11,
+          "d": 9,
+          "scale": 0.85,
+          "rotation": 9.094061588191908,
+          "label": "Ruína coberta de areia"
+        },
+        {
+          "model": "ruin",
+          "x": 113,
+          "y": 112,
+          "w": 11,
+          "d": 9,
+          "scale": 0.85,
+          "rotation": 9.081651586825412,
+          "label": "Ruína coberta de areia"
+        },
+        {
+          "model": "ruin",
+          "x": 44,
+          "y": 114,
+          "w": 11,
+          "d": 9,
+          "scale": 0.85,
+          "rotation": 9.105174850929803,
+          "label": "Ruína coberta de areia"
+        },
+        {
+          "model": "tower_off",
+          "x": 115,
+          "y": 60,
+          "w": 7,
+          "d": 7,
+          "scale": 0.65,
+          "rotation": 0,
+          "label": "tower_off"
+        },
+        {
+          "model": "cactus",
+          "x": 87.57721700597003,
+          "y": 43.94092887695251,
+          "w": 2,
+          "d": 2,
+          "scale": 1,
+          "rotation": 65.42748569171584,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "cactus",
+          "x": 68.05907112304749,
+          "y": 39.57721700597004,
+          "w": 2,
+          "d": 2,
+          "scale": 1,
+          "rotation": 65.42748569171584,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "cactus",
+          "x": 86.57519969694818,
+          "y": 63.57721700597005,
+          "w": 2,
+          "d": 2,
+          "scale": 1,
+          "rotation": 65.42546347375621,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "cactus",
+          "x": 67.05705381402561,
+          "y": 67.94092887695253,
+          "w": 2,
+          "d": 2,
+          "scale": 1,
+          "rotation": 65.42546347375621,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "cactus",
+          "x": 68.05907112304749,
+          "y": 120.42278299402996,
+          "w": 2,
+          "d": 2,
+          "scale": 1,
+          "rotation": 65.42748569171584,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "cactus",
+          "x": 87.57721700597003,
+          "y": 116.05907112304747,
+          "w": 2,
+          "d": 2,
+          "scale": 1,
+          "rotation": 65.42748569171584,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "cactus",
+          "x": 67.05705381402561,
+          "y": 92.05907112304747,
+          "w": 2,
+          "d": 2,
+          "scale": 1,
+          "rotation": 65.42546347375621,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "cactus",
+          "x": 86.57519969694818,
+          "y": 96.42278299402996,
+          "w": 2,
+          "d": 2,
+          "scale": 1,
+          "rotation": 65.42546347375621,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "cactus",
+          "x": 91.87331502808283,
+          "y": 72.31726674653464,
+          "w": 2,
+          "d": 2,
+          "scale": 1,
+          "rotation": 65.41575421239617,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "cactus",
+          "x": 104.58474641108916,
+          "y": 75.041144900036,
+          "w": 2,
+          "d": 2,
+          "scale": 1,
+          "rotation": 65.36906902337658,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "cactus",
+          "x": 100.39416463647169,
+          "y": 94.59719318158419,
+          "w": 2,
+          "d": 2,
+          "scale": 1,
+          "rotation": 65.36906902337658,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "cactus",
+          "x": 120.39999999999999,
+          "y": 92.8,
+          "w": 2,
+          "d": 2,
+          "scale": 1,
+          "rotation": 65.42748569171584,
+          "label": "Margem da trilha"
+        }
+      ],
+      "objects": 251
+    },
+    {
+      "id": "er_aurea",
+      "name": "Aurea — Distrito Recuperado",
+      "biome": "city",
+      "levels": "Área segura",
+      "gates": [
+        "south",
+        "west"
+      ],
+      "safe": true,
+      "description": "O distrito externo da antiga capital volta a receber viajantes. O núcleo central permanece além das muralhas.",
+      "width": 160,
+      "height": 160,
+      "spawn": [
+        80,
+        80
+      ],
+      "pois": [
+        {
+          "type": "sign",
+          "at": [
+            87,
+            24
+          ],
+          "title": "Rota para Deserto de Vidro",
+          "text": "Siga a passagem para Deserto de Vidro. A viagem ocorre no mesmo mundo para todos os jogadores."
+        },
+        {
+          "type": "sign",
+          "at": [
+            24,
+            87
+          ],
+          "title": "Rota para Ruínas da Rede Helios",
+          "text": "Siga a passagem para Ruínas da Rede Helios. A viagem ocorre no mesmo mundo para todos os jogadores."
+        },
+        {
+          "type": "guide",
+          "at": [
+            80,
+            76
+          ],
+          "title": "Marco de Aurea — Distrito Recuperado",
+          "text": "O distrito externo da antiga capital volta a receber viajantes. O núcleo central permanece além das muralhas. Faixa recomendada: Área segura."
+        },
+        {
+          "type": "rest",
+          "at": [
+            74,
+            78
+          ],
+          "title": "Ponto de descanso",
+          "text": "Aqui você pode recuperar HP/SP e salvar seu retorno nesta comunidade."
+        }
+      ],
+      "portals": [
+        [
+          80,
+          24
+        ],
+        [
+          24,
+          80
+        ]
+      ],
+      "arrivals": [
+        [
+          80,
+          32
+        ],
+        [
+          32,
+          80
+        ]
+      ],
+      "mobZones": [],
+      "colliders": [
+        {
+          "model": "workshop",
+          "x": 55,
+          "y": 104,
+          "w": 12,
+          "d": 10,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Construção recuperada"
+        },
+        {
+          "model": "greenhouse",
+          "x": 107,
+          "y": 105,
+          "w": 12,
+          "d": 10,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Construção recuperada"
+        },
+        {
+          "model": "ruin",
+          "x": 109,
+          "y": 53,
+          "w": 12,
+          "d": 10,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Construção recuperada"
+        },
+        {
+          "model": "workshop",
+          "x": 53,
+          "y": 51,
+          "w": 12,
+          "d": 10,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Construção recuperada"
+        },
+        {
+          "model": "cistern",
+          "x": 80,
+          "y": 88,
+          "w": 5,
+          "d": 5,
+          "scale": 1,
+          "rotation": 0,
+          "label": "cistern"
+        },
+        {
+          "model": "tower",
+          "x": 80,
+          "y": 110,
+          "w": 8,
+          "d": 8,
+          "scale": 0.7,
+          "rotation": 0,
+          "label": "tower"
+        },
+        {
+          "model": "bench",
+          "x": 69,
+          "y": 91,
+          "w": 4,
+          "d": 2,
+          "scale": 1,
+          "rotation": 0,
+          "label": "bench"
+        },
+        {
+          "model": "bench",
+          "x": 91,
+          "y": 91,
+          "w": 4,
+          "d": 2,
+          "scale": 1,
+          "rotation": 0,
+          "label": "bench"
+        },
+        {
+          "model": "bench",
+          "x": 64,
+          "y": 67,
+          "w": 4,
+          "d": 2,
+          "scale": 1,
+          "rotation": 0,
+          "label": "bench"
+        },
+        {
+          "model": "bench",
+          "x": 97,
+          "y": 67,
+          "w": 4,
+          "d": 2,
+          "scale": 1,
+          "rotation": 0,
+          "label": "bench"
+        },
+        {
+          "model": "lamp",
+          "x": 66,
+          "y": 86,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "lamp"
+        },
+        {
+          "model": "lamp",
+          "x": 94,
+          "y": 86,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "lamp"
+        },
+        {
+          "model": "lamp",
+          "x": 66,
+          "y": 57,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "lamp"
+        },
+        {
+          "model": "lamp",
+          "x": 93,
+          "y": 57,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "lamp"
+        },
+        {
+          "model": "tree",
+          "x": 33.53031823982725,
+          "y": 33.64649106949719,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7135931221683494,
+          "rotation": 65.42199520986108,
+          "label": "Vegetação e relevo"
+        }
+      ],
+      "objects": 93
+    },
+    {
+      "id": "er_ruinas",
+      "name": "Ruínas da Rede Helios",
+      "biome": "ruins",
+      "levels": "25–45",
+      "gates": [
+        "south",
+        "east"
+      ],
+      "description": "Entre pilares e torres desativadas há uma entrada para os túneis subterrâneos.",
+      "width": 160,
+      "height": 160,
+      "spawn": [
+        80,
+        80
+      ],
+      "pois": [
+        {
+          "type": "sign",
+          "at": [
+            87,
+            24
+          ],
+          "title": "Rota para Floresta das Antenas",
+          "text": "Siga a passagem para Floresta das Antenas. A viagem ocorre no mesmo mundo para todos os jogadores."
+        },
+        {
+          "type": "sign",
+          "at": [
+            136,
+            87
+          ],
+          "title": "Rota para Aurea — Distrito Recuperado",
+          "text": "Siga a passagem para Aurea — Distrito Recuperado. A viagem ocorre no mesmo mundo para todos os jogadores."
+        },
+        {
+          "type": "sign",
+          "at": [
+            104,
+            112
+          ],
+          "title": "Rota para Galerias do Núcleo — Piso 1",
+          "text": "Siga a passagem para Galerias do Núcleo — Piso 1. A viagem ocorre no mesmo mundo para todos os jogadores."
+        },
+        {
+          "type": "guide",
+          "at": [
+            80,
+            76
+          ],
+          "title": "Marco de Ruínas da Rede Helios",
+          "text": "Entre pilares e torres desativadas há uma entrada para os túneis subterrâneos. Faixa recomendada: 25–45."
+        }
+      ],
+      "portals": [
+        [
+          80,
+          24
+        ],
+        [
+          136,
+          80
+        ],
+        [
+          104,
+          105
+        ]
+      ],
+      "arrivals": [
+        [
+          80,
+          32
+        ],
+        [
+          128,
+          80
+        ],
+        [
+          104,
+          97
+        ]
+      ],
+      "mobZones": [
+        [
+          52,
+          82,
+          12,
+          24
+        ],
+        [
+          110,
+          80,
+          12,
+          25
+        ]
+      ],
+      "colliders": [
+        {
+          "model": "ruin",
+          "x": 52,
+          "y": 55,
+          "w": 11,
+          "d": 9,
+          "scale": 1,
+          "rotation": 0,
+          "label": "ruin"
+        },
+        {
+          "model": "ruin",
+          "x": 112,
+          "y": 56,
+          "w": 11,
+          "d": 9,
+          "scale": 1,
+          "rotation": 0,
+          "label": "ruin"
+        },
+        {
+          "model": "ruin",
+          "x": 49,
+          "y": 110,
+          "w": 11,
+          "d": 9,
+          "scale": 1,
+          "rotation": 0,
+          "label": "ruin"
+        },
+        {
+          "model": "column",
+          "x": 67,
+          "y": 100,
+          "w": 2,
+          "d": 2,
+          "scale": 1,
+          "rotation": 0,
+          "label": "column"
+        },
+        {
+          "model": "column",
+          "x": 65,
+          "y": 54,
+          "w": 2,
+          "d": 2,
+          "scale": 1,
+          "rotation": 0,
+          "label": "column"
+        },
+        {
+          "model": "column",
+          "x": 104,
+          "y": 76,
+          "w": 2,
+          "d": 2,
+          "scale": 1,
+          "rotation": 0,
+          "label": "column"
+        },
+        {
+          "model": "tree1",
+          "x": 93.05886938700996,
+          "y": 37.428252972459376,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42748569171584,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 74.57174702754062,
+          "y": 45.05886938700996,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42748569171584,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 95.33432652940807,
+          "y": 69.05886938700996,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42546347375621,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 76.84720416993873,
+          "y": 61.428252972459376,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42546347375621,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 118.52521230285001,
+          "y": 90.49897128741358,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42748569171584,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 117.50102871258642,
+          "y": 70.52521230285001,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42748569171584,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 90.05958178118006,
+          "y": 99.38007140321317,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42748569171584,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 78.05958178118006,
+          "y": 90.88007140321317,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42546347375621,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree1",
+          "x": 89.61992859678683,
+          "y": 74.55958178118006,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 65.42546347375621,
+          "label": "Margem da trilha"
+        },
+        {
+          "model": "tree",
+          "x": 33.52882933442686,
+          "y": 33.64492363963391,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7135931221683494,
+          "rotation": 65.42199520986108,
+          "label": "Vegetação e relevo"
+        }
+      ],
+      "objects": 105
+    },
+    {
+      "id": "er_mina1",
+      "name": "Galerias do Núcleo — Piso 1",
+      "biome": "dungeon",
+      "levels": "30–50",
+      "gates": [
+        "south",
+        "north"
+      ],
+      "description": "Uma masmorra compartilhada. Reúna o grupo antes de descer; a escadaria norte leva ao núcleo inferior.",
+      "width": 160,
+      "height": 160,
+      "spawn": [
+        80,
+        80
+      ],
+      "pois": [
+        {
+          "type": "sign",
+          "at": [
+            87,
+            24
+          ],
+          "title": "Rota para Ruínas da Rede Helios",
+          "text": "Siga a passagem para Ruínas da Rede Helios. A viagem ocorre no mesmo mundo para todos os jogadores."
+        },
+        {
+          "type": "sign",
+          "at": [
+            87,
+            136
+          ],
+          "title": "Rota para Galerias do Núcleo — Piso 2",
+          "text": "Siga a passagem para Galerias do Núcleo — Piso 2. A viagem ocorre no mesmo mundo para todos os jogadores."
+        },
+        {
+          "type": "guide",
+          "at": [
+            80,
+            76
+          ],
+          "title": "Marco de Galerias do Núcleo — Piso 1",
+          "text": "Uma masmorra compartilhada. Reúna o grupo antes de descer; a escadaria norte leva ao núcleo inferior. Faixa recomendada: 30–50."
+        }
+      ],
+      "portals": [
+        [
+          80,
+          24
+        ],
+        [
+          80,
+          136
+        ]
+      ],
+      "arrivals": [
+        [
+          80,
+          32
+        ],
+        [
+          80,
+          128
+        ]
+      ],
+      "mobZones": [
+        [
+          52,
+          82,
+          12,
+          24
+        ],
+        [
+          110,
+          80,
+          12,
+          25
+        ]
+      ],
+      "colliders": [
+        {
+          "model": "crystal",
+          "x": 65,
+          "y": 88,
+          "w": 2,
+          "d": 2,
+          "scale": 1,
+          "rotation": 0,
+          "label": "crystal"
+        },
+        {
+          "model": "crystal",
+          "x": 96,
+          "y": 88,
+          "w": 2,
+          "d": 2,
+          "scale": 1,
+          "rotation": 0,
+          "label": "crystal"
+        },
+        {
+          "model": "crystal",
+          "x": 70,
+          "y": 113,
+          "w": 2,
+          "d": 2,
+          "scale": 1,
+          "rotation": 0,
+          "label": "crystal"
+        },
+        {
+          "model": "crystal",
+          "x": 93,
+          "y": 113,
+          "w": 2,
+          "d": 2,
+          "scale": 1,
+          "rotation": 0,
+          "label": "crystal"
+        },
+        {
+          "model": "crystal",
+          "x": 40,
+          "y": 84,
+          "w": 2,
+          "d": 2,
+          "scale": 1,
+          "rotation": 0,
+          "label": "crystal"
+        },
+        {
+          "model": "crystal",
+          "x": 113,
+          "y": 85,
+          "w": 2,
+          "d": 2,
+          "scale": 1,
+          "rotation": 0,
+          "label": "crystal"
+        }
+      ],
+      "objects": 168
+    },
+    {
+      "id": "er_mina2",
+      "name": "Galerias do Núcleo — Piso 2",
+      "biome": "dungeon",
+      "levels": "45–60",
+      "gates": [
+        "south"
+      ],
+      "description": "Cristais do Éter crescem entre as máquinas. Volte pela escadaria sul para reencontrar a superfície.",
+      "width": 160,
+      "height": 160,
+      "spawn": [
+        80,
+        80
+      ],
+      "pois": [
+        {
+          "type": "sign",
+          "at": [
+            87,
+            24
+          ],
+          "title": "Rota para Galerias do Núcleo — Piso 1",
+          "text": "Siga a passagem para Galerias do Núcleo — Piso 1. A viagem ocorre no mesmo mundo para todos os jogadores."
+        },
+        {
+          "type": "guide",
+          "at": [
+            80,
+            76
+          ],
+          "title": "Marco de Galerias do Núcleo — Piso 2",
+          "text": "Cristais do Éter crescem entre as máquinas. Volte pela escadaria sul para reencontrar a superfície. Faixa recomendada: 45–60."
+        }
+      ],
+      "portals": [
+        [
+          80,
+          24
+        ]
+      ],
+      "arrivals": [
+        [
+          80,
+          32
+        ]
+      ],
+      "mobZones": [
+        [
+          52,
+          82,
+          12,
+          24
+        ],
+        [
+          110,
+          80,
+          12,
+          25
+        ]
+      ],
+      "colliders": [
+        {
+          "model": "crystal",
+          "x": 65,
+          "y": 88,
+          "w": 2,
+          "d": 2,
+          "scale": 1,
+          "rotation": 0,
+          "label": "crystal"
+        },
+        {
+          "model": "crystal",
+          "x": 96,
+          "y": 88,
+          "w": 2,
+          "d": 2,
+          "scale": 1,
+          "rotation": 0,
+          "label": "crystal"
+        },
+        {
+          "model": "crystal",
+          "x": 70,
+          "y": 113,
+          "w": 2,
+          "d": 2,
+          "scale": 1,
+          "rotation": 0,
+          "label": "crystal"
+        },
+        {
+          "model": "crystal",
+          "x": 93,
+          "y": 113,
+          "w": 2,
+          "d": 2,
+          "scale": 1,
+          "rotation": 0,
+          "label": "crystal"
+        },
+        {
+          "model": "crystal",
+          "x": 40,
+          "y": 84,
+          "w": 2,
+          "d": 2,
+          "scale": 1,
+          "rotation": 0,
+          "label": "crystal"
+        },
+        {
+          "model": "crystal",
+          "x": 113,
+          "y": 85,
+          "w": 2,
+          "d": 2,
+          "scale": 1,
+          "rotation": 0,
+          "label": "crystal"
+        }
+      ],
+      "objects": 169
+    }
+  ],
+  "routes": [
+    {
+      "from": {
+        "id": "chama",
+        "at": [
+          48,
+          20
+        ],
+        "arrival": [
+          48,
+          26
+        ]
+      },
+      "to": {
+        "id": "er_estrada",
+        "at": [
+          80,
+          136
+        ],
+        "arrival": [
+          80,
+          128
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "er_estrada",
+        "at": [
+          80,
+          136
+        ],
+        "arrival": [
+          80,
+          128
+        ]
+      },
+      "to": {
+        "id": "chama",
+        "at": [
+          48,
+          20
+        ],
+        "arrival": [
+          48,
+          26
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "chama",
+        "at": [
+          48,
+          82
+        ],
+        "arrival": [
+          40,
+          80
+        ]
+      },
+      "to": {
+        "id": "er_mata",
+        "at": [
+          80,
+          24
+        ],
+        "arrival": [
+          80,
+          32
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "er_mata",
+        "at": [
+          80,
+          24
+        ],
+        "arrival": [
+          80,
+          32
+        ]
+      },
+      "to": {
+        "id": "chama",
+        "at": [
+          48,
+          82
+        ],
+        "arrival": [
+          40,
+          80
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "chama",
+        "at": [
+          82,
+          40
+        ],
+        "arrival": [
+          76,
+          40
+        ]
+      },
+      "to": {
+        "id": "er_costas",
+        "at": [
+          24,
+          80
+        ],
+        "arrival": [
+          32,
+          80
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "er_costas",
+        "at": [
+          24,
+          80
+        ],
+        "arrival": [
+          32,
+          80
+        ]
+      },
+      "to": {
+        "id": "chama",
+        "at": [
+          82,
+          40
+        ],
+        "arrival": [
+          76,
+          40
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "chama",
+        "at": [
+          14,
+          40
+        ],
+        "arrival": [
+          20,
+          40
+        ]
+      },
+      "to": {
+        "id": "er_estrada",
+        "at": [
+          136,
+          80
+        ],
+        "arrival": [
+          128,
+          80
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "er_estrada",
+        "at": [
+          136,
+          80
+        ],
+        "arrival": [
+          128,
+          80
+        ]
+      },
+      "to": {
+        "id": "chama",
+        "at": [
+          14,
+          40
+        ],
+        "arrival": [
+          20,
+          40
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "er_mata",
+        "at": [
+          136,
+          80
+        ],
+        "arrival": [
+          128,
+          80
+        ]
+      },
+      "to": {
+        "id": "er_cacada",
+        "at": [
+          24,
+          80
+        ],
+        "arrival": [
+          32,
+          80
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "er_cacada",
+        "at": [
+          24,
+          80
+        ],
+        "arrival": [
+          32,
+          80
+        ]
+      },
+      "to": {
+        "id": "er_mata",
+        "at": [
+          136,
+          80
+        ],
+        "arrival": [
+          128,
+          80
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "er_cacada",
+        "at": [
+          136,
+          80
+        ],
+        "arrival": [
+          128,
+          80
+        ]
+      },
+      "to": {
+        "id": "er_vilav",
+        "at": [
+          24,
+          80
+        ],
+        "arrival": [
+          32,
+          80
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "er_vilav",
+        "at": [
+          24,
+          80
+        ],
+        "arrival": [
+          32,
+          80
+        ]
+      },
+      "to": {
+        "id": "er_cacada",
+        "at": [
+          136,
+          80
+        ],
+        "arrival": [
+          128,
+          80
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "er_vilav",
+        "at": [
+          80,
+          24
+        ],
+        "arrival": [
+          80,
+          32
+        ]
+      },
+      "to": {
+        "id": "er_costas",
+        "at": [
+          80,
+          136
+        ],
+        "arrival": [
+          80,
+          128
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "er_costas",
+        "at": [
+          80,
+          136
+        ],
+        "arrival": [
+          80,
+          128
+        ]
+      },
+      "to": {
+        "id": "er_vilav",
+        "at": [
+          80,
+          24
+        ],
+        "arrival": [
+          80,
+          32
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "er_vilav",
+        "at": [
+          80,
+          136
+        ],
+        "arrival": [
+          80,
+          128
+        ]
+      },
+      "to": {
+        "id": "er_deserto",
+        "at": [
+          80,
+          24
+        ],
+        "arrival": [
+          80,
+          32
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "er_deserto",
+        "at": [
+          80,
+          24
+        ],
+        "arrival": [
+          80,
+          32
+        ]
+      },
+      "to": {
+        "id": "er_vilav",
+        "at": [
+          80,
+          136
+        ],
+        "arrival": [
+          80,
+          128
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "er_deserto",
+        "at": [
+          80,
+          136
+        ],
+        "arrival": [
+          80,
+          128
+        ]
+      },
+      "to": {
+        "id": "er_aurea",
+        "at": [
+          80,
+          24
+        ],
+        "arrival": [
+          80,
+          32
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "er_aurea",
+        "at": [
+          80,
+          24
+        ],
+        "arrival": [
+          80,
+          32
+        ]
+      },
+      "to": {
+        "id": "er_deserto",
+        "at": [
+          80,
+          136
+        ],
+        "arrival": [
+          80,
+          128
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "er_mata",
+        "at": [
+          80,
+          136
+        ],
+        "arrival": [
+          80,
+          128
+        ]
+      },
+      "to": {
+        "id": "er_ruinas",
+        "at": [
+          80,
+          24
+        ],
+        "arrival": [
+          80,
+          32
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "er_ruinas",
+        "at": [
+          80,
+          24
+        ],
+        "arrival": [
+          80,
+          32
+        ]
+      },
+      "to": {
+        "id": "er_mata",
+        "at": [
+          80,
+          136
+        ],
+        "arrival": [
+          80,
+          128
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "er_ruinas",
+        "at": [
+          136,
+          80
+        ],
+        "arrival": [
+          128,
+          80
+        ]
+      },
+      "to": {
+        "id": "er_aurea",
+        "at": [
+          24,
+          80
+        ],
+        "arrival": [
+          32,
+          80
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "er_aurea",
+        "at": [
+          24,
+          80
+        ],
+        "arrival": [
+          32,
+          80
+        ]
+      },
+      "to": {
+        "id": "er_ruinas",
+        "at": [
+          136,
+          80
+        ],
+        "arrival": [
+          128,
+          80
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "er_ruinas",
+        "at": [
+          104,
+          105
+        ],
+        "arrival": [
+          104,
+          97
+        ]
+      },
+      "to": {
+        "id": "er_mina1",
+        "at": [
+          80,
+          24
+        ],
+        "arrival": [
+          80,
+          32
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "er_mina1",
+        "at": [
+          80,
+          24
+        ],
+        "arrival": [
+          80,
+          32
+        ]
+      },
+      "to": {
+        "id": "er_ruinas",
+        "at": [
+          104,
+          105
+        ],
+        "arrival": [
+          104,
+          97
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "er_mina1",
+        "at": [
+          80,
+          136
+        ],
+        "arrival": [
+          80,
+          128
+        ]
+      },
+      "to": {
+        "id": "er_mina2",
+        "at": [
+          80,
+          24
+        ],
+        "arrival": [
+          80,
+          32
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "er_mina2",
+        "at": [
+          80,
+          24
+        ],
+        "arrival": [
+          80,
+          32
+        ]
+      },
+      "to": {
+        "id": "er_mina1",
+        "at": [
+          80,
+          136
+        ],
+        "arrival": [
+          80,
+          128
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "er_costas",
+        "at": [
+          136,
+          80
+        ],
+        "arrival": [
+          128,
+          80
+        ]
+      },
+      "to": {
+        "id": "er_estrada",
+        "at": [
+          112,
+          44
+        ],
+        "arrival": [
+          106,
+          44
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "er_estrada",
+        "at": [
+          112,
+          44
+        ],
+        "arrival": [
+          106,
+          44
+        ]
+      },
+      "to": {
+        "id": "er_costas",
+        "at": [
+          136,
+          80
+        ],
+        "arrival": [
+          128,
+          80
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "er_estrada",
+        "at": [
+          80,
+          24
+        ],
+        "arrival": [
+          80,
+          32
+        ]
+      },
+      "to": {
+        "id": "prontera",
+        "at": [
+          146,
+          168
+        ],
+        "arrival": [
+          150,
+          170
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "prontera",
+        "at": [
+          146,
+          168
+        ],
+        "arrival": [
+          150,
+          170
+        ]
+      },
+      "to": {
+        "id": "er_estrada",
+        "at": [
+          80,
+          24
+        ],
+        "arrival": [
+          80,
+          32
+        ]
+      }
+    }
+  ],
+  "shared": true
+}

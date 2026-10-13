@@ -1,9 +1,9 @@
 {
   "name": "Chama Viva",
-  "revision": 2,
+  "revision": 3,
   "style": "Futuro tomado pela natureza",
-  "width": 96,
-  "height": 96,
+  "width": 160,
+  "height": 160,
   "maps": [
     "er_chama0",
     "er_chama1",
@@ -83,6 +83,20 @@
   "exit": [
     48,
     20
+  ],
+  "routeGates": [
+    [
+      48,
+      82
+    ],
+    [
+      14,
+      40
+    ],
+    [
+      82,
+      40
+    ]
   ],
   "props": [
     {
@@ -854,6 +868,326 @@
       "rotation": 0,
       "scale": 1,
       "label": "Muralha recuperada"
+    },
+    {
+      "model": "wall",
+      "x": 12,
+      "y": 88,
+      "w": 6,
+      "d": 1.8,
+      "rotation": 0,
+      "scale": 1,
+      "label": "Muralha tomada por raizes"
+    },
+    {
+      "model": "wall",
+      "x": 18,
+      "y": 88,
+      "w": 6,
+      "d": 1.8,
+      "rotation": 0,
+      "scale": 1,
+      "label": "Muralha tomada por raizes"
+    },
+    {
+      "model": "wall",
+      "x": 24,
+      "y": 88,
+      "w": 6,
+      "d": 1.8,
+      "rotation": 0,
+      "scale": 1,
+      "label": "Muralha tomada por raizes"
+    },
+    {
+      "model": "wall",
+      "x": 30,
+      "y": 88,
+      "w": 6,
+      "d": 1.8,
+      "rotation": 0,
+      "scale": 1,
+      "label": "Muralha tomada por raizes"
+    },
+    {
+      "model": "wall",
+      "x": 36,
+      "y": 88,
+      "w": 6,
+      "d": 1.8,
+      "rotation": 0,
+      "scale": 1,
+      "label": "Muralha tomada por raizes"
+    },
+    {
+      "model": "wall",
+      "x": 60,
+      "y": 88,
+      "w": 6,
+      "d": 1.8,
+      "rotation": 0,
+      "scale": 1,
+      "label": "Muralha tomada por raizes"
+    },
+    {
+      "model": "wall",
+      "x": 66,
+      "y": 88,
+      "w": 6,
+      "d": 1.8,
+      "rotation": 0,
+      "scale": 1,
+      "label": "Muralha tomada por raizes"
+    },
+    {
+      "model": "wall",
+      "x": 72,
+      "y": 88,
+      "w": 6,
+      "d": 1.8,
+      "rotation": 0,
+      "scale": 1,
+      "label": "Muralha tomada por raizes"
+    },
+    {
+      "model": "wall",
+      "x": 78,
+      "y": 88,
+      "w": 6,
+      "d": 1.8,
+      "rotation": 0,
+      "scale": 1,
+      "label": "Muralha tomada por raizes"
+    },
+    {
+      "model": "wall",
+      "x": 84,
+      "y": 88,
+      "w": 6,
+      "d": 1.8,
+      "rotation": 0,
+      "scale": 1,
+      "label": "Muralha tomada por raizes"
+    },
+    {
+      "model": "wall",
+      "x": 86,
+      "y": 12,
+      "w": 6,
+      "d": 1.8000000000000005,
+      "rotation": 90,
+      "scale": 1,
+      "label": "Muralha tomada por raizes"
+    },
+    {
+      "model": "wall",
+      "x": 86,
+      "y": 18,
+      "w": 6,
+      "d": 1.8000000000000005,
+      "rotation": 90,
+      "scale": 1,
+      "label": "Muralha tomada por raizes"
+    },
+    {
+      "model": "wall",
+      "x": 86,
+      "y": 24,
+      "w": 6,
+      "d": 1.8000000000000005,
+      "rotation": 90,
+      "scale": 1,
+      "label": "Muralha tomada por raizes"
+    },
+    {
+      "model": "wall",
+      "x": 86,
+      "y": 30,
+      "w": 6,
+      "d": 1.8000000000000005,
+      "rotation": 90,
+      "scale": 1,
+      "label": "Muralha tomada por raizes"
+    },
+    {
+      "model": "wall",
+      "x": 86,
+      "y": 48,
+      "w": 6,
+      "d": 1.8000000000000005,
+      "rotation": 90,
+      "scale": 1,
+      "label": "Muralha tomada por raizes"
+    },
+    {
+      "model": "wall",
+      "x": 86,
+      "y": 54,
+      "w": 6,
+      "d": 1.8000000000000005,
+      "rotation": 90,
+      "scale": 1,
+      "label": "Muralha tomada por raizes"
+    },
+    {
+      "model": "wall",
+      "x": 86,
+      "y": 60,
+      "w": 6,
+      "d": 1.8000000000000005,
+      "rotation": 90,
+      "scale": 1,
+      "label": "Muralha tomada por raizes"
+    },
+    {
+      "model": "wall",
+      "x": 86,
+      "y": 66,
+      "w": 6,
+      "d": 1.8000000000000005,
+      "rotation": 90,
+      "scale": 1,
+      "label": "Muralha tomada por raizes"
+    },
+    {
+      "model": "wall",
+      "x": 86,
+      "y": 72,
+      "w": 6,
+      "d": 1.8000000000000005,
+      "rotation": 90,
+      "scale": 1,
+      "label": "Muralha tomada por raizes"
+    },
+    {
+      "model": "wall",
+      "x": 86,
+      "y": 78,
+      "w": 6,
+      "d": 1.8000000000000005,
+      "rotation": 90,
+      "scale": 1,
+      "label": "Muralha tomada por raizes"
+    },
+    {
+      "model": "wall",
+      "x": 86,
+      "y": 84,
+      "w": 6,
+      "d": 1.8000000000000005,
+      "rotation": 90,
+      "scale": 1,
+      "label": "Muralha tomada por raizes"
+    },
+    {
+      "model": "wall",
+      "x": 10,
+      "y": 12,
+      "w": 6,
+      "d": 1.8000000000000005,
+      "rotation": 90,
+      "scale": 1,
+      "label": "Muralha tomada por raizes"
+    },
+    {
+      "model": "wall",
+      "x": 10,
+      "y": 18,
+      "w": 6,
+      "d": 1.8000000000000005,
+      "rotation": 90,
+      "scale": 1,
+      "label": "Muralha tomada por raizes"
+    },
+    {
+      "model": "wall",
+      "x": 10,
+      "y": 24,
+      "w": 6,
+      "d": 1.8000000000000005,
+      "rotation": 90,
+      "scale": 1,
+      "label": "Muralha tomada por raizes"
+    },
+    {
+      "model": "wall",
+      "x": 10,
+      "y": 30,
+      "w": 6,
+      "d": 1.8000000000000005,
+      "rotation": 90,
+      "scale": 1,
+      "label": "Muralha tomada por raizes"
+    },
+    {
+      "model": "wall",
+      "x": 10,
+      "y": 48,
+      "w": 6,
+      "d": 1.8000000000000005,
+      "rotation": 90,
+      "scale": 1,
+      "label": "Muralha tomada por raizes"
+    },
+    {
+      "model": "wall",
+      "x": 10,
+      "y": 54,
+      "w": 6,
+      "d": 1.8000000000000005,
+      "rotation": 90,
+      "scale": 1,
+      "label": "Muralha tomada por raizes"
+    },
+    {
+      "model": "wall",
+      "x": 10,
+      "y": 60,
+      "w": 6,
+      "d": 1.8000000000000005,
+      "rotation": 90,
+      "scale": 1,
+      "label": "Muralha tomada por raizes"
+    },
+    {
+      "model": "wall",
+      "x": 10,
+      "y": 66,
+      "w": 6,
+      "d": 1.8000000000000005,
+      "rotation": 90,
+      "scale": 1,
+      "label": "Muralha tomada por raizes"
+    },
+    {
+      "model": "wall",
+      "x": 10,
+      "y": 72,
+      "w": 6,
+      "d": 1.8000000000000005,
+      "rotation": 90,
+      "scale": 1,
+      "label": "Muralha tomada por raizes"
+    },
+    {
+      "model": "wall",
+      "x": 10,
+      "y": 78,
+      "w": 6,
+      "d": 1.8000000000000005,
+      "rotation": 90,
+      "scale": 1,
+      "label": "Muralha tomada por raizes"
+    },
+    {
+      "model": "wall",
+      "x": 10,
+      "y": 84,
+      "w": 6,
+      "d": 1.8000000000000005,
+      "rotation": 90,
+      "scale": 1,
+      "label": "Muralha tomada por raizes"
     }
   ],
   "materials": [
@@ -880,8 +1214,8 @@
     "road_14"
   ],
   "details": {
-    "models": 21,
-    "objects": 156,
-    "terrainLightmaps": 2304
+    "models": 30,
+    "objects": 335,
+    "terrainLightmaps": 6400
   }
 }

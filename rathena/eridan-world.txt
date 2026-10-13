@@ -1,0 +1,426 @@
+// Generated from content/eridan/world.json. Shared maps; no private instances.
+
+function	script	F_EridanRoute	{
+
+	.@destination$ = getarg(0);
+
+	if (.@destination$ == "chama") .@destination$ = callfunc("F_ChamaMap");
+
+	warp .@destination$,getarg(1),getarg(2);
+
+	return;
+
+}
+
+er_chama0,48,20,0	warp	Rota#er0	3,3,er_estrada,80,128
+
+er_chama1,48,20,0	warp	Rota#er1	3,3,er_estrada,80,128
+
+er_chama2,48,20,0	warp	Rota#er2	3,3,er_estrada,80,128
+
+er_chama3,48,20,0	warp	Rota#er3	3,3,er_estrada,80,128
+
+er_estrada,80,136,0	script	Passagem#er4	45,3,3,{
+OnTouch:
+	callfunc "F_EridanRoute","chama",48,26;
+	end;
+}
+
+er_chama0,48,82,0	warp	Rota#er5	3,3,er_mata,80,32
+
+er_chama1,48,82,0	warp	Rota#er6	3,3,er_mata,80,32
+
+er_chama2,48,82,0	warp	Rota#er7	3,3,er_mata,80,32
+
+er_chama3,48,82,0	warp	Rota#er8	3,3,er_mata,80,32
+
+er_mata,80,24,0	script	Passagem#er9	45,3,3,{
+OnTouch:
+	callfunc "F_EridanRoute","chama",40,80;
+	end;
+}
+
+er_chama0,82,40,0	warp	Rota#er10	3,3,er_costas,32,80
+
+er_chama1,82,40,0	warp	Rota#er11	3,3,er_costas,32,80
+
+er_chama2,82,40,0	warp	Rota#er12	3,3,er_costas,32,80
+
+er_chama3,82,40,0	warp	Rota#er13	3,3,er_costas,32,80
+
+er_costas,24,80,0	script	Passagem#er14	45,3,3,{
+OnTouch:
+	callfunc "F_EridanRoute","chama",76,40;
+	end;
+}
+
+er_chama0,14,40,0	warp	Rota#er15	3,3,er_estrada,128,80
+
+er_chama1,14,40,0	warp	Rota#er16	3,3,er_estrada,128,80
+
+er_chama2,14,40,0	warp	Rota#er17	3,3,er_estrada,128,80
+
+er_chama3,14,40,0	warp	Rota#er18	3,3,er_estrada,128,80
+
+er_estrada,136,80,0	script	Passagem#er19	45,3,3,{
+OnTouch:
+	callfunc "F_EridanRoute","chama",20,40;
+	end;
+}
+
+er_mata,136,80,0	warp	Rota#er20	3,3,er_cacada,32,80
+
+er_cacada,24,80,0	warp	Rota#er21	3,3,er_mata,128,80
+
+er_cacada,136,80,0	warp	Rota#er22	3,3,er_vilav,32,80
+
+er_vilav,24,80,0	warp	Rota#er23	3,3,er_cacada,128,80
+
+er_vilav,80,24,0	warp	Rota#er24	3,3,er_costas,80,128
+
+er_costas,80,136,0	warp	Rota#er25	3,3,er_vilav,80,32
+
+er_vilav,80,136,0	warp	Rota#er26	3,3,er_deserto,80,32
+
+er_deserto,80,24,0	warp	Rota#er27	3,3,er_vilav,80,128
+
+er_deserto,80,136,0	warp	Rota#er28	3,3,er_aurea,80,32
+
+er_aurea,80,24,0	warp	Rota#er29	3,3,er_deserto,80,128
+
+er_mata,80,136,0	warp	Rota#er30	3,3,er_ruinas,80,32
+
+er_ruinas,80,24,0	warp	Rota#er31	3,3,er_mata,80,128
+
+er_ruinas,136,80,0	warp	Rota#er32	3,3,er_aurea,32,80
+
+er_aurea,24,80,0	warp	Rota#er33	3,3,er_ruinas,128,80
+
+er_ruinas,104,105,0	warp	Rota#er34	3,3,er_mina1,80,32
+
+er_mina1,80,24,0	warp	Rota#er35	3,3,er_ruinas,104,97
+
+er_mina1,80,136,0	warp	Rota#er36	3,3,er_mina2,80,32
+
+er_mina2,80,24,0	warp	Rota#er37	3,3,er_mina1,80,128
+
+er_costas,136,80,0	warp	Rota#er38	3,3,er_estrada,106,44
+
+er_estrada,112,44,0	warp	Rota#er39	3,3,er_costas,128,80
+
+er_estrada,80,24,0	warp	Rota#er40	3,3,prontera,150,170
+
+prontera,146,168,0	warp	Rota#er41	3,3,er_estrada,80,32
+
+er_estrada	mapflag	loadevent
+
+er_estrada,87,136,4	script	Rota para Chama Viva#er42	111,{
+	mes "[Rota para Chama Viva]";
+	mes "Siga a passagem para Chama Viva. A viagem ocorre no mesmo mundo para todos os jogadores.";
+	close;
+}
+
+er_estrada,136,87,4	script	Rota para Chama Viva#er43	111,{
+	mes "[Rota para Chama Viva]";
+	mes "Siga a passagem para Chama Viva. A viagem ocorre no mesmo mundo para todos os jogadores.";
+	close;
+}
+
+er_estrada,112,51,4	script	Rota para Costa do Sin#er44	111,{
+	mes "[Rota para Costa do Sinal Perdido]";
+	mes "Siga a passagem para Costa do Sinal Perdido. A viagem ocorre no mesmo mundo para todos os jogadores.";
+	close;
+}
+
+er_estrada,87,24,4	script	Rota para Prontera#er45	111,{
+	mes "[Rota para Prontera]";
+	mes "Siga a passagem para Prontera. A viagem ocorre no mesmo mundo para todos os jogadores.";
+	close;
+}
+
+er_estrada,80,76,4	script	Marco de Estrada dos D#er46	4_M_SAGE_C,{
+	mes "[Marco de Estrada dos Despertos]";
+	mes "A antiga estrada de Helios une Prontera à Chama Viva. Siga os postes de sinal. Faixa recomendada: 10–15.";
+	close;
+}
+
+er_estrada,110,80,12,25	monster	Poring do caminho	1002,12,12000,8000
+
+er_estrada,52,82,12,24	monster	Fabre da estrada	1007,8,12000,8000
+
+er_mata	mapflag	loadevent
+
+er_mata,87,24,4	script	Rota para Chama Viva#er49	111,{
+	mes "[Rota para Chama Viva]";
+	mes "Siga a passagem para Chama Viva. A viagem ocorre no mesmo mundo para todos os jogadores.";
+	close;
+}
+
+er_mata,136,87,4	script	Rota para Campos de Ca#er50	111,{
+	mes "[Rota para Campos de Caça do Vale]";
+	mes "Siga a passagem para Campos de Caça do Vale. A viagem ocorre no mesmo mundo para todos os jogadores.";
+	close;
+}
+
+er_mata,87,136,4	script	Rota para Ruínas da Re#er51	111,{
+	mes "[Rota para Ruínas da Rede Helios]";
+	mes "Siga a passagem para Ruínas da Rede Helios. A viagem ocorre no mesmo mundo para todos os jogadores.";
+	close;
+}
+
+er_mata,80,76,4	script	Marco de Floresta das #er52	4_M_SAGE_C,{
+	mes "[Marco de Floresta das Antenas]";
+	mes "Raízes envolvem antenas antigas. A trilha principal leva às ruínas; a vereda leste, aos campos de caça. Faixa recomendada: 10–20.";
+	close;
+}
+
+er_mata,110,80,12,25	monster	Mandrágora das raízes	1020,15,12000,8000
+
+er_mata,52,82,12,24	monster	Sapo das lagoas	1012,12,12000,8000
+
+er_mata,110,80,12,25	monster	Fabre da mata	1007,12,12000,8000
+
+er_cacada	mapflag	loadevent
+
+er_cacada,24,87,4	script	Rota para Floresta das#er56	111,{
+	mes "[Rota para Floresta das Antenas]";
+	mes "Siga a passagem para Floresta das Antenas. A viagem ocorre no mesmo mundo para todos os jogadores.";
+	close;
+}
+
+er_cacada,136,87,4	script	Rota para Vila das Raí#er57	111,{
+	mes "[Rota para Vila das Raízes]";
+	mes "Siga a passagem para Vila das Raízes. A viagem ocorre no mesmo mundo para todos os jogadores.";
+	close;
+}
+
+er_cacada,80,76,4	script	Marco de Campos de Caç#er58	4_M_SAGE_C,{
+	mes "[Marco de Campos de Caça do Vale]";
+	mes "Clareiras e lagoas abrigam criaturas de Éridan. Ao leste fica a vila dos sobreviventes. Faixa recomendada: 15–30.";
+	close;
+}
+
+er_cacada,110,80,12,25	monster	Peco Peco do vale	1019,18,12000,8000
+
+er_cacada,52,82,12,24	monster	Poporing da clareira	1031,15,12000,8000
+
+er_cacada,110,80,12,25	monster	Sapo do vale	1012,10,12000,8000
+
+er_vilav	mapflag	loadevent
+
+er_vilav	mapflag	town
+
+er_vilav,24,87,4	script	Rota para Campos de Ca#er62	111,{
+	mes "[Rota para Campos de Caça do Vale]";
+	mes "Siga a passagem para Campos de Caça do Vale. A viagem ocorre no mesmo mundo para todos os jogadores.";
+	close;
+}
+
+er_vilav,87,24,4	script	Rota para Costa do Sin#er63	111,{
+	mes "[Rota para Costa do Sinal Perdido]";
+	mes "Siga a passagem para Costa do Sinal Perdido. A viagem ocorre no mesmo mundo para todos os jogadores.";
+	close;
+}
+
+er_vilav,87,136,4	script	Rota para Deserto de V#er64	111,{
+	mes "[Rota para Deserto de Vidro]";
+	mes "Siga a passagem para Deserto de Vidro. A viagem ocorre no mesmo mundo para todos os jogadores.";
+	close;
+}
+
+er_vilav,80,76,4	script	Marco de Vila das Raíz#er65	4_M_SAGE_C,{
+	mes "[Marco de Vila das Raízes]";
+	mes "Uma comunidade reconstruída entre módulos antigos. Descanse e combine a próxima viagem com seu grupo. Faixa recomendada: Área segura.";
+	close;
+}
+
+er_vilav,74,78,4	script	Ponto de descanso#er66	4_F_KAFRA1,{
+	mes "[Ponto de descanso]";
+	.@choice = select("Descansar:Salvar retorno:Sair");
+	if (.@choice == 3) close;
+	if (.@choice == 1) { percentheal 100,100; mes "HP e SP recuperados. Boa viagem!"; } else { savepoint "er_vilav",80,76; mes "Retorno salvo nesta comunidade."; }
+	close;
+}
+
+er_costas	mapflag	loadevent
+
+er_costas,24,87,4	script	Rota para Chama Viva#er67	111,{
+	mes "[Rota para Chama Viva]";
+	mes "Siga a passagem para Chama Viva. A viagem ocorre no mesmo mundo para todos os jogadores.";
+	close;
+}
+
+er_costas,87,136,4	script	Rota para Vila das Raí#er68	111,{
+	mes "[Rota para Vila das Raízes]";
+	mes "Siga a passagem para Vila das Raízes. A viagem ocorre no mesmo mundo para todos os jogadores.";
+	close;
+}
+
+er_costas,136,87,4	script	Rota para Estrada dos #er69	111,{
+	mes "[Rota para Estrada dos Despertos]";
+	mes "Siga a passagem para Estrada dos Despertos. A viagem ocorre no mesmo mundo para todos os jogadores.";
+	close;
+}
+
+er_costas,80,76,4	script	Marco de Costa do Sina#er70	4_M_SAGE_C,{
+	mes "[Marco de Costa do Sinal Perdido]";
+	mes "O oceano engoliu parte da ferrovia. Viaje pelas trilhas sobre as falésias, longe da água. Faixa recomendada: 15–30.";
+	close;
+}
+
+er_costas,110,80,12,25	monster	Peco Peco da costa	1019,12,12000,8000
+
+er_costas,52,82,12,24	monster	Poporing da costa	1031,12,12000,8000
+
+er_deserto	mapflag	loadevent
+
+er_deserto,87,24,4	script	Rota para Vila das Raí#er73	111,{
+	mes "[Rota para Vila das Raízes]";
+	mes "Siga a passagem para Vila das Raízes. A viagem ocorre no mesmo mundo para todos os jogadores.";
+	close;
+}
+
+er_deserto,87,136,4	script	Rota para Aurea — Dist#er74	111,{
+	mes "[Rota para Aurea — Distrito Recuperado]";
+	mes "Siga a passagem para Aurea — Distrito Recuperado. A viagem ocorre no mesmo mundo para todos os jogadores.";
+	close;
+}
+
+er_deserto,80,76,4	script	Marco de Deserto de Vi#er75	4_M_SAGE_C,{
+	mes "[Marco de Deserto de Vidro]";
+	mes "Dunas cobriram coletores solares. Os marcos de metal indicam o caminho até Aurea. Faixa recomendada: 20–40.";
+	close;
+}
+
+er_deserto,52,82,12,24	monster	Peco Peco das dunas	1019,20,12000,8000
+
+er_deserto,110,80,12,25	monster	Poporing do oásis	1031,10,12000,8000
+
+er_aurea	mapflag	loadevent
+
+er_aurea	mapflag	town
+
+er_aurea,87,24,4	script	Rota para Deserto de V#er78	111,{
+	mes "[Rota para Deserto de Vidro]";
+	mes "Siga a passagem para Deserto de Vidro. A viagem ocorre no mesmo mundo para todos os jogadores.";
+	close;
+}
+
+er_aurea,24,87,4	script	Rota para Ruínas da Re#er79	111,{
+	mes "[Rota para Ruínas da Rede Helios]";
+	mes "Siga a passagem para Ruínas da Rede Helios. A viagem ocorre no mesmo mundo para todos os jogadores.";
+	close;
+}
+
+er_aurea,80,76,4	script	Marco de Aurea — Distr#er80	4_M_SAGE_C,{
+	mes "[Marco de Aurea — Distrito Recuperado]";
+	mes "O distrito externo da antiga capital volta a receber viajantes. O núcleo central permanece além das muralhas. Faixa recomendada: Área segura.";
+	close;
+}
+
+er_aurea,74,78,4	script	Ponto de descanso#er81	4_F_KAFRA1,{
+	mes "[Ponto de descanso]";
+	.@choice = select("Descansar:Salvar retorno:Sair");
+	if (.@choice == 3) close;
+	if (.@choice == 1) { percentheal 100,100; mes "HP e SP recuperados. Boa viagem!"; } else { savepoint "er_aurea",80,76; mes "Retorno salvo nesta comunidade."; }
+	close;
+}
+
+er_ruinas	mapflag	loadevent
+
+er_ruinas,87,24,4	script	Rota para Floresta das#er82	111,{
+	mes "[Rota para Floresta das Antenas]";
+	mes "Siga a passagem para Floresta das Antenas. A viagem ocorre no mesmo mundo para todos os jogadores.";
+	close;
+}
+
+er_ruinas,136,87,4	script	Rota para Aurea — Dist#er83	111,{
+	mes "[Rota para Aurea — Distrito Recuperado]";
+	mes "Siga a passagem para Aurea — Distrito Recuperado. A viagem ocorre no mesmo mundo para todos os jogadores.";
+	close;
+}
+
+er_ruinas,104,112,4	script	Rota para Galerias do #er84	111,{
+	mes "[Rota para Galerias do Núcleo — Piso 1]";
+	mes "Siga a passagem para Galerias do Núcleo — Piso 1. A viagem ocorre no mesmo mundo para todos os jogadores.";
+	close;
+}
+
+er_ruinas,80,76,4	script	Marco de Ruínas da Red#er85	4_M_SAGE_C,{
+	mes "[Marco de Ruínas da Rede Helios]";
+	mes "Entre pilares e torres desativadas há uma entrada para os túneis subterrâneos. Faixa recomendada: 25–45.";
+	close;
+}
+
+er_ruinas,52,82,12,24	monster	Lobo das ruínas	1013,14,12000,8000
+
+er_ruinas,110,80,12,25	monster	Poporing do Éter	1031,14,12000,8000
+
+er_mina1	mapflag	loadevent
+
+er_mina1,87,24,4	script	Rota para Ruínas da Re#er88	111,{
+	mes "[Rota para Ruínas da Rede Helios]";
+	mes "Siga a passagem para Ruínas da Rede Helios. A viagem ocorre no mesmo mundo para todos os jogadores.";
+	close;
+}
+
+er_mina1,87,136,4	script	Rota para Galerias do #er89	111,{
+	mes "[Rota para Galerias do Núcleo — Piso 2]";
+	mes "Siga a passagem para Galerias do Núcleo — Piso 2. A viagem ocorre no mesmo mundo para todos os jogadores.";
+	close;
+}
+
+er_mina1,80,76,4	script	Marco de Galerias do N#er90	4_M_SAGE_C,{
+	mes "[Marco de Galerias do Núcleo — Piso 1]";
+	mes "Uma masmorra compartilhada. Reúna o grupo antes de descer; a escadaria norte leva ao núcleo inferior. Faixa recomendada: 30–50.";
+	close;
+}
+
+er_mina1,110,80,12,25	monster	Lobo das galerias	1013,12,12000,8000
+
+er_mina1,52,82,12,24	monster	Metaller do núcleo	1058,8,12000,8000
+
+er_mina2	mapflag	loadevent
+
+er_mina2,87,24,4	script	Rota para Galerias do #er93	111,{
+	mes "[Rota para Galerias do Núcleo — Piso 1]";
+	mes "Siga a passagem para Galerias do Núcleo — Piso 1. A viagem ocorre no mesmo mundo para todos os jogadores.";
+	close;
+}
+
+er_mina2,80,76,4	script	Marco de Galerias do N#er94	4_M_SAGE_C,{
+	mes "[Marco de Galerias do Núcleo — Piso 2]";
+	mes "Cristais do Éter crescem entre as máquinas. Volte pela escadaria sul para reencontrar a superfície. Faixa recomendada: 45–60.";
+	close;
+}
+
+er_mina2,110,80,12,25	monster	Lobo das galerias	1013,12,12000,8000
+
+er_mina2,52,82,12,24	monster	Metaller do núcleo	1058,8,12000,8000
+
+-	script	RotasEridan	-1,{
+OnPCLoadMapEvent:
+	.@map$ = strcharinfo(3);
+
+	if (.@map$ == "er_estrada") { dispbottom "Estrada dos Despertos — 10–15. Use as placas e passagens para explorar com seu grupo."; end; }
+
+	if (.@map$ == "er_mata") { dispbottom "Floresta das Antenas — 10–20. Use as placas e passagens para explorar com seu grupo."; end; }
+
+	if (.@map$ == "er_cacada") { dispbottom "Campos de Caça do Vale — 15–30. Use as placas e passagens para explorar com seu grupo."; end; }
+
+	if (.@map$ == "er_vilav") { dispbottom "Vila das Raízes — Área segura. Use as placas e passagens para explorar com seu grupo."; end; }
+
+	if (.@map$ == "er_costas") { dispbottom "Costa do Sinal Perdido — 15–30. Use as placas e passagens para explorar com seu grupo."; end; }
+
+	if (.@map$ == "er_deserto") { dispbottom "Deserto de Vidro — 20–40. Use as placas e passagens para explorar com seu grupo."; end; }
+
+	if (.@map$ == "er_aurea") { dispbottom "Aurea — Distrito Recuperado — Área segura. Use as placas e passagens para explorar com seu grupo."; end; }
+
+	if (.@map$ == "er_ruinas") { dispbottom "Ruínas da Rede Helios — 25–45. Use as placas e passagens para explorar com seu grupo."; end; }
+
+	if (.@map$ == "er_mina1") { dispbottom "Galerias do Núcleo — Piso 1 — 30–50. Use as placas e passagens para explorar com seu grupo."; end; }
+
+	if (.@map$ == "er_mina2") { dispbottom "Galerias do Núcleo — Piso 2 — 45–60. Use as placas e passagens para explorar com seu grupo."; end; }
+
+	end;
+}

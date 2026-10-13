@@ -147,6 +147,8 @@ Modelos: Codigo-fonte\\content\\eridan\\data\\model\\eridan
 Texturas: Codigo-fonte\\content\\eridan\\data\\texture\\eridan
 Historia/missoes: Codigo-fonte\\content\\eridan e Codigo-fonte\\rathena
 Guia completo: Codigo-fonte\\docs\\editar-chama-viva.md
+Mundo interligado e rotas: Codigo-fonte\\docs\\mundo-interligado.md
+Mapas novos: Codigo-fonte\\content\\eridan\\data\\er_mata.rsw (floresta), er_deserto.rsw (deserto), er_mina1.rsw (masmorra).
 Previa do mapa: Codigo-fonte\\docs\\images\\chama-viva-v2.png
 
 Todos os fontes versionados foram copiados, com suas licencas, exceto

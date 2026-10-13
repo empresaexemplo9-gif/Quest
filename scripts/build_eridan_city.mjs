@@ -2,74 +2,14 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
+import {nativeToolkit} from './lib/native-map.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
-const data=path.join(root,'content/eridan/data'), N=96;
-const bytes=(...p)=>Buffer.concat(p);
-const i=(...v)=>{const b=Buffer.alloc(v.length*4);v.forEach((x,k)=>b.writeInt32LE(x,k*4));return b;};
-const f=(...v)=>{const b=Buffer.alloc(v.length*4);v.forEach((x,k)=>b.writeFloatLE(x,k*4));return b;};
-const s=(v,n)=>{const b=Buffer.alloc(n);b.write(v,0,n,'ascii');return b;};
-const sh=(...v)=>{const b=Buffer.alloc(v.length*2);v.forEach((x,k)=>b.writeUInt16LE(x,k*2));return b;};
-function write(name,b){const p=path.join(data,name);fs.mkdirSync(path.dirname(p),{recursive:true});fs.writeFileSync(p,b);}
+const data=path.join(root,'content/eridan/data'), N=160;
 const textures=['grass','cobble','concrete','plaster','metal','glass','moss','bark','leaves','rust','dirt','rubble','energy','wood','roof','canvas'];
 for(const name of textures)if(!fs.existsSync(path.join(data,'texture/eridan',name+'.bmp')))throw Error('Prepare original materials with scripts/prepare_eridan_materials.py first.');
-const T=Object.fromEntries(textures.map((v,k)=>[v,k]));
+const {bytes,i,f,s,sh,model,write}=nativeToolkit(data,textures,fs,path);
 const hash=(x,y=0)=>{let a=Math.imul((x|0)^0x4b45,(y|0)^0x9e37);a^=a>>>13;return (a>>>0)/4294967295;};
 
-class Mesh {
-  vertices=[];uv=[];faces=[];
-  polygon(points,material,smooth=0){
-    const at=this.vertices.length,ut=this.uv.length;
-    this.vertices.push(...points.map(([x,y,z])=>[x,-y,z]));
-    this.uv.push(...(points.length===4?[[0,1],[1,1],[1,0],[0,0]]:[[0,1],[1,1],[.5,0]]));
-    this.faces.push([at,at+1,at+2,ut,ut+1,ut+2,T[material],smooth]);
-    if(points.length===4)this.faces.push([at,at+2,at+3,ut,ut+2,ut+3,T[material],smooth]);
-  }
-  box(x,y,z,w,h,d,material){
-    const v=[[x-w/2,y,z-d/2],[x+w/2,y,z-d/2],[x+w/2,y+h,z-d/2],[x-w/2,y+h,z-d/2],
-             [x-w/2,y,z+d/2],[x+w/2,y,z+d/2],[x+w/2,y+h,z+d/2],[x-w/2,y+h,z+d/2]];
-    for(const q of [[0,1,2,3],[5,4,7,6],[4,0,3,7],[1,5,6,2],[3,2,6,7],[4,5,1,0]])this.polygon(q.map(k=>v[k]),material);
-  }
-  beam(a,b,r1,r2,material,sides=8){
-    const n=b.map((v,k)=>v-a[k]),len=Math.hypot(...n);for(let k=0;k<3;k++)n[k]/=len;
-    let u=Math.abs(n[1])>.9?[1,0,0]:[-n[2],0,n[0]];const ul=Math.hypot(...u);u=u.map(v=>v/ul);
-    const v=[n[1]*u[2]-n[2]*u[1],n[2]*u[0]-n[0]*u[2],n[0]*u[1]-n[1]*u[0]];
-    const point=(p,r,t)=>p.map((q,k)=>q+r*(Math.cos(t)*u[k]+Math.sin(t)*v[k]));
-    for(let k=0;k<sides;k++){
-      const t=k*2*Math.PI/sides,t2=(k+1)*2*Math.PI/sides;
-      const p=point(a,r1,t),q=point(a,r1,t2),r=point(b,r2,t2),z=point(b,r2,t);
-      this.polygon([p,q,r,z],material);this.polygon([a,q,p],material);this.polygon([b,z,r],material);
-    }
-  }
-  orb(x,y,z,rx,ry,rz,material,seed=0){
-    const rings=5,sides=10;
-    const point=(lat,lon)=>{
-      const radius=1+.08*Math.sin(lon*3+seed)*Math.cos(lat);
-      return [x+rx*Math.cos(lat)*Math.cos(lon)*radius,y+ry*Math.sin(lat),z+rz*Math.cos(lat)*Math.sin(lon)*radius];
-    };
-    for(let a=0;a<rings;a++)for(let b=0;b<sides;b++){
-      const p=-Math.PI/2+a*Math.PI/rings,q=p+Math.PI/rings,l=b*2*Math.PI/sides,m=l+2*Math.PI/sides;
-      if(a===0)this.polygon([point(p,l),point(q,m),point(q,l)],material,1);
-      else if(a===rings-1)this.polygon([point(p,l),point(p,m),point(q,l)],material,1);
-      else this.polygon([point(p,l),point(p,m),point(q,m),point(q,l)],material,1);
-    }
-  }
-  roof(w,d,elevation,rise,material){
-    this.polygon([[-w/2,elevation,-d/2],[0,elevation+rise,-d/2],[0,elevation+rise,d/2],[-w/2,elevation,d/2]],material);
-    this.polygon([[0,elevation+rise,-d/2],[w/2,elevation,-d/2],[w/2,elevation,d/2],[0,elevation+rise,d/2]],material);
-    this.polygon([[-w/2,elevation,-d/2],[w/2,elevation,-d/2],[0,elevation+rise,-d/2]],'plaster');
-    this.polygon([[w/2,elevation,d/2],[-w/2,elevation,d/2],[0,elevation+rise,d/2]],'plaster');
-    this.beam([0,elevation+rise,-d/2-1],[0,elevation+rise,d/2+1],1.2,1.2,'metal');
-  }
-  save(name){
-    const node=bytes(s('root',40),s('',40),i(textures.length),i(...textures.map((_,k)=>k)),f(1,0,0,0,1,0,0,0,1),
-      f(0,0,0),f(0,0,0,0,0,1,0,1,1,1),i(this.vertices.length),...this.vertices.map(v=>f(...v)),
-      i(this.uv.length),...this.uv.map(v=>bytes(Buffer.from([255,255,255,255]),f(...v))),i(this.faces.length),
-      ...this.faces.map(v=>bytes(sh(...v.slice(0,7),0),i(1,v[7]))),i(0));
-    write('model/eridan/'+name+'.rsm',bytes(Buffer.from('GRSM'),Buffer.from([1,4]),i(0,2),Buffer.from([255]),Buffer.alloc(16),
-      i(textures.length),...textures.map(t=>s('eridan/'+t+'.bmp',40)),s('root',40),i(1),node,i(0,0)));
-  }
-}
-function model(name,make){const m=new Mesh();make(m);m.save(name);}
 function ivy(m,x,y,z){for(let k=0;k<5;k++)m.orb(x+Math.sin(k*1.7)*2,y+k*3,z,3.2,3,1.6,'moss',k);}
 function windows(m,x,z){m.box(x,12,z,10,10,1,'glass');for(const dx of [-5,0,5])m.box(x+dx,11,z+.7,.7,12,1,'metal');for(const y of [11,17,23])m.box(x,y,z+.7,11,.7,1,'metal');m.box(x,10,z+1,13,1.5,4,'concrete');}
 function building(m,damaged=false){
@@ -178,14 +118,24 @@ for(let k=0;k<74;k++){
   if(road(x,y)||structures.some(a=>Math.abs(x-a.x)<a.w/2+2&&Math.abs(y-a.y)<a.d/2+2)||npcs.concat(collection).some(([nx,ny])=>Math.hypot(x-nx,y-ny)<3))continue;
   prop(k%3?'fern':'shrub',x,y,0,0,hash(k)*360,.65+hash(k,14)*.6,'Vegetacao rasteira');
 }
+// Close all sides of the settlement, leaving visible gates on shared routes.
+for(const side of ['north','east','west'])for(let k=12;k<=84;k+=6){
+  const gap=side==='north'?Math.abs(k-48)<8:Math.abs(k-40)<8;
+  if(gap)continue;
+  prop('wall',side==='east'?86:side==='west'?10:k,side==='north'?88:k,side==='north'?6:1.8,side==='north'?1.8:6,side==='north'?0:90,1,'Muralha tomada por raizes');
+}
+for(const [x,y,r] of [[48,86,0],[12,40,90],[84,40,90]])prop('arch',x,y,0,0,r,1,'Portao para as rotas de Eridan');
+for(let x=6;x<156;x+=10)for(let y=6;y<156;y+=10){
+ if((x>92||y>94)&&!road(x,y))prop((x+y)%3?'tree1':'tree2',x,y,0,0,hash(x,y)*360,1+hash(x,y)*.3,'Mata alem das muralhas');
+}
 function road(x,y){
-  return (Math.abs(x-48)<=4&&y>=16&&y<=84)||Math.hypot((x-48)*.92,y-43)<16||
+  return (y>=37&&y<=43&&x>=12&&x<=84)||(x>=37&&x<=41&&y>=60&&y<=82)||(y>=80&&y<=84&&x>=38&&x<=52)||(Math.abs(x-48)<=4&&y>=16&&y<=84)||Math.hypot((x-48)*.92,y-43)<16||
     (x>=18&&x<=78&&y>=37&&y<=42)||
     (x>=20&&x<=29&&y>=39&&y<=66)||(x>=68&&x<=76&&y>=39&&y<=55)||
     (x>=31&&x<=65&&y>=57&&y<=62);
 }
 function blocked(x,y){
-  if(x<5||y<5||x>N-6||y>N-6)return true;
+  if(x<12||y<19||x>84||y>84)return true;
   if(structures.some(a=>Math.abs(x-a.x)<=a.w/2&&Math.abs(y-a.y)<=a.d/2))return true;
   if(y>=16&&y<=18&&(Math.abs(x-44.6)<.8||Math.abs(x-51.4)<.8))return true;
   return props.some(a=>a.w&&Math.abs(x-a.x)<=a.w/2&&Math.abs(y-a.y)<=a.d/2);
@@ -210,7 +160,7 @@ function shadow(x,y){
 function ground(){
   const tiles=[],surfaces=[],lightmaps=[];
   for(let y=0;y<N/2;y++)for(let x=0;x<N/2;x++){
-    const gx=x*2,gy=N-2-y*2,k=y*N/2+x;
+    const gx=x*2,gy=y*2,k=y*N/2+x;
     const light=Buffer.alloc(256);
     for(let py=0;py<8;py++)for(let px=0;px<8;px++)light[py*8+px]=shadow(gx+px/7*2,gy+2-py/7*2);
     lightmaps.push(light);
@@ -225,7 +175,7 @@ function ground(){
 }
 function world(name,stage){
   const objects=[];
-  function object(label,model,x,y,scale=1,rotation=0){objects.push(bytes(i(1),s(label,40),i(0),f(1),i(0),s('eridan/'+model+'.rsm',80),s('',80),f((x-N/2)*5,0,(N/2-y)*5),f(0,rotation,0),f(scale,scale,scale)));}
+  function object(label,model,x,y,scale=1,rotation=0){objects.push(bytes(i(1),s(label,40),i(0),f(1),i(0),s('eridan/'+model+'.rsm',80),s('',80),f((x-N/2)*5,0,(y-N/2)*5),f(0,rotation,0),f(scale,scale,scale)));}
   for(const a of structures){let model=a.model;if(model==='tower'&&stage<3)model='tower_off';if(model==='workshop'&&stage<1)model='workshop_ruin';if(model==='greenhouse'&&stage<2)model='greenhouse_frame';object(a.name,model,a.x,a.y);}
   for(const a of props)object(a.label,a.model,a.x,a.y,a.scale,a.rotation);
   const quadtree=bytes(...Array.from({length:1365},()=>f(N*2.5,0,N*2.5,-N*2.5,-110,-N*2.5,N*2.5,50,N*2.5,0,-50,0)));
@@ -238,7 +188,7 @@ for(let stage=0;stage<4;stage++){
   for(let y=0;y<N;y++)for(let x=0;x<N;x++)cells.push(bytes(f(0,0,0,0),i(blocked(x,y)?1:0)));
   write(name+'.gat',bytes(Buffer.from('GRAT'),Buffer.from([1,2]),i(N,N),...cells));write(name+'.gnd',gnd);write(name+'.rsw',world(name,stage));
 }
-fs.writeFileSync(path.join(root,'content/eridan/city.json'),JSON.stringify({name:'Chama Viva',revision:2,style:'Futuro tomado pela natureza',width:N,height:N,
- maps:[0,1,2,3].map(k=>'er_chama'+k),spawn,structures,npcs,collection,exit,props:props.filter(a=>a.w),
- materials:groundTextures,details:{models:fs.readdirSync(path.join(data,'model/eridan')).length,objects:props.length+structures.length,terrainLightmaps:2304}},null,2)+'\n');
+fs.writeFileSync(path.join(root,'content/eridan/city.json'),JSON.stringify({name:'Chama Viva',revision:3,style:'Futuro tomado pela natureza',width:N,height:N,
+ maps:[0,1,2,3].map(k=>'er_chama'+k),spawn,structures,npcs,collection,exit,routeGates:[[48,82],[14,40],[82,40]],props:props.filter(a=>a.w),
+ materials:groundTextures,details:{models:fs.readdirSync(path.join(data,'model/eridan')).length,objects:props.length+structures.length,terrainLightmaps:N*N/4}},null,2)+'\n');
 console.log(JSON.stringify({generated:true,maps:4,objects:props.length+structures.length,models:fs.readdirSync(path.join(data,'model/eridan')).length,terrainMaterials:groundTextures.length}));
