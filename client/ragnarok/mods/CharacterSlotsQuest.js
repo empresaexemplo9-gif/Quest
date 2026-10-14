@@ -1,10 +1,19 @@
 // Native click also covers Safari's touch activation and keyboard activation.
-// Empty slots need one tap; occupied slots select, then the player taps Iniciar.
+// Empty slots need one tap; occupied slots select, then a real HTML button enters.
 export function bindCharacterSlots(root, actions) {
  const cells=[...root.querySelectorAll('.char_canvas')];
+ const toolbar=document.createElement('div');toolbar.className='quest-character-actions';
+ const enter=document.createElement('button');
+ enter.type='button';enter.className='quest-enter-game';enter.textContent='Entrar no jogo';
+ const refresh=()=>{
+  const index=actions.current();
+  enter.disabled=actions.blocked()||!actions.available(index)||!actions.occupied(index)||actions.deleting(index);
+  cells.forEach((cell,i)=>cell.setAttribute('aria-pressed',String(i===index)));
+ };
  const activate=index=>{
   if(actions.blocked()||!actions.available(index))return;
   actions.select(index);
+  refresh();
   if(!actions.occupied(index))actions.create();
  };
  cells.forEach((cell,index)=>{
@@ -22,5 +31,9 @@ export function bindCharacterSlots(root, actions) {
   const empty=cells.findIndex((_,index)=>actions.available(index)&&!actions.occupied(index));
   if(empty>=0)activate(empty);
  });
- root.querySelector('.char_list').after(button);
+ enter.addEventListener('click',()=>{
+  refresh();if(!enter.disabled)actions.connect();
+ });
+ toolbar.append(enter,button);root.querySelector('.char_list').after(toolbar);
+ refresh();return {refresh};
 }

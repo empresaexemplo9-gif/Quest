@@ -2,7 +2,7 @@
 
 Abra o jogo pelo portal no Safari do iPad. Os controles são ativados automaticamente em dispositivos com toque, inclusive quando o navegador solicita a versão de computador. Também podem ser ligados pelo botão **Controles de toque**.
 
-Na seleção de personagens, toque uma vez em um espaço vazio ou no botão **Criar personagem**. Escolha a classe, toque no campo Nome e depois em **Criar personagem**. Para entrar com um personagem existente, toque nele e depois em **Iniciar**. Não é necessário duplo toque. O teclado abre quando você toca no campo de nome; os botões têm área de toque mínima de 44 pixels.
+Na seleção de personagens, toque uma vez em um espaço vazio ou no botão **Criar personagem**. Escolha a classe, toque no campo Nome e depois em **Criar personagem**. Para entrar com um personagem existente, toque nele e depois no botão verde **Entrar no jogo**, no topo da seleção. Esse botão funciona por toque, mouse e teclado e permanece desativado se o espaço estiver vazio, houver exclusão agendada ou a conexão estiver em andamento. Não é necessário duplo toque. O teclado abre quando você toca no campo de nome; os botões têm área de toque mínima de 44 pixels.
 
 O joystick esquerdo contém quatro setas e um controle central que permite oito direções. Segure para andar e solte para parar. O movimento respeita os bloqueios do mapa. O joystick direito apresenta até seis monstros vivos próximos. Toque em um alvo para selecioná-lo e no botão central **Atacar** para atacar; segurar esse botão repete o comando. Selecionar o alvo por si só não inicia combate.
 

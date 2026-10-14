@@ -34,7 +34,7 @@ import (
 //go:embed assets/runtime.zip assets/runtime.sha256
 var bundle embed.FS
 
-const version = "2.0.8"
+const version = "2.0.9"
 const portal = "https://quest-game-plum.vercel.app"
 
 var installComplete = errors.New("installed and launched")

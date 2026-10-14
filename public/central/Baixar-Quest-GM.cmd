@@ -7,7 +7,7 @@ exit /b
 $env:PSModulePath=[IO.Path]::Combine($env:SystemRoot,'System32','WindowsPowerShell','v1.0','Modules')+';'+[IO.Path]::Combine($env:ProgramFiles,'WindowsPowerShell','Modules')
 $ErrorActionPreference='Stop'
 [Net.ServicePointManager]::SecurityProtocol=[Net.SecurityProtocolType]::Tls12
-$base='https://github.com/empresaexemplo9-gif/Quest/releases/download/quest-arquivos-2.0.8/'
+$base='https://github.com/empresaexemplo9-gif/Quest/releases/download/quest-arquivos-2.0.9/'
 $bundle=Invoke-RestMethod -Uri ($base+'Quest-GM-Pacote.json')
 if ($bundle.filename -cne 'DESENVOLVEDOR.zip' -or $bundle.sha256 -notmatch '^[a-f0-9]{64}$' -or $bundle.parts.Count -ne 3) { throw 'Manifesto do pacote invalido.' }
 $destination=Join-Path $env:SystemDrive 'Eridan\Distribuicao'
