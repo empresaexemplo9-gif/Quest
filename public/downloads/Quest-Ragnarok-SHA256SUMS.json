@@ -1,17 +1,17 @@
 {
   "Quest-Ragnarok-Setup.exe": {
-    "bytes": 62952448,
-    "sha256": "b7b4271e8bdc9f3d68dd8513276a06e6e81d752596cf564e536fd508e4869315",
-    "version": "2.0.5"
+    "bytes": 62953984,
+    "sha256": "7b093cfb6ad32ad0c9d53846783572bdeeacc8c889c38ac12abf4846d02bddf3",
+    "version": "2.0.6"
   },
   "Quest-Ragnarok-macOS-Intel.zip": {
-    "bytes": 61467674,
-    "sha256": "7517171a501445def79622a9105ebd39248acba62ddb64b9cabb907f27891e63",
-    "version": "2.0.5"
+    "bytes": 61468291,
+    "sha256": "51d18d93802fc320f803643443dc9a6efc2bc889419623ad60d25cf87310500e",
+    "version": "2.0.6"
   },
   "Quest-Ragnarok-macOS-AppleSilicon.zip": {
-    "bytes": 60247246,
-    "sha256": "927fe988f54027d890fa41d0590c31f2440bd233773ff24028bf8ea52cf3365c",
-    "version": "2.0.5"
+    "bytes": 60247751,
+    "sha256": "7cee0938a685e27729ec8fc2704f772dc9a1257aa82256be1cda1f5e64030875",
+    "version": "2.0.6"
   }
 }
