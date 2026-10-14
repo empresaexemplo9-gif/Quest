@@ -5,8 +5,8 @@ if (-not (Test-Path (Join-Path $repository 'engine\rathena\LICENSE'))) {
     throw 'Execute este arquivo dentro do repositorio Quest que ja esta no seu computador.'
 }
 & (Join-Path $PSScriptRoot 'PrepararWindows.ps1') -IncludeTunnel:($PrepareTunnel -or $Public)
-$destination = Join-Path $repository '.local\ragnarok\windows-server'
-$server = Join-Path $destination 'Quest-Servidor'
+$destination = $repository
+$server = Join-Path $repository 'Servidor'
 if (-not (Test-Path (Join-Path $server 'IniciarServidor.ps1'))) {
     New-Item -ItemType Directory -Force -Path $destination | Out-Null
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12

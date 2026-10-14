@@ -2,7 +2,7 @@
 import functools,hashlib,http.server,io,json,subprocess,sys,tempfile,threading,zipfile
 from pathlib import Path
 root=Path(__file__).resolve().parents[1]
-remote='https://github.com/empresaexemplo9-gif/Quest/releases/download/quest-arquivos-2.0.5/'
+remote='https://github.com/empresaexemplo9-gif/Quest/releases/download/quest-arquivos-2.0.6/'
 class QuietHandler(http.server.SimpleHTTPRequestHandler):
     def log_message(self,*args):pass
 with tempfile.TemporaryDirectory(prefix='quest-central-test-') as temporary:
@@ -14,12 +14,12 @@ with tempfile.TemporaryDirectory(prefix='quest-central-test-') as temporary:
     parts=[];width=len(content)//3
     for index in range(1,4):
         data=content[(index-1)*width:index*width] if index<3 else content[2*width:]
-        name=f'Quest-Desenvolvedor-2.0.5.zip.parte{index:02d}';(serve/name).write_bytes(data)
+        name=f'Quest-Desenvolvedor-2.0.6.zip.parte{index:02d}';(serve/name).write_bytes(data)
         parts.append({'name':name,'url':base+name,'bytes':len(data),'sha256':hashlib.sha256(data).hexdigest()})
     manifest={'filename':'DESENVOLVEDOR.zip','sha256':hashlib.sha256(content).hexdigest(),'bytes':len(content),'parts':parts}
     (serve/'Quest-GM-Pacote.json').write_text(json.dumps(manifest),encoding='utf-8')
     source=(root/'public/central/Baixar-Quest-GM.cmd').read_text(encoding='utf-8').rsplit('# QUEST POWERSHELL',1)[1]
-    source=source.replace(remote,base).replace("Join-Path ([Environment]::GetFolderPath('Desktop')) 'Quest - Arquivos Compartilhados - 2.0.5'","'"+str(target).replace("'","''")+"'")
+    source=source.replace(remote,base).replace("Join-Path $env:SystemDrive 'Eridan\\Distribuicao'","'"+str(target).replace("'","''")+"'")
     source=source.replace("Start-Process explorer.exe -ArgumentList ('/select,\"'+$zip+'\"')", "Write-Host 'Teste concluido'")
     script=folder/'teste.ps1';script.write_text(source,encoding='utf-8-sig')
     command=['powershell.exe','-NoProfile','-NonInteractive','-ExecutionPolicy','Bypass','-File',str(script)]

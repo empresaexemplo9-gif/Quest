@@ -34,7 +34,7 @@ import (
 //go:embed assets/runtime.zip assets/runtime.sha256
 var bundle embed.FS
 
-const version = "2.0.5"
+const version = "2.0.6"
 const portal = "https://quest-game-plum.vercel.app"
 
 var installComplete = errors.New("installed and launched")
@@ -61,6 +61,7 @@ func main() {
 }
 
 func run() error {
+	portable := flag.Bool("portable", false, "Usar somente a pasta do jogo, sem instalar em outras pastas")
 	serverFlag := flag.String("server", "", "Endereço do servidor Quest")
 	followPortal := flag.Bool("follow-portal", true, "Encontrar automaticamente o servidor principal do portal")
 	caFlag := flag.String("ca", "", "CA explícita para servidor local administrado pelo usuário")
@@ -77,11 +78,13 @@ func run() error {
 	if *portFlag < 1024 || *portFlag > 65535 {
 		return errors.New("porta local inválida")
 	}
-	if err := install(); err != nil {
-		if errors.Is(err, installComplete) {
-			return nil
+	if !*portable {
+		if err := install(); err != nil {
+			if errors.Is(err, installComplete) {
+				return nil
+			}
+			return err
 		}
-		return err
 	}
 	base, err := os.UserCacheDir()
 	if err != nil {
@@ -89,7 +92,15 @@ func run() error {
 	}
 	data := *dataFlag
 	if data == "" {
-		data = filepath.Join(base, "QuestRagnarok")
+		if *portable {
+			exe, e := os.Executable()
+			if e != nil {
+				return e
+			}
+			data = filepath.Join(filepath.Dir(exe), "Cliente")
+		} else {
+			data = filepath.Join(base, "QuestRagnarok")
+		}
 	}
 	if err = os.MkdirAll(data, 0700); err != nil {
 		return err
@@ -100,7 +111,11 @@ func run() error {
 	}
 	clientDir := *assetsFlag
 	if clientDir == "" {
-		clientDir = filepath.Join(data, "client")
+		if *portable {
+			clientDir = filepath.Join(filepath.Dir(data), "Dados")
+		} else {
+			clientDir = filepath.Join(data, "client")
+		}
 	}
 	roots, err := x509.SystemCertPool()
 	if err != nil || roots == nil {

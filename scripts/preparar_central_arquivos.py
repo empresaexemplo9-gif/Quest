@@ -34,9 +34,9 @@ manifest={'version':version,'sourceRevision':summary['sourceRevision'],'filename
 # the full three-part ZIP additionally includes all four verified base client files.
 with zipfile.ZipFile(packages/'DESENVOLVEDOR.zip') as source,zipfile.ZipFile(destination/f'Quest-Desenvolvedor-Sem-Dados-Base-{version}.zip','w',zipfile.ZIP_DEFLATED,compresslevel=6) as target:
     for record in source.infolist():
-        if '/Dados-do-cliente/' in record.filename or record.filename.endswith('/ARQUIVOS-SHA256.json'):continue
+        if '/Dados-do-cliente/' in record.filename or '/Dados/' in record.filename or record.filename.endswith('/ARQUIVOS-SHA256.json'):continue
         with source.open(record) as read,target.open(record.filename,'w',force_zip64=True) as write:shutil.copyfileobj(read,write,1024*1024)
-    target.writestr('DESENVOLVEDOR/DADOS-BASE.txt','Este ZIP compacto nao inclui os quatro arquivos base do cliente. PREPARAR SERVIDOR.cmd baixa e verifica esses arquivos. Para receber tudo junto, use Baixar-Quest-GM.cmd na central.\n')
+    target.writestr('Eridan/DADOS-BASE.txt','Este ZIP compacto nao inclui os quatro arquivos base do cliente. Ligar Servidor.cmd baixa e verifica esses arquivos. Para receber tudo junto, use Baixar-Quest-GM.cmd na central.\n')
 shutil.copy2(ROOT/'public/central/Baixar-Quest-GM.cmd',destination/'Baixar-Quest-GM-v2.cmd')
 shutil.copy2(ROOT/'public/central/Montar-Quest-GM.py',destination/'Montar-Quest-GM.py')
 assets=[{'name':p.name,'bytes':p.stat().st_size,'sha256':digest(p)} for p in sorted(destination.iterdir()) if p.is_file() and p.name!='release-assets.json']

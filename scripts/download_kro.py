@@ -12,7 +12,7 @@ import urllib.request
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE = ROOT / '.local/ragnarok/client'
+BASE = Path(os.environ.get('QUEST_CLIENT_DIRECTORY', str(ROOT / '.local/ragnarok/client')))
 LOCK = json.loads((ROOT / 'client/ragnarok/kro.lock.json').read_text())
 CHUNK = 16 * 1024 * 1024
 

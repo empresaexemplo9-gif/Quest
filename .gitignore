@@ -28,3 +28,10 @@ desktop/ragnarok/build/
 !public/downloads/Quest-Ragnarok-macOS-Intel.zip
 !public/downloads/Quest-Ragnarok-macOS-AppleSilicon.zip
 !public/downloads/Quest-Ragnarok-SHA256SUMS.json
+
+# One local Eridan workspace; never publish private server/cache or raw game data.
+/Servidor/
+/Dados/
+/Cliente/
+/Distribuicao/
+/Privado/

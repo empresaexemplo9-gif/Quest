@@ -2,7 +2,7 @@ param([string]$ServerDirectory, [switch]$PublishMain, [switch]$NoBrowser)
 $ErrorActionPreference = 'Stop'
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 $repository = Split-Path -Parent $PSScriptRoot
-if (-not $ServerDirectory) { $ServerDirectory = Join-Path $repository '.local\ragnarok\windows-server\Quest-Servidor' }
+if (-not $ServerDirectory) { $ServerDirectory = Join-Path $repository 'Servidor' }
 $ServerDirectory = (Resolve-Path -LiteralPath $ServerDirectory).Path
 $cloudflared = Get-Command cloudflared -ErrorAction SilentlyContinue
 if (-not $cloudflared) { throw 'Execute IniciarServidorWindows.cmd -Public para preparar o Cloudflare.' }

@@ -1,5 +1,6 @@
 // Quest UI localization. Resource names, IDs and packet data are never changed.
 export const translations = {
+ 'Upgrade':'Melhorar','Downgrade':'Reduzir','Sign Up':'Criar conta','Replay':'Reprodução','Disconnected from Server.':'Conexão com o servidor encerrada.',
  'Dragon Knight':'Cavaleiro Dracônico','Arch Mage':'Arquimago','Windhawk':'Falcão do Vento','Cardinal':'Cardeal','Meister':'Mestre Mecânico','Shadow Cross':'Cruz das Sombras','Hyper Novice':'Hiper Aprendiz',
  'All skills have been added to your skill tree.':'Todas as habilidades foram liberadas na sua árvore.','Welcome to rAthena! Enjoy! Please report any bugs you find.':'Bem-vindo a Éridan! Informe aos GMs os problemas que encontrar.','Cannot determine SVN/Git version.':'Servidor Quest iniciado.',
  'Call function is OFF':'Chamada automática desativada.','Homunculus automatic feeding is OFF':'Alimentação automática de homúnculo desativada.','Auto feeding inactivated.':'Alimentação automática desativada.','Warped.':'Viagem concluída.',

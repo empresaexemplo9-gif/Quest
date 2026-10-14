@@ -30,7 +30,7 @@ services:
       database:
         condition: service_healthy
     volumes:
-      - ./context/.local/ragnarok/client:/app/.local/ragnarok/client:ro
+      - ${QUEST_CLIENT_FILES:-../Dados}:/app/.local/ragnarok/client:ro
       - ./context/content/eridan:/app/content/eridan:ro
       - ./context/content/ragnarok:/app/content/ragnarok:ro
       - ./context/public/art/ragnarok:/app/public/art/ragnarok:ro

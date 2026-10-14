@@ -4,7 +4,7 @@ $questRepo=Split-Path $PSScriptRoot -Parent
 $env:PATH=[Environment]::GetEnvironmentVariable('Path','Machine')+';'+[Environment]::GetEnvironmentVariable('Path','User')
 $questNode=Join-Path $env:ProgramFiles 'nodejs\node.exe'
 if (!(Test-Path -LiteralPath $questNode)) {$questNode=(Get-Command node -ErrorAction Stop).Source}
-$questRuntime=Join-Path $questRepo '.local\ragnarok\windows-server\Quest-Servidor'
+$questRuntime=Join-Path $questRepo 'Servidor'
 if ($Aplicar) {
     & $questNode (Join-Path $questRepo 'client\ragnarok\prepare-city.mjs') $questRepo --validate
     if ($LASTEXITCODE -ne 0) {throw 'O mapa tem caminhos bloqueados ou arquivos incompativeis. Corrija antes de aplicar.'}

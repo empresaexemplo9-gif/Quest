@@ -9,7 +9,8 @@ import subprocess
 import zipfile
 
 root = Path(__file__).resolve().parents[1]
-deployment = root/'.local/ragnarok/windows-server/Quest-Servidor'
+deployment = root/'Servidor'
+if not deployment.is_dir():deployment = root/'.local/ragnarok/windows-server/Quest-Servidor'
 context = deployment/'context'
 if not context.is_dir():
     context = root/'.local/ragnarok/deployment/context'
@@ -41,7 +42,7 @@ revision = args.revision or subprocess.check_output(['git','rev-parse','HEAD'],c
 if not re.fullmatch('[a-f0-9]{40}',revision):
     raise SystemExit('A complete verified Git revision is required.')
 with zipfile.ZipFile(output,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=9) as archive:
-    def add(path,target):archive.write(path,'Quest-Servidor/'+target)
+    def add(path,target):archive.write(path,'Servidor/'+target)
     for path in sorted(context.rglob('*')):
         if not path.is_file():continue
         relative = path.relative_to(context)
@@ -66,8 +67,8 @@ with zipfile.ZipFile(output,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=9
     add(root/'docs/controles-ipad.md','CONTROLES-IPAD.md')
     add(root/'docs/quatro-cidades-de-eridan.md','QUATRO-CIDADES.md')
     compose=(root/'deploy/ragnarok/compose.yaml').read_text().replace('name: quest-ragnarok\n','name: quest-ragnarok-pc\n')
-    archive.writestr('Quest-Servidor/compose.yaml',compose)
-    archive.writestr('Quest-Servidor/ORIGEM.json',json.dumps({'repository':'https://github.com/empresaexemplo9-gif/Quest','revision':revision,'engine':'rAthena Renewal','packetver':20211103,'architecture':'linux/amd64','source_code':'https://github.com/empresaexemplo9-gif/Quest/tree/'+revision+'/engine/rathena','client_assets':'Downloaded and verified on the server computer; credentials generated locally'},indent=2))
+    archive.writestr('Servidor/compose.yaml',compose)
+    archive.writestr('Servidor/ORIGEM.json',json.dumps({'repository':'https://github.com/empresaexemplo9-gif/Quest','revision':revision,'engine':'rAthena Renewal','packetver':20211103,'architecture':'linux/amd64','source_code':'https://github.com/empresaexemplo9-gif/Quest/tree/'+revision+'/engine/rathena','client_assets':'Downloaded and verified on the server computer; credentials generated locally'},indent=2))
 with output.open('rb') as stream:digest=hashlib.file_digest(stream,'sha256').hexdigest()
 (output.parent/'Quest-Servidor-Windows.sha256').write_text(digest+'  '+output.name+'\n')
 print(json.dumps({'file':str(output),'bytes':output.stat().st_size,'sha256':digest}))

@@ -212,7 +212,7 @@ for(const r of report){
  out.push(`${r.id}\tmapflag\tloadevent`);
  if(r.safe)out.push(`${r.id}\tmapflag\ttown`,`${r.id}\tmapflag\tnobranch`,`${r.id}\tmapflag\tnomemo`);
  for(const p of r.pois){
-  const name='CidadeFC#'+count++;
+  const name=({guide:'Guia',rest:'Descanso',storage:'Armazém',shop:'Mercado',story:'Cronista',sign:'Placa',bounty:'Patrulha'})[p.type]+'#fc'+count++;
   if(p.type==='shop'){out.push(`${r.id},${p.at[0]},${p.at[1]},4\tshop\t${name}\t4_M_01,501:-1,502:-1,503:-1,504:-1,505:-1,506:-1,507:-1,601:-1,602:-1,1750:-1`);continue;}
   let body=`\tmes ${JSON.stringify(p.text)};\n\tclose;`;
   if(p.type==='storage')body='\tclose2;\n\topenstorage;\n\tend;';

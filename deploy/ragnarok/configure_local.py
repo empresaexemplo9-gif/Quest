@@ -70,6 +70,7 @@ else:
         QUEST_BIND_ADDRESS='127.0.0.1' if local else '0.0.0.0',
         QUEST_HTTP_PORT=str(port if url.scheme == 'http' else 80),QUEST_HTTPS_PORT='18443' if url.scheme == 'http' else '443',
         QUEST_PRIVATE_PORT=values.get('QUEST_PRIVATE_PORT','13905'))
+values.setdefault('QUEST_CLIENT_FILES','../Dados')
 temporary = root/'.env.next'
 descriptor = os.open(temporary,os.O_CREAT|os.O_EXCL|os.O_WRONLY,0o600)
 try:
@@ -80,7 +81,7 @@ finally:
     if temporary.exists():temporary.unlink()
 env_file.chmod(0o600)
 if args.verify_client:
-    client = root/'context/.local/ragnarok/client'
+    client = root.parent/'Dados'
     lock = json.loads((root/'context/client/ragnarok/kro.lock.json').read_text())
     for entry in lock['files']:
         path = client/entry['name']

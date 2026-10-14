@@ -10,7 +10,7 @@ if ($LASTEXITCODE -ne 0 -or $dockerOS -ne 'linux') {
 }
 $pythonImage = 'python:3.12-slim-bookworm@sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258'
 function Run-PythonContainer([string[]]$PythonArguments) {
-    & docker run --rm --mount "type=bind,source=$PSScriptRoot,target=/work" --workdir /work $pythonImage python @PythonArguments
+    & docker run --rm --mount "type=bind,source=$(Split-Path -Parent $PSScriptRoot),target=/quest" --env QUEST_CLIENT_DIRECTORY=/quest/Dados --workdir /quest/Servidor $pythonImage python @PythonArguments
     if ($LASTEXITCODE -ne 0) { throw 'A preparacao falhou; os dados existentes foram preservados. Veja a mensagem acima.' }
 }
 $configure = @('configure_server.py')
