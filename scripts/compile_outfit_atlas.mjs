@@ -44,9 +44,10 @@ for(let motion=0;motion<13;motion++)for(let direction=0;direction<8;direction++)
 }
 i32(0);for(let i=0;i<104;i++)f32(i>=8&&i<16?5:6);
 fs.writeFileSync(path.join(directory,key+'.act'),Buffer.concat(act));
-// Native dye palettes preserve neutral details and warm skin colours.
+// Native dyes include neutral armour and boots; head/skin palette entries
+// stay protected. Keep dark outlines and bright metal highlights legible.
 const targets=[[0,0,0],[.95,.18,.16],[.15,.40,.96],[.20,.72,.32],[.62,.23,.85],[.88,.65,.18],[.80,.85,.9],[.17,.19,.23]];
-for(let dye=1;dye<8;dye++){const p=Buffer.from(palette);for(let i=1;i<256;i++){let [r,g,b]=[p[i*4]/255,p[i*4+1]/255,p[i*4+2]/255];const high=Math.max(r,g,b),low=Math.min(r,g,b);const saturation=high-low;if(protectedColors.has(i)||saturation<.10)continue;const luminance=.299*r+.587*g+.114*b;const weight=Math.min(.85,saturation*2.5);for(let c=0;c<3;c++){const base=[r,g,b][c],shade=targets[dye][c]*Math.min(1.4,luminance*1.65+.15);p[i*4+c]=Math.round(Math.min(1,base*(1-weight)+shade*weight)*255);}}
+for(let dye=1;dye<8;dye++){const p=Buffer.from(palette);for(let i=1;i<256;i++){let [r,g,b]=[p[i*4]/255,p[i*4+1]/255,p[i*4+2]/255];if(protectedColors.has(i)||!p[i*4+3])continue;const luminance=.299*r+.587*g+.114*b;const weight=.78*Math.min(1,luminance/.12)*Math.min(1,(1-luminance)/.12);const target=targets[dye];const targetLuminance=.299*target[0]+.587*target[1]+.114*target[2];const tone=dye===6?Math.sqrt(luminance)*1.15:dye===7?.35+luminance*1.2:luminance/Math.max(.05,targetLuminance);for(let c=0;c<3;c++){const base=[r,g,b][c],shade=Math.min(1,target[c]*tone);p[i*4+c]=Math.round(Math.min(1,base*(1-weight)+shade*weight)*255);}}
  fs.writeFileSync(path.join(directory,key+'-'+dye+'.pal'),p);
 }
 fs.mkdirSync('content/gm/atlases',{recursive:true});

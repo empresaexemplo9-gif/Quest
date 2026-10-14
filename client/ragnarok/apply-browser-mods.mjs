@@ -10,6 +10,7 @@ fs.cpSync(source,target,{recursive:true,filter:p=>!p.split(path.sep).some(part=>
 fs.copyFileSync(path.join(root,'client/ragnarok/mods/CharCreateQuest.js'),path.join(target,'src/UI/Components/CharCreate/CharCreatev4/CharCreatev4.js'));
 fs.copyFileSync(path.join(root,'client/ragnarok/mods/LocalePt.js'),path.join(target,'src/UI/LocalePt.js'));
 fs.copyFileSync(path.join(root,'client/ragnarok/mods/GraphicsQuest.js'),path.join(target,'src/Renderer/GraphicsQuest.js'));
+fs.copyFileSync(path.join(root,'client/ragnarok/mods/SpritePaletteQuest.fs'),path.join(target,'src/Renderer/SpriteRenderer.fs'));
 for(const [name,destination] of [['TouchQuest.js','MobileUI.js'],['TouchLogic.js','TouchLogic.js'],['TouchQuest.css','TouchQuest.css']])fs.copyFileSync(path.join(root,'client/ragnarok/mods',name),path.join(target,'src/UI/Components/MobileUI',destination));
 for(const name of ['OutfitQuest.js','OutfitLogic.js'])fs.copyFileSync(path.join(root,'client/ragnarok/mods',name),path.join(target,'src/Renderer/Entity',name));
 fs.writeFileSync(path.join(target,'src/DB/QuestItems.js'),'export default '+fs.readFileSync(path.join(root,'content/gm/iteminfo.json'),'utf8')+';\n');

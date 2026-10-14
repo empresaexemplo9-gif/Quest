@@ -7,14 +7,14 @@ exit /b
 $env:PSModulePath=[IO.Path]::Combine($env:SystemRoot,'System32','WindowsPowerShell','v1.0','Modules')+';'+[IO.Path]::Combine($env:ProgramFiles,'WindowsPowerShell','Modules')
 $ErrorActionPreference='Stop'
 [Net.ServicePointManager]::SecurityProtocol=[Net.SecurityProtocolType]::Tls12
-$base='https://github.com/empresaexemplo9-gif/Quest/releases/download/quest-arquivos-2.0.6/'
+$base='https://github.com/empresaexemplo9-gif/Quest/releases/download/quest-arquivos-2.0.7/'
 $bundle=Invoke-RestMethod -Uri ($base+'Quest-GM-Pacote.json')
 if ($bundle.filename -cne 'DESENVOLVEDOR.zip' -or $bundle.sha256 -notmatch '^[a-f0-9]{64}$' -or $bundle.parts.Count -ne 3) { throw 'Manifesto do pacote invalido.' }
 $destination=Join-Path $env:SystemDrive 'Eridan\Distribuicao'
 New-Item -ItemType Directory -Force -Path $destination | Out-Null
 $client=New-Object Net.WebClient
 foreach($part in $bundle.parts){
-    if ($part.name -notmatch '^Quest-Desenvolvedor-2\.0\.6\.zip\.parte0[1-3]$' -or $part.sha256 -notmatch '^[a-f0-9]{64}$' -or $part.url -cne ($base+$part.name)) { throw 'Parte do pacote invalida.' }
+    if ($part.name -notmatch '^Quest-Desenvolvedor-2\.0\.7\.zip\.parte0[1-3]$' -or $part.sha256 -notmatch '^[a-f0-9]{64}$' -or $part.url -cne ($base+$part.name)) { throw 'Parte do pacote invalida.' }
     $target=Join-Path $destination $part.name
     if(Test-Path -LiteralPath $target){
         if((Get-Item -LiteralPath $target).Length -ne $part.bytes -or (Get-FileHash -LiteralPath $target -Algorithm SHA256).Hash.ToLowerInvariant() -ne $part.sha256){ throw ('Arquivo existente diferente preservado: '+$part.name) }
