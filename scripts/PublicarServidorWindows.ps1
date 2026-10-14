@@ -80,7 +80,7 @@ try {
 } finally { Set-Location $location }
 
 $manifestPath = Join-Path $repository 'public\releases\ragnarok-server.json'
-$manifest = Get-Content -LiteralPath $manifestPath -Raw | ConvertFrom-Json
+$manifest = Get-Content -LiteralPath $manifestPath -Raw -Encoding UTF8 | ConvertFrom-Json
 $manifest.server = $publicURL
 $manifest.status = 'public-native-login-verified'
 $utf8 = New-Object System.Text.UTF8Encoding($false)

@@ -104,7 +104,8 @@ def runtime_zip(platform):
         put(ROOT / 'client/ragnarok/robrowser-package-lock.json', 'sources/robrowser-package-lock.json')
         put(ROOT / 'client/ragnarok/remote-package-lock.json', 'sources/remote-package-lock.json')
         put(ROOT / 'client/ragnarok/apply-browser-mods.mjs', 'sources/apply-browser-mods.mjs')
-        for path in (ROOT / 'client/ragnarok/mods').glob('*.js'):
+        for path in (ROOT / 'client/ragnarok/mods').glob('*'):
+            if not path.is_file(): continue
             put(path, 'sources/quest-browser-mods/' + path.name)
         for path in SOURCE.glob('*.go'):
             if not path.name.endswith('_test.go'):

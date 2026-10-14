@@ -90,7 +90,8 @@ export function prepareCity(root) {
   for(const name of maps.keys())if(!text.split(/\r?\n/).some(line=>line.trim().split(/\s+/)[0]===name))text+='\n'+name;
   fs.writeFileSync(index,text+'\n');
   const conf=path.join(engine,'conf/maps_athena.conf');text=fs.readFileSync(conf,'utf8');for(const name of maps.keys())if(!text.includes('map: '+name))text+='\nmap: '+name;fs.writeFileSync(conf,text+'\n');
-  const custom=path.join(engine,'npc/scripts_custom.conf');text=fs.readFileSync(custom,'utf8');for(const script of ['chama-viva.txt','quest-start.txt',...(world?['eridan-world.txt']:[])]){const registration='npc: ../../rathena/'+script;if(!text.split(/\r?\n/).includes(registration))text+='\n'+registration;}fs.writeFileSync(custom,text+'\n');
+  const custom=path.join(engine,'npc/scripts_custom.conf');text=fs.readFileSync(custom,'utf8');for(const script of ['chama-viva.txt','quest-start.txt','quest-gm-arsenal.txt','quest-gm.txt',...(world?['eridan-world.txt']:[]),...(fs.existsSync(path.join(root,'rathena/eridan-cities.txt'))?['eridan-cities.txt']:[])]){const registration='npc: ../../rathena/'+script;if(!text.split(/\r?\n/).includes(registration))text+='\n'+registration;}fs.writeFileSync(custom,text+'\n');
+  const groups=path.join(engine,'conf/groups.yml');const groupImport='  - Path: ../../rathena/quest-groups.yml';let groupText=fs.readFileSync(groups,'utf8');if(!groupText.includes(groupImport)){if(!groupText.includes('Footer:'))throw Error('Native group import footer missing');fs.writeFileSync(groups,groupText.trimEnd()+'\n'+groupImport+'\n');}
   console.log('Eridan: '+maps.size+' shared native maps and matching collisions prepared.');return city;
 }
 if(process.argv[1] && path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){

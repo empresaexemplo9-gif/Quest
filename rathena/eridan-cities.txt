@@ -1,0 +1,432 @@
+// Original four-city expansion. Public shared native maps, no instances.
+
+er_rubra,96,170,0	warp	RotaFC#0	3,3,er_brasa,96,32
+
+er_brasa,96,22,0	warp	RotaFC#1	3,3,er_rubra,96,160
+
+er_brasa,96,170,0	warp	RotaFC#2	3,3,er_celeste,96,32
+
+er_celeste,96,22,0	warp	RotaFC#3	3,3,er_brasa,96,160
+
+er_celeste,96,170,0	warp	RotaFC#4	3,3,er_jardim,96,32
+
+er_jardim,96,22,0	warp	RotaFC#5	3,3,er_celeste,96,160
+
+er_jardim,96,170,0	warp	RotaFC#6	3,3,er_forja,96,32
+
+er_forja,96,22,0	warp	RotaFC#7	3,3,er_jardim,96,160
+
+er_forja,96,170,0	warp	RotaFC#8	3,3,er_escomb,96,32
+
+er_escomb,96,22,0	warp	RotaFC#9	3,3,er_forja,96,160
+
+er_escomb,96,170,0	warp	RotaFC#10	3,3,er_azul,96,32
+
+er_azul,96,22,0	warp	RotaFC#11	3,3,er_escomb,96,160
+
+er_azul,96,170,0	warp	RotaFC#12	3,3,er_selva,96,32
+
+er_selva,96,22,0	warp	RotaFC#13	3,3,er_azul,96,160
+
+er_selva,96,170,0	warp	RotaFC#14	3,3,er_rubra,96,32
+
+er_rubra,96,22,0	warp	RotaFC#15	3,3,er_selva,96,160
+
+er_aurea,80,64,0	warp	RotaFC#16	3,3,er_rubra,32,86
+
+er_rubra,22,86,0	warp	RotaFC#17	3,3,er_aurea,72,64
+
+er_vilav,80,60,0	warp	RotaFC#18	3,3,er_azul,160,86
+
+er_azul,170,86,0	warp	RotaFC#19	3,3,er_vilav,72,60
+
+er_rubra	mapflag	loadevent
+
+er_rubra	mapflag	town
+
+er_rubra	mapflag	nobranch
+
+er_rubra	mapflag	nomemo
+
+er_rubra,100,83,4	script	CidadeFC#20	4_M_SAGE_C,{
+	mes "[Guia de Citadela Rubra]";
+	mes "A fortaleza guarda os fragmentos do Sol Antigo. Oficinas, mercado de sucata e jardins resistentes cercam a praça dos guardiões. Faixa recomendada: Área segura. As passagens são compartilhadas por todos os grupos.";
+	close;
+}
+
+er_rubra,89,83,4	script	CidadeFC#21	4_F_KAFRA1,{
+	mes "[Descanso e retorno]";
+	.@choice=select("Descansar:Salvar retorno:Sair");
+	if(.@choice==1){percentheal 100,100;mes "HP e SP recuperados.";}
+	if(.@choice==2){savepoint "er_rubra",96,86;mes "Retorno salvo nesta cidade.";}
+	close;
+}
+
+er_rubra,107,83,4	script	CidadeFC#22	4_M_SAGE_C,{
+	mes "[Armazém de Citadela Rubra]";
+	close2;
+	openstorage;
+	end;
+}
+
+er_rubra,87,70,4	shop	CidadeFC#23	4_M_01,501:-1,502:-1,503:-1,504:-1,505:-1,506:-1,507:-1,601:-1,602:-1,1750:-1
+
+er_rubra,105,70,4	script	CidadeFC#24	4_M_SAGE_C,{
+	mes "[Memórias da Rede]";
+	mes "A fortaleza guarda os fragmentos do Sol Antigo. Oficinas, mercado de sucata e jardins resistentes cercam a praça dos guardiões. Reunindo os quatro núcleos, a Rede Helios poderá voltar a ligar as comunidades.";
+	close;
+}
+
+er_rubra,106,170,4	script	CidadeFC#25	111,{
+	mes "[Caminho para Vale das Brasas Verdes]";
+	mes "Siga a passagem para Vale das Brasas Verdes. Combine a viagem com seu grupo.";
+	close;
+}
+
+er_rubra,106,22,4	script	CidadeFC#26	111,{
+	mes "[Caminho para Selva das Marés de Éter]";
+	mes "Siga a passagem para Selva das Marés de Éter. Combine a viagem com seu grupo.";
+	close;
+}
+
+er_rubra,22,96,4	script	CidadeFC#27	111,{
+	mes "[Caminho para Aurea — Distrito Recuperado]";
+	mes "Siga a passagem para Aurea — Distrito Recuperado. Combine a viagem com seu grupo.";
+	close;
+}
+
+er_brasa	mapflag	loadevent
+
+er_brasa,100,83,4	script	CidadeFC#28	4_M_SAGE_C,{
+	mes "[Guia de Vale das Brasas Verdes]";
+	mes "Bosques resistentes cresceram entre velhas tubulações. A estrada ao norte leva da Citadela Rubra à Coroa Celeste. Faixa recomendada: 40–90. As passagens são compartilhadas por todos os grupos.";
+	close;
+}
+
+er_brasa,87,82,4	script	CidadeFC#29	4_M_SAGE_C,{
+	mes "[Patrulha de Vale das Brasas Verdes]";
+	if(quest_fc_active!=1){mes "Patrulha: derrote 20 criaturas desta região. As derrotas em outras regiões não contam.";if(select("Aceitar patrulha:Sair")==1){quest_fc_active=1;quest_fc_kills=0;mes "Patrulha iniciada.";}close;}
+	mes "Criaturas derrotadas: "+quest_fc_kills+"/20.";
+	if(quest_fc_kills<20)close;
+	if(select("Receber experiência e repetir:Sair")==2)close;
+	getexp BaseLevel*100000,JobLevel*10000;
+	quest_fc_kills=0;mes "Patrulha concluída. Experiência recebida! Uma nova patrulha começou.";close;
+}
+
+er_brasa,106,22,4	script	CidadeFC#30	111,{
+	mes "[Caminho para Citadela Rubra]";
+	mes "Siga a passagem para Citadela Rubra. Combine a viagem com seu grupo.";
+	close;
+}
+
+er_brasa,106,170,4	script	CidadeFC#31	111,{
+	mes "[Caminho para Coroa Celeste]";
+	mes "Siga a passagem para Coroa Celeste. Combine a viagem com seu grupo.";
+	close;
+}
+
+er_brasa,38,84,13,22	monster	Orc das Brasas	1023,16,20000,12000,PatrulhasFC::OnKill1
+
+er_brasa,150,100,13,24	monster	Orc do Bosque	1273,12,20000,12000,PatrulhasFC::OnKill1
+
+er_brasa,74,144,12,10	monster	Sentinela da Sucata	1213,10,20000,12000,PatrulhasFC::OnKill1
+
+er_celeste	mapflag	loadevent
+
+er_celeste	mapflag	town
+
+er_celeste	mapflag	nobranch
+
+er_celeste	mapflag	nomemo
+
+er_celeste,100,83,4	script	CidadeFC#32	4_M_SAGE_C,{
+	mes "[Guia de Coroa Celeste]";
+	mes "A catedral do Éter mantém as pontes e as cascatas do distrito suspenso. A natureza recuperou seus terraços de pedra clara. Faixa recomendada: Área segura. As passagens são compartilhadas por todos os grupos.";
+	close;
+}
+
+er_celeste,89,83,4	script	CidadeFC#33	4_F_KAFRA1,{
+	mes "[Descanso e retorno]";
+	.@choice=select("Descansar:Salvar retorno:Sair");
+	if(.@choice==1){percentheal 100,100;mes "HP e SP recuperados.";}
+	if(.@choice==2){savepoint "er_celeste",96,86;mes "Retorno salvo nesta cidade.";}
+	close;
+}
+
+er_celeste,107,83,4	script	CidadeFC#34	4_M_SAGE_C,{
+	mes "[Armazém de Coroa Celeste]";
+	close2;
+	openstorage;
+	end;
+}
+
+er_celeste,87,70,4	shop	CidadeFC#35	4_M_01,501:-1,502:-1,503:-1,504:-1,505:-1,506:-1,507:-1,601:-1,602:-1,1750:-1
+
+er_celeste,105,70,4	script	CidadeFC#36	4_M_SAGE_C,{
+	mes "[Memórias da Rede]";
+	mes "A catedral do Éter mantém as pontes e as cascatas do distrito suspenso. A natureza recuperou seus terraços de pedra clara. Reunindo os quatro núcleos, a Rede Helios poderá voltar a ligar as comunidades.";
+	close;
+}
+
+er_celeste,106,22,4	script	CidadeFC#37	111,{
+	mes "[Caminho para Vale das Brasas Verdes]";
+	mes "Siga a passagem para Vale das Brasas Verdes. Combine a viagem com seu grupo.";
+	close;
+}
+
+er_celeste,106,170,4	script	CidadeFC#38	111,{
+	mes "[Caminho para Floresta dos Condutores]";
+	mes "Siga a passagem para Floresta dos Condutores. Combine a viagem com seu grupo.";
+	close;
+}
+
+er_jardim	mapflag	loadevent
+
+er_jardim,100,83,4	script	CidadeFC#39	4_M_SAGE_C,{
+	mes "[Guia de Floresta dos Condutores]";
+	mes "Árvores envolveram os condutores da cidade suspensa. Siga a estrada e a ponte para alcançar a Última Forja. Faixa recomendada: 90–150. As passagens são compartilhadas por todos os grupos.";
+	close;
+}
+
+er_jardim,87,82,4	script	CidadeFC#40	4_M_SAGE_C,{
+	mes "[Patrulha de Floresta dos Condutores]";
+	if(quest_fc_active!=2){mes "Patrulha: derrote 20 criaturas desta região. As derrotas em outras regiões não contam.";if(select("Aceitar patrulha:Sair")==1){quest_fc_active=2;quest_fc_kills=0;mes "Patrulha iniciada.";}close;}
+	mes "Criaturas derrotadas: "+quest_fc_kills+"/20.";
+	if(quest_fc_kills<20)close;
+	if(select("Receber experiência e repetir:Sair")==2)close;
+	getexp BaseLevel*200000,JobLevel*20000;
+	quest_fc_kills=0;mes "Patrulha concluída. Experiência recebida! Uma nova patrulha começou.";close;
+}
+
+er_jardim,106,22,4	script	CidadeFC#41	111,{
+	mes "[Caminho para Coroa Celeste]";
+	mes "Siga a passagem para Coroa Celeste. Combine a viagem com seu grupo.";
+	close;
+}
+
+er_jardim,106,170,4	script	CidadeFC#42	111,{
+	mes "[Caminho para Bastião da Última Forja]";
+	mes "Siga a passagem para Bastião da Última Forja. Combine a viagem com seu grupo.";
+	close;
+}
+
+er_jardim,38,84,13,22	monster	Vespa do Éter	1994,16,20000,12000,PatrulhasFC::OnKill2
+
+er_jardim,150,100,13,24	monster	Golem do Condutor	2024,10,20000,12000,PatrulhasFC::OnKill2
+
+er_jardim,74,144,12,10	monster	Aranha das Raízes	2092,14,20000,12000,PatrulhasFC::OnKill2
+
+er_forja	mapflag	loadevent
+
+er_forja	mapflag	town
+
+er_forja	mapflag	nobranch
+
+er_forja	mapflag	nomemo
+
+er_forja,100,83,4	script	CidadeFC#43	4_M_SAGE_C,{
+	mes "[Guia de Bastião da Última Forja]";
+	mes "Uma comunidade industrial sobrevive entre muralhas, guindastes e canais de resfriamento. A última forja reconstrói a Rede Helios. Faixa recomendada: Área segura. As passagens são compartilhadas por todos os grupos.";
+	close;
+}
+
+er_forja,89,83,4	script	CidadeFC#44	4_F_KAFRA1,{
+	mes "[Descanso e retorno]";
+	.@choice=select("Descansar:Salvar retorno:Sair");
+	if(.@choice==1){percentheal 100,100;mes "HP e SP recuperados.";}
+	if(.@choice==2){savepoint "er_forja",96,86;mes "Retorno salvo nesta cidade.";}
+	close;
+}
+
+er_forja,107,83,4	script	CidadeFC#45	4_M_SAGE_C,{
+	mes "[Armazém de Bastião da Última Forja]";
+	close2;
+	openstorage;
+	end;
+}
+
+er_forja,87,70,4	shop	CidadeFC#46	4_M_01,501:-1,502:-1,503:-1,504:-1,505:-1,506:-1,507:-1,601:-1,602:-1,1750:-1
+
+er_forja,105,70,4	script	CidadeFC#47	4_M_SAGE_C,{
+	mes "[Memórias da Rede]";
+	mes "Uma comunidade industrial sobrevive entre muralhas, guindastes e canais de resfriamento. A última forja reconstrói a Rede Helios. Reunindo os quatro núcleos, a Rede Helios poderá voltar a ligar as comunidades.";
+	close;
+}
+
+er_forja,106,22,4	script	CidadeFC#48	111,{
+	mes "[Caminho para Floresta dos Condutores]";
+	mes "Siga a passagem para Floresta dos Condutores. Combine a viagem com seu grupo.";
+	close;
+}
+
+er_forja,106,170,4	script	CidadeFC#49	111,{
+	mes "[Caminho para Deserto das Máquinas Vivas]";
+	mes "Siga a passagem para Deserto das Máquinas Vivas. Combine a viagem com seu grupo.";
+	close;
+}
+
+er_escomb	mapflag	loadevent
+
+er_escomb,100,83,4	script	CidadeFC#50	4_M_SAGE_C,{
+	mes "[Guia de Deserto das Máquinas Vivas]";
+	mes "Dunas, oásis e carcaças industriais rodeiam a trilha. Criaturas resistentes defendem as máquinas que ainda funcionam. Faixa recomendada: 140–210. As passagens são compartilhadas por todos os grupos.";
+	close;
+}
+
+er_escomb,87,82,4	script	CidadeFC#51	4_M_SAGE_C,{
+	mes "[Patrulha de Deserto das Máquinas Vivas]";
+	if(quest_fc_active!=3){mes "Patrulha: derrote 20 criaturas desta região. As derrotas em outras regiões não contam.";if(select("Aceitar patrulha:Sair")==1){quest_fc_active=3;quest_fc_kills=0;mes "Patrulha iniciada.";}close;}
+	mes "Criaturas derrotadas: "+quest_fc_kills+"/20.";
+	if(quest_fc_kills<20)close;
+	if(select("Receber experiência e repetir:Sair")==2)close;
+	getexp BaseLevel*300000,JobLevel*30000;
+	quest_fc_kills=0;mes "Patrulha concluída. Experiência recebida! Uma nova patrulha começou.";close;
+}
+
+er_escomb,106,22,4	script	CidadeFC#52	111,{
+	mes "[Caminho para Bastião da Última Forja]";
+	mes "Siga a passagem para Bastião da Última Forja. Combine a viagem com seu grupo.";
+	close;
+}
+
+er_escomb,106,170,4	script	CidadeFC#53	111,{
+	mes "[Caminho para Jardins de Nova Aurora]";
+	mes "Siga a passagem para Jardins de Nova Aurora. Combine a viagem com seu grupo.";
+	close;
+}
+
+er_escomb,38,84,13,22	monster	Louva-a-deus da Forja	2133,14,20000,12000,PatrulhasFC::OnKill3
+
+er_escomb,150,100,13,24	monster	Deletério de Vidro	20374,12,20000,12000,PatrulhasFC::OnKill3
+
+er_escomb,74,144,12,10	monster	Espectro da Máquina	20938,10,20000,12000,PatrulhasFC::OnKill3
+
+er_azul	mapflag	loadevent
+
+er_azul	mapflag	town
+
+er_azul	mapflag	nobranch
+
+er_azul	mapflag	nomemo
+
+er_azul,100,83,4	script	CidadeFC#54	4_M_SAGE_C,{
+	mes "[Guia de Jardins de Nova Aurora]";
+	mes "O antigo terminal ferroviário tornou-se uma cidade de jardins, canais e cristais. Sua torre alimenta a reconstrução de Éridan. Faixa recomendada: Área segura. As passagens são compartilhadas por todos os grupos.";
+	close;
+}
+
+er_azul,89,83,4	script	CidadeFC#55	4_F_KAFRA1,{
+	mes "[Descanso e retorno]";
+	.@choice=select("Descansar:Salvar retorno:Sair");
+	if(.@choice==1){percentheal 100,100;mes "HP e SP recuperados.";}
+	if(.@choice==2){savepoint "er_azul",96,86;mes "Retorno salvo nesta cidade.";}
+	close;
+}
+
+er_azul,107,83,4	script	CidadeFC#56	4_M_SAGE_C,{
+	mes "[Armazém de Jardins de Nova Aurora]";
+	close2;
+	openstorage;
+	end;
+}
+
+er_azul,87,70,4	shop	CidadeFC#57	4_M_01,501:-1,502:-1,503:-1,504:-1,505:-1,506:-1,507:-1,601:-1,602:-1,1750:-1
+
+er_azul,105,70,4	script	CidadeFC#58	4_M_SAGE_C,{
+	mes "[Memórias da Rede]";
+	mes "O antigo terminal ferroviário tornou-se uma cidade de jardins, canais e cristais. Sua torre alimenta a reconstrução de Éridan. Reunindo os quatro núcleos, a Rede Helios poderá voltar a ligar as comunidades.";
+	close;
+}
+
+er_azul,106,22,4	script	CidadeFC#59	111,{
+	mes "[Caminho para Deserto das Máquinas Vivas]";
+	mes "Siga a passagem para Deserto das Máquinas Vivas. Combine a viagem com seu grupo.";
+	close;
+}
+
+er_azul,106,170,4	script	CidadeFC#60	111,{
+	mes "[Caminho para Selva das Marés de Éter]";
+	mes "Siga a passagem para Selva das Marés de Éter. Combine a viagem com seu grupo.";
+	close;
+}
+
+er_azul,170,96,4	script	CidadeFC#61	111,{
+	mes "[Caminho para Vila das Raízes]";
+	mes "Siga a passagem para Vila das Raízes. Combine a viagem com seu grupo.";
+	close;
+}
+
+er_selva	mapflag	loadevent
+
+er_selva,100,83,4	script	CidadeFC#62	4_M_SAGE_C,{
+	mes "[Guia de Selva das Marés de Éter]";
+	mes "A floresta costeira e seus canais unem Nova Aurora à Citadela Rubra. As clareiras afastadas exigem equipamento e um grupo preparado. Faixa recomendada: 200–275. As passagens são compartilhadas por todos os grupos.";
+	close;
+}
+
+er_selva,87,82,4	script	CidadeFC#63	4_M_SAGE_C,{
+	mes "[Patrulha de Selva das Marés de Éter]";
+	if(quest_fc_active!=4){mes "Patrulha: derrote 20 criaturas desta região. As derrotas em outras regiões não contam.";if(select("Aceitar patrulha:Sair")==1){quest_fc_active=4;quest_fc_kills=0;mes "Patrulha iniciada.";}close;}
+	mes "Criaturas derrotadas: "+quest_fc_kills+"/20.";
+	if(quest_fc_kills<20)close;
+	if(select("Receber experiência e repetir:Sair")==2)close;
+	getexp BaseLevel*400000,JobLevel*40000;
+	quest_fc_kills=0;mes "Patrulha concluída. Experiência recebida! Uma nova patrulha começou.";close;
+}
+
+er_selva,106,22,4	script	CidadeFC#64	111,{
+	mes "[Caminho para Jardins de Nova Aurora]";
+	mes "Siga a passagem para Jardins de Nova Aurora. Combine a viagem com seu grupo.";
+	close;
+}
+
+er_selva,106,170,4	script	CidadeFC#65	111,{
+	mes "[Caminho para Citadela Rubra]";
+	mes "Siga a passagem para Citadela Rubra. Combine a viagem com seu grupo.";
+	close;
+}
+
+er_selva,38,84,13,22	monster	Napeo da Selva	20922,14,20000,12000,PatrulhasFC::OnKill4
+
+er_selva,150,100,13,24	monster	Litus das Marés	20925,12,20000,12000,PatrulhasFC::OnKill4
+
+er_selva,74,144,12,10	monster	Amitera da Rede	20924,12,20000,12000,PatrulhasFC::OnKill4
+
+-	script	PatrulhasFC	-1,{
+
+OnKill1:
+	if(quest_fc_active==1&&strcharinfo(3)=="er_brasa"&&quest_fc_kills<20){quest_fc_kills++;if(quest_fc_kills==20)dispbottom "Patrulha concluída! Volte ao acampamento para receber experiência.";}
+	end;
+
+OnKill2:
+	if(quest_fc_active==2&&strcharinfo(3)=="er_jardim"&&quest_fc_kills<20){quest_fc_kills++;if(quest_fc_kills==20)dispbottom "Patrulha concluída! Volte ao acampamento para receber experiência.";}
+	end;
+
+OnKill3:
+	if(quest_fc_active==3&&strcharinfo(3)=="er_escomb"&&quest_fc_kills<20){quest_fc_kills++;if(quest_fc_kills==20)dispbottom "Patrulha concluída! Volte ao acampamento para receber experiência.";}
+	end;
+
+OnKill4:
+	if(quest_fc_active==4&&strcharinfo(3)=="er_selva"&&quest_fc_kills<20){quest_fc_kills++;if(quest_fc_kills==20)dispbottom "Patrulha concluída! Volte ao acampamento para receber experiência.";}
+	end;
+
+OnPCLoadMapEvent:
+
+	if(strcharinfo(3)=="er_rubra"){dispbottom "Citadela Rubra — Área segura. Siga as placas para viajar com seu grupo.";end;}
+
+	if(strcharinfo(3)=="er_brasa"){dispbottom "Vale das Brasas Verdes — 40–90. Siga as placas para viajar com seu grupo.";end;}
+
+	if(strcharinfo(3)=="er_celeste"){dispbottom "Coroa Celeste — Área segura. Siga as placas para viajar com seu grupo.";end;}
+
+	if(strcharinfo(3)=="er_jardim"){dispbottom "Floresta dos Condutores — 90–150. Siga as placas para viajar com seu grupo.";end;}
+
+	if(strcharinfo(3)=="er_forja"){dispbottom "Bastião da Última Forja — Área segura. Siga as placas para viajar com seu grupo.";end;}
+
+	if(strcharinfo(3)=="er_escomb"){dispbottom "Deserto das Máquinas Vivas — 140–210. Siga as placas para viajar com seu grupo.";end;}
+
+	if(strcharinfo(3)=="er_azul"){dispbottom "Jardins de Nova Aurora — Área segura. Siga as placas para viajar com seu grupo.";end;}
+
+	if(strcharinfo(3)=="er_selva"){dispbottom "Selva das Marés de Éter — 200–275. Siga as placas para viajar com seu grupo.";end;}
+
+	end;
+}

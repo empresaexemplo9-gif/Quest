@@ -1,6 +1,8 @@
 name: quest-ragnarok
 services:
   database:
+    mem_limit: 512m
+    cpus: 1.0
     image: mariadb:11.8@sha256:93fc3fe333b6cdfb061425869c2c3a5bb2851c0c74dbebc2c940f024e7482d76
     env_file: .env
     environment:
@@ -17,6 +19,8 @@ services:
       retries: 30
     restart: unless-stopped
   game:
+    mem_limit: 3g
+    cpus: 2.0
     platform: linux/amd64
     build:
       context: ./context
@@ -37,6 +41,8 @@ services:
       - "127.0.0.1:${QUEST_PRIVATE_PORT:-13005}:3005"
     restart: unless-stopped
   https:
+    mem_limit: 128m
+    cpus: 0.5
     image: caddy:2@sha256:173b26306d711395accaeba8b67afcaad2a085ccb1e6bf26010bfe8c095a5229
     env_file: .env
     depends_on:

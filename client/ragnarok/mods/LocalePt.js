@@ -1,5 +1,8 @@
 // Quest UI localization. Resource names, IDs and packet data are never changed.
 export const translations = {
+ 'Dragon Knight':'Cavaleiro Dracônico','Arch Mage':'Arquimago','Windhawk':'Falcão do Vento','Cardinal':'Cardeal','Meister':'Mestre Mecânico','Shadow Cross':'Cruz das Sombras','Hyper Novice':'Hiper Aprendiz',
+ 'All skills have been added to your skill tree.':'Todas as habilidades foram liberadas na sua árvore.','Welcome to rAthena! Enjoy! Please report any bugs you find.':'Bem-vindo a Éridan! Informe aos GMs os problemas que encontrar.','Cannot determine SVN/Git version.':'Servidor Quest iniciado.',
+ 'Call function is OFF':'Chamada automática desativada.','Homunculus automatic feeding is OFF':'Alimentação automática de homúnculo desativada.','Auto feeding inactivated.':'Alimentação automática desativada.','Warped.':'Viagem concluída.',
  'OK':'Confirmar','Cancel':'Cancelar','Close':'Fechar','Save':'Salvar','Apply':'Aplicar','Reset':'Restaurar','Delete':'Excluir','Create':'Criar','Confirm':'Confirmar','Yes':'Sim','No':'Não','Exit':'Sair','Back':'Voltar','Next':'Próximo','Previous':'Anterior',
  'Login':'Entrar','Password':'Senha','Username':'Nome de usuário','User ID':'Usuário','Account':'Conta','Connect':'Conectar','Disconnect':'Desconectar','Select Server':'Escolha o servidor','Character Selection':'Seleção de personagem','Character Creation':'Criação de personagem','Create Character':'Criar personagem','Delete Character':'Excluir personagem','Select Character':'Escolha seu personagem','Name':'Nome','Gender':'Aparência','Male':'Masculino','Female':'Feminino','Hair Style':'Estilo do cabelo','Hair Color':'Cor do cabelo','Novice':'Aprendiz','Swordsman':'Espadachim','Swordman':'Espadachim','Mage':'Mago','Archer':'Arqueiro','Thief':'Gatuno','Acolyte':'Noviço','Merchant':'Mercador',
  'Inventory':'Inventário','Equipment':'Equipamentos','Items':'Itens','Item':'Item','Skills':'Habilidades','Skill':'Habilidade','Skill Tree':'Árvore de habilidades','Character':'Personagem','Status':'Atributos','Basic Info':'Informações básicas','Base Level':'Nível base','Job Level':'Nível de classe','Level':'Nível','Job':'Classe','Class':'Classe','Weight':'Peso','Experience':'Experiência','Skill Points':'Pontos de habilidade','Status Points':'Pontos de atributo','Attack':'Ataque','Defense':'Defesa','Magic Attack':'Ataque mágico','Magic Defense':'Defesa mágica','Hit':'Precisão','Flee':'Esquiva','Critical':'Crítico','Strength':'Força','Agility':'Agilidade','Vitality':'Vitalidade','Intelligence':'Inteligência','Dexterity':'Destreza','Luck':'Sorte',
@@ -10,6 +13,10 @@ export function translateLabel(value) {
  const trimmed=value.trim();
  if(Object.hasOwn(translations,trimmed))return value.replace(trimmed,translations[trimmed]);
  return value;
+}
+export function buttonLabel(filename='') {
+ const key=filename.split('/').pop().replace(/\.(bmp|png)$/i,'').replace(/^btn_/i,'');
+ return ({ok:'Confirmar',cancel:'Cancelar',close:'Fechar',next:'Próximo',prev:'Anterior',exit:'Sair',connect:'Entrar',create:'Criar',delete:'Excluir',save:'Salvar'})[key]||'';
 }
 const observed=new WeakSet();
 export function localize(root) {

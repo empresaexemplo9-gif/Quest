@@ -1,0 +1,23 @@
+Header:
+  Type: PLAYER_GROUP_DB
+  Version: 1
+Body:
+  - Id: 98
+    Name: Quest GM
+    Level: 99
+    LogCommands: true
+    Permissions:
+      can_trade: true
+      can_party: true
+      command_enable: true
+      all_commands: true
+      all_skill: true
+      all_equipment: true
+      skill_unconditional: true
+      item_unconditional: true
+      channel_admin: true
+      can_trade_bounded: true
+      trade_unconditional: true
+      bypass_max_stat: true
+      use_check: true
+      use_changemaptype: true

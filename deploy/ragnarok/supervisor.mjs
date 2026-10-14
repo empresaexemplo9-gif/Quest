@@ -21,7 +21,7 @@ settings.char = `bind_ip: 127.0.0.1\nlogin_ip: 127.0.0.1\nchar_ip: 127.0.0.1\nse
 settings.map = `bind_ip: 127.0.0.1\nchar_ip: 127.0.0.1\nmap_ip: 127.0.0.1\nuserid: quest_inter\npasswd: ${interPassword}\n`;
 settings.web = 'bind_ip: 127.0.0.1\n';
 settings.log = '// Database configuration is in inter_conf.txt.\n';
-settings.battle = 'feature.mesitemicon: off\n';
+settings.battle = 'feature.mesitemicon: off\nmax_cloth_color: 211\n';
 // The native listeners are private. Public attempts are bounded by the HTTPS/WSS gateway;
 // health checks and multiple players otherwise trigger the engine's five-connection localhost limit.
 settings.packet = 'allow: 127.0.0.1\nddos_count: 100\n';

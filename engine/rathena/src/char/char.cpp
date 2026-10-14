@@ -1485,9 +1485,27 @@ int32 char_make_new_char( struct char_session_data* sd, char* name_, int32 str, 
 			Sql_ShowDebug(sql_handle);
 	}
 
-	// Quest: exactly the seven human starting classes; advanced jobs remain forbidden.
-	if(start_job < JOB_NOVICE || start_job > JOB_THIEF)
-		return -2; // Invalid job
+	// GM plans require the authenticated login-server group, never a client flag.
+	const bool quest_gm_planned = start_job >= 10000;
+	int32 quest_family = start_job;
+	int32 quest_base_level = 10, quest_job_level = 10, quest_dye = 0;
+	if (quest_gm_planned) {
+		if (sd->group_id != 98) return -2;
+		const int32 encoded = start_job - 10000;
+		quest_family = encoded / 2300;
+		const int32 choice = encoded % 2300;
+		if (quest_family < JOB_NOVICE || quest_family > JOB_THIEF || choice >= 2200) return -2;
+		quest_base_level = choice / 8 + 1;
+		quest_dye = choice % 8;
+		const int16 third_jobs[7] = {JOB_SUPER_NOVICE_E,JOB_RUNE_KNIGHT,JOB_WARLOCK,JOB_RANGER,JOB_ARCH_BISHOP,JOB_MECHANIC,JOB_GUILLOTINE_CROSS};
+		const int16 fourth_jobs[7] = {JOB_HYPER_NOVICE,JOB_DRAGON_KNIGHT,JOB_ARCH_MAGE,JOB_WINDHAWK,JOB_CARDINAL,JOB_MEISTER,JOB_SHADOW_CROSS};
+		start_job = quest_base_level > 200 ? fourth_jobs[quest_family] : quest_base_level > 99 ? third_jobs[quest_family] : quest_family;
+		quest_job_level = quest_base_level > 200 ? 60 : quest_base_level > 99 ? 70 : quest_family == JOB_NOVICE ? 10 : 50;
+		str = agi = vit = int_ = dex = luk = 500;
+	} else if(start_job < JOB_NOVICE || start_job > JOB_THIEF) {
+		return -2; // Regular players retain the seven starting classes.
+	}
+	const int32 quest_clothes = 100 + quest_family * 16 + (quest_gm_planned && quest_base_level == 275 ? 8 : 0) + quest_dye;
 
 #if PACKETVER >= 20151001
 	// Check for Doram based information.
@@ -1502,11 +1520,11 @@ int32 char_make_new_char( struct char_session_data* sd, char* name_, int32 str, 
 
 	//Insert the new char entry to the database
 	if( SQL_ERROR == Sql_Query(sql_handle, "INSERT INTO `%s` (`account_id`, `char_num`, `name`, `class`, `zeny`, `status_point`, `str`, `agi`, `vit`, `int`, `dex`, `luk`, `max_hp`, `hp`,"
-		"`max_sp`, `sp`, `hair`, `hair_color`, `last_map`, `last_x`, `last_y`, `save_map`, `save_x`, `save_y`, `sex`, `last_instanceid`, `body`, `base_level`, `job_level`) VALUES ("
-		"'%d', '%d', '%s', '%d', '%d',  '%d', '%d', '%d', '%d', '%d', '%d', '%d', '%u', '%u', '%u', '%u', '%d', '%d', '%s', '%d', '%d', '%s', '%d', '%d', '%c', '0', '%d', '10', '10')",
+		"`max_sp`, `sp`, `hair`, `hair_color`, `last_map`, `last_x`, `last_y`, `save_map`, `save_x`, `save_y`, `sex`, `last_instanceid`, `body`, `base_level`, `job_level`, `clothes_color`) VALUES ("
+		"'%d', '%d', '%s', '%d', '%d',  '%d', '%d', '%d', '%d', '%d', '%d', '%d', '%u', '%u', '%u', '%u', '%d', '%d', '%s', '%d', '%d', '%s', '%d', '%d', '%c', '0', '%d', '%d', '%d', '%d')",
 		schema_config.char_db, sd->account_id , slot, esc_name, start_job, charserv_config.start_zeny, 80, str, agi, vit, int_, dex, luk,
 		(40 * (100 + vit)/100) , (40 * (100 + vit)/100 ),  (11 * (100 + int_)/100), (11 * (100 + int_)/100), hair_style, hair_color,
-		tmp_start_point[start_point_idx].map, tmp_start_point[start_point_idx].x, tmp_start_point[start_point_idx].y, tmp_start_point[start_point_idx].map, tmp_start_point[start_point_idx].x, tmp_start_point[start_point_idx].y, sex, start_job ) )
+		tmp_start_point[start_point_idx].map, tmp_start_point[start_point_idx].x, tmp_start_point[start_point_idx].y, tmp_start_point[start_point_idx].map, tmp_start_point[start_point_idx].x, tmp_start_point[start_point_idx].y, sex, quest_gm_planned ? 0 : quest_family, quest_base_level, quest_job_level, quest_clothes ) )
 	{
 		Sql_ShowDebug(sql_handle);
 		return -2; //No, stop the procedure!
@@ -1535,13 +1553,16 @@ int32 char_make_new_char( struct char_session_data* sd, char* name_, int32 str, 
 		{1,9,36,5,37,4,0,0},
 		{1,9,48,5,49,4,0,0}
 	};
-	for (int32 quest_skill = 0; quest_skill < 8 && quest_skills[start_job][quest_skill]; quest_skill += 2) {
-		if (SQL_ERROR == Sql_Query(sql_handle, "INSERT INTO `%s` (`char_id`,`id`,`lv`,`flag`) VALUES ('%u','%u','%u','0')", schema_config.skill_db, char_id, quest_skills[start_job][quest_skill], quest_skills[start_job][quest_skill+1]))
+	for (int32 quest_skill = 0; quest_skill < 8 && quest_skills[quest_family][quest_skill]; quest_skill += 2) {
+		if (SQL_ERROR == Sql_Query(sql_handle, "INSERT INTO `%s` (`char_id`,`id`,`lv`,`flag`) VALUES ('%u','%u','%u','0')", schema_config.skill_db, char_id, quest_skills[quest_family][quest_skill], quest_skills[quest_family][quest_skill+1]))
 			return quest_creation_failed();
 	}
 	// The first map login heals only this new character; existing characters are untouched.
 	if (SQL_ERROR == Sql_Query(sql_handle, "INSERT INTO `char_reg_num` (`char_id`,`key`,`index`,`value`) VALUES ('%u','quest_created','0','1')", char_id))
 		return quest_creation_failed();
+	if (quest_gm_planned && SQL_ERROR == Sql_Query(sql_handle,
+		"INSERT INTO `char_reg_num` (`char_id`,`key`,`index`,`value`) VALUES ('%u','quest_gm_family',0,'%d'),('%u','quest_gm_level',0,'%d'),('%u','quest_gm_color',0,'%d'),('%u','quest_gm_planned',0,1)",
+		char_id,quest_family,char_id,quest_base_level,char_id,quest_dye,char_id)) return quest_creation_failed();
 	//Give the char the default items
 	for (k = 0; k <= MAX_STARTITEM && tmp_start_items[k].nameid != 0; k++) {
 		if( SQL_ERROR == Sql_Query(sql_handle, "INSERT INTO `%s` (`char_id`,`nameid`, `amount`, `equip`, `identify`) VALUES ('%d', '%u', '%hu', '%u', '%d')", schema_config.inventory_db, char_id, tmp_start_items[k].nameid, tmp_start_items[k].amount, tmp_start_items[k].pos, 1) )

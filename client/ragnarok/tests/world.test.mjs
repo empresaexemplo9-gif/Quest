@@ -8,7 +8,7 @@ import {validateWorld,cacheWithMaps} from '../prepare-city.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../../..'),content=path.join(root,'content/eridan');
 test('all shared regions, NPCs, gates and return arrivals are reachable',()=>{
  const {world,maps}=validateWorld(content);
- assert.equal(world.regions.length,10);assert.equal(world.routes.length,30);assert.equal(maps.size,14);
+ assert.equal(world.regions.length,18);assert.equal(world.routes.length,50);assert.equal(maps.size,22);
  for(const r of world.regions){const g=maps.get(r.id);
   for(let x=0;x<g.width;x++)assert.equal(g.cells[x],1);
   for(let y=0;y<g.height;y++)assert.equal(g.cells[y*g.width],1);

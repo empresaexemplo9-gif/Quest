@@ -1,0 +1,183 @@
+// GM creation wizard. Permissions are verified by the native server on every entry.
+er_chama0,51,28,4	script	Atelier GM	4_F_KAFRA1,{
+ if (getgroupid() != 98) { mes "[Atelier de Éridan]"; mes "Este atelier é reservado aos GMs do Quest."; close; }
+ callsub S_Menu;
+ end;
+
+OnInit:
+ bindatcmd "gmquest","Atelier GM::OnMenu",99,99;
+ end;
+
+OnMenu:
+ if (getgroupid() != 98) end;
+ callsub S_Menu;
+ end;
+
+OnPCLoginEvent:
+ if (getgroupid() != 98) end;
+ if (!quest_gm_ready) { callsub S_Create; end; }
+ callsub S_Visual;
+ dispbottom "GM: use @gmquest para nível, arsenal, roupas e cores.";
+ end;
+
+OnPCLoadMapEvent:
+ if (getgroupid() == 98 && quest_gm_ready) callsub S_Visual;
+ end;
+
+S_Menu:
+ if (getgroupid() != 98) return;
+ mes "[Atelier GM]";
+ mes "Escolha o nível, receba o arsenal e personalize o visual.";
+ next;
+ switch(select("Configurar personagem e nível:Repor arsenal da classe:Escolher roupa:Escolher cor:Fechar")) {
+ case 1: callsub S_Create; break;
+ case 2: callsub S_Kit; close;
+ case 3:
+  mes "[Roupas da classe]";
+  mes "A roupa é independente dos atributos dos equipamentos.";
+  next;
+  quest_gm_style = select("Visual da primeira referência:Visual épico da referência:Visual clássico da classe")-1;
+  callsub S_Visual;
+  close;
+ case 4:
+  mes "[Cores do traje]";
+  mes "Escolha a cor. Natural preserva as cores da referência.";
+  next;
+  quest_gm_color = select("Natural:Vermelho:Azul:Verde:Violeta:Dourado:Prata:Preto")-1;
+  if (quest_gm_style == 2) quest_gm_style = 0;
+  callsub S_Visual;
+  close;
+ default: close;
+ }
+ return;
+
+S_Create:
+ if (getgroupid() != 98) return;
+ if (!quest_gm_ready && !quest_gm_planned) {
+  if (Class >= Job_Novice && Class <= Job_Thief) quest_gm_family = Class;
+  else {
+   mes "[Criação GM]"; mes "Escolha a família de classe."; next;
+   .@family = select("Aprendiz:Espadachim:Mago:Arqueiro:Noviço:Mercador:Gatuno")-1;
+   quest_gm_family = .@family;
+  }
+ }
+ if (quest_gm_planned) .@level = quest_gm_level;
+ else {
+ mes "[Criação GM]";
+ mes "Nível base de 1 a 275. A classe evolui para suportar o nível escolhido.";
+ mes "Todas as habilidades e o arsenal da sua família serão liberados.";
+ next;
+ .@choice = select("Escolher nível:Nível máximo (275):Voltar");
+ if (.@choice == 1) input .@level,1,275;
+ else if (.@choice == 2) .@level = 275;
+ else close;
+ mes "[Confirmar personagem]";
+ mes "Nível escolhido: " + .@level + ".";
+ mes "Se escolher 275, receberá automaticamente o visual épico. Você poderá mudar roupa e cor depois.";
+ next;
+ if (select("Aplicar:Voltar") != 1) close;
+ }
+ .@wasready = quest_gm_ready;
+ quest_gm_level = .@level;
+ quest_gm_planned = 1;
+ quest_gm_ready = 0;
+ .@job = quest_gm_family;
+ if (.@level > 200) {
+  switch (quest_gm_family) {
+   case 0: .@job = Job_Hyper_Novice; break;
+   case 1: .@job = Job_Dragon_Knight; break;
+   case 2: .@job = Job_Arch_Mage; break;
+   case 3: .@job = Job_Windhawk; break;
+   case 4: .@job = Job_Cardinal; break;
+   case 5: .@job = Job_Meister; break;
+   case 6: .@job = Job_Shadow_Cross; break;
+  }
+ } else if (.@level > 99) {
+  switch (quest_gm_family) {
+   case 0: .@job = Job_Super_Novice_E; break;
+   case 1: .@job = Job_Rune_Knight; break;
+   case 2: .@job = Job_Warlock; break;
+   case 3: .@job = Job_Ranger; break;
+   case 4: .@job = Job_Arch_Bishop; break;
+   case 5: .@job = Job_Mechanic; break;
+   case 6: .@job = Job_Guillotine_Cross; break;
+  }
+ }
+ jobchange .@job;
+ BaseLevel = .@level;
+ JobLevel = (.@level > 200 ? 60 : (.@level > 99 ? 70 : (quest_gm_family == 0 ? 10 : 50)));
+ atcommand "@allskills";
+ // GM laboratory stats make the entire arsenal usable/carryable.
+ if (readparam(bStr) != 500) atcommand "@str " + (500-readparam(bStr));
+ if (readparam(bAgi) != 500) atcommand "@agi " + (500-readparam(bAgi));
+ if (readparam(bVit) != 500) atcommand "@vit " + (500-readparam(bVit));
+ if (readparam(bInt) != 500) atcommand "@int " + (500-readparam(bInt));
+ if (readparam(bDex) != 500) atcommand "@dex " + (500-readparam(bDex));
+ if (readparam(bLuk) != 500) atcommand "@luk " + (500-readparam(bLuk));
+ Zeny = 1000000000;
+ if (!#quest_gm_first) #quest_gm_first = getcharid(0);
+ if (!.@wasready) quest_gm_style = 0;
+ if (.@level == 275) quest_gm_style = 1;
+ callsub S_Kit;
+ quest_gm_ready = 1;
+ quest_gm_planned = 0;
+ callsub S_Visual;
+ percentheal 100,100;
+ mes "[Personagem GM preparado]";
+ mes "Nível " + BaseLevel + ", habilidades liberadas e arsenal entregue.";
+ mes "Use @gmquest a qualquer momento para trocar roupas, cores ou nível.";
+ close;
+
+S_Kit:
+ if (getgroupid() != 98) return;
+ .@family = quest_gm_family;
+ getinventorylist;
+ .@free = 100 - @inventorylist_count;
+ .@missing = 0;
+ .@bestWeapon = 0; .@bestScore = -1;
+ .@count = getarraysize(getd("$@QuestGMId"+.@family));
+ setarray .@none[0],0,0,0,0,0;
+ // Reserve the complete level-appropriate set before filling with endgame gear.
+ for (.@i=0; .@i<.@count; .@i++) {
+  if (.@i % 16 == 0) sleep2 1;
+  if (getd("$@QuestGMMin"+.@family+"["+.@i+"]") > BaseLevel || getd("$@QuestGMMax"+.@family+"["+.@i+"]") < BaseLevel) continue;
+  .@id = getd("$@QuestGMId"+.@family+"["+.@i+"]");
+  if (getd("$@QuestGMWeapon"+.@family+"["+.@i+"]")) {
+   if (.@bestWeapon == 0) { .@bestWeapon = .@id; .@use[.@i] = 1; }
+  } else {
+   .@location = getiteminfo(.@id,ITEMINFO_LOCATIONS);
+   if (!(.@reserved & .@location)) { .@use[.@i] = 1; .@reserved |= .@location; }
+  }
+ }
+ for (.@pass=0; .@pass<2; .@pass++) {
+ for (.@i=0; .@i<.@count; .@i++) {
+  if (.@i % 16 == 0) sleep2 1;
+  if (.@pass == 0 && !.@use[.@i]) continue;
+  if (.@pass == 1 && !getd("$@QuestGMGrant"+.@family+"["+.@i+"]")) continue;
+  .@id = getd("$@QuestGMId"+.@family+"["+.@i+"]");
+  if (!countitem(.@id)) {
+   if (.@free > 0 && checkweight(.@id,1)) {
+    getitem4 .@id,1,1,getd("$@QuestGMRefine"+.@family+"["+.@i+"]"),0,0,0,0,0,(getd("$@QuestGMGrade"+.@family+"["+.@i+"]") ? ENCHANTGRADE_A : ENCHANTGRADE_NONE),.@none,.@none,.@none;
+    .@free--;
+   } else .@missing++;
+  }
+  if (.@pass == 0 && .@use[.@i] && countitem(.@id) && !isequipped(.@id)) equip .@id;
+ }
+ }
+ if (.@bestWeapon && !isequipped(.@bestWeapon)) equip .@bestWeapon;
+ if (quest_gm_family == 3 && checkweight(1750,1000)) { if (countitem(1750) < 1000) getitem 1750,1000-countitem(1750); equip 1750; }
+ if (.@missing) dispbottom "Parte do arsenal ficou pendente por espaço/peso. Guarde itens e use Repor arsenal.";
+ dispbottom "Arsenal +20 (itens refináveis); conjunto adequado ao nível equipado. Itens já existentes foram preservados.";
+ return;
+
+S_Visual:
+ if (getgroupid() != 98 || !quest_gm_ready) return;
+ if (quest_gm_style == 2) {
+  setlook LOOK_CLOTHES_COLOR,0;
+  changelook LOOK_BASE,Class;
+ } else {
+  // Reserved palette codes encode family, costume and dye. Persist across sessions.
+  setlook LOOK_CLOTHES_COLOR,100+quest_gm_family*16+quest_gm_style*8+quest_gm_color;
+ }
+ return;
+}

@@ -148,6 +148,9 @@ Texturas: Codigo-fonte\\content\\eridan\\data\\texture\\eridan
 Historia/missoes: Codigo-fonte\\content\\eridan e Codigo-fonte\\rathena
 Guia completo: Codigo-fonte\\docs\\editar-chama-viva.md
 Mundo interligado e rotas: Codigo-fonte\\docs\\mundo-interligado.md
+Quatro cidades e caca: Codigo-fonte\\docs\\quatro-cidades-de-eridan.md
+Contas e roupas GM: Codigo-fonte\\docs\\contas-gm-e-roupas.md
+Controles iPad: Codigo-fonte\\docs\\controles-ipad.md
 Mapas novos: Codigo-fonte\\content\\eridan\\data\\er_mata.rsw (floresta), er_deserto.rsw (deserto), er_mina1.rsw (masmorra).
 Previa do mapa: Codigo-fonte\\docs\\images\\chama-viva-v2.png
 
@@ -163,7 +166,7 @@ e transfira suas alteracoes. Esta copia nao contem o historico .git.
 ''')
 write(destination / 'LEIA-ME.txt', 'JOGADOR: instalador e acesso ao jogo principal.\nDESENVOLVEDOR: codigo, servidor independente e arquivos editaveis.\nEnvie o ZIP correspondente ao papel de cada pessoa.\n')
 
-summary = {'sourceRevision': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip(), 'sourceFiles': len(copied), 'packages': []}
+summary = {'version':player_release['version'],'sourceRevision': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip(), 'sourceFiles': len(copied), 'packages': []}
 for folder in (player, developer):
     files = [p for p in sorted(folder.rglob('*')) if p.is_file()]
     manifest = {p.relative_to(folder).as_posix(): {'bytes': p.stat().st_size, 'sha256': digest(p)} for p in files}

@@ -1,4 +1,4 @@
-param([string]$Origin = '', [switch]$SkipDownload, [switch]$NoBrowser)
+param([string]$Origin = '', [switch]$SkipDownload, [switch]$NoBrowser, [switch]$Rebuild)
 $ErrorActionPreference = 'Stop'
 Set-Location $PSScriptRoot
 if (-not (Get-Command docker -ErrorAction SilentlyContinue)) {
@@ -28,7 +28,14 @@ if (-not $SkipDownload) {
 }
 Run-PythonContainer @('configure_server.py','--verify-client')
 Protect-Environment
-& docker compose up --build -d
+# Reuse the prepared image on ordinary starts; a build is needed only once or
+# when an updated server package is explicitly installed.
+$existingGameImage = & docker compose images -q game
+if ($Rebuild -or -not $existingGameImage) {
+    & docker compose build game
+    if ($LASTEXITCODE -ne 0) { throw 'A imagem do servidor nao foi preparada. Os dados existentes foram preservados.' }
+}
+& docker compose up --no-build -d
 if ($LASTEXITCODE -ne 0) { throw 'O servidor nao iniciou corretamente. Consulte: docker compose logs --tail 40' }
 $serverOrigin = ((Get-Content '.env' | Where-Object { $_.StartsWith('QUEST_RO_PUBLIC_URL=') }) -split '=',2)[1]
 $privatePort = ((Get-Content '.env' | Where-Object { $_.StartsWith('QUEST_PRIVATE_PORT=') }) -split '=',2)[1]

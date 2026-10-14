@@ -22,7 +22,8 @@ try {
     try { $locked = $mutex.WaitOne(0) } catch [System.Threading.AbandonedMutexException] { $locked = $true }
     if (-not $locked) { throw 'O servidor ja esta sendo ligado em outra janela. Aguarde essa janela terminar.' }
     Write-Host 'QUEST - LIGAR SERVIDOR' -ForegroundColor Cyan
-    Write-Host 'Aguarde. O jogo abre automaticamente quando estiver pronto.'
+    if ($NoBrowser) { Write-Host 'Aguarde. Quando estiver pronto, use o atalho JOGAR QUEST.' }
+    else { Write-Host 'Aguarde. O jogo abre automaticamente quando estiver pronto.' }
     if (-not (Test-Path -LiteralPath (Join-Path $server 'compose.yaml'))) {
         & (Join-Path $PSScriptRoot 'IniciarServidorWindows.ps1') -Public -PublishMain
     } else {
@@ -37,10 +38,16 @@ try {
             Write-Host 'Iniciando o Docker Desktop...'
             Start-Process -FilePath $desktop -WindowStyle Hidden
             $deadline = (Get-Date).AddMinutes(3)
+            $questSocketRepairAttempted = $false
+            $questDockerStarted = Get-Date
             do {
                 Start-Sleep -Seconds 2
                 $oldPreference = $ErrorActionPreference
                 try { $ErrorActionPreference = 'Continue'; $engine = & docker info --format '{{.OSType}}' 2>$null } finally { $ErrorActionPreference = $oldPreference }
+                if (-not $engine -and -not $questSocketRepairAttempted -and ((Get-Date)-$questDockerStarted).TotalSeconds -gt 12) {
+                    $questSocketRepairAttempted = $true
+                    & (Join-Path $PSScriptRoot 'RepararDockerQuest.ps1') | Out-Null
+                }
             } while (-not $engine -and (Get-Date) -lt $deadline)
         }
         if ($engine -ne 'linux') { throw 'O Docker nao iniciou com containers Linux. Abra o Docker Desktop e confira o estado do WSL2.' }
@@ -51,12 +58,22 @@ try {
             Write-Host 'Ligando o mundo de Eridan...'
             Push-Location $server
             try {
-                & docker compose up -d --no-build
+                # Fix only the existing native configuration/log volumes. This
+                # preserves accounts and makes prior root-owned copies writable.
+                & docker compose stop game
+                if ($LASTEXITCODE -ne 0) { throw 'Nao foi possivel parar a tentativa anterior de inicializacao.' }
+                & docker compose run --rm --no-deps --user root --entrypoint sh game -c 'chown -R node:node /app/engine/rathena/conf/import /app/engine/rathena/log'
+                if ($LASTEXITCODE -ne 0) { throw 'Nao foi possivel reparar as permissoes da configuracao do servidor.' }
+                & docker compose up -d --no-build database game
                 if ($LASTEXITCODE -ne 0) { throw 'Nao foi possivel iniciar os containers. Veja a mensagem acima.' }
             } finally { Pop-Location }
             $deadline = (Get-Date).AddMinutes(2)
             while (-not (Test-QuestReady $localUrl)) {
-                if ((Get-Date) -ge $deadline) { throw 'O mundo ainda nao ficou pronto. Consulte os logs do servidor.' }
+                if ((Get-Date) -ge $deadline) {
+                    Push-Location $server
+                    try { & docker compose logs --tail 30 game } finally { Pop-Location }
+                    throw 'O mundo ainda nao ficou pronto. Os logs da falha aparecem acima.'
+                }
                 Start-Sleep -Seconds 2
             }
         }

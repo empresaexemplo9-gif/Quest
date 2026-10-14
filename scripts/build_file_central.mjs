@@ -20,7 +20,7 @@ try{
  revision ||= execFileSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8',stdio:['ignore','pipe','ignore']}).trim();
  paths=execFileSync('git',['ls-files','-z'],{cwd:root,encoding:'utf8',stdio:['ignore','pipe','ignore']}).split('\0').filter(isShareable);
  for(const entry of execFileSync('git',['ls-files','--eol','-z'],{cwd:root,encoding:'utf8'}).split('\0')){const [flags,name]=entry.split('\t');if(name)eols.set(name,flags);}
- paths=[...new Set([...paths,'public/central/indice.json'])];
+ paths=[...new Set(paths)];
  await writeFile(path.join(root,'public/central/indice.json'),JSON.stringify(paths));
 }catch{
  paths=JSON.parse(await readFile(path.join(root,'public/central/indice.json'),'utf8')).filter(isShareable);

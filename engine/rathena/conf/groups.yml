@@ -246,3 +246,4 @@ Body:
 Footer:
   Imports:
   - Path: conf/import/groups.yml
+  - Path: ../../rathena/quest-groups.yml

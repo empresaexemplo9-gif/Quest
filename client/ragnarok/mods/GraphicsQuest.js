@@ -5,12 +5,12 @@ export const PRESETS = {
  high: { label: 'Alta — 150%', scale: 1.5 },
  light: { label: 'Leve — 100%', scale: 1 }
 };
-const mobile = () => /Mobi|Android|iPad/i.test(navigator.userAgent);
+const mobile = () => navigator.maxTouchPoints > 0 || /Mobi|Android|iPad|iPhone/i.test(navigator.userAgent);
 export function renderSize({width, height, dpr = 1, preset = '8k', limit = 8192, viewport = [limit, limit], mobile = false, adaptiveScale = 1}) {
  width = Math.max(1, Number(width) || 1); height = Math.max(1, Number(height) || 1);
  const profile = PRESETS[preset] || PRESETS.high;
  const requested = profile.width ? Math.min(profile.width / width, profile.height / height) : profile.scale * Math.max(1, Number(dpr) || 1);
- const budget = mobile ? 8294400 : 33177600;
+ const budget = mobile ? 2073600 : 33177600;
  const scale = Math.min(requested * adaptiveScale, limit / width, limit / height, viewport[0] / width, viewport[1] / height, Math.sqrt(budget / (width * height)));
  return {width: Math.max(1, Math.floor(width * scale)), height: Math.max(1, Math.floor(height * scale))};
 }
@@ -32,7 +32,7 @@ let preset, automatic = true, adaptiveScale = 1, renderer, panel, resolution, ch
 const key = 'quest.graphics.v1';
 function preferences() {
  if (preset) return;
- preset = mobile() ? '4k' : '8k';
+ preset = mobile() ? 'light' : 'high';
  try { const saved = JSON.parse(localStorage.getItem(key)); if (saved && PRESETS[saved.preset]) { preset = saved.preset; automatic = saved.automatic !== false; } } catch {}
 }
 function save() { try { localStorage.setItem(key, JSON.stringify({preset, automatic})); } catch {} }
@@ -79,7 +79,7 @@ export default {
  },
  resized() { refresh(); },
  frame(current, now) {
-  if (!this.active || !automatic || !['8k','4k'].includes(preset) || document.hidden || now < graceUntil) { sampleStart = 0; frames = 0; return; }
+  if (!this.active || !automatic || document.hidden || now < graceUntil) { sampleStart = 0; frames = 0; return; }
   if (!sampleStart) sampleStart = now;
   frames++;
   const elapsed = now - sampleStart;

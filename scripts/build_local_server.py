@@ -9,10 +9,10 @@ import subprocess
 import zipfile
 
 root = Path(__file__).resolve().parents[1]
-deployment = root/'.local/ragnarok/deployment'
+deployment = root/'.local/ragnarok/windows-server/Quest-Servidor'
 context = deployment/'context'
 if not context.is_dir():
-    context = root/'.local/ragnarok/windows-server/Quest-Servidor/context'
+    context = root/'.local/ragnarok/deployment/context'
 if not context.is_dir():
     raise SystemExit('Prepare the tested native runtime before building its Windows package.')
 release = json.loads((root/'client/ragnarok/release.lock.json').read_text())
@@ -21,11 +21,16 @@ for name, key in [('engine/rathena/char-server','charBinary'),('.local/ragnarok/
         if hashlib.file_digest(stream,'sha256').hexdigest() != release[key]:
             raise SystemExit('Prepared runtime differs from the tested release: '+name)
 reviewed = ['deploy/ragnarok/Dockerfile', 'client/ragnarok/check-public.mjs',
+            'engine/rathena/src/char/char.cpp','engine/rathena/src/char/char_clif.cpp',
             'client/ragnarok/serve.mjs', 'client/ragnarok/accounts.mjs', 'client/ragnarok/portal-login.js',
             'client/ragnarok/prepare-city.mjs', 'deploy/ragnarok/supervisor.mjs',
             'scripts/download_kro.py', 'client/ragnarok/apply-browser-mods.mjs',
             'client/ragnarok/mods/CharCreateQuest.js','client/ragnarok/mods/LocalePt.js',
             'client/ragnarok/mods/GraphicsQuest.js',
+            'client/ragnarok/mods/TouchQuest.js','client/ragnarok/mods/TouchQuest.css',
+            'client/ragnarok/mods/TouchLogic.js','client/ragnarok/mods/OutfitQuest.js',
+            'client/ragnarok/mods/OutfitLogic.js',
+            'content/gm/iteminfo.json',
             'client/ragnarok/browser-build.lock.json','client/ragnarok/release.lock.json']
 output = root/'public/downloads/Quest-Servidor-Windows.zip'
 output.parent.mkdir(parents=True,exist_ok=True)
@@ -35,7 +40,7 @@ args = parser.parse_args()
 revision = args.revision or subprocess.check_output(['git','rev-parse','HEAD'],cwd=root,text=True).strip()
 if not re.fullmatch('[a-f0-9]{40}',revision):
     raise SystemExit('A complete verified Git revision is required.')
-with zipfile.ZipFile(output,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=6) as archive:
+with zipfile.ZipFile(output,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=9) as archive:
     def add(path,target):archive.write(path,'Quest-Servidor/'+target)
     for path in sorted(context.rglob('*')):
         if not path.is_file():continue
@@ -53,10 +58,13 @@ with zipfile.ZipFile(output,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=6
         add(root/name,'context/'+name)
     for folder in ['content/eridan','content/ragnarok','public/art/ragnarok','rathena']:
         for path in sorted((root/folder).rglob('*')):
-            if path.is_file():add(path,'context/'+path.relative_to(root).as_posix())
+            if path.is_file() and not path.is_relative_to(root/'content/eridan/sources'):add(path,'context/'+path.relative_to(root).as_posix())
     add(root/'docs/ragnarok-local-windows.md','LEIA-ME.md')
     add(root/'docs/editar-chama-viva.md','EDITAR-VILA.md')
     add(root/'docs/atualizacao-classes-e-artes.md','CLASSES-E-ARTES.md')
+    add(root/'docs/contas-gm-e-roupas.md','CONTAS-GM-E-ROUPAS.md')
+    add(root/'docs/controles-ipad.md','CONTROLES-IPAD.md')
+    add(root/'docs/quatro-cidades-de-eridan.md','QUATRO-CIDADES.md')
     compose=(root/'deploy/ragnarok/compose.yaml').read_text().replace('name: quest-ragnarok\n','name: quest-ragnarok-pc\n')
     archive.writestr('Quest-Servidor/compose.yaml',compose)
     archive.writestr('Quest-Servidor/ORIGEM.json',json.dumps({'repository':'https://github.com/empresaexemplo9-gif/Quest','revision':revision,'engine':'rAthena Renewal','packetver':20211103,'architecture':'linux/amd64','source_code':'https://github.com/empresaexemplo9-gif/Quest/tree/'+revision+'/engine/rathena','client_assets':'Downloaded and verified on the server computer; credentials generated locally'},indent=2))

@@ -27,6 +27,9 @@ func TestQuestAssetsUseCurrentWorldWhileOrdinaryGRFsRemainLocal(t *testing.T) {
 	localURL, _ := url.Parse(local.URL)
 	a := &app{ready: true, origin: "http://127.0.0.1:38777", remote: httputil.NewSingleHostReverseProxy(worldURL), assetProxy: httputil.NewSingleHostReverseProxy(localURL)}
 	for resource, expected := range map[string]string{
+		"/remote-client/data/sprite/quest/sword-epic.spr": "world:/remote-client/data/sprite/quest/sword-epic.spr",
+		"/remote-client/data/sprite/quest/mage-standard.act": "world:/remote-client/data/sprite/quest/mage-standard.act",
+		"/remote-client/data/sprite/quest/mage-standard-4.pal": "world:/remote-client/data/sprite/quest/mage-standard-4.pal",
 		"/remote-client/data/texture/interface/map/er_mata.bmp": "world:/remote-client/data/texture/interface/map/er_mata.bmp",
 		"/remote-client/data/er_mata.gnd":                       "world:/remote-client/data/er_mata.gnd",
 		"/remote-client/data/er_mina2.rsw":                      "world:/remote-client/data/er_mina2.rsw",

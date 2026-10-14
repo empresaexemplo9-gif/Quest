@@ -1,6 +1,6 @@
 {
   "name": "Rotas compartilhadas de Éridan",
-  "revision": 1,
+  "revision": 2,
   "regions": [
     {
       "id": "er_estrada",
@@ -902,6 +902,10 @@
         [
           80,
           136
+        ],
+        [
+          80,
+          60
         ]
       ],
       "arrivals": [
@@ -916,6 +920,10 @@
         [
           80,
           128
+        ],
+        [
+          72,
+          60
         ]
       ],
       "mobZones": [],
@@ -1620,6 +1628,10 @@
         [
           24,
           80
+        ],
+        [
+          80,
+          64
         ]
       ],
       "arrivals": [
@@ -1630,6 +1642,10 @@
         [
           32,
           80
+        ],
+        [
+          72,
+          64
         ]
       ],
       "mobZones": [],
@@ -2314,6 +2330,4800 @@
         }
       ],
       "objects": 169
+    },
+    {
+      "id": "er_rubra",
+      "name": "Citadela Rubra",
+      "style": "red",
+      "theme": "fortress",
+      "biome": "city",
+      "safe": true,
+      "levels": "Área segura",
+      "description": "A fortaleza guarda os fragmentos do Sol Antigo. Oficinas, mercado de sucata e jardins resistentes cercam a praça dos guardiões.",
+      "width": 192,
+      "height": 192,
+      "spawn": [
+        96,
+        86
+      ],
+      "pois": [
+        {
+          "type": "guide",
+          "at": [
+            100,
+            83
+          ],
+          "title": "Guia de Citadela Rubra",
+          "text": "A fortaleza guarda os fragmentos do Sol Antigo. Oficinas, mercado de sucata e jardins resistentes cercam a praça dos guardiões. Faixa recomendada: Área segura. As passagens são compartilhadas por todos os grupos."
+        },
+        {
+          "type": "rest",
+          "at": [
+            89,
+            83
+          ],
+          "title": "Descanso e retorno",
+          "text": "Recupere HP e SP ou salve esta cidade como ponto de retorno."
+        },
+        {
+          "type": "storage",
+          "at": [
+            107,
+            83
+          ],
+          "title": "Armazém de Citadela Rubra",
+          "text": "Guarde seus itens antes da próxima viagem."
+        },
+        {
+          "type": "shop",
+          "at": [
+            87,
+            70
+          ],
+          "title": "Mercado de Citadela Rubra",
+          "text": "Suprimentos para explorar Éridan."
+        },
+        {
+          "type": "story",
+          "at": [
+            105,
+            70
+          ],
+          "title": "Memórias da Rede",
+          "text": "A fortaleza guarda os fragmentos do Sol Antigo. Oficinas, mercado de sucata e jardins resistentes cercam a praça dos guardiões. Reunindo os quatro núcleos, a Rede Helios poderá voltar a ligar as comunidades."
+        },
+        {
+          "type": "sign",
+          "at": [
+            106,
+            170
+          ],
+          "title": "Caminho para Vale das Brasas Verdes",
+          "text": "Siga a passagem para Vale das Brasas Verdes. Combine a viagem com seu grupo."
+        },
+        {
+          "type": "sign",
+          "at": [
+            106,
+            22
+          ],
+          "title": "Caminho para Selva das Marés de Éter",
+          "text": "Siga a passagem para Selva das Marés de Éter. Combine a viagem com seu grupo."
+        },
+        {
+          "type": "sign",
+          "at": [
+            22,
+            96
+          ],
+          "title": "Caminho para Aurea — Distrito Recuperado",
+          "text": "Siga a passagem para Aurea — Distrito Recuperado. Combine a viagem com seu grupo."
+        }
+      ],
+      "portals": [
+        [
+          96,
+          170
+        ],
+        [
+          96,
+          22
+        ],
+        [
+          22,
+          86
+        ]
+      ],
+      "arrivals": [
+        [
+          96,
+          160
+        ],
+        [
+          96,
+          32
+        ],
+        [
+          32,
+          86
+        ]
+      ],
+      "mobZones": [],
+      "colliders": [
+        {
+          "model": "fc_red_keep",
+          "x": 96,
+          "y": 147,
+          "w": 26,
+          "d": 18,
+          "scale": 1.25,
+          "rotation": 0,
+          "label": "Fortaleza da comunidade"
+        },
+        {
+          "model": "fc_red_statue",
+          "x": 96,
+          "y": 105,
+          "w": 12,
+          "d": 12,
+          "scale": 1.2,
+          "rotation": 0,
+          "label": "Praça central"
+        },
+        {
+          "model": "fc_red_house",
+          "x": 37,
+          "y": 54,
+          "w": 10,
+          "d": 8,
+          "scale": 1.1,
+          "rotation": 0,
+          "label": "Casa reconstruída"
+        },
+        {
+          "model": "fc_red_house",
+          "x": 37,
+          "y": 116,
+          "w": 10,
+          "d": 8,
+          "scale": 1.1,
+          "rotation": 0,
+          "label": "Casa reconstruída"
+        },
+        {
+          "model": "fc_red_house",
+          "x": 73,
+          "y": 54,
+          "w": 10,
+          "d": 8,
+          "scale": 1.1,
+          "rotation": 0,
+          "label": "Casa reconstruída"
+        },
+        {
+          "model": "fc_red_house",
+          "x": 73,
+          "y": 116,
+          "w": 10,
+          "d": 8,
+          "scale": 1.1,
+          "rotation": 0,
+          "label": "Casa reconstruída"
+        },
+        {
+          "model": "fc_red_house",
+          "x": 119,
+          "y": 54,
+          "w": 10,
+          "d": 8,
+          "scale": 1.1,
+          "rotation": 0,
+          "label": "Casa reconstruída"
+        },
+        {
+          "model": "fc_red_house",
+          "x": 119,
+          "y": 116,
+          "w": 10,
+          "d": 8,
+          "scale": 1.1,
+          "rotation": 0,
+          "label": "Casa reconstruída"
+        },
+        {
+          "model": "fc_red_house",
+          "x": 155,
+          "y": 54,
+          "w": 10,
+          "d": 8,
+          "scale": 1.1,
+          "rotation": 0,
+          "label": "Casa reconstruída"
+        },
+        {
+          "model": "fc_red_house",
+          "x": 155,
+          "y": 116,
+          "w": 10,
+          "d": 8,
+          "scale": 1.1,
+          "rotation": 0,
+          "label": "Casa reconstruída"
+        },
+        {
+          "model": "fc_red_stall",
+          "x": 40,
+          "y": 36,
+          "w": 9,
+          "d": 7,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Banca do mercado"
+        },
+        {
+          "model": "fc_red_stall",
+          "x": 73,
+          "y": 36,
+          "w": 9,
+          "d": 7,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Banca do mercado"
+        },
+        {
+          "model": "fc_red_stall",
+          "x": 119,
+          "y": 36,
+          "w": 9,
+          "d": 7,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Banca do mercado"
+        },
+        {
+          "model": "fc_red_stall",
+          "x": 151,
+          "y": 36,
+          "w": 9,
+          "d": 7,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Banca do mercado"
+        },
+        {
+          "model": "fc_planter",
+          "x": 66,
+          "y": 67,
+          "w": 5,
+          "d": 3,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Jardim comunitário"
+        },
+        {
+          "model": "fc_planter",
+          "x": 66,
+          "y": 106,
+          "w": 5,
+          "d": 3,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Jardim comunitário"
+        },
+        {
+          "model": "fc_planter",
+          "x": 126,
+          "y": 67,
+          "w": 5,
+          "d": 3,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Jardim comunitário"
+        },
+        {
+          "model": "fc_planter",
+          "x": 126,
+          "y": 106,
+          "w": 5,
+          "d": 3,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Jardim comunitário"
+        },
+        {
+          "model": "bench",
+          "x": 63,
+          "y": 93,
+          "w": 5,
+          "d": 2,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Banco da praça"
+        },
+        {
+          "model": "bench",
+          "x": 63,
+          "y": 118,
+          "w": 5,
+          "d": 2,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Banco da praça"
+        },
+        {
+          "model": "bench",
+          "x": 129,
+          "y": 93,
+          "w": 5,
+          "d": 2,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Banco da praça"
+        },
+        {
+          "model": "bench",
+          "x": 129,
+          "y": 118,
+          "w": 5,
+          "d": 2,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Banco da praça"
+        },
+        {
+          "model": "fc_red_lamp",
+          "x": 86,
+          "y": 42,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Iluminação da avenida"
+        },
+        {
+          "model": "fc_red_lamp",
+          "x": 86,
+          "y": 58,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Iluminação da avenida"
+        },
+        {
+          "model": "fc_red_lamp",
+          "x": 86,
+          "y": 75,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Iluminação da avenida"
+        },
+        {
+          "model": "fc_red_lamp",
+          "x": 86,
+          "y": 124,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Iluminação da avenida"
+        },
+        {
+          "model": "fc_red_lamp",
+          "x": 86,
+          "y": 137,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Iluminação da avenida"
+        },
+        {
+          "model": "fc_red_lamp",
+          "x": 106,
+          "y": 42,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Iluminação da avenida"
+        },
+        {
+          "model": "fc_red_lamp",
+          "x": 106,
+          "y": 58,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Iluminação da avenida"
+        },
+        {
+          "model": "fc_red_lamp",
+          "x": 106,
+          "y": 75,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Iluminação da avenida"
+        },
+        {
+          "model": "fc_red_lamp",
+          "x": 106,
+          "y": 124,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Iluminação da avenida"
+        },
+        {
+          "model": "fc_red_lamp",
+          "x": 106,
+          "y": 137,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Iluminação da avenida"
+        },
+        {
+          "model": "fc_red_banner",
+          "x": 49,
+          "y": 65,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Estandarte da cidade"
+        },
+        {
+          "model": "fc_red_banner",
+          "x": 49,
+          "y": 100,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Estandarte da cidade"
+        },
+        {
+          "model": "fc_red_banner",
+          "x": 49,
+          "y": 132,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Estandarte da cidade"
+        },
+        {
+          "model": "fc_red_banner",
+          "x": 143,
+          "y": 65,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Estandarte da cidade"
+        },
+        {
+          "model": "fc_red_banner",
+          "x": 143,
+          "y": 100,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Estandarte da cidade"
+        },
+        {
+          "model": "fc_red_banner",
+          "x": 143,
+          "y": 132,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Estandarte da cidade"
+        },
+        {
+          "model": "fc_pipe",
+          "x": 24,
+          "y": 49,
+          "w": 2,
+          "d": 10,
+          "scale": 0.9,
+          "rotation": 90,
+          "label": "Tubulação industrial"
+        },
+        {
+          "model": "fc_pipe",
+          "x": 24,
+          "y": 111,
+          "w": 2,
+          "d": 10,
+          "scale": 0.9,
+          "rotation": 90,
+          "label": "Tubulação industrial"
+        },
+        {
+          "model": "fc_pipe",
+          "x": 24,
+          "y": 143,
+          "w": 2,
+          "d": 10,
+          "scale": 0.9,
+          "rotation": 90,
+          "label": "Tubulação industrial"
+        },
+        {
+          "model": "fc_pipe",
+          "x": 168,
+          "y": 49,
+          "w": 2,
+          "d": 10,
+          "scale": 0.9,
+          "rotation": 90,
+          "label": "Tubulação industrial"
+        },
+        {
+          "model": "fc_pipe",
+          "x": 168,
+          "y": 111,
+          "w": 2,
+          "d": 10,
+          "scale": 0.9,
+          "rotation": 90,
+          "label": "Tubulação industrial"
+        },
+        {
+          "model": "fc_pipe",
+          "x": 168,
+          "y": 143,
+          "w": 2,
+          "d": 10,
+          "scale": 0.9,
+          "rotation": 90,
+          "label": "Tubulação industrial"
+        },
+        {
+          "model": "fc_forge",
+          "x": 31,
+          "y": 143,
+          "w": 11,
+          "d": 10,
+          "scale": 1.2,
+          "rotation": 0,
+          "label": "Oficina da forja"
+        },
+        {
+          "model": "fc_crane",
+          "x": 155,
+          "y": 146,
+          "w": 3,
+          "d": 3,
+          "scale": 1.3,
+          "rotation": 0,
+          "label": "Guindaste de recuperação"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 74.07745096578203,
+          "y": 99.2583822839098,
+          "w": 2,
+          "d": 2,
+          "scale": 0.685266706320752,
+          "rotation": 178.04149829271284,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 22.57505280817278,
+          "y": 61.56398571505304,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6,
+          "rotation": 55.25432857108636,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 38.02540818974967,
+          "y": 77.01366399973949,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6255799490901595,
+          "rotation": 92.08785373067666,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 53.47634409076449,
+          "y": 161.06090413221645,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6511598982385266,
+          "rotation": 325.37693752101086,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 151.3287109891718,
+          "y": 25.512130117163093,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8131720157254422,
+          "rotation": 2.2175868792034654,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 115.27965684055343,
+          "y": 154.2668861942987,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7534842461472108,
+          "rotation": 276.26343378710175,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 130.72708336234257,
+          "y": 169.71844677248,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7790644071714636,
+          "rotation": 149.56122955995642,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 80.15806026224934,
+          "y": 105.33891163238765,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7123873816366277,
+          "rotation": 192.53236073826727,
+          "label": "Vegetação recuperada"
+        }
+      ],
+      "objects": 163,
+      "expansion": "four-cities"
+    },
+    {
+      "id": "er_brasa",
+      "name": "Vale das Brasas Verdes",
+      "style": "red",
+      "biome": "hunting",
+      "levels": "40–90",
+      "description": "Bosques resistentes cresceram entre velhas tubulações. A estrada ao norte leva da Citadela Rubra à Coroa Celeste.",
+      "mobs": [
+        [
+          "Orc das Brasas",
+          1023,
+          16
+        ],
+        [
+          "Orc do Bosque",
+          1273,
+          12
+        ],
+        [
+          "Sentinela da Sucata",
+          1213,
+          10
+        ]
+      ],
+      "bounty": 1,
+      "width": 192,
+      "height": 192,
+      "spawn": [
+        96,
+        86
+      ],
+      "pois": [
+        {
+          "type": "guide",
+          "at": [
+            100,
+            83
+          ],
+          "title": "Guia de Vale das Brasas Verdes",
+          "text": "Bosques resistentes cresceram entre velhas tubulações. A estrada ao norte leva da Citadela Rubra à Coroa Celeste. Faixa recomendada: 40–90. As passagens são compartilhadas por todos os grupos."
+        },
+        {
+          "type": "bounty",
+          "at": [
+            87,
+            82
+          ],
+          "title": "Patrulha de Vale das Brasas Verdes",
+          "text": "Derrote 20 criaturas desta região e retorne para receber experiência adicional. Você pode repetir a patrulha."
+        },
+        {
+          "type": "sign",
+          "at": [
+            106,
+            22
+          ],
+          "title": "Caminho para Citadela Rubra",
+          "text": "Siga a passagem para Citadela Rubra. Combine a viagem com seu grupo."
+        },
+        {
+          "type": "sign",
+          "at": [
+            106,
+            170
+          ],
+          "title": "Caminho para Coroa Celeste",
+          "text": "Siga a passagem para Coroa Celeste. Combine a viagem com seu grupo."
+        }
+      ],
+      "portals": [
+        [
+          96,
+          22
+        ],
+        [
+          96,
+          170
+        ]
+      ],
+      "arrivals": [
+        [
+          96,
+          32
+        ],
+        [
+          96,
+          160
+        ]
+      ],
+      "mobZones": [
+        [
+          38,
+          84,
+          13,
+          22
+        ],
+        [
+          150,
+          100,
+          13,
+          24
+        ],
+        [
+          74,
+          144,
+          12,
+          10
+        ]
+      ],
+      "colliders": [
+        {
+          "model": "fc_red_stall",
+          "x": 109,
+          "y": 71,
+          "w": 9,
+          "d": 7,
+          "scale": 0.8,
+          "rotation": 0,
+          "label": "Acampamento de exploração"
+        },
+        {
+          "model": "fc_relic",
+          "x": 66,
+          "y": 61,
+          "w": 7,
+          "d": 6,
+          "scale": 1.2,
+          "rotation": 0,
+          "label": "Ruína tomada pela natureza"
+        },
+        {
+          "model": "fc_relic",
+          "x": 125,
+          "y": 116,
+          "w": 7,
+          "d": 6,
+          "scale": 1.2,
+          "rotation": 0,
+          "label": "Ruína tomada pela natureza"
+        },
+        {
+          "model": "fc_relic",
+          "x": 126,
+          "y": 49,
+          "w": 7,
+          "d": 6,
+          "scale": 1.2,
+          "rotation": 0,
+          "label": "Ruína tomada pela natureza"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 68.92595838893344,
+          "y": 94.10843167666077,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6682133199456645,
+          "rotation": 165.76032186061153,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 76.65220880314061,
+          "y": 101.83591696034091,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6980574211799673,
+          "rotation": 184.1757074613533,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 25.15010565150299,
+          "y": 64.13914652684218,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6127899745159759,
+          "rotation": 61.392028550941504,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 56.050816379499345,
+          "y": 163.63775865306093,
+          "w": 2,
+          "d": 2,
+          "scale": 0.663949898424081,
+          "rotation": 331.5206438050421,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 143.60231417943777,
+          "y": 168.78691322584334,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8089068834224964,
+          "rotation": 343.79586497875766,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 161.63109751735607,
+          "y": 35.81236757729491,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8216976429851953,
+          "rotation": 26.774981093307723,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 169.3570346788869,
+          "y": 43.53757226898744,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6015399908883358,
+          "rotation": 208.73855477402418,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 23.505258669728708,
+          "y": 131.0896747766737,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6100669153640202,
+          "rotation": 221.0173144519835,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 110.1271265570836,
+          "y": 149.11789735362817,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7364266399495365,
+          "rotation": 263.98509940690946,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 117.8519168130243,
+          "y": 156.84360606219704,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7662747225878468,
+          "rotation": 282.40537299830595,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 85.30749975082173,
+          "y": 110.48914413188798,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7123873816366277,
+          "rotation": 204.81623916067562,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 33.80568513618915,
+          "y": 72.79355811695419,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6271204448135385,
+          "rotation": 82.0291356560842,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 59.55700956880045,
+          "y": 98.54593048699803,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6697550943749386,
+          "rotation": 339.87360401541775,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 64.70613770319758,
+          "y": 21.2921670790045,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6782802789072228,
+          "rotation": 352.1604999229686,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 21.860309028267,
+          "y": 47.043299692693,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6073433504456988,
+          "rotation": 53.549962186615446,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 45.03570811567728,
+          "y": 152.62135729906646,
+          "w": 2,
+          "d": 2,
+          "scale": 0.628660741466717,
+          "rotation": 272.35006761559055,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 126.5094908840278,
+          "y": 165.49641373532276,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7806008019905073,
+          "rotation": 303.04678077414786,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 144.5339166346318,
+          "y": 32.522874116553666,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7933914712149164,
+          "rotation": 182.47705518791383,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 152.25989092240573,
+          "y": 108.84391576234343,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8232396312694157,
+          "rotation": 200.89467188364236,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 114.56257695508249,
+          "y": 139.7466783129486,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7608268631763819,
+          "rotation": 78.10688106299072,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 119.71512158278263,
+          "y": 76.29964481440831,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7693498234775266,
+          "rotation": 90.3864562163098,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 68.21230034069444,
+          "y": 107.20153714837542,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6840849956344079,
+          "rotation": 0.5134563614878469,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 86.23647352034143,
+          "y": 42.82268856252141,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6968760172479963,
+          "rotation": 43.48830172873296,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 30.515562252028744,
+          "y": 55.69857471405961,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6216732401218436,
+          "rotation": 74.18439915268318,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 155.7639570522038,
+          "y": 43.75296698900707,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8290409636285717,
+          "rotation": 209.2458343434254,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 160.91294160366826,
+          "y": 117.49973182135722,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8375656606134878,
+          "rotation": 221.52422957623475,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 164.42122637862835,
+          "y": 52.40904359971383,
+          "w": 2,
+          "d": 2,
+          "scale": 0.843366562235953,
+          "rotation": 229.8864652844813,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 31.446038263255275,
+          "y": 139.0331997785329,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6061599636697582,
+          "rotation": 272.8580604849518,
+          "label": "Vegetação recuperada"
+        }
+      ],
+      "objects": 195,
+      "expansion": "four-cities"
+    },
+    {
+      "id": "er_celeste",
+      "name": "Coroa Celeste",
+      "style": "blue",
+      "theme": "sky",
+      "biome": "city",
+      "safe": true,
+      "levels": "Área segura",
+      "description": "A catedral do Éter mantém as pontes e as cascatas do distrito suspenso. A natureza recuperou seus terraços de pedra clara.",
+      "width": 192,
+      "height": 192,
+      "spawn": [
+        96,
+        86
+      ],
+      "pois": [
+        {
+          "type": "guide",
+          "at": [
+            100,
+            83
+          ],
+          "title": "Guia de Coroa Celeste",
+          "text": "A catedral do Éter mantém as pontes e as cascatas do distrito suspenso. A natureza recuperou seus terraços de pedra clara. Faixa recomendada: Área segura. As passagens são compartilhadas por todos os grupos."
+        },
+        {
+          "type": "rest",
+          "at": [
+            89,
+            83
+          ],
+          "title": "Descanso e retorno",
+          "text": "Recupere HP e SP ou salve esta cidade como ponto de retorno."
+        },
+        {
+          "type": "storage",
+          "at": [
+            107,
+            83
+          ],
+          "title": "Armazém de Coroa Celeste",
+          "text": "Guarde seus itens antes da próxima viagem."
+        },
+        {
+          "type": "shop",
+          "at": [
+            87,
+            70
+          ],
+          "title": "Mercado de Coroa Celeste",
+          "text": "Suprimentos para explorar Éridan."
+        },
+        {
+          "type": "story",
+          "at": [
+            105,
+            70
+          ],
+          "title": "Memórias da Rede",
+          "text": "A catedral do Éter mantém as pontes e as cascatas do distrito suspenso. A natureza recuperou seus terraços de pedra clara. Reunindo os quatro núcleos, a Rede Helios poderá voltar a ligar as comunidades."
+        },
+        {
+          "type": "sign",
+          "at": [
+            106,
+            22
+          ],
+          "title": "Caminho para Vale das Brasas Verdes",
+          "text": "Siga a passagem para Vale das Brasas Verdes. Combine a viagem com seu grupo."
+        },
+        {
+          "type": "sign",
+          "at": [
+            106,
+            170
+          ],
+          "title": "Caminho para Floresta dos Condutores",
+          "text": "Siga a passagem para Floresta dos Condutores. Combine a viagem com seu grupo."
+        }
+      ],
+      "portals": [
+        [
+          96,
+          22
+        ],
+        [
+          96,
+          170
+        ]
+      ],
+      "arrivals": [
+        [
+          96,
+          32
+        ],
+        [
+          96,
+          160
+        ]
+      ],
+      "mobZones": [],
+      "colliders": [
+        {
+          "model": "fc_blue_keep",
+          "x": 96,
+          "y": 147,
+          "w": 26,
+          "d": 18,
+          "scale": 1.25,
+          "rotation": 0,
+          "label": "Catedral do Éter"
+        },
+        {
+          "model": "fc_blue_fountain",
+          "x": 96,
+          "y": 105,
+          "w": 12,
+          "d": 12,
+          "scale": 1.2,
+          "rotation": 0,
+          "label": "Praça central"
+        },
+        {
+          "model": "fc_blue_house",
+          "x": 37,
+          "y": 54,
+          "w": 10,
+          "d": 8,
+          "scale": 1.1,
+          "rotation": 0,
+          "label": "Casa reconstruída"
+        },
+        {
+          "model": "fc_blue_house",
+          "x": 37,
+          "y": 116,
+          "w": 10,
+          "d": 8,
+          "scale": 1.1,
+          "rotation": 0,
+          "label": "Casa reconstruída"
+        },
+        {
+          "model": "fc_blue_house",
+          "x": 73,
+          "y": 54,
+          "w": 10,
+          "d": 8,
+          "scale": 1.1,
+          "rotation": 0,
+          "label": "Casa reconstruída"
+        },
+        {
+          "model": "fc_blue_house",
+          "x": 73,
+          "y": 116,
+          "w": 10,
+          "d": 8,
+          "scale": 1.1,
+          "rotation": 0,
+          "label": "Casa reconstruída"
+        },
+        {
+          "model": "fc_blue_house",
+          "x": 119,
+          "y": 54,
+          "w": 10,
+          "d": 8,
+          "scale": 1.1,
+          "rotation": 0,
+          "label": "Casa reconstruída"
+        },
+        {
+          "model": "fc_blue_house",
+          "x": 119,
+          "y": 116,
+          "w": 10,
+          "d": 8,
+          "scale": 1.1,
+          "rotation": 0,
+          "label": "Casa reconstruída"
+        },
+        {
+          "model": "fc_blue_house",
+          "x": 155,
+          "y": 54,
+          "w": 10,
+          "d": 8,
+          "scale": 1.1,
+          "rotation": 0,
+          "label": "Casa reconstruída"
+        },
+        {
+          "model": "fc_blue_house",
+          "x": 155,
+          "y": 116,
+          "w": 10,
+          "d": 8,
+          "scale": 1.1,
+          "rotation": 0,
+          "label": "Casa reconstruída"
+        },
+        {
+          "model": "fc_blue_stall",
+          "x": 40,
+          "y": 36,
+          "w": 9,
+          "d": 7,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Banca do mercado"
+        },
+        {
+          "model": "fc_blue_stall",
+          "x": 73,
+          "y": 36,
+          "w": 9,
+          "d": 7,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Banca do mercado"
+        },
+        {
+          "model": "fc_blue_stall",
+          "x": 119,
+          "y": 36,
+          "w": 9,
+          "d": 7,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Banca do mercado"
+        },
+        {
+          "model": "fc_blue_stall",
+          "x": 151,
+          "y": 36,
+          "w": 9,
+          "d": 7,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Banca do mercado"
+        },
+        {
+          "model": "fc_planter",
+          "x": 66,
+          "y": 67,
+          "w": 5,
+          "d": 3,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Jardim comunitário"
+        },
+        {
+          "model": "fc_planter",
+          "x": 66,
+          "y": 106,
+          "w": 5,
+          "d": 3,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Jardim comunitário"
+        },
+        {
+          "model": "fc_planter",
+          "x": 126,
+          "y": 67,
+          "w": 5,
+          "d": 3,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Jardim comunitário"
+        },
+        {
+          "model": "fc_planter",
+          "x": 126,
+          "y": 106,
+          "w": 5,
+          "d": 3,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Jardim comunitário"
+        },
+        {
+          "model": "bench",
+          "x": 63,
+          "y": 93,
+          "w": 5,
+          "d": 2,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Banco da praça"
+        },
+        {
+          "model": "bench",
+          "x": 63,
+          "y": 118,
+          "w": 5,
+          "d": 2,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Banco da praça"
+        },
+        {
+          "model": "bench",
+          "x": 129,
+          "y": 93,
+          "w": 5,
+          "d": 2,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Banco da praça"
+        },
+        {
+          "model": "bench",
+          "x": 129,
+          "y": 118,
+          "w": 5,
+          "d": 2,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Banco da praça"
+        },
+        {
+          "model": "fc_blue_lamp",
+          "x": 86,
+          "y": 42,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Iluminação da avenida"
+        },
+        {
+          "model": "fc_blue_lamp",
+          "x": 86,
+          "y": 58,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Iluminação da avenida"
+        },
+        {
+          "model": "fc_blue_lamp",
+          "x": 86,
+          "y": 75,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Iluminação da avenida"
+        },
+        {
+          "model": "fc_blue_lamp",
+          "x": 86,
+          "y": 124,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Iluminação da avenida"
+        },
+        {
+          "model": "fc_blue_lamp",
+          "x": 86,
+          "y": 137,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Iluminação da avenida"
+        },
+        {
+          "model": "fc_blue_lamp",
+          "x": 106,
+          "y": 42,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Iluminação da avenida"
+        },
+        {
+          "model": "fc_blue_lamp",
+          "x": 106,
+          "y": 58,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Iluminação da avenida"
+        },
+        {
+          "model": "fc_blue_lamp",
+          "x": 106,
+          "y": 75,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Iluminação da avenida"
+        },
+        {
+          "model": "fc_blue_lamp",
+          "x": 106,
+          "y": 124,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Iluminação da avenida"
+        },
+        {
+          "model": "fc_blue_lamp",
+          "x": 106,
+          "y": 137,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Iluminação da avenida"
+        },
+        {
+          "model": "fc_blue_banner",
+          "x": 49,
+          "y": 65,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Estandarte da cidade"
+        },
+        {
+          "model": "fc_blue_banner",
+          "x": 49,
+          "y": 100,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Estandarte da cidade"
+        },
+        {
+          "model": "fc_blue_banner",
+          "x": 49,
+          "y": 132,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Estandarte da cidade"
+        },
+        {
+          "model": "fc_blue_banner",
+          "x": 143,
+          "y": 65,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Estandarte da cidade"
+        },
+        {
+          "model": "fc_blue_banner",
+          "x": 143,
+          "y": 100,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Estandarte da cidade"
+        },
+        {
+          "model": "fc_blue_banner",
+          "x": 143,
+          "y": 132,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Estandarte da cidade"
+        },
+        {
+          "model": "fc_waterfall",
+          "x": 24,
+          "y": 55,
+          "w": 7,
+          "d": 4,
+          "scale": 0.8,
+          "rotation": 0,
+          "label": "Cascata recuperada"
+        },
+        {
+          "model": "fc_waterfall",
+          "x": 24,
+          "y": 114,
+          "w": 7,
+          "d": 4,
+          "scale": 0.8,
+          "rotation": 0,
+          "label": "Cascata recuperada"
+        },
+        {
+          "model": "fc_waterfall",
+          "x": 24,
+          "y": 145,
+          "w": 7,
+          "d": 4,
+          "scale": 0.8,
+          "rotation": 0,
+          "label": "Cascata recuperada"
+        },
+        {
+          "model": "fc_waterfall",
+          "x": 168,
+          "y": 55,
+          "w": 7,
+          "d": 4,
+          "scale": 0.8,
+          "rotation": 0,
+          "label": "Cascata recuperada"
+        },
+        {
+          "model": "fc_waterfall",
+          "x": 168,
+          "y": 114,
+          "w": 7,
+          "d": 4,
+          "scale": 0.8,
+          "rotation": 0,
+          "label": "Cascata recuperada"
+        },
+        {
+          "model": "fc_waterfall",
+          "x": 168,
+          "y": 145,
+          "w": 7,
+          "d": 4,
+          "scale": 0.8,
+          "rotation": 0,
+          "label": "Cascata recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 35,
+          "y": 70,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 0,
+          "label": "Árvore dos terraços"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 35,
+          "y": 99,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 0,
+          "label": "Árvore dos terraços"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 35,
+          "y": 134,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 0,
+          "label": "Árvore dos terraços"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 155,
+          "y": 70,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 0,
+          "label": "Árvore dos terraços"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 155,
+          "y": 99,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 0,
+          "label": "Árvore dos terraços"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 155,
+          "y": 134,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 0,
+          "label": "Árvore dos terraços"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 79.22668239270027,
+          "y": 104.40867673079684,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6937950476873189,
+          "rotation": 190.3206135310048,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 71.50109061773426,
+          "y": 96.68563763114756,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7151113346254246,
+          "rotation": 171.89793248937883,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 27.72514460764945,
+          "y": 66.71312896714386,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6085266649859321,
+          "rotation": 67.53243429296009,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 58.62573864814493,
+          "y": 166.2100188364764,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6596867820852638,
+          "rotation": 337.663543749988,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 50.900578536070086,
+          "y": 158.48870280233416,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8174316407105493,
+          "rotation": 319.24460589868124,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 146.17975758718785,
+          "y": 20.36203128620098,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8046395930123141,
+          "rotation": 349.9395486316503,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 20.93015449655479,
+          "y": 46.11316217717555,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8472798587398789,
+          "rotation": 214.87261960629203,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 164.20326558831223,
+          "y": 38.38743821028328,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6185937368703526,
+          "rotation": 196.45436152733268,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 26.08041687986823,
+          "y": 133.66644731039798,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6058034083935906,
+          "rotation": 227.15679776555783,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 120.42993244305949,
+          "y": 159.41592270844055,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7620064847897753,
+          "rotation": 288.5502197240829,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 113.63431442031505,
+          "y": 70.21953848009451,
+          "w": 2,
+          "d": 2,
+          "scale": 0.750760379305752,
+          "rotation": 75.88867660516144,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 67.28128845996252,
+          "y": 23.867286229242403,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6740167842768172,
+          "rotation": 358.292897259419,
+          "label": "Vegetação recuperada"
+        }
+      ],
+      "objects": 170,
+      "expansion": "four-cities"
+    },
+    {
+      "id": "er_jardim",
+      "name": "Floresta dos Condutores",
+      "style": "blue",
+      "biome": "forest",
+      "levels": "90–150",
+      "description": "Árvores envolveram os condutores da cidade suspensa. Siga a estrada e a ponte para alcançar a Última Forja.",
+      "mobs": [
+        [
+          "Vespa do Éter",
+          1994,
+          16
+        ],
+        [
+          "Golem do Condutor",
+          2024,
+          10
+        ],
+        [
+          "Aranha das Raízes",
+          2092,
+          14
+        ]
+      ],
+      "bounty": 2,
+      "width": 192,
+      "height": 192,
+      "spawn": [
+        96,
+        86
+      ],
+      "pois": [
+        {
+          "type": "guide",
+          "at": [
+            100,
+            83
+          ],
+          "title": "Guia de Floresta dos Condutores",
+          "text": "Árvores envolveram os condutores da cidade suspensa. Siga a estrada e a ponte para alcançar a Última Forja. Faixa recomendada: 90–150. As passagens são compartilhadas por todos os grupos."
+        },
+        {
+          "type": "bounty",
+          "at": [
+            87,
+            82
+          ],
+          "title": "Patrulha de Floresta dos Condutores",
+          "text": "Derrote 20 criaturas desta região e retorne para receber experiência adicional. Você pode repetir a patrulha."
+        },
+        {
+          "type": "sign",
+          "at": [
+            106,
+            22
+          ],
+          "title": "Caminho para Coroa Celeste",
+          "text": "Siga a passagem para Coroa Celeste. Combine a viagem com seu grupo."
+        },
+        {
+          "type": "sign",
+          "at": [
+            106,
+            170
+          ],
+          "title": "Caminho para Bastião da Última Forja",
+          "text": "Siga a passagem para Bastião da Última Forja. Combine a viagem com seu grupo."
+        }
+      ],
+      "portals": [
+        [
+          96,
+          22
+        ],
+        [
+          96,
+          170
+        ]
+      ],
+      "arrivals": [
+        [
+          96,
+          32
+        ],
+        [
+          96,
+          160
+        ]
+      ],
+      "mobZones": [
+        [
+          38,
+          84,
+          13,
+          22
+        ],
+        [
+          150,
+          100,
+          13,
+          24
+        ],
+        [
+          74,
+          144,
+          12,
+          10
+        ]
+      ],
+      "colliders": [
+        {
+          "model": "fc_blue_stall",
+          "x": 109,
+          "y": 71,
+          "w": 9,
+          "d": 7,
+          "scale": 0.8,
+          "rotation": 0,
+          "label": "Acampamento de exploração"
+        },
+        {
+          "model": "fc_relic",
+          "x": 66,
+          "y": 61,
+          "w": 7,
+          "d": 6,
+          "scale": 1.2,
+          "rotation": 0,
+          "label": "Ruína tomada pela natureza"
+        },
+        {
+          "model": "fc_relic",
+          "x": 125,
+          "y": 116,
+          "w": 7,
+          "d": 6,
+          "scale": 1.2,
+          "rotation": 0,
+          "label": "Ruína tomada pela natureza"
+        },
+        {
+          "model": "fc_relic",
+          "x": 126,
+          "y": 49,
+          "w": 7,
+          "d": 6,
+          "scale": 1.2,
+          "rotation": 0,
+          "label": "Ruína tomada pela natureza"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 74.07745096578203,
+          "y": 78.6592034421999,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6937950476873189,
+          "rotation": 178.04149829271284,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 61.200845247181334,
+          "y": 106.98358788969544,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6724786648229879,
+          "rotation": 147.3405069269567,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 68.92595838893344,
+          "y": 114.71097353722689,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7193735642287353,
+          "rotation": 165.76032186061153,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 84.37794873150483,
+          "y": 61.56398571505304,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7108488214925976,
+          "rotation": 6.139198747961596,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 30.300211303005977,
+          "y": 48.687569073095815,
+          "w": 2,
+          "d": 2,
+          "scale": 0.621316676580188,
+          "rotation": 73.67025346347835,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 38.02540818974967,
+          "y": 56.41345279533729,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6,
+          "rotation": 92.08785373067666,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 25.15010565150299,
+          "y": 84.73938634939012,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6127899745159759,
+          "rotation": 61.392028550941504,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 53.47634409076449,
+          "y": 71.86425959827943,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6596867820852638,
+          "rotation": 325.37693752101086,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 40.60042260601195,
+          "y": 168.78691322584334,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6383710615076988,
+          "rotation": 294.6810139377324,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 48.32610438399159,
+          "y": 25.512130117163093,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8216976429851953,
+          "rotation": 313.10156262319106,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 159.05449226267044,
+          "y": 163.63775865306093,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8344885720486027,
+          "rotation": 20.635733814126752,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 146.17975758718785,
+          "y": 40.96300765684876,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8131720157254422,
+          "rotation": 349.9395486316503,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 23.505258669728708,
+          "y": 28.087200996253454,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6100669153640202,
+          "rotation": 221.0173144519835,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 31.23061706969296,
+          "y": 35.81236757729491,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8387471284574706,
+          "rotation": 239.43560052649946,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 169.3570346788869,
+          "y": 146.54061545909863,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6015399908883358,
+          "rotation": 208.73855477402418,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 115.27965684055343,
+          "y": 133.66644731039798,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7620064847897753,
+          "rotation": 276.26343378710175,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 138.45336478540054,
+          "y": 156.84360606219704,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8003820970306131,
+          "rotation": 167.9756919778827,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 125.57787809255018,
+          "y": 102.76594745664997,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7790644071714636,
+          "rotation": 137.27966747649006,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 108.4818765305639,
+          "y": 113.06420358481449,
+          "w": 2,
+          "d": 2,
+          "scale": 0.750760379305752,
+          "rotation": 63.60963521143646,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 36.38074866737722,
+          "y": 95.96857159770293,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6313841861862186,
+          "rotation": 88.16720108691771,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 59.55700956880045,
+          "y": 36.742744233632166,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6697550943749386,
+          "rotation": 339.87360401541775,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 170.28396523936743,
+          "y": 23.867286229242403,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6030799818348791,
+          "rotation": 47.40940632471102,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 157.40883525377345,
+          "y": 52.19368815054039,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8317643813397186,
+          "rotation": 16.713816173540852,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 165.13484167543587,
+          "y": 59.919040855001434,
+          "w": 2,
+          "d": 2,
+          "scale": 0.628660741466717,
+          "rotation": 35.13208079038469,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 42.46123413938592,
+          "y": 47.043299692693,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6414498478736379,
+          "rotation": 266.2086184104459,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 29.585704695104088,
+          "y": 157.7703042320838,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6201338307862482,
+          "rotation": 235.51361851289718,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 121.35721106206934,
+          "y": 29.947740270511186,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7720738991680727,
+          "rotation": 290.75936820608547,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 149.68289211548,
+          "y": 168.07321488719276,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8189733293417313,
+          "rotation": 194.74998592276825,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 136.8084486138095,
+          "y": 113.99634802690622,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7976567109692042,
+          "rotation": 164.05827139598742,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 114.56257695508249,
+          "y": 91.74932770471771,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7608268631763819,
+          "rotation": 78.10688106299072,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 60.48721680149604,
+          "y": 78.87456103597641,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6712931437467442,
+          "rotation": 145.63933471814713,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 55.33591080511359,
+          "y": 114.92404241765011,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6968760172479963,
+          "rotation": 133.35848509645055,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 83.6621675965521,
+          "y": 102.04880843638648,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7096630356297043,
+          "rotation": 37.34891271156932,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 25.365602714793198,
+          "y": 71.14822596268453,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6131468059874947,
+          "rotation": 61.905831587944604,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 53.691868225273645,
+          "y": 58.274139871418974,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6600435839872909,
+          "rotation": 292.9803367641243,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 160.91294160366826,
+          "y": 28.302679953468655,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8375656606134878,
+          "rotation": 221.52422957623475,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 168.63863294446807,
+          "y": 36.02787691052721,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8162499991749064,
+          "rotation": 239.94175340047613,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 155.7639570522038,
+          "y": 132.95273455720223,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8290409636285717,
+          "rotation": 209.2458343434254,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 115.49447501392441,
+          "y": 120.07644852508707,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7623677770635969,
+          "rotation": 276.7823676384944,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 102.61920130476801,
+          "y": 148.40357300182887,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7410462747772797,
+          "rotation": 246.088068300413,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 110.34434594757491,
+          "y": 156.12541112376502,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7879428439279885,
+          "rotation": 264.5043346715402,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 138.67117046114782,
+          "y": 143.24984989716899,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8007350014058722,
+          "rotation": 135.5783227681132,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 64.92246827877185,
+          "y": 69.50361355126454,
+          "w": 2,
+          "d": 2,
+          "scale": 0.678636374866738,
+          "rotation": 319.7527011948993,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 151.54651764932706,
+          "y": 60.13447175201365,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6061599636697582,
+          "rotation": 2.73102186683822,
+          "label": "Vegetação recuperada"
+        }
+      ],
+      "objects": 193,
+      "expansion": "four-cities"
+    },
+    {
+      "id": "er_forja",
+      "name": "Bastião da Última Forja",
+      "style": "red",
+      "theme": "forge",
+      "biome": "city",
+      "safe": true,
+      "levels": "Área segura",
+      "description": "Uma comunidade industrial sobrevive entre muralhas, guindastes e canais de resfriamento. A última forja reconstrói a Rede Helios.",
+      "width": 192,
+      "height": 192,
+      "spawn": [
+        96,
+        86
+      ],
+      "pois": [
+        {
+          "type": "guide",
+          "at": [
+            100,
+            83
+          ],
+          "title": "Guia de Bastião da Última Forja",
+          "text": "Uma comunidade industrial sobrevive entre muralhas, guindastes e canais de resfriamento. A última forja reconstrói a Rede Helios. Faixa recomendada: Área segura. As passagens são compartilhadas por todos os grupos."
+        },
+        {
+          "type": "rest",
+          "at": [
+            89,
+            83
+          ],
+          "title": "Descanso e retorno",
+          "text": "Recupere HP e SP ou salve esta cidade como ponto de retorno."
+        },
+        {
+          "type": "storage",
+          "at": [
+            107,
+            83
+          ],
+          "title": "Armazém de Bastião da Última Forja",
+          "text": "Guarde seus itens antes da próxima viagem."
+        },
+        {
+          "type": "shop",
+          "at": [
+            87,
+            70
+          ],
+          "title": "Mercado de Bastião da Última Forja",
+          "text": "Suprimentos para explorar Éridan."
+        },
+        {
+          "type": "story",
+          "at": [
+            105,
+            70
+          ],
+          "title": "Memórias da Rede",
+          "text": "Uma comunidade industrial sobrevive entre muralhas, guindastes e canais de resfriamento. A última forja reconstrói a Rede Helios. Reunindo os quatro núcleos, a Rede Helios poderá voltar a ligar as comunidades."
+        },
+        {
+          "type": "sign",
+          "at": [
+            106,
+            22
+          ],
+          "title": "Caminho para Floresta dos Condutores",
+          "text": "Siga a passagem para Floresta dos Condutores. Combine a viagem com seu grupo."
+        },
+        {
+          "type": "sign",
+          "at": [
+            106,
+            170
+          ],
+          "title": "Caminho para Deserto das Máquinas Vivas",
+          "text": "Siga a passagem para Deserto das Máquinas Vivas. Combine a viagem com seu grupo."
+        }
+      ],
+      "portals": [
+        [
+          96,
+          22
+        ],
+        [
+          96,
+          170
+        ]
+      ],
+      "arrivals": [
+        [
+          96,
+          32
+        ],
+        [
+          96,
+          160
+        ]
+      ],
+      "mobZones": [],
+      "colliders": [
+        {
+          "model": "fc_red_keep",
+          "x": 96,
+          "y": 147,
+          "w": 26,
+          "d": 18,
+          "scale": 1.25,
+          "rotation": 0,
+          "label": "Fortaleza da comunidade"
+        },
+        {
+          "model": "fc_red_statue",
+          "x": 96,
+          "y": 105,
+          "w": 12,
+          "d": 12,
+          "scale": 1.2,
+          "rotation": 0,
+          "label": "Praça central"
+        },
+        {
+          "model": "fc_red_house",
+          "x": 37,
+          "y": 54,
+          "w": 10,
+          "d": 8,
+          "scale": 1.1,
+          "rotation": 0,
+          "label": "Casa reconstruída"
+        },
+        {
+          "model": "fc_red_house",
+          "x": 37,
+          "y": 116,
+          "w": 10,
+          "d": 8,
+          "scale": 1.1,
+          "rotation": 0,
+          "label": "Casa reconstruída"
+        },
+        {
+          "model": "fc_red_house",
+          "x": 73,
+          "y": 54,
+          "w": 10,
+          "d": 8,
+          "scale": 1.1,
+          "rotation": 0,
+          "label": "Casa reconstruída"
+        },
+        {
+          "model": "fc_red_house",
+          "x": 73,
+          "y": 116,
+          "w": 10,
+          "d": 8,
+          "scale": 1.1,
+          "rotation": 0,
+          "label": "Casa reconstruída"
+        },
+        {
+          "model": "fc_red_house",
+          "x": 119,
+          "y": 54,
+          "w": 10,
+          "d": 8,
+          "scale": 1.1,
+          "rotation": 0,
+          "label": "Casa reconstruída"
+        },
+        {
+          "model": "fc_red_house",
+          "x": 119,
+          "y": 116,
+          "w": 10,
+          "d": 8,
+          "scale": 1.1,
+          "rotation": 0,
+          "label": "Casa reconstruída"
+        },
+        {
+          "model": "fc_red_house",
+          "x": 155,
+          "y": 54,
+          "w": 10,
+          "d": 8,
+          "scale": 1.1,
+          "rotation": 0,
+          "label": "Casa reconstruída"
+        },
+        {
+          "model": "fc_red_house",
+          "x": 155,
+          "y": 116,
+          "w": 10,
+          "d": 8,
+          "scale": 1.1,
+          "rotation": 0,
+          "label": "Casa reconstruída"
+        },
+        {
+          "model": "fc_red_stall",
+          "x": 40,
+          "y": 36,
+          "w": 9,
+          "d": 7,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Banca do mercado"
+        },
+        {
+          "model": "fc_red_stall",
+          "x": 73,
+          "y": 36,
+          "w": 9,
+          "d": 7,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Banca do mercado"
+        },
+        {
+          "model": "fc_red_stall",
+          "x": 119,
+          "y": 36,
+          "w": 9,
+          "d": 7,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Banca do mercado"
+        },
+        {
+          "model": "fc_red_stall",
+          "x": 151,
+          "y": 36,
+          "w": 9,
+          "d": 7,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Banca do mercado"
+        },
+        {
+          "model": "fc_planter",
+          "x": 66,
+          "y": 67,
+          "w": 5,
+          "d": 3,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Jardim comunitário"
+        },
+        {
+          "model": "fc_planter",
+          "x": 66,
+          "y": 106,
+          "w": 5,
+          "d": 3,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Jardim comunitário"
+        },
+        {
+          "model": "fc_planter",
+          "x": 126,
+          "y": 67,
+          "w": 5,
+          "d": 3,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Jardim comunitário"
+        },
+        {
+          "model": "fc_planter",
+          "x": 126,
+          "y": 106,
+          "w": 5,
+          "d": 3,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Jardim comunitário"
+        },
+        {
+          "model": "bench",
+          "x": 63,
+          "y": 93,
+          "w": 5,
+          "d": 2,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Banco da praça"
+        },
+        {
+          "model": "bench",
+          "x": 63,
+          "y": 118,
+          "w": 5,
+          "d": 2,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Banco da praça"
+        },
+        {
+          "model": "bench",
+          "x": 129,
+          "y": 93,
+          "w": 5,
+          "d": 2,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Banco da praça"
+        },
+        {
+          "model": "bench",
+          "x": 129,
+          "y": 118,
+          "w": 5,
+          "d": 2,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Banco da praça"
+        },
+        {
+          "model": "fc_red_lamp",
+          "x": 86,
+          "y": 42,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Iluminação da avenida"
+        },
+        {
+          "model": "fc_red_lamp",
+          "x": 86,
+          "y": 58,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Iluminação da avenida"
+        },
+        {
+          "model": "fc_red_lamp",
+          "x": 86,
+          "y": 75,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Iluminação da avenida"
+        },
+        {
+          "model": "fc_red_lamp",
+          "x": 86,
+          "y": 124,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Iluminação da avenida"
+        },
+        {
+          "model": "fc_red_lamp",
+          "x": 86,
+          "y": 137,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Iluminação da avenida"
+        },
+        {
+          "model": "fc_red_lamp",
+          "x": 106,
+          "y": 42,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Iluminação da avenida"
+        },
+        {
+          "model": "fc_red_lamp",
+          "x": 106,
+          "y": 58,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Iluminação da avenida"
+        },
+        {
+          "model": "fc_red_lamp",
+          "x": 106,
+          "y": 75,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Iluminação da avenida"
+        },
+        {
+          "model": "fc_red_lamp",
+          "x": 106,
+          "y": 124,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Iluminação da avenida"
+        },
+        {
+          "model": "fc_red_lamp",
+          "x": 106,
+          "y": 137,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Iluminação da avenida"
+        },
+        {
+          "model": "fc_red_banner",
+          "x": 49,
+          "y": 65,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Estandarte da cidade"
+        },
+        {
+          "model": "fc_red_banner",
+          "x": 49,
+          "y": 100,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Estandarte da cidade"
+        },
+        {
+          "model": "fc_red_banner",
+          "x": 49,
+          "y": 132,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Estandarte da cidade"
+        },
+        {
+          "model": "fc_red_banner",
+          "x": 143,
+          "y": 65,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Estandarte da cidade"
+        },
+        {
+          "model": "fc_red_banner",
+          "x": 143,
+          "y": 100,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Estandarte da cidade"
+        },
+        {
+          "model": "fc_red_banner",
+          "x": 143,
+          "y": 132,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Estandarte da cidade"
+        },
+        {
+          "model": "fc_pipe",
+          "x": 24,
+          "y": 49,
+          "w": 2,
+          "d": 10,
+          "scale": 0.9,
+          "rotation": 90,
+          "label": "Tubulação industrial"
+        },
+        {
+          "model": "fc_pipe",
+          "x": 24,
+          "y": 111,
+          "w": 2,
+          "d": 10,
+          "scale": 0.9,
+          "rotation": 90,
+          "label": "Tubulação industrial"
+        },
+        {
+          "model": "fc_pipe",
+          "x": 24,
+          "y": 143,
+          "w": 2,
+          "d": 10,
+          "scale": 0.9,
+          "rotation": 90,
+          "label": "Tubulação industrial"
+        },
+        {
+          "model": "fc_pipe",
+          "x": 168,
+          "y": 49,
+          "w": 2,
+          "d": 10,
+          "scale": 0.9,
+          "rotation": 90,
+          "label": "Tubulação industrial"
+        },
+        {
+          "model": "fc_pipe",
+          "x": 168,
+          "y": 111,
+          "w": 2,
+          "d": 10,
+          "scale": 0.9,
+          "rotation": 90,
+          "label": "Tubulação industrial"
+        },
+        {
+          "model": "fc_pipe",
+          "x": 168,
+          "y": 143,
+          "w": 2,
+          "d": 10,
+          "scale": 0.9,
+          "rotation": 90,
+          "label": "Tubulação industrial"
+        },
+        {
+          "model": "fc_forge",
+          "x": 31,
+          "y": 143,
+          "w": 11,
+          "d": 10,
+          "scale": 1.2,
+          "rotation": 0,
+          "label": "Oficina da forja"
+        },
+        {
+          "model": "fc_crane",
+          "x": 155,
+          "y": 146,
+          "w": 3,
+          "d": 3,
+          "scale": 1.3,
+          "rotation": 0,
+          "label": "Guindaste de recuperação"
+        },
+        {
+          "model": "fc_forge",
+          "x": 155,
+          "y": 68,
+          "w": 10,
+          "d": 9,
+          "scale": 1.1,
+          "rotation": 0,
+          "label": "Forno comunitário"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 71.50109061773426,
+          "y": 76.08413889144644,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6980574211799673,
+          "rotation": 171.89793248937883,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 43.17612115065011,
+          "y": 20.36203128620098,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6341066599437284,
+          "rotation": 300.8259121283949,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 161.63109751735607,
+          "y": 166.2100188364764,
+          "w": 2,
+          "d": 2,
+          "scale": 0.830222669309057,
+          "rotation": 26.774981093307723,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 26.08041687986823,
+          "y": 30.6622576365858,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6058034083935906,
+          "rotation": 227.15679776555783,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 141.03078660649032,
+          "y": 159.41592270844055,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7961148423599347,
+          "rotation": 174.11902845234587,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 87.88197850852319,
+          "y": 92.46540331828068,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7081249995874532,
+          "rotation": 210.95016921194042,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 33.80568513618915,
+          "y": 93.39466506228658,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6356465718442682,
+          "rotation": 82.0291356560842,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 167.71176524546738,
+          "y": 21.2921670790045,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6073433504456988,
+          "rotation": 41.271467712072536,
+          "label": "Vegetação recuperada"
+        }
+      ],
+      "objects": 162,
+      "expansion": "four-cities"
+    },
+    {
+      "id": "er_escomb",
+      "name": "Deserto das Máquinas Vivas",
+      "style": "red",
+      "biome": "desert",
+      "levels": "140–210",
+      "description": "Dunas, oásis e carcaças industriais rodeiam a trilha. Criaturas resistentes defendem as máquinas que ainda funcionam.",
+      "mobs": [
+        [
+          "Louva-a-deus da Forja",
+          2133,
+          14
+        ],
+        [
+          "Deletério de Vidro",
+          20374,
+          12
+        ],
+        [
+          "Espectro da Máquina",
+          20938,
+          10
+        ]
+      ],
+      "bounty": 3,
+      "width": 192,
+      "height": 192,
+      "spawn": [
+        96,
+        86
+      ],
+      "pois": [
+        {
+          "type": "guide",
+          "at": [
+            100,
+            83
+          ],
+          "title": "Guia de Deserto das Máquinas Vivas",
+          "text": "Dunas, oásis e carcaças industriais rodeiam a trilha. Criaturas resistentes defendem as máquinas que ainda funcionam. Faixa recomendada: 140–210. As passagens são compartilhadas por todos os grupos."
+        },
+        {
+          "type": "bounty",
+          "at": [
+            87,
+            82
+          ],
+          "title": "Patrulha de Deserto das Máquinas Vivas",
+          "text": "Derrote 20 criaturas desta região e retorne para receber experiência adicional. Você pode repetir a patrulha."
+        },
+        {
+          "type": "sign",
+          "at": [
+            106,
+            22
+          ],
+          "title": "Caminho para Bastião da Última Forja",
+          "text": "Siga a passagem para Bastião da Última Forja. Combine a viagem com seu grupo."
+        },
+        {
+          "type": "sign",
+          "at": [
+            106,
+            170
+          ],
+          "title": "Caminho para Jardins de Nova Aurora",
+          "text": "Siga a passagem para Jardins de Nova Aurora. Combine a viagem com seu grupo."
+        }
+      ],
+      "portals": [
+        [
+          96,
+          22
+        ],
+        [
+          96,
+          170
+        ]
+      ],
+      "arrivals": [
+        [
+          96,
+          32
+        ],
+        [
+          96,
+          160
+        ]
+      ],
+      "mobZones": [
+        [
+          38,
+          84,
+          13,
+          22
+        ],
+        [
+          150,
+          100,
+          13,
+          24
+        ],
+        [
+          74,
+          144,
+          12,
+          10
+        ]
+      ],
+      "colliders": [
+        {
+          "model": "fc_red_stall",
+          "x": 109,
+          "y": 71,
+          "w": 9,
+          "d": 7,
+          "scale": 0.8,
+          "rotation": 0,
+          "label": "Acampamento de exploração"
+        },
+        {
+          "model": "fc_relic",
+          "x": 66,
+          "y": 61,
+          "w": 7,
+          "d": 6,
+          "scale": 1.2,
+          "rotation": 0,
+          "label": "Ruína tomada pela natureza"
+        },
+        {
+          "model": "fc_relic",
+          "x": 125,
+          "y": 116,
+          "w": 7,
+          "d": 6,
+          "scale": 1.2,
+          "rotation": 0,
+          "label": "Ruína tomada pela natureza"
+        },
+        {
+          "model": "fc_relic",
+          "x": 126,
+          "y": 49,
+          "w": 7,
+          "d": 6,
+          "scale": 1.2,
+          "rotation": 0,
+          "label": "Ruína tomada pela natureza"
+        },
+        {
+          "model": "fc_crane",
+          "x": 31,
+          "y": 145,
+          "w": 3,
+          "d": 3,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Guindaste abandonado"
+        },
+        {
+          "model": "fc_forge",
+          "x": 151,
+          "y": 41,
+          "w": 10,
+          "d": 8,
+          "scale": 0.9,
+          "rotation": 0,
+          "label": "Forja perdida"
+        },
+        {
+          "model": "cactus",
+          "x": 66.35224233645765,
+          "y": 112.13383754602025,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6810032423657838,
+          "rotation": 159.62230294934062,
+          "label": "Vegetação do oásis"
+        },
+        {
+          "model": "cactus",
+          "x": 89.5272461137565,
+          "y": 66.71312896714386,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7023197964770532,
+          "rotation": 18.417563303005313,
+          "label": "Vegetação do oásis"
+        },
+        {
+          "model": "cactus",
+          "x": 35.45028925045633,
+          "y": 53.83781735828096,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6298433910426319,
+          "rotation": 85.9489662027799,
+          "label": "Vegetação do oásis"
+        },
+        {
+          "model": "cactus",
+          "x": 20,
+          "y": 79.58813386261187,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6042633324638622,
+          "rotation": 49.113590318968896,
+          "label": "Vegetação do oásis"
+        },
+        {
+          "model": "cactus",
+          "x": 58.62573864814493,
+          "y": 77.01366399973949,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6511598982385266,
+          "rotation": 337.663543749988,
+          "label": "Vegetação do oásis"
+        },
+        {
+          "model": "cactus",
+          "x": 45.75054530886713,
+          "y": 22.937167065901953,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6468975238145556,
+          "rotation": 306.96770264463674,
+          "label": "Vegetação do oásis"
+        },
+        {
+          "model": "cactus",
+          "x": 153.90537636305797,
+          "y": 158.48870280233416,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8259562066118131,
+          "rotation": 8.356908086770426,
+          "label": "Vegetação do oásis"
+        },
+        {
+          "model": "cactus",
+          "x": 28.655543905369832,
+          "y": 33.23730682354358,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6185937368703526,
+          "rotation": 233.28933809727647,
+          "label": "Vegetação do oásis"
+        },
+        {
+          "model": "cactus",
+          "x": 164.20326558831223,
+          "y": 141.39161248514233,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8430135754386461,
+          "rotation": 196.45436152733268,
+          "label": "Vegetação do oásis"
+        },
+        {
+          "model": "cactus",
+          "x": 133.30441764143865,
+          "y": 151.68959058837257,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7918496067965984,
+          "rotation": 155.6999994059326,
+          "label": "Vegetação do oásis"
+        },
+        {
+          "model": "cactus",
+          "x": 130.72708336234257,
+          "y": 107.91627185766498,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7705334126415042,
+          "rotation": 149.56122955995642,
+          "label": "Vegetação do oásis"
+        },
+        {
+          "model": "cactus",
+          "x": 90.45647080183413,
+          "y": 95.0399523556791,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7209159919807957,
+          "rotation": 217.094946200283,
+          "label": "Vegetação do oásis"
+        },
+        {
+          "model": "cactus",
+          "x": 75.00666654808603,
+          "y": 120.7913521306569,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6953331024142292,
+          "rotation": 180.25398159871204,
+          "label": "Vegetação do oásis"
+        },
+        {
+          "model": "cactus",
+          "x": 113.63431442031505,
+          "y": 118.2145019693334,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7422334994171358,
+          "rotation": 75.88867660516144,
+          "label": "Vegetação do oásis"
+        },
+        {
+          "model": "cactus",
+          "x": 41.530529393938025,
+          "y": 101.12095829824007,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6228570945963396,
+          "rotation": 100.44733589991166,
+          "label": "Vegetação do oásis"
+        },
+        {
+          "model": "cactus",
+          "x": 54.4066652335242,
+          "y": 31.592423418674716,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6612272229770262,
+          "rotation": 327.5972231215791,
+          "label": "Vegetação do oásis"
+        },
+        {
+          "model": "cactus",
+          "x": 162.558095017578,
+          "y": 57.34383289710242,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8402894729725758,
+          "rotation": 28.992716332197357,
+          "label": "Vegetação do oásis"
+        },
+        {
+          "model": "cactus",
+          "x": 37.31108784589709,
+          "y": 41.893126363142656,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6329231988366049,
+          "rotation": 253.92991204139076,
+          "label": "Vegetação do oásis"
+        },
+        {
+          "model": "cactus",
+          "x": 34.73595610930025,
+          "y": 162.9241669820445,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6116068167871811,
+          "rotation": 247.7864148020247,
+          "label": "Vegetação do oásis"
+        },
+        {
+          "model": "cactus",
+          "x": 116.20693243602453,
+          "y": 24.797494411188524,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7635511239672896,
+          "rotation": 278.48371854947965,
+          "label": "Vegetação do oásis"
+        },
+        {
+          "model": "cactus",
+          "x": 154.83673728672713,
+          "y": 22.222338556596622,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8104491533153805,
+          "rotation": 207.02896269201975,
+          "label": "Vegetação do oásis"
+        },
+        {
+          "model": "cactus",
+          "x": 78.51311441778977,
+          "y": 96.89870053480816,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7011384268876022,
+          "rotation": 25.07021464059833,
+          "label": "Vegetação do oásis"
+        },
+        {
+          "model": "cactus",
+          "x": 20.215366418290735,
+          "y": 65.99936207151026,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6046198880310683,
+          "rotation": 49.62698507346842,
+          "label": "Vegetação do oásis"
+        },
+        {
+          "model": "cactus",
+          "x": 140.31612052449867,
+          "y": 158.7021870326023,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8034585671973085,
+          "rotation": 335.9513839557654,
+          "label": "Vegetação do oásis"
+        },
+        {
+          "model": "cactus",
+          "x": 166.06651831280126,
+          "y": 33.45267563253936,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8460904518948147,
+          "rotation": 233.80959897157962,
+          "label": "Vegetação do oásis"
+        },
+        {
+          "model": "cactus",
+          "x": 150.61499950164347,
+          "y": 127.80244777463433,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8205161488313498,
+          "rotation": 196.9729302630231,
+          "label": "Vegetação do oásis"
+        },
+        {
+          "model": "cactus",
+          "x": 107.76700273849232,
+          "y": 153.55321120017982,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7495767317012829,
+          "rotation": 258.36100523787576,
+          "label": "Vegetação do oásis"
+        },
+        {
+          "model": "cactus",
+          "x": 133.51747773250509,
+          "y": 138.10076085783092,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7922099775267322,
+          "rotation": 123.29815518187783,
+          "label": "Vegetação do oásis"
+        },
+        {
+          "model": "cactus",
+          "x": 61.41616894919802,
+          "y": 121.004841704854,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6728349973384372,
+          "rotation": 147.85433083489872,
+          "label": "Vegetação do oásis"
+        },
+        {
+          "model": "cactus",
+          "x": 70.07141626651199,
+          "y": 74.65491975859155,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6871649163512431,
+          "rotation": 332.0391753250824,
+          "label": "Vegetação do oásis"
+        },
+        {
+          "model": "cactus",
+          "x": 23.720618056534,
+          "y": 42.10849056651548,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6104232311156632,
+          "rotation": 254.43854109720294,
+          "label": "Vegetação do oásis"
+        },
+        {
+          "model": "cactus",
+          "x": 21.145511949701586,
+          "y": 149.33110503557396,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8391079906930933,
+          "rotation": 248.3060564213214,
+          "label": "Vegetação do oásis"
+        }
+      ],
+      "objects": 196,
+      "expansion": "four-cities"
+    },
+    {
+      "id": "er_azul",
+      "name": "Jardins de Nova Aurora",
+      "style": "blue",
+      "theme": "garden",
+      "biome": "city",
+      "safe": true,
+      "levels": "Área segura",
+      "description": "O antigo terminal ferroviário tornou-se uma cidade de jardins, canais e cristais. Sua torre alimenta a reconstrução de Éridan.",
+      "width": 192,
+      "height": 192,
+      "spawn": [
+        96,
+        86
+      ],
+      "pois": [
+        {
+          "type": "guide",
+          "at": [
+            100,
+            83
+          ],
+          "title": "Guia de Jardins de Nova Aurora",
+          "text": "O antigo terminal ferroviário tornou-se uma cidade de jardins, canais e cristais. Sua torre alimenta a reconstrução de Éridan. Faixa recomendada: Área segura. As passagens são compartilhadas por todos os grupos."
+        },
+        {
+          "type": "rest",
+          "at": [
+            89,
+            83
+          ],
+          "title": "Descanso e retorno",
+          "text": "Recupere HP e SP ou salve esta cidade como ponto de retorno."
+        },
+        {
+          "type": "storage",
+          "at": [
+            107,
+            83
+          ],
+          "title": "Armazém de Jardins de Nova Aurora",
+          "text": "Guarde seus itens antes da próxima viagem."
+        },
+        {
+          "type": "shop",
+          "at": [
+            87,
+            70
+          ],
+          "title": "Mercado de Jardins de Nova Aurora",
+          "text": "Suprimentos para explorar Éridan."
+        },
+        {
+          "type": "story",
+          "at": [
+            105,
+            70
+          ],
+          "title": "Memórias da Rede",
+          "text": "O antigo terminal ferroviário tornou-se uma cidade de jardins, canais e cristais. Sua torre alimenta a reconstrução de Éridan. Reunindo os quatro núcleos, a Rede Helios poderá voltar a ligar as comunidades."
+        },
+        {
+          "type": "sign",
+          "at": [
+            106,
+            22
+          ],
+          "title": "Caminho para Deserto das Máquinas Vivas",
+          "text": "Siga a passagem para Deserto das Máquinas Vivas. Combine a viagem com seu grupo."
+        },
+        {
+          "type": "sign",
+          "at": [
+            106,
+            170
+          ],
+          "title": "Caminho para Selva das Marés de Éter",
+          "text": "Siga a passagem para Selva das Marés de Éter. Combine a viagem com seu grupo."
+        },
+        {
+          "type": "sign",
+          "at": [
+            170,
+            96
+          ],
+          "title": "Caminho para Vila das Raízes",
+          "text": "Siga a passagem para Vila das Raízes. Combine a viagem com seu grupo."
+        }
+      ],
+      "portals": [
+        [
+          96,
+          22
+        ],
+        [
+          96,
+          170
+        ],
+        [
+          170,
+          86
+        ]
+      ],
+      "arrivals": [
+        [
+          96,
+          32
+        ],
+        [
+          96,
+          160
+        ],
+        [
+          160,
+          86
+        ]
+      ],
+      "mobZones": [],
+      "colliders": [
+        {
+          "model": "fc_blue_keep",
+          "x": 96,
+          "y": 147,
+          "w": 26,
+          "d": 18,
+          "scale": 1.25,
+          "rotation": 0,
+          "label": "Catedral do Éter"
+        },
+        {
+          "model": "fc_blue_fountain",
+          "x": 96,
+          "y": 105,
+          "w": 12,
+          "d": 12,
+          "scale": 1.2,
+          "rotation": 0,
+          "label": "Praça central"
+        },
+        {
+          "model": "fc_blue_house",
+          "x": 37,
+          "y": 54,
+          "w": 10,
+          "d": 8,
+          "scale": 1.1,
+          "rotation": 0,
+          "label": "Casa reconstruída"
+        },
+        {
+          "model": "fc_blue_house",
+          "x": 37,
+          "y": 116,
+          "w": 10,
+          "d": 8,
+          "scale": 1.1,
+          "rotation": 0,
+          "label": "Casa reconstruída"
+        },
+        {
+          "model": "fc_blue_house",
+          "x": 73,
+          "y": 54,
+          "w": 10,
+          "d": 8,
+          "scale": 1.1,
+          "rotation": 0,
+          "label": "Casa reconstruída"
+        },
+        {
+          "model": "fc_blue_house",
+          "x": 73,
+          "y": 116,
+          "w": 10,
+          "d": 8,
+          "scale": 1.1,
+          "rotation": 0,
+          "label": "Casa reconstruída"
+        },
+        {
+          "model": "fc_blue_house",
+          "x": 119,
+          "y": 54,
+          "w": 10,
+          "d": 8,
+          "scale": 1.1,
+          "rotation": 0,
+          "label": "Casa reconstruída"
+        },
+        {
+          "model": "fc_blue_house",
+          "x": 119,
+          "y": 116,
+          "w": 10,
+          "d": 8,
+          "scale": 1.1,
+          "rotation": 0,
+          "label": "Casa reconstruída"
+        },
+        {
+          "model": "fc_blue_house",
+          "x": 155,
+          "y": 54,
+          "w": 10,
+          "d": 8,
+          "scale": 1.1,
+          "rotation": 0,
+          "label": "Casa reconstruída"
+        },
+        {
+          "model": "fc_blue_house",
+          "x": 155,
+          "y": 116,
+          "w": 10,
+          "d": 8,
+          "scale": 1.1,
+          "rotation": 0,
+          "label": "Casa reconstruída"
+        },
+        {
+          "model": "fc_blue_stall",
+          "x": 40,
+          "y": 36,
+          "w": 9,
+          "d": 7,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Banca do mercado"
+        },
+        {
+          "model": "fc_blue_stall",
+          "x": 73,
+          "y": 36,
+          "w": 9,
+          "d": 7,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Banca do mercado"
+        },
+        {
+          "model": "fc_blue_stall",
+          "x": 119,
+          "y": 36,
+          "w": 9,
+          "d": 7,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Banca do mercado"
+        },
+        {
+          "model": "fc_blue_stall",
+          "x": 151,
+          "y": 36,
+          "w": 9,
+          "d": 7,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Banca do mercado"
+        },
+        {
+          "model": "fc_planter",
+          "x": 66,
+          "y": 67,
+          "w": 5,
+          "d": 3,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Jardim comunitário"
+        },
+        {
+          "model": "fc_planter",
+          "x": 66,
+          "y": 106,
+          "w": 5,
+          "d": 3,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Jardim comunitário"
+        },
+        {
+          "model": "fc_planter",
+          "x": 126,
+          "y": 67,
+          "w": 5,
+          "d": 3,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Jardim comunitário"
+        },
+        {
+          "model": "fc_planter",
+          "x": 126,
+          "y": 106,
+          "w": 5,
+          "d": 3,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Jardim comunitário"
+        },
+        {
+          "model": "bench",
+          "x": 63,
+          "y": 93,
+          "w": 5,
+          "d": 2,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Banco da praça"
+        },
+        {
+          "model": "bench",
+          "x": 63,
+          "y": 118,
+          "w": 5,
+          "d": 2,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Banco da praça"
+        },
+        {
+          "model": "bench",
+          "x": 129,
+          "y": 93,
+          "w": 5,
+          "d": 2,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Banco da praça"
+        },
+        {
+          "model": "bench",
+          "x": 129,
+          "y": 118,
+          "w": 5,
+          "d": 2,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Banco da praça"
+        },
+        {
+          "model": "fc_blue_lamp",
+          "x": 86,
+          "y": 42,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Iluminação da avenida"
+        },
+        {
+          "model": "fc_blue_lamp",
+          "x": 86,
+          "y": 58,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Iluminação da avenida"
+        },
+        {
+          "model": "fc_blue_lamp",
+          "x": 86,
+          "y": 75,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Iluminação da avenida"
+        },
+        {
+          "model": "fc_blue_lamp",
+          "x": 86,
+          "y": 124,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Iluminação da avenida"
+        },
+        {
+          "model": "fc_blue_lamp",
+          "x": 86,
+          "y": 137,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Iluminação da avenida"
+        },
+        {
+          "model": "fc_blue_lamp",
+          "x": 106,
+          "y": 42,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Iluminação da avenida"
+        },
+        {
+          "model": "fc_blue_lamp",
+          "x": 106,
+          "y": 58,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Iluminação da avenida"
+        },
+        {
+          "model": "fc_blue_lamp",
+          "x": 106,
+          "y": 75,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Iluminação da avenida"
+        },
+        {
+          "model": "fc_blue_lamp",
+          "x": 106,
+          "y": 124,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Iluminação da avenida"
+        },
+        {
+          "model": "fc_blue_lamp",
+          "x": 106,
+          "y": 137,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Iluminação da avenida"
+        },
+        {
+          "model": "fc_blue_banner",
+          "x": 49,
+          "y": 65,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Estandarte da cidade"
+        },
+        {
+          "model": "fc_blue_banner",
+          "x": 49,
+          "y": 100,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Estandarte da cidade"
+        },
+        {
+          "model": "fc_blue_banner",
+          "x": 49,
+          "y": 132,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Estandarte da cidade"
+        },
+        {
+          "model": "fc_blue_banner",
+          "x": 143,
+          "y": 65,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Estandarte da cidade"
+        },
+        {
+          "model": "fc_blue_banner",
+          "x": 143,
+          "y": 100,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Estandarte da cidade"
+        },
+        {
+          "model": "fc_blue_banner",
+          "x": 143,
+          "y": 132,
+          "w": 1,
+          "d": 1,
+          "scale": 1,
+          "rotation": 0,
+          "label": "Estandarte da cidade"
+        },
+        {
+          "model": "fc_waterfall",
+          "x": 24,
+          "y": 55,
+          "w": 7,
+          "d": 4,
+          "scale": 0.8,
+          "rotation": 0,
+          "label": "Cascata recuperada"
+        },
+        {
+          "model": "fc_waterfall",
+          "x": 24,
+          "y": 114,
+          "w": 7,
+          "d": 4,
+          "scale": 0.8,
+          "rotation": 0,
+          "label": "Cascata recuperada"
+        },
+        {
+          "model": "fc_waterfall",
+          "x": 24,
+          "y": 145,
+          "w": 7,
+          "d": 4,
+          "scale": 0.8,
+          "rotation": 0,
+          "label": "Cascata recuperada"
+        },
+        {
+          "model": "fc_waterfall",
+          "x": 168,
+          "y": 55,
+          "w": 7,
+          "d": 4,
+          "scale": 0.8,
+          "rotation": 0,
+          "label": "Cascata recuperada"
+        },
+        {
+          "model": "fc_waterfall",
+          "x": 168,
+          "y": 114,
+          "w": 7,
+          "d": 4,
+          "scale": 0.8,
+          "rotation": 0,
+          "label": "Cascata recuperada"
+        },
+        {
+          "model": "fc_waterfall",
+          "x": 168,
+          "y": 145,
+          "w": 7,
+          "d": 4,
+          "scale": 0.8,
+          "rotation": 0,
+          "label": "Cascata recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 35,
+          "y": 70,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 0,
+          "label": "Árvore dos terraços"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 35,
+          "y": 99,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 0,
+          "label": "Árvore dos terraços"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 35,
+          "y": 134,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 0,
+          "label": "Árvore dos terraços"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 155,
+          "y": 70,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 0,
+          "label": "Árvore dos terraços"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 155,
+          "y": 99,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 0,
+          "label": "Árvore dos terraços"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 155,
+          "y": 134,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8,
+          "rotation": 0,
+          "label": "Árvore dos terraços"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 48.32610438399159,
+          "y": 25.512130117163093,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6426333531603761,
+          "rotation": 313.10156262319106,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 40.60042260601195,
+          "y": 168.78691322584334,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8344885720486027,
+          "rotation": 294.6810139377324,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 156.4775487935351,
+          "y": 161.06090413221645,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8216976429851953,
+          "rotation": 14.496358124189163,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 23.505258669728708,
+          "y": 28.087200996253454,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6015399908883358,
+          "rotation": 221.0173144519835,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 135.87716250514546,
+          "y": 154.2668861942987,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7875900954328454,
+          "rotation": 161.83782955674403,
+          "label": "Vegetação recuperada"
+        }
+      ],
+      "objects": 176,
+      "expansion": "four-cities"
+    },
+    {
+      "id": "er_selva",
+      "name": "Selva das Marés de Éter",
+      "style": "blue",
+      "biome": "coast",
+      "levels": "200–275",
+      "description": "A floresta costeira e seus canais unem Nova Aurora à Citadela Rubra. As clareiras afastadas exigem equipamento e um grupo preparado.",
+      "mobs": [
+        [
+          "Napeo da Selva",
+          20922,
+          14
+        ],
+        [
+          "Litus das Marés",
+          20925,
+          12
+        ],
+        [
+          "Amitera da Rede",
+          20924,
+          12
+        ]
+      ],
+      "bounty": 4,
+      "width": 192,
+      "height": 192,
+      "spawn": [
+        96,
+        86
+      ],
+      "pois": [
+        {
+          "type": "guide",
+          "at": [
+            100,
+            83
+          ],
+          "title": "Guia de Selva das Marés de Éter",
+          "text": "A floresta costeira e seus canais unem Nova Aurora à Citadela Rubra. As clareiras afastadas exigem equipamento e um grupo preparado. Faixa recomendada: 200–275. As passagens são compartilhadas por todos os grupos."
+        },
+        {
+          "type": "bounty",
+          "at": [
+            87,
+            82
+          ],
+          "title": "Patrulha de Selva das Marés de Éter",
+          "text": "Derrote 20 criaturas desta região e retorne para receber experiência adicional. Você pode repetir a patrulha."
+        },
+        {
+          "type": "sign",
+          "at": [
+            106,
+            22
+          ],
+          "title": "Caminho para Jardins de Nova Aurora",
+          "text": "Siga a passagem para Jardins de Nova Aurora. Combine a viagem com seu grupo."
+        },
+        {
+          "type": "sign",
+          "at": [
+            106,
+            170
+          ],
+          "title": "Caminho para Citadela Rubra",
+          "text": "Siga a passagem para Citadela Rubra. Combine a viagem com seu grupo."
+        }
+      ],
+      "portals": [
+        [
+          96,
+          22
+        ],
+        [
+          96,
+          170
+        ]
+      ],
+      "arrivals": [
+        [
+          96,
+          32
+        ],
+        [
+          96,
+          160
+        ]
+      ],
+      "mobZones": [
+        [
+          38,
+          84,
+          13,
+          22
+        ],
+        [
+          150,
+          100,
+          13,
+          24
+        ],
+        [
+          74,
+          144,
+          12,
+          10
+        ]
+      ],
+      "colliders": [
+        {
+          "model": "fc_blue_stall",
+          "x": 109,
+          "y": 71,
+          "w": 9,
+          "d": 7,
+          "scale": 0.8,
+          "rotation": 0,
+          "label": "Acampamento de exploração"
+        },
+        {
+          "model": "fc_relic",
+          "x": 66,
+          "y": 61,
+          "w": 7,
+          "d": 6,
+          "scale": 1.2,
+          "rotation": 0,
+          "label": "Ruína tomada pela natureza"
+        },
+        {
+          "model": "fc_relic",
+          "x": 125,
+          "y": 116,
+          "w": 7,
+          "d": 6,
+          "scale": 1.2,
+          "rotation": 0,
+          "label": "Ruína tomada pela natureza"
+        },
+        {
+          "model": "fc_relic",
+          "x": 126,
+          "y": 49,
+          "w": 7,
+          "d": 6,
+          "scale": 1.2,
+          "rotation": 0,
+          "label": "Ruína tomada pela natureza"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 84.37794873150483,
+          "y": 109.56096302172192,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7108488214925976,
+          "rotation": 104.36927734510257,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 66.35224233645765,
+          "y": 91.53383623145842,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6810032423657838,
+          "rotation": 61.392028550941504,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 74.07745096578203,
+          "y": 71.86425959827943,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6937950476873189,
+          "rotation": 79.81115147467031,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 40.60042260601195,
+          "y": 79.58813386261187,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6383710615076988,
+          "rotation": 0,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 22.57505280817278,
+          "y": 61.56398571505304,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6085266649859321,
+          "rotation": 349.9395486316503,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 30.300211303005977,
+          "y": 28.087200996253454,
+          "w": 2,
+          "d": 2,
+          "scale": 0.621316676580188,
+          "rotation": 8.356908086770426,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 38.02540818974967,
+          "y": 35.81236757729491,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8387471284574706,
+          "rotation": 26.774981093307723,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 26.08041687986823,
+          "y": 161.06090413221645,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6143303707042547,
+          "rotation": 325.37693752101086,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 143.60231417943777,
+          "y": 168.78691322584334,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8089068834224964,
+          "rotation": 245.56811420376602,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 151.3287109891718,
+          "y": 25.512130117163093,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8216976429851953,
+          "rotation": 263.98509940690946,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 159.05449226267044,
+          "y": 156.84360606219704,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8344885720486027,
+          "rotation": 282.40537299830595,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 125.57787809255018,
+          "y": 164.56471902703976,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7790644071714636,
+          "rotation": 202.59386747204556,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 141.03078660649032,
+          "y": 138.8153908683023,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7364266399495365,
+          "rotation": 239.43560052649946,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 107.5542271413268,
+          "y": 146.54061545909863,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7492170969488139,
+          "rotation": 192.53236073826727,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 115.27965684055343,
+          "y": 113.06420358481449,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7620064847897753,
+          "rotation": 210.95016921194042,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 111.05926910067426,
+          "y": 95.0399523556791,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7550236993713825,
+          "rotation": 167.9756919778827,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 77.58119385819444,
+          "y": 102.76594745664997,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6995994375202803,
+          "rotation": 88.16720108691771,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 59.55700956880045,
+          "y": 98.54593048699803,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6697550943749386,
+          "rotation": 45.1932281081549,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 33.80568513618915,
+          "y": 72.79355811695419,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6271204448135385,
+          "rotation": 16.713816173540852,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 29.585704695104088,
+          "y": 54.76812528184804,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6201338307862482,
+          "rotation": 333.7407091291949,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 37.31108784589709,
+          "y": 21.2921670790045,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6329231988366049,
+          "rotation": 352.1604999229686,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 45.03570811567728,
+          "y": 29.017567035047705,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8274980716122077,
+          "rotation": 10.574424641806266,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 162.558095017578,
+          "y": 36.742744233632166,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8402894729725758,
+          "rotation": 290.75936820608547,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 170.28396523936743,
+          "y": 168.07321488719276,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6030799818348791,
+          "rotation": 309.177756036906,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 136.8084486138095,
+          "y": 24.797494411188524,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7976567109692042,
+          "rotation": 229.36752103952867,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 144.5339166346318,
+          "y": 32.522874116553666,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8104491533153805,
+          "rotation": 247.7864148020247,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 152.25989092240573,
+          "y": 150.0448559697356,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8232396312694157,
+          "rotation": 266.2086184104459,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 118.78487887624298,
+          "y": 157.7703042320838,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7678099520895187,
+          "rotation": 219.31289542916065,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 114.56257695508249,
+          "y": 139.7466783129486,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7608268631763819,
+          "rotation": 176.33440217383543,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 122.28729338042608,
+          "y": 106.27109017718375,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7736181920100046,
+          "rotation": 194.74998592276825,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 104.26415404008333,
+          "y": 102.04880843638648,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7437701129805693,
+          "rotation": 151.77735321032287,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 70.78733736318242,
+          "y": 109.77422583051356,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6883467156296472,
+          "rotation": 71.966276837505,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 40.815763183593695,
+          "y": 65.99936207151026,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6387276119526307,
+          "rotation": 0.5134563614878469,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 56.26632472832369,
+          "y": 40.2476788925118,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6643064507898656,
+          "rotation": 37.34891271156932,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 22.79041237076521,
+          "y": 47.9728031440109,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6088834482033,
+          "rotation": 317.5432543171438,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 155.7639570522038,
+          "y": 43.75296698900707,
+          "w": 2,
+          "d": 2,
+          "scale": 0.8290409636285717,
+          "rotation": 274.5593349529801,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 133.51747773250509,
+          "y": 117.49973182135722,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7922099775267322,
+          "rotation": 221.52422957623475,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 82.01667765574919,
+          "y": 121.004841704854,
+          "w": 2,
+          "d": 2,
+          "scale": 0.706942785055596,
+          "rotation": 98.7405352431211,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 23.720618056534,
+          "y": 21.507527907264308,
+          "w": 2,
+          "d": 2,
+          "scale": 0.6104232311156632,
+          "rotation": 319.7527011948993,
+          "label": "Vegetação recuperada"
+        },
+        {
+          "model": "fc_canopy",
+          "x": 137.02622883557953,
+          "y": 162.20589624419947,
+          "w": 2,
+          "d": 2,
+          "scale": 0.7980096847279952,
+          "rotation": 229.8864652844813,
+          "label": "Vegetação recuperada"
+        }
+      ],
+      "objects": 181,
+      "expansion": "four-cities"
     }
   ],
   "routes": [
@@ -3034,6 +7844,486 @@
         "arrival": [
           80,
           32
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "er_rubra",
+        "at": [
+          96,
+          170
+        ],
+        "arrival": [
+          96,
+          160
+        ]
+      },
+      "to": {
+        "id": "er_brasa",
+        "at": [
+          96,
+          22
+        ],
+        "arrival": [
+          96,
+          32
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "er_brasa",
+        "at": [
+          96,
+          22
+        ],
+        "arrival": [
+          96,
+          32
+        ]
+      },
+      "to": {
+        "id": "er_rubra",
+        "at": [
+          96,
+          170
+        ],
+        "arrival": [
+          96,
+          160
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "er_brasa",
+        "at": [
+          96,
+          170
+        ],
+        "arrival": [
+          96,
+          160
+        ]
+      },
+      "to": {
+        "id": "er_celeste",
+        "at": [
+          96,
+          22
+        ],
+        "arrival": [
+          96,
+          32
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "er_celeste",
+        "at": [
+          96,
+          22
+        ],
+        "arrival": [
+          96,
+          32
+        ]
+      },
+      "to": {
+        "id": "er_brasa",
+        "at": [
+          96,
+          170
+        ],
+        "arrival": [
+          96,
+          160
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "er_celeste",
+        "at": [
+          96,
+          170
+        ],
+        "arrival": [
+          96,
+          160
+        ]
+      },
+      "to": {
+        "id": "er_jardim",
+        "at": [
+          96,
+          22
+        ],
+        "arrival": [
+          96,
+          32
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "er_jardim",
+        "at": [
+          96,
+          22
+        ],
+        "arrival": [
+          96,
+          32
+        ]
+      },
+      "to": {
+        "id": "er_celeste",
+        "at": [
+          96,
+          170
+        ],
+        "arrival": [
+          96,
+          160
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "er_jardim",
+        "at": [
+          96,
+          170
+        ],
+        "arrival": [
+          96,
+          160
+        ]
+      },
+      "to": {
+        "id": "er_forja",
+        "at": [
+          96,
+          22
+        ],
+        "arrival": [
+          96,
+          32
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "er_forja",
+        "at": [
+          96,
+          22
+        ],
+        "arrival": [
+          96,
+          32
+        ]
+      },
+      "to": {
+        "id": "er_jardim",
+        "at": [
+          96,
+          170
+        ],
+        "arrival": [
+          96,
+          160
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "er_forja",
+        "at": [
+          96,
+          170
+        ],
+        "arrival": [
+          96,
+          160
+        ]
+      },
+      "to": {
+        "id": "er_escomb",
+        "at": [
+          96,
+          22
+        ],
+        "arrival": [
+          96,
+          32
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "er_escomb",
+        "at": [
+          96,
+          22
+        ],
+        "arrival": [
+          96,
+          32
+        ]
+      },
+      "to": {
+        "id": "er_forja",
+        "at": [
+          96,
+          170
+        ],
+        "arrival": [
+          96,
+          160
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "er_escomb",
+        "at": [
+          96,
+          170
+        ],
+        "arrival": [
+          96,
+          160
+        ]
+      },
+      "to": {
+        "id": "er_azul",
+        "at": [
+          96,
+          22
+        ],
+        "arrival": [
+          96,
+          32
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "er_azul",
+        "at": [
+          96,
+          22
+        ],
+        "arrival": [
+          96,
+          32
+        ]
+      },
+      "to": {
+        "id": "er_escomb",
+        "at": [
+          96,
+          170
+        ],
+        "arrival": [
+          96,
+          160
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "er_azul",
+        "at": [
+          96,
+          170
+        ],
+        "arrival": [
+          96,
+          160
+        ]
+      },
+      "to": {
+        "id": "er_selva",
+        "at": [
+          96,
+          22
+        ],
+        "arrival": [
+          96,
+          32
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "er_selva",
+        "at": [
+          96,
+          22
+        ],
+        "arrival": [
+          96,
+          32
+        ]
+      },
+      "to": {
+        "id": "er_azul",
+        "at": [
+          96,
+          170
+        ],
+        "arrival": [
+          96,
+          160
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "er_selva",
+        "at": [
+          96,
+          170
+        ],
+        "arrival": [
+          96,
+          160
+        ]
+      },
+      "to": {
+        "id": "er_rubra",
+        "at": [
+          96,
+          22
+        ],
+        "arrival": [
+          96,
+          32
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "er_rubra",
+        "at": [
+          96,
+          22
+        ],
+        "arrival": [
+          96,
+          32
+        ]
+      },
+      "to": {
+        "id": "er_selva",
+        "at": [
+          96,
+          170
+        ],
+        "arrival": [
+          96,
+          160
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "er_aurea",
+        "at": [
+          80,
+          64
+        ],
+        "arrival": [
+          72,
+          64
+        ]
+      },
+      "to": {
+        "id": "er_rubra",
+        "at": [
+          22,
+          86
+        ],
+        "arrival": [
+          32,
+          86
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "er_rubra",
+        "at": [
+          22,
+          86
+        ],
+        "arrival": [
+          32,
+          86
+        ]
+      },
+      "to": {
+        "id": "er_aurea",
+        "at": [
+          80,
+          64
+        ],
+        "arrival": [
+          72,
+          64
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "er_vilav",
+        "at": [
+          80,
+          60
+        ],
+        "arrival": [
+          72,
+          60
+        ]
+      },
+      "to": {
+        "id": "er_azul",
+        "at": [
+          170,
+          86
+        ],
+        "arrival": [
+          160,
+          86
+        ]
+      }
+    },
+    {
+      "from": {
+        "id": "er_azul",
+        "at": [
+          170,
+          86
+        ],
+        "arrival": [
+          160,
+          86
+        ]
+      },
+      "to": {
+        "id": "er_vilav",
+        "at": [
+          80,
+          60
+        ],
+        "arrival": [
+          72,
+          60
         ]
       }
     }

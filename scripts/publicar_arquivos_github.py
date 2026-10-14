@@ -30,11 +30,11 @@ if args.check:
 if not args.directory or not args.publish:raise SystemExit('Use --directory e --publish para publicar arquivos revisados.')
 directory=args.directory.resolve()
 manifest=json.loads((directory/'release-assets.json').read_text(encoding='utf-8'))
-tag=manifest['tag'];revision=manifest['revision']
+tag=manifest['tag'];revision=manifest['revision'];version=tag.removeprefix('quest-arquivos-')
 existing=api('GET','/repos/'+REPO+'/releases?per_page=100')
 release=next((r for r in existing if r['tag_name']==tag),None)
 if release is None:
-    release=api('POST','/repos/'+REPO+'/releases',{'tag_name':tag,'target_commitish':revision,'name':'Quest 2.0.4 — arquivos compartilhados','draft':True,'prerelease':False,'body':'Central de arquivos do Quest: pacotes para jogadores e GMs, com verificacao SHA-256. O pacote completo do desenvolvedor tem tres partes; Baixar-Quest-GM.cmd baixa, verifica e monta o ZIP automaticamente. Contas, senhas e bancos de jogadores nao acompanham a distribuicao. A central esta em https://quest-game-plum.vercel.app/arquivos.html.'})
+    release=api('POST','/repos/'+REPO+'/releases',{'tag_name':tag,'target_commitish':revision,'name':'Quest '+version+' — arquivos compartilhados','draft':True,'prerelease':False,'body':'Central de arquivos do Quest: pacotes para jogadores e GMs, com verificacao SHA-256. O pacote completo do desenvolvedor tem tres partes; Baixar-Quest-GM.cmd baixa, verifica e monta o ZIP automaticamente. Contas, senhas e bancos de jogadores nao acompanham a distribuicao. A central esta em https://quest-game-plum.vercel.app/arquivos.html.'})
 assets={a['name']:a for a in release['assets']}
 def upload(record):
     name=record['name'];file=directory/name

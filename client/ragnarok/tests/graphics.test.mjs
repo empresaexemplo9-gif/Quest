@@ -19,9 +19,9 @@ test('ultrawide and portrait scenes keep their aspect ratio inside the 8K envelo
  assert.deepEqual(renderSize({width:2560,height:1080}),{width:7680,height:3240});
  assert.deepEqual(renderSize({width:1080,height:1920}),{width:2430,height:4320});
 });
-test('mobile caps the 8K request to the 4K pixel budget', () => {
+test('tablets cap the 8K request to a full-HD pixel budget for touch responsiveness', () => {
  const size=renderSize({width:1920,height:1080,mobile:true});
- assert.deepEqual(size,{width:3840,height:2160});
+ assert.deepEqual(size,{width:1920,height:1080});
 });
 test('a slower machine can reduce resolution without changing the UI or requested preset', () => {
  assert.deepEqual(renderSize({width:1920,height:1080,adaptiveScale:.5}),{width:3840,height:2160});

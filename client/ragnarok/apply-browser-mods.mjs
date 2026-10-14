@@ -10,9 +10,40 @@ fs.cpSync(source,target,{recursive:true,filter:p=>!p.split(path.sep).some(part=>
 fs.copyFileSync(path.join(root,'client/ragnarok/mods/CharCreateQuest.js'),path.join(target,'src/UI/Components/CharCreate/CharCreatev4/CharCreatev4.js'));
 fs.copyFileSync(path.join(root,'client/ragnarok/mods/LocalePt.js'),path.join(target,'src/UI/LocalePt.js'));
 fs.copyFileSync(path.join(root,'client/ragnarok/mods/GraphicsQuest.js'),path.join(target,'src/Renderer/GraphicsQuest.js'));
+for(const [name,destination] of [['TouchQuest.js','MobileUI.js'],['TouchLogic.js','TouchLogic.js'],['TouchQuest.css','TouchQuest.css']])fs.copyFileSync(path.join(root,'client/ragnarok/mods',name),path.join(target,'src/UI/Components/MobileUI',destination));
+for(const name of ['OutfitQuest.js','OutfitLogic.js'])fs.copyFileSync(path.join(root,'client/ragnarok/mods',name),path.join(target,'src/Renderer/Entity',name));
+fs.writeFileSync(path.join(target,'src/DB/QuestItems.js'),'export default '+fs.readFileSync(path.join(root,'content/gm/iteminfo.json'),'utf8')+';\n');
 function replace(file,original,replacement){const filename=path.join(target,'src',file);const content=fs.readFileSync(filename,'utf8').replaceAll('\r\n','\n');if(!content.includes(original))throw Error('Pinned source changed: '+file);fs.writeFileSync(filename,content.replace(original,replacement));}
+replace('Renderer/Entity/EntityRender.js',"import Client from 'Core/Client.js';","import Client from 'Core/Client.js';\nimport {applyQuestOutfit} from './OutfitQuest.js';");
+replace('Renderer/Entity/EntityRender.js','return function _renderEntity() {','return function _renderEntity() {\n\t\tapplyQuestOutfit(this);');
+const entityRender=path.join(target,'src/Renderer/Entity/EntityRender.js');
+fs.writeFileSync(entityRender,fs.readFileSync(entityRender,'utf8').replaceAll('self.hasCart == true','self.hasCart == true && !self._questOutfit'));
+replace('Network/PacketStructure.js','this.code = fp.readChar();\n\tfp.seek(20, SEEK_CUR);','this.code = fp.readChar();\n\tthis.questGM = fp.readUChar() === 98;\n\tfp.seek(19, SEEK_CUR);');
+replace('Engine/CharEngine.js','function onConnectionAccepted(pkt) {','function onConnectionAccepted(pkt) {\n\tif (typeof pkt.questGM === "boolean") Session.QuestGM = pkt.questGM;');
+replace('DB/DBManager.js',"import Client from 'Core/Client.js';","import Client from 'Core/Client.js';\nimport QuestItems from './QuestItems.js';");
+replace('DB/DBManager.js','const item = ItemTable[itemid] || unknownItem;',`const override = QuestItems[itemid];
+        const original = ItemTable[itemid];
+        const item = original?.identifiedDisplayName ? original : override ? (ItemTable[itemid] = {
+            ...(ItemTable[override.icon] || unknownItem),
+            identifiedDisplayName:override.name, unidentifiedDisplayName:override.name,
+            identifiedDescriptionName:override.description, unidentifiedDescriptionName:override.description,
+            slotCount:override.slots, _decoded:false
+        }) : unknownItem;`);
 replace('UI/GUIComponent.js',"import CommonCSS from './Common.css?raw';","import CommonCSS from './Common.css?raw';\nimport {localize} from './LocalePt.js';");
 replace('UI/GUIComponent.js','this._container.innerHTML = this.render();','this._container.innerHTML = this.render();\n\t\t\tlocalize(this._container);');
+replace('UI/Elements/UIButton.js',"import DB from 'DB/DBManager.js';","import DB from 'DB/DBManager.js';\nimport {buttonLabel} from 'UI/LocalePt.js';");
+replace('UI/Elements/UIButton.js',"const bg = this.getAttribute('bg');",`const bg = this.getAttribute('bg');
+        const questLabel = buttonLabel(bg || '');
+        if (questLabel) {
+            this.textContent = questLabel;
+            this.setAttribute('aria-label',questLabel);
+            this.setAttribute('role','button');
+            this.tabIndex = 0;
+            this.style.setProperty('background-image','none','important');
+            Object.assign(this.style,{backgroundColor:'#eef1ea',color:'#172b35',font:'12px Arial',border:'1px solid #6b7680',borderRadius:'3px',textAlign:'center',minWidth:'42px',lineHeight:'19px',boxSizing:'border-box'});
+            this.addEventListener('keydown',event=>{if(!this.disabled && ['Enter',' '].includes(event.key)){event.preventDefault();event.stopPropagation();this.click();}});
+        }`);
+replace('UI/Components/ChatBox/ChatBox.js',"activeElement.tagName === 'BUTTON' && !root.contains(activeElement)","['BUTTON','UI-BUTTON'].includes(activeElement.tagName) && !root.contains(activeElement)");
 replace('UI/Background.js','static getLoginBackgroundName() {','static getLoginBackgroundName() {\n\t\treturn "quest/login-pt.png";');
 replace('UI/Background.js','static setLoading(callback) {','static setLoading(callback) {\n\t\tBackground._loading = ["quest/loading-pt.png"];');
 replace('DB/DBManager.js',"() => loadCSV('data/msgstringtable.csv', MsgStringTable, 0, 1, loadmsg)",'loadmsg');
@@ -53,5 +84,5 @@ const uiPath='data/texture/À¯ÀúÀÎÅÍÆäÀÌ½º/quest';
 for(const name of ['login-pt.png','loading-pt.png']){
  const destination=path.join(root,'content/ragnarok',uiPath,name);fs.mkdirSync(path.dirname(destination),{recursive:true});fs.copyFileSync(path.join(root,'public/art/ragnarok',name),destination);
 }
-fs.writeFileSync(path.join(target,'QUEST-MODS.json'),JSON.stringify({upstream:'a9d31a10880740f4a351fcfca402ea6567022926',source:'https://github.com/MrAntares/roBrowserLegacy',modifications:['seven human starting classes','Portuguese login and loading artwork','8K scene supersampling with GPU limits and performance adaptation','trilinear model filtering and up to 16x anisotropic world textures','Portuguese graphics controls with actual drawing buffer resolution']},null,2));
+fs.writeFileSync(path.join(target,'QUEST-MODS.json'),JSON.stringify({upstream:'a9d31a10880740f4a351fcfca402ea6567022926',source:'https://github.com/MrAntares/roBrowserLegacy',modifications:['seven human starting classes','Portuguese login and loading artwork','8K scene supersampling with GPU limits and performance adaptation','trilinear model filtering and up to 16x anisotropic world textures','Portuguese graphics controls with actual drawing buffer resolution','iPad native movement joystick and six-target combat wheel','GM reference costumes with native animation and synchronized dye palettes']},null,2));
 console.log(JSON.stringify({source,target,modified:true}));

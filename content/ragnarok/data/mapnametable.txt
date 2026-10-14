@@ -1019,3 +1019,12 @@ er_aurea.rsw#Aurea — Distrito Recuperado#
 er_ruinas.rsw#Ruínas da Rede Helios#
 er_mina1.rsw#Galerias do Núcleo — Piso 1#
 er_mina2.rsw#Galerias do Núcleo — Piso 2#
+
+er_rubra.rsw#Citadela Rubra#
+er_brasa.rsw#Vale das Brasas Verdes#
+er_celeste.rsw#Coroa Celeste#
+er_jardim.rsw#Floresta dos Condutores#
+er_forja.rsw#Bastião da Última Forja#
+er_escomb.rsw#Deserto das Máquinas Vivas#
+er_azul.rsw#Jardins de Nova Aurora#
+er_selva.rsw#Selva das Marés de Éter#

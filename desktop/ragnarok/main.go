@@ -34,7 +34,7 @@ import (
 //go:embed assets/runtime.zip assets/runtime.sha256
 var bundle embed.FS
 
-const version = "2.0.4"
+const version = "2.0.5"
 const portal = "https://quest-game-plum.vercel.app"
 
 var installComplete = errors.New("installed and launched")
@@ -62,6 +62,7 @@ func main() {
 
 func run() error {
 	serverFlag := flag.String("server", "", "Endereço do servidor Quest")
+	followPortal := flag.Bool("follow-portal", true, "Encontrar automaticamente o servidor principal do portal")
 	caFlag := flag.String("ca", "", "CA explícita para servidor local administrado pelo usuário")
 	dataFlag := flag.String("data-dir", "", "Pasta privada de instalação e cache")
 	assetsFlag := flag.String("assets-dir", "", "Cliente kRO já instalado, para validação/administração")
@@ -140,7 +141,7 @@ func run() error {
 	}
 	a := &app{phase: "Preparando os arquivos do Ragnarok…", runtimeDir: runtimeDir, clientDir: clientDir, dataDir: data, origin: "http://" + address, transport: transport}
 	selected := *serverFlag
-	if selected == "" {
+	if selected == "" && !*followPortal {
 		previous, _ := os.ReadFile(filepath.Join(data, "server.json"))
 		var saved struct {
 			Server string `json:"server"`
@@ -390,7 +391,7 @@ func questServerAsset(resource string) bool {
 		return false
 	}
 	name := strings.TrimPrefix(resource, "/remote-client/data/")
-	for _, prefix := range []string{"model/eridan/", "texture/eridan/", "luafiles514/lua files/skillinfoz/"} {
+	for _, prefix := range []string{"model/eridan/", "texture/eridan/", "sprite/quest/", "luafiles514/lua files/skillinfoz/"} {
 		if strings.HasPrefix(name, prefix) {
 			return true
 		}
@@ -398,7 +399,7 @@ func questServerAsset(resource string) bool {
 	if strings.HasPrefix(name, "texture/") && strings.Contains(name, "/quest/") {
 		return true
 	}
-	for _, worldMap := range []string{"er_chama0", "er_chama1", "er_chama2", "er_chama3", "er_estrada", "er_mata", "er_cacada", "er_vilav", "er_costas", "er_deserto", "er_aurea", "er_ruinas", "er_mina1", "er_mina2"} {
+	for _, worldMap := range []string{"er_chama0", "er_chama1", "er_chama2", "er_chama3", "er_estrada", "er_mata", "er_cacada", "er_vilav", "er_costas", "er_deserto", "er_aurea", "er_ruinas", "er_mina1", "er_mina2", "er_rubra", "er_celeste", "er_forja", "er_azul", "er_brasa", "er_jardim", "er_escomb", "er_selva"} {
 		if strings.HasPrefix(name, "texture/") && strings.HasSuffix(name, "/map/"+worldMap+".bmp") {
 			return true
 		}

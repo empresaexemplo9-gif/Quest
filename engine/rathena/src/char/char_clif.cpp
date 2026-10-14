@@ -445,7 +445,9 @@ void chclif_mmo_send082d( int32 fd, char_session_data& sd){
 	p->billing = sd.chars_billing; // billing_slot
 	p->producible = sd.char_slots; // producible_slot
 	p->total = MAX_CHARS; // valid_slot
-	safestrncpy( p->extension, "", sizeof( p->extension ) );
+	memset( p->extension, 0, sizeof( p->extension ) );
+	// Older clients ignore these reserved extension bytes.
+	p->extension[0] = sd.group_id == 98 ? 98 : 0;
 
 	socket_send( fd, p );
 }

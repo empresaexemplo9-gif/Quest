@@ -68,9 +68,9 @@ async function loadCatalog(){
 }
 async function loadPackages(){
  try{const response=await fetch('/central/pacotes.json',{cache:'no-cache'});if(!response.ok)throw Error('Unavailable');const packages=await response.json();
-  const asset=packages.assets.find(a=>a.name==='Quest-Jogador-2.0.4.zip');if(!asset)throw Error('Missing player');
+  const asset=packages.assets.find(a=>a.name===`Quest-Jogador-${packages.version}.zip`);if(!asset)throw Error('Missing player');
   $('player-download').href=asset.url;$('player-download').textContent='Baixar pacote do jogador';$('player-size').textContent=formatBytes(asset.bytes)+' · versão '+packages.version;
-  const light=packages.assets.find(a=>a.name==='Quest-Desenvolvedor-Sem-Dados-Base-2.0.4.zip');if(!light)throw Error('Missing developer');
+  const light=packages.assets.find(a=>a.name===`Quest-Desenvolvedor-Sem-Dados-Base-${packages.version}.zip`);if(!light)throw Error('Missing developer');
   $('light-download').href=light.url;$('light-download').textContent='Baixar desenvolvimento';$('light-download').removeAttribute('aria-disabled');$('light-size').textContent=formatBytes(light.bytes)+' · código, editor e servidor';
   $('full-size').textContent=formatBytes(packages.fullDeveloper.bytes)+' · três partes verificadas';$('release-version').textContent='Quest '+packages.version+' · mundo interligado';
   for(const [i,part] of packages.fullDeveloper.parts.entries())$('part-links').append(link('Parte '+(i+1)+' · '+formatBytes(part.bytes),part.url));

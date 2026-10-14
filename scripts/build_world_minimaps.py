@@ -36,4 +36,4 @@ for name in [*city['maps'],*[r['id'] for r in world['regions']]]:
     for folder in [interface,'유저인터페이스']:
         target=root/'content/ragnarok/data/texture'/folder/'map';target.mkdir(parents=True,exist_ok=True)
         image.save(target/(name+'.bmp'))
-print('14 minimapas nativos com os caminhos, bloqueios, água e portais reais.')
+print(f"{len(city['maps'])+len(world['regions'])} minimapas nativos com caminhos, bloqueios, água e portais reais.")

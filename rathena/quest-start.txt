@@ -1,6 +1,7 @@
 // Only characters created by Quest's seven-class creation receive this initial kit.
 -	script	QuestInicio	-1,{
 OnPCLoginEvent:
+ if (getgroupid() == 98) { quest_created = 2; end; }
 	if (quest_created != 1) end;
 	// Persistent marker prevents rewards/healing from repeating on reconnect.
 	quest_created = 2;
