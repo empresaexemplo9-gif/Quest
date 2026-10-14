@@ -1,5 +1,27 @@
 import {test} from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import path from 'node:path';
 import {decodeOutfit,encodeOutfit,encodeCreationPlan} from '../mods/OutfitLogic.js';
+import {outfitRows} from '../../../scripts/lib/outfit-layout.mjs';
+
+test('nonuniform animation rows preserve feet below the old fixed grid boundary',()=>{
+ const width=8,height=700,data=new Uint8Array(width*height*4);
+ // The first pose continues 14 pixels past height/7; following poses start
+ // after a transparent separator, as in the original reference atlases.
+ for(let row=0;row<7;row++)for(let y=row*100+20;y<Math.min(height,(row+1)*100+14);y++)for(let x=0;x<width;x++)data[(y*width+x)*4+3]=255;
+ const rows=outfitRows({width,height,data});
+ assert.equal(rows.length,8);assert.equal(rows[0],0);assert.equal(rows[7],height);
+ assert.equal(rows[1],116);assert.equal(data[(rows[1]*width)*4+3],0);
+ for(let i=1;i<rows.length;i++)assert.ok(rows[i]>rows[i-1]);
+});
+
+test('reference sword boots include the opaque pixels lost by height/7 slicing',()=>{
+ for(const style of ['standard','epic']){
+  const key='sword-'+style,png=fs.readFileSync(path.resolve('content/gm/atlases',key+'.png'));
+  const previousCut=Math.floor(png.readUInt32BE(20)/7),spr=fs.readFileSync(path.resolve('content/ragnarok/data/sprite/quest',key+'.spr'));
+  const width=spr.readUInt16LE(8),height=spr.readUInt16LE(10);assert.ok(height>previousCut);
+  let recovered=0;for(let y=previousCut;y<height;y++)for(let x=Math.floor(width*.35);x<Math.ceil(width*.8);x++)if(spr[12+y*width+x])recovered++;
+  assert.ok(recovered>10,'Reference boot soles are still clipped: '+style);
+ }
+});
 
 test('wardrobe dyes reach boots, preserve faces and keep black darker than silver',()=>{
  for(const name of ['novice','sword','mage','archer','acolyte','merchant','thief'])for(const style of ['standard','epic']){

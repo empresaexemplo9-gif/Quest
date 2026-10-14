@@ -11,10 +11,17 @@ fs.copyFileSync(path.join(root,'client/ragnarok/mods/CharCreateQuest.js'),path.j
 fs.copyFileSync(path.join(root,'client/ragnarok/mods/LocalePt.js'),path.join(target,'src/UI/LocalePt.js'));
 fs.copyFileSync(path.join(root,'client/ragnarok/mods/GraphicsQuest.js'),path.join(target,'src/Renderer/GraphicsQuest.js'));
 fs.copyFileSync(path.join(root,'client/ragnarok/mods/SpritePaletteQuest.fs'),path.join(target,'src/Renderer/SpriteRenderer.fs'));
+fs.copyFileSync(path.join(root,'client/ragnarok/mods/CharacterSlotsQuest.js'),path.join(target,'src/UI/Components/CharSelect/CharacterSlotsQuest.js'));
 for(const [name,destination] of [['TouchQuest.js','MobileUI.js'],['TouchLogic.js','TouchLogic.js'],['TouchQuest.css','TouchQuest.css']])fs.copyFileSync(path.join(root,'client/ragnarok/mods',name),path.join(target,'src/UI/Components/MobileUI',destination));
 for(const name of ['OutfitQuest.js','OutfitLogic.js'])fs.copyFileSync(path.join(root,'client/ragnarok/mods',name),path.join(target,'src/Renderer/Entity',name));
 fs.writeFileSync(path.join(target,'src/DB/QuestItems.js'),'export default '+fs.readFileSync(path.join(root,'content/gm/iteminfo.json'),'utf8')+';\n');
 function replace(file,original,replacement){const filename=path.join(target,'src',file);const content=fs.readFileSync(filename,'utf8').replaceAll('\r\n','\n');if(!content.includes(original))throw Error('Pinned source changed: '+file);fs.writeFileSync(filename,content.replace(original,replacement));}
+replace('UI/Components/CharSelect/CharSelectCommon.js',"import DB from 'DB/DBManager.js';","import DB from 'DB/DBManager.js';\nimport {bindCharacterSlots} from './CharacterSlotsQuest.js';");
+replace('UI/Components/CharSelect/CharSelectCommon.js','// Bind canvas\n\t\t\tfor (let i = 0; i < 15; i++) {',`bindCharacterSlots(root, {select:moveCursorTo, create, occupied:i=>Boolean(_slots[i]), available:i=>i<_maxSlots, blocked:()=>_disable_UI});
+\t\t\t// Bind canvas
+\t\t\tfor (let i = 0; i < 15; i++) {`);
+const selectionCss=path.join(target,'src/UI/Components/CharSelect/CharSelectV4/CharSelectV4.css');
+fs.appendFileSync(selectionCss,`\n#CharSelectV4 .char_canvas{cursor:pointer;touch-action:pan-y}#CharSelectV4 .char_canvas .name,#CharSelectV4 .job_icon{pointer-events:none}#CharSelectV4 .char_select_container{padding-top:66px}#CharSelectV4 .quest-new-character{position:absolute;top:8px;left:12px;height:44px;min-height:44px;margin:0;padding:10px 18px;background:#dfbc70;color:#10151f;border:1px solid #b49b62;border-radius:6px;font:16px Arial;touch-action:manipulation}#CharSelectV4 .btn{touch-action:manipulation}@media(pointer:coarse){#CharSelectV4 .cancel{width:44px;height:44px;z-index:20}#CharSelectV4 .btn.delete,#CharSelectV4 .btn.canceldelete,#CharSelectV4 .btn.finaldelete{min-height:44px}#CharSelectV4 .char_select_container{max-width:100vw;max-height:100dvh;overflow:auto}#CharSelectV4 .char_list{max-height:65dvh}#CharSelectV4 .charinfo{max-height:65dvh}}\n`);
 replace('Renderer/Entity/EntityRender.js',"import Client from 'Core/Client.js';","import Client from 'Core/Client.js';\nimport {applyQuestOutfit} from './OutfitQuest.js';");
 replace('Renderer/Entity/EntityRender.js','return function _renderEntity() {','return function _renderEntity() {\n\t\tapplyQuestOutfit(this);');
 const entityRender=path.join(target,'src/Renderer/Entity/EntityRender.js');

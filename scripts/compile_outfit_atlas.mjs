@@ -3,12 +3,14 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {createRequire} from 'node:module';
+import {outfitRows} from './lib/outfit-layout.mjs';
 const require=createRequire(import.meta.url);
 const {PNG}=require(path.resolve(process.env.QUEST_PNGJS||'node_modules/pngjs'));
 const [key,source]=process.argv.slice(2);
 if(!/^(novice|sword|mage|archer|acolyte|merchant|thief)-(standard|epic)$/.test(key||'')||!source)throw Error('Use: compile_outfit_atlas.mjs class-style source.png');
 const png=PNG.sync.read(fs.readFileSync(source));
-function colorKey(x,y,r,g,b){const col=Math.min(7,Math.floor(x*8/png.width)),row=Math.min(6,Math.floor(y*7/png.height)),sx=(x-col*png.width/8)/(png.width/8),sy=(y-row*png.height/7)/(png.height/7);const skin=r>g&&g>b&&r-b<102&&g>56;const protectedPixel=sy<.39||(skin&&sy<.72&&(sx<.42||sx>.58));return (r>>3)*1024+(g>>3)*32+(b>>3)+(protectedPixel?32768:0);}
+const rows=outfitRows(png);
+function colorKey(x,y,r,g,b){const col=Math.min(7,Math.floor(x*8/png.width));let row=0;while(row<6&&y>=rows[row+1])row++;const sx=(x-col*png.width/8)/(png.width/8),sy=(y-rows[row])/(rows[row+1]-rows[row]);const skin=r>g&&g>b&&r-b<102&&g>56;const protectedPixel=sy<.39||(skin&&sy<.72&&(sx<.42||sx>.58));return (r>>3)*1024+(g>>3)*32+(b>>3)+(protectedPixel?32768:0);}
 const histogram=new Map();
 for(let i=0;i<png.data.length;i+=4){if(png.data[i+3]<128)continue;const r=png.data[i],g=png.data[i+1],b=png.data[i+2],pixel=i/4,k=colorKey(pixel%png.width,Math.floor(pixel/png.width),r,g,b);let c=histogram.get(k);if(!c){c={k,r:0,g:0,b:0,n:0};histogram.set(k,c);}c.r+=r;c.g+=g;c.b+=b;c.n++;}
 const colors=[...histogram.values()].map(c=>({...c,r:c.r/c.n,g:c.g/c.n,b:c.b/c.n}));
@@ -25,7 +27,7 @@ const palette=Buffer.alloc(1024),lookup=new Map(),protectedColors=new Set();
 for(let i=0;i<boxes.length;i++){const box=boxes[i],n=box.reduce((s,c)=>s+c.n,0);if(box[0].k>=32768)protectedColors.add(i+1);for(let j=0;j<3;j++)palette[(i+1)*4+j]=Math.round(box.reduce((s,c)=>s+c[['r','g','b'][j]]*c.n,0)/n);palette[(i+1)*4+3]=255;for(const c of box)lookup.set(c.k,i+1);}
 const chunks=[Buffer.from([83,80,0,2,56,0,0,0])],frames=[];
 for(let row=0;row<7;row++)for(let col=0;col<8;col++){
- const x0=Math.floor(col*png.width/8),x1=Math.floor((col+1)*png.width/8),y0=Math.floor(row*png.height/7),y1=Math.floor((row+1)*png.height/7),w=x1-x0,h=y1-y0;
+ const x0=Math.floor(col*png.width/8),x1=Math.floor((col+1)*png.width/8),y0=rows[row],y1=rows[row+1],w=x1-x0,h=y1-y0;
  const frame=Buffer.alloc(w*h);let opaque=0,bottom=0,top=h;
  for(let y=0;y<h;y++)for(let x=0;x<w;x++){const i=((y0+y)*png.width+x0+x)*4;if(png.data[i+3]>=128){frame[y*w+x]=lookup.get(colorKey(x0+x,y0+y,png.data[i],png.data[i+1],png.data[i+2]));opaque++;bottom=Math.max(bottom,y);top=Math.min(top,y);}}
  if(opaque<100)throw Error('Empty animation cell '+row+','+col);
@@ -53,4 +55,4 @@ for(let dye=1;dye<8;dye++){const p=Buffer.from(palette);for(let i=1;i<256;i++){l
 fs.mkdirSync('content/gm/atlases',{recursive:true});
 const preservedSource='content/gm/atlases/'+key+'.png';
 if(path.resolve(source)!==path.resolve(preservedSource))fs.copyFileSync(source,preservedSource);
-console.log(JSON.stringify({key,frames:56,actions:104,colors:boxes.length,scale,source:{width:png.width,height:png.height},compiled:true}));
+console.log(JSON.stringify({key,frames:56,actions:104,colors:boxes.length,scale,rows,source:{width:png.width,height:png.height},compiled:true}));
