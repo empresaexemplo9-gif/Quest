@@ -1,81 +1,81 @@
 {
-  "version": "2.0.6",
-  "sourceRevision": "8509c41ad98b8c22dbe28f93d63d275be4dff17b",
-  "release": "https://github.com/empresaexemplo9-gif/Quest/releases/tag/quest-arquivos-2.0.6",
+  "version": "2.0.8",
+  "sourceRevision": "8dd017203140578b1d468390874f5fac699fd57d",
+  "release": "https://github.com/empresaexemplo9-gif/Quest/releases/tag/quest-arquivos-2.0.8",
   "assets": [
     {
       "name": "Baixar-Quest-GM-v2.cmd",
       "bytes": 3086,
-      "sha256": "acace4d54c033e5001cad48e88e2f1afb38a3fa96c9611fc71b9656c7a023423",
-      "url": "https://github.com/empresaexemplo9-gif/Quest/releases/download/quest-arquivos-2.0.6/Baixar-Quest-GM-v2.cmd"
+      "sha256": "c78d3ac82bf0d14ad7da9d7e8bbd29d77a15046abf8131f948100dc4ea12a977",
+      "url": "https://github.com/empresaexemplo9-gif/Quest/releases/download/quest-arquivos-2.0.8/Baixar-Quest-GM-v2.cmd"
     },
     {
       "name": "Montar-Quest-GM.py",
       "bytes": 1528,
-      "sha256": "1cbc845f5f7f4396fa96b8e735c15e4ef8fe193ad39eaef1feb3d6b7a65c1331",
-      "url": "https://github.com/empresaexemplo9-gif/Quest/releases/download/quest-arquivos-2.0.6/Montar-Quest-GM.py"
+      "sha256": "28c126dc81887335dbb9e14a54d593301c90bdfa1ed85c691fe4d8a7ead01026",
+      "url": "https://github.com/empresaexemplo9-gif/Quest/releases/download/quest-arquivos-2.0.8/Montar-Quest-GM.py"
     },
     {
-      "name": "Quest-Desenvolvedor-2.0.6.zip.parte01",
+      "name": "Quest-Desenvolvedor-2.0.8.zip.parte01",
       "bytes": 1610612736,
       "sha256": "9a55b409da00afe794c1cb988740cfeef6c664f1fb8ca8d0e0d94db610be2b83",
-      "url": "https://github.com/empresaexemplo9-gif/Quest/releases/download/quest-arquivos-2.0.6/Quest-Desenvolvedor-2.0.6.zip.parte01"
+      "url": "https://github.com/empresaexemplo9-gif/Quest/releases/download/quest-arquivos-2.0.8/Quest-Desenvolvedor-2.0.8.zip.parte01"
     },
     {
-      "name": "Quest-Desenvolvedor-2.0.6.zip.parte02",
+      "name": "Quest-Desenvolvedor-2.0.8.zip.parte02",
       "bytes": 1610612736,
       "sha256": "f3d3add5b8d798f5746833f4335bde27ee6d97fe5d511e7e24ff29932a51774a",
-      "url": "https://github.com/empresaexemplo9-gif/Quest/releases/download/quest-arquivos-2.0.6/Quest-Desenvolvedor-2.0.6.zip.parte02"
+      "url": "https://github.com/empresaexemplo9-gif/Quest/releases/download/quest-arquivos-2.0.8/Quest-Desenvolvedor-2.0.8.zip.parte02"
     },
     {
-      "name": "Quest-Desenvolvedor-2.0.6.zip.parte03",
-      "bytes": 1212780036,
-      "sha256": "8a90ffa0ef876e0be58a5997de59204e3d4665086177274c7cc2d9de130171a7",
-      "url": "https://github.com/empresaexemplo9-gif/Quest/releases/download/quest-arquivos-2.0.6/Quest-Desenvolvedor-2.0.6.zip.parte03"
+      "name": "Quest-Desenvolvedor-2.0.8.zip.parte03",
+      "bytes": 1214399105,
+      "sha256": "90814c6f9c1219553641c374ebd3402c171b3e3e9f25412d96f50c2030618570",
+      "url": "https://github.com/empresaexemplo9-gif/Quest/releases/download/quest-arquivos-2.0.8/Quest-Desenvolvedor-2.0.8.zip.parte03"
     },
     {
-      "name": "Quest-Desenvolvedor-Sem-Dados-Base-2.0.6.zip",
-      "bytes": 456911545,
-      "sha256": "8b2b74ecdcce6adc0919f71ac9800d148279e6ca38f986a05c45dc118ee28867",
-      "url": "https://github.com/empresaexemplo9-gif/Quest/releases/download/quest-arquivos-2.0.6/Quest-Desenvolvedor-Sem-Dados-Base-2.0.6.zip"
+      "name": "Quest-Desenvolvedor-Sem-Dados-Base-2.0.8.zip",
+      "bytes": 458530298,
+      "sha256": "601df1b08878a9c992a444c90ed70c41653df06d7a58275c1bcc6149f0bd8bf9",
+      "url": "https://github.com/empresaexemplo9-gif/Quest/releases/download/quest-arquivos-2.0.8/Quest-Desenvolvedor-Sem-Dados-Base-2.0.8.zip"
     },
     {
       "name": "Quest-GM-Pacote.json",
       "bytes": 1217,
-      "sha256": "6c03ccc5b09bc75cc5052bfe874ca8c924d845a36c575a3998000adbe1de3b66",
-      "url": "https://github.com/empresaexemplo9-gif/Quest/releases/download/quest-arquivos-2.0.6/Quest-GM-Pacote.json"
+      "sha256": "5980f0b5ea206df33db58ad6365a551cabd6188222e22ff45dc02d3a21b9ed58",
+      "url": "https://github.com/empresaexemplo9-gif/Quest/releases/download/quest-arquivos-2.0.8/Quest-GM-Pacote.json"
     },
     {
-      "name": "Quest-Jogador-2.0.6.zip",
-      "bytes": 56103748,
-      "sha256": "892b6d69aed294303edc747cf03f088d01b5afef053b045046f9dd1cd5839a58",
-      "url": "https://github.com/empresaexemplo9-gif/Quest/releases/download/quest-arquivos-2.0.6/Quest-Jogador-2.0.6.zip"
+      "name": "Quest-Jogador-2.0.8.zip",
+      "bytes": 56514339,
+      "sha256": "975777182a8e5ccebde279b7007231ef6610284d2a9fc261a578ae79ce521f18",
+      "url": "https://github.com/empresaexemplo9-gif/Quest/releases/download/quest-arquivos-2.0.8/Quest-Jogador-2.0.8.zip"
     }
   ],
   "fullDeveloper": {
-    "version": "2.0.6",
-    "sourceRevision": "8509c41ad98b8c22dbe28f93d63d275be4dff17b",
+    "version": "2.0.8",
+    "sourceRevision": "8dd017203140578b1d468390874f5fac699fd57d",
     "filename": "DESENVOLVEDOR.zip",
-    "bytes": 4434005508,
-    "sha256": "bcddcabfa86b93f73217cc1a656083bb3543322bdfb30a8d97778a3297849bd1",
+    "bytes": 4435624577,
+    "sha256": "0581c5416d28199dbd6a99aea57879c2bdfeb3dbce4a1d3075f416fe346a2819",
     "parts": [
       {
-        "name": "Quest-Desenvolvedor-2.0.6.zip.parte01",
+        "name": "Quest-Desenvolvedor-2.0.8.zip.parte01",
         "bytes": 1610612736,
         "sha256": "9a55b409da00afe794c1cb988740cfeef6c664f1fb8ca8d0e0d94db610be2b83",
-        "url": "https://github.com/empresaexemplo9-gif/Quest/releases/download/quest-arquivos-2.0.6/Quest-Desenvolvedor-2.0.6.zip.parte01"
+        "url": "https://github.com/empresaexemplo9-gif/Quest/releases/download/quest-arquivos-2.0.8/Quest-Desenvolvedor-2.0.8.zip.parte01"
       },
       {
-        "name": "Quest-Desenvolvedor-2.0.6.zip.parte02",
+        "name": "Quest-Desenvolvedor-2.0.8.zip.parte02",
         "bytes": 1610612736,
         "sha256": "f3d3add5b8d798f5746833f4335bde27ee6d97fe5d511e7e24ff29932a51774a",
-        "url": "https://github.com/empresaexemplo9-gif/Quest/releases/download/quest-arquivos-2.0.6/Quest-Desenvolvedor-2.0.6.zip.parte02"
+        "url": "https://github.com/empresaexemplo9-gif/Quest/releases/download/quest-arquivos-2.0.8/Quest-Desenvolvedor-2.0.8.zip.parte02"
       },
       {
-        "name": "Quest-Desenvolvedor-2.0.6.zip.parte03",
-        "bytes": 1212780036,
-        "sha256": "8a90ffa0ef876e0be58a5997de59204e3d4665086177274c7cc2d9de130171a7",
-        "url": "https://github.com/empresaexemplo9-gif/Quest/releases/download/quest-arquivos-2.0.6/Quest-Desenvolvedor-2.0.6.zip.parte03"
+        "name": "Quest-Desenvolvedor-2.0.8.zip.parte03",
+        "bytes": 1214399105,
+        "sha256": "90814c6f9c1219553641c374ebd3402c171b3e3e9f25412d96f50c2030618570",
+        "url": "https://github.com/empresaexemplo9-gif/Quest/releases/download/quest-arquivos-2.0.8/Quest-Desenvolvedor-2.0.8.zip.parte03"
       }
     ]
   }
