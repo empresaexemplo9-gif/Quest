@@ -1,3 +1,78 @@
 <!doctype html>
-<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#10181e"><title>Quest — Cinzas de Éridan</title><link rel="icon" href="/mark.svg"><link rel="stylesheet" href="/game/style.css"><link rel="stylesheet" href="/game/downloads.css"><link rel="stylesheet" href="/ragnarok-entry.css"><script src="/ragnarok-entry.js" defer></script></head>
-<body><main class="downloads-page"><a class="wordmark" href="/">QUEST<span>CINZAS DE ÉRIDAN</span></a><p class="eyebrow">RAGNAROK · MUNDO COMPARTILHADO</p><h1>Uma jornada.<br><em>O mesmo mundo.</em></h1><p>Mapas, personagens e animações do Ragnarok. Explore com outros jogadores e continue sua jornada com o personagem salvo no servidor.</p><section class="panel-box" aria-live="polite"><h3>Entrar no jogo</h3><p>Primeira vez por aqui? <a href="/criar-conta.html">Criar conta Ragnarok</a></p><p id="connection-status">Verificando a conexão com o mundo…</p><p><a class="gold-button" id="enter-world" hidden>Jogar agora</a></p><p id="server-address" hidden></p><button class="text-button" id="check-connection">Verificar novamente</button></section><p><a class="gold-button" href="/downloads.html">Instaladores para Windows e macOS</a></p><p>Quando a conexão estiver disponível, o botão Jogar agora abre o cliente no navegador, inclusive no iPad pelo Safari.</p><p><a class="gold-button" href="/arquivos.html">Central compartilhada de arquivos</a></p><p class="muted"><a href="/index.html">Jornada anterior — modo solo</a></p></main></body></html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#10181e">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Éridan">
+  <meta name="description" content="Explore Cinzas de Éridan com outros jogadores. Instale na tela inicial do iPad ou tablet Android e entre no mundo compartilhado.">
+  <title>Quest — Cinzas de Éridan</title>
+  <link rel="icon" href="/mark.svg">
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="stylesheet" href="/game/style.css">
+  <link rel="stylesheet" href="/game/downloads.css">
+  <link rel="stylesheet" href="/ragnarok-entry.css">
+  <link rel="stylesheet" href="/install.css">
+  <script src="/ragnarok-entry.js" defer></script>
+  <script type="module" src="/install.js"></script>
+</head>
+<body class="portal-home">
+<main class="downloads-page">
+  <a class="wordmark" href="/">QUEST<span>CINZAS DE ÉRIDAN</span></a>
+  <div class="portal-intro">
+    <div><p class="eyebrow">RAGNAROK · MUNDO COMPARTILHADO</p>
+      <h1>Uma jornada.<br><em>O mesmo mundo.</em></h1>
+      <p>Explore com outros jogadores e continue sua jornada com o personagem salvo no servidor.</p>
+    </div>
+    <section class="panel-box world-entry" aria-labelledby="world-title">
+      <h2 id="world-title">Entrar no jogo</h2>
+      <p id="connection-status" role="status">Verificando a conexão com o mundo…</p>
+      <p><a class="gold-button" id="enter-world" hidden>Jogar agora</a></p>
+      <p>Primeira vez? <a href="/criar-conta.html">Criar conta</a></p>
+      <button class="text-button" id="check-connection">Verificar novamente</button>
+      <p id="server-address" hidden></p>
+    </section>
+  </div>
+  <section class="tablet-install" id="instalar" aria-labelledby="install-heading">
+    <div class="install-heading"><div><p class="eyebrow">SEU MUNDO, SEMPRE POR PERTO</p><h2 id="install-heading">Éridan na sua tela inicial.</h2></div><img src="/icons/icon-192.png" width="56" height="56" alt="Ícone do jogo Éridan"></div>
+    <p>Instale o aplicativo da web no seu tablet e abra o jogo pelo ícone, com controles por toque.</p>
+    <div class="install-grid">
+      <article class="install-card">
+        <span class="device-icon" aria-hidden="true">▯</span>
+        <div><h3>iPad</h3><p>Instalação pelo Safari</p></div>
+        <button class="gold-button" data-install="ipad" aria-haspopup="dialog" aria-controls="install-dialog">Instalar no iPad <span aria-hidden="true">↗</span></button>
+      </article>
+      <article class="install-card">
+        <span class="device-icon" aria-hidden="true">▯</span>
+        <div><h3>Tablet Android</h3><p>Instalação pelo Chrome</p></div>
+        <button class="gold-button" data-install="android" aria-haspopup="dialog" aria-controls="install-dialog">Instalar no tablet Android <span aria-hidden="true">↗</span></button>
+      </article>
+    </div>
+    <p id="install-state" class="install-note" role="status">O jogo online precisa de internet e do servidor ligado.</p>
+    <noscript><p>iPad: abra esta página no Safari → Compartilhar → Adicionar à Tela de Início. Android: abra no Chrome → menu ⋮ → Instalar e criar atalho → Instalar.</p></noscript>
+  </section>
+  <nav class="portal-links" aria-label="Outras opções"><a href="/downloads.html">Instaladores para Windows e macOS →</a><a href="/arquivos.html">Central compartilhada de arquivos →</a><a href="/index.html">Jornada anterior — modo solo →</a></nav>
+</main>
+<dialog id="install-dialog" aria-labelledby="install-title" aria-describedby="install-description">
+  <div class="install-dialog-heading"><img src="/icons/icon-192.png" width="48" height="48" alt=""><button id="install-close" class="install-close" aria-label="Fechar instruções de instalação" autofocus>×</button></div>
+  <p class="eyebrow">CINZAS DE ÉRIDAN</p><h2 id="install-title">Instalar o jogo</h2>
+  <p id="install-description">O jogo ficará na tela inicial do seu aparelho.</p>
+  <div data-install-guide="ipad" hidden>
+    <ol><li>Abra esta página no <strong>Safari do iPad</strong>.</li><li>Toque em <strong>Compartilhar</strong> <span class="share-symbol" aria-hidden="true">↑</span>. Se aparecer, toque em <strong>Ver Mais</strong>.</li><li>Escolha <strong>Adicionar à Tela de Início</strong>. Se a opção <strong>Abrir como App da Web</strong> aparecer, deixe ativada.</li><li>Toque em <strong>Adicionar</strong>. Depois, abra <strong>Éridan</strong> pelo ícone na tela inicial.</li></ol>
+    <p class="install-note">No iPad, a confirmação é feita no menu do Safari.</p>
+    <a class="install-help" href="https://support.apple.com/pt-br/guide/ipad/ipad8f1f7a29/ipados" target="_blank" rel="noopener">Ver instruções da Apple ↗</a>
+  </div>
+  <div data-install-guide="android" hidden>
+    <button class="gold-button" id="install-confirm" hidden>Confirmar instalação no Android</button>
+    <ol><li>Abra esta página no <strong>Chrome do tablet Android</strong>.</li><li>Toque no menu <strong>⋮</strong>, ao lado da barra de endereço.</li><li>Escolha <strong>Instalar e criar atalho → Instalar</strong>. Em algumas versões, aparece <strong>Instalar app</strong> ou <strong>Adicionar à tela inicial</strong>.</li><li>Confirme e abra <strong>Éridan</strong> pelo ícone do jogo.</li></ol>
+    <a class="install-help" href="https://support.google.com/chrome/answer/9658361?co=GENIE.Platform%3DAndroid&amp;hl=pt-BR" target="_blank" rel="noopener">Ver instruções do Chrome ↗</a>
+  </div>
+  <p id="install-feedback" role="status"></p>
+  <div class="install-link"><label for="install-url">Abrindo em outro aparelho? Use este endereço:</label><input id="install-url" readonly type="url" aria-label="Endereço para instalar o jogo"><button id="install-copy" class="text-button">Copiar endereço</button></div>
+  <p class="install-note">Depois de instalar, entre com sua conta. Para jogar, mantenha a internet conectada e o servidor ligado.</p>
+  <a class="gold-button install-play" href="/entrar.html">Já instalei · Entrar no jogo</a>
+</dialog>
+</body></html>

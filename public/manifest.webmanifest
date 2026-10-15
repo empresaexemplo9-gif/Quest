@@ -1,8 +1,10 @@
 {
   "name": "Cinzas de Éridan",
   "short_name": "Éridan",
-  "description": "Sobreviver é o começo. Construir juntos é a missão.",
-  "start_url": "/",
+  "id": "/",
+  "lang": "pt-BR",
+  "description": "Explore o mundo compartilhado de Éridan com controles por toque. Requer internet e servidor online.",
+  "start_url": "/ragnarok.html",
   "scope": "/",
   "display": "standalone",
   "background_color": "#10181e",
